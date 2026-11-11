@@ -33,6 +33,14 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+hardiness:
+  min: "6a"
+  max: "9b"
+  sources:
+    - title: "Brassica oleracea Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/brassica-oleracea/
+tools: [seed-trays, trowel]
 ---
 
 Kale is a leafy form of *Brassica oleracea* – the same species as cabbage, broccoli and cauliflower –

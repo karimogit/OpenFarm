@@ -33,5 +33,6 @@ seed_saving:
   cross_note: "Extremely short seed life \u2013 sow fresh seed."
   sources:
     - seed-matters-chart
+tools: [hoe, broadfork]
 ---
 Parsnips are a root vegetable closely related to carrots and celery. They look like thick white carrots with larger, slightly rough foliage. Parsnips taste similar to carrots, except that they are sweeter, especially when cooked. Like carrots, they can be broiled, pureed, roasted, steamed, and baked into cakes. They become even sweeter in flavor after winter frosts. Before cane sugar arrived in Europe, they were used as a sweetener. The stems and foliage of the parsnip can cause a skin rash - wear long sleeves, pants, and gloves when weeding and harvesting.

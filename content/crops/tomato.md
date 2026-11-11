@@ -39,6 +39,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [seed-trays, trowel, watering-can]
 ---
 
 Tomatoes are warm-season, frost-tender plants grown for their fruit. They are perennial in their

@@ -1,0 +1,243 @@
+{
+ "almond": null,
+ "amelanchier": null,
+ "anise-hyssop": {
+  "min": "4a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/agastache-foeniculum/",
+  "title": "Agastache foeniculum Play pronunciation"
+ },
+ "anise": null,
+ "apple-mint": null,
+ "apple": {
+  "min": "4a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/malus-domestica/",
+  "title": "Malus domestica Play pronunciation"
+ },
+ "banana": null,
+ "basil": {
+  "min": "10a",
+  "max": "10b",
+  "url": "https://plants.ces.ncsu.edu/plants/ocimum-basilicum/",
+  "title": "Ocimum basilicum Play pronunciation"
+ },
+ "bay-laurel": {
+  "min": "8b",
+  "max": "10b",
+  "url": "https://plants.ces.ncsu.edu/plants/laurus-nobilis/",
+  "title": "Laurus nobilis Play pronunciation"
+ },
+ "black-currant": null,
+ "black-walnut": {
+  "min": "4a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/juglans-nigra/",
+  "title": "Juglans nigra Play pronunciation"
+ },
+ "blackberry": null,
+ "blueberry": null,
+ "borage": {
+  "min": "2a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/borago-officinalis/",
+  "title": "Borago officinalis Play pronunciation"
+ },
+ "cantaloupe": {
+  "min": "2a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/cucumis-melo/",
+  "title": "Cucumis melo Play pronunciation"
+ },
+ "cape-gooseberry": null,
+ "chervil": null,
+ "chestnut": null,
+ "chives": {
+  "min": "4a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/allium-schoenoprasum/",
+  "title": "Allium schoenoprasum Play pronunciation"
+ },
+ "coriander": null,
+ "culantro": null,
+ "dill": {
+  "min": "2a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/anethum-graveolens/",
+  "title": "Anethum graveolens Play pronunciation"
+ },
+ "dragon-fruit": null,
+ "elderberry": null,
+ "english-walnut": {
+  "min": "3a",
+  "max": "7b",
+  "url": "https://plants.ces.ncsu.edu/plants/juglans-regia/",
+  "title": "Juglans regia Play pronunciation"
+ },
+ "fennel": {
+  "min": "4a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/foeniculum-vulgare/",
+  "title": "Foeniculum vulgare Play pronunciation"
+ },
+ "feverfew": null,
+ "garlic-chives": {
+  "min": "3a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/allium-tuberosum/",
+  "title": "Allium tuberosum Play pronunciation"
+ },
+ "german-chamomile": null,
+ "goji-berry": null,
+ "gooseberry": null,
+ "goumi-berry": null,
+ "grapes": null,
+ "hardy-kiwifruit": {
+  "min": "3a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/actinidia-arguta/",
+  "title": "Actinidia arguta Play pronunciation"
+ },
+ "hazelnut": null,
+ "honeydew-melon": {
+  "min": "2a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/cucumis-melo/",
+  "title": "Cucumis melo Play pronunciation"
+ },
+ "kale": {
+  "min": "6a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/brassica-oleracea/",
+  "title": "Brassica oleracea Play pronunciation"
+ },
+ "kawakawa": null,
+ "kiwifruit": null,
+ "lemon-balm": {
+  "min": "3a",
+  "max": "7b",
+  "url": "https://plants.ces.ncsu.edu/plants/melissa-officinalis/",
+  "title": "Melissa officinalis Play pronunciation"
+ },
+ "lemongrass": {
+  "min": "8b",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/cymbopogon-citratus/",
+  "title": "Cymbopogon citratus Play pronunciation"
+ },
+ "licorice": {
+  "min": "6a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/glycyrrhiza-glabra/",
+  "title": "Glycyrrhiza glabra Play pronunciation"
+ },
+ "lovage": {
+  "min": "4a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/levisticum-officinale/",
+  "title": "Levisticum officinale Play pronunciation"
+ },
+ "lowbush-blueberry": {
+  "min": "2a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/vaccinium-angustifolium/",
+  "title": "Vaccinium angustifolium Play pronunciation"
+ },
+ "marjoram": {
+  "min": "9a",
+  "max": "10b",
+  "url": "https://plants.ces.ncsu.edu/plants/origanum-majorana/",
+  "title": "Origanum majorana Play pronunciation"
+ },
+ "melon": {
+  "min": "2a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/cucumis-melo/",
+  "title": "Cucumis melo Play pronunciation"
+ },
+ "mexican-tarragon": {
+  "min": "8a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/tagetes-lucida/",
+  "title": "Tagetes lucida Play pronunciation"
+ },
+ "midgen-berry": null,
+ "mint": {
+  "min": "4a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/mentha-spicata/",
+  "title": "Mentha spicata Play pronunciation"
+ },
+ "mitsuba": {
+  "min": "4a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/cryptotaenia-japonica/",
+  "title": "Cryptotaenia japonica Play pronunciation"
+ },
+ "parsley": null,
+ "passion-fruit": null,
+ "pineapple-sage": {
+  "min": "8a",
+  "max": "10b",
+  "url": "https://plants.ces.ncsu.edu/plants/salvia-elegans/",
+  "title": "Salvia elegans Play pronunciation"
+ },
+ "pineapple": {
+  "min": "10a",
+  "max": "12b",
+  "url": "https://plants.ces.ncsu.edu/plants/ananas-comosus/",
+  "title": "Ananas comosus Play pronunciation"
+ },
+ "pistachio": null,
+ "plantain": null,
+ "red-currant": null,
+ "rose-geranium": null,
+ "rosemary": null,
+ "sage": {
+  "min": "4a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/salvia-officinalis/",
+  "title": "Salvia officinalis Play pronunciation"
+ },
+ "salad-burnet": {
+  "min": "4a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/sanguisorba-minor/",
+  "title": "Sanguisorba minor Play pronunciation"
+ },
+ "sorrel": null,
+ "st-johns-wort": {
+  "min": "3a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/hypericum-perforatum/",
+  "title": "Hypericum perforatum Play pronunciation"
+ },
+ "stevia": {
+  "min": "10a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/stevia-rebaudiana/",
+  "title": "Stevia rebaudiana Play pronunciation"
+ },
+ "straggly-gooseberry": null,
+ "strawberry": null,
+ "summer-savory": {
+  "min": "2a",
+  "max": "11b",
+  "url": "https://plants.ces.ncsu.edu/plants/satureja-hortensis/",
+  "title": "Satureja hortensis Play pronunciation"
+ },
+ "tarragon": {
+  "min": "3a",
+  "max": "8b",
+  "url": "https://plants.ces.ncsu.edu/plants/artemisia-dracunculus/",
+  "title": "Artemisia dracunculus Play pronunciation"
+ },
+ "thyme": {
+  "min": "5a",
+  "max": "9b",
+  "url": "https://plants.ces.ncsu.edu/plants/thymus-vulgaris/",
+  "title": "Thymus vulgaris Play pronunciation"
+ },
+ "walnut": null,
+ "white-currant": null
+}

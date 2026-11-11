@@ -29,5 +29,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "9a"
+  max: "10b"
+  sources:
+    - title: "Origanum majorana Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/origanum-majorana/
 ---
 Marjoram is a somewhat cold-sensitive annual or perennial herb that is a sub-species of oregano and a member of the Mint family (Lamiaceae). Marjoram is often confused with oregano, but it has slightly more pointed leaves that tend to fold inwards a bit. Marjoram has a mild, floral, woodsy flavor, while oregano is more pungent and spicy. The two herbs should not be substituted for one another in recipes. Marjoram can be grown in containers and brought indoors to protect it from frosts.

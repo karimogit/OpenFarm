@@ -35,5 +35,12 @@ seed_saving:
   cross_note: "Does not cross with watermelon."
   sources:
     - seed-matters-chart
+hardiness:
+  min: "2a"
+  max: "11b"
+  sources:
+    - title: "Cucumis melo Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/cucumis-melo/
 ---
 Cantaloupes are round melons that grow on vines and have sweet, firm, juicy, orange flesh. The rind is light-grey and reticulated (or covered in a "net-like" pattern).

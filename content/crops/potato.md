@@ -30,6 +30,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [spade, hoe]
 ---
 
 Potatoes are cool-season tuber crops in the nightshade family, originally from South America.

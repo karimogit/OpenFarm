@@ -41,5 +41,6 @@ seed_saving:
   sources:
     - seed-matters-chart
     - osu-seed-saving-chart
+tools: [seed-trays, hoe]
 ---
 Lettuce is a cool weather crop and high temperatures will impede germination and/or cause the plant to bolt (go to seed quickly). Some hybrid cultivars have been bred to be more heat-resistant.

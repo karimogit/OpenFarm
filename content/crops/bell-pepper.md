@@ -44,5 +44,6 @@ seed_saving:
   sources:
     - seed-matters-chart
     - osu-seed-saving-chart
+tools: [seed-trays]
 ---
 The bell pepper is a cultivar group of the species Capsicum annuum. Bell pepper cultivars produce fruits in colors including red, yellow, orange, green, brown, white, and purple. The fruit is often mildly sweet, because this specific cultivar does not produce capsaicin, the chemical responsible for other peppers' spiciness.

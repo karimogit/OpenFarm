@@ -34,5 +34,6 @@ seed_saving:
   cross_note: "Very short seed life."
   sources:
     - seed-matters-chart
+tools: [hoe, dibber]
 ---
 .

@@ -345,6 +345,59 @@
     "image_note": {
       "type": "string",
       "description": "Shown with the photo when it is not of this exact crop/cultivar, e.g. a species-level photo."
+    },
+    "hardiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max",
+        "sources"
+      ],
+      "description": "USDA plant hardiness zone range (average annual extreme minimum temperature) in which the plant survives winter outdoors.",
+      "properties": {
+        "min": {
+          "type": "string",
+          "pattern": "^(1[0-3]|[1-9])[ab]?$"
+        },
+        "max": {
+          "type": "string",
+          "pattern": "^(1[0-3]|[1-9])[ab]?$"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "title",
+                  "url"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "publisher": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
     }
   },
   "allOf": [

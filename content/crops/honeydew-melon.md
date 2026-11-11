@@ -35,5 +35,12 @@ seed_saving:
   cross_note: "Does not cross with watermelon."
   sources:
     - seed-matters-chart
+hardiness:
+  min: "2a"
+  max: "11b"
+  sources:
+    - title: "Cucumis melo Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/cucumis-melo/
 ---
 Honeydew melons have a round to slightly oval shape. Like other melons, they grow on vines. Their sweet, tender flesh is pale green or orange in color, and the smooth peel ranges from greenish to yellow.

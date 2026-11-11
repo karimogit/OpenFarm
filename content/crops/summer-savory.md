@@ -23,5 +23,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "2a"
+  max: "11b"
+  sources:
+    - title: "Satureja hortensis Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/satureja-hortensis/
 ---
 Summer Savory is an annual, ornamental herb grown for the sweet, delicate, peppery taste of its leaves. It is related to Winter Savory, which is a perennial plant with a more bitter, piney flavor. Summer Savory has many branches, slender, soft dark green to purple leaves, and light pink or lavender tubular flowers. Summer Savory grows quickly and can become top heavy and require staking. Once the plant is 15cm tall, it should be harvested regularly to keep it from setting seed. After Summer Savory has set seed, it's leaves curl up and dry.

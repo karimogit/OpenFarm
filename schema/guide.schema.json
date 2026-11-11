@@ -263,6 +263,15 @@
     "last_reviewed": {
       "type": "string",
       "format": "date"
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "uniqueItems": true,
+      "description": "Slugs of tools in content/tools/ that are useful for this crop or guide."
     }
   },
   "allOf": [

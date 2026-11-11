@@ -24,6 +24,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [dibber, trowel]
 ---
 
 Garlic forms a bulb made of cloves. It is usually planted in autumn so the cloves root before the

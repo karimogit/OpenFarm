@@ -36,5 +36,6 @@ seed_saving:
   cross_note: "Seed matures 6\u20138 weeks after the eating stage."
   sources:
     - seed-matters-chart
+tools: [hoe, wheel-hoe]
 ---
 Corn is a large grain plant, or tall grass, first domesticated about 10,000 years ago by indigenous peoples in Southern Mexico. The leafy stalk produces ears after pollination. Depending on the variety, the corn can be eaten fresh, or dried and ground into cornmeal.

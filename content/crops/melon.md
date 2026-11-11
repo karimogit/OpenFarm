@@ -33,5 +33,12 @@ seed_saving:
   cross_note: "Does not cross with watermelon."
   sources:
     - seed-matters-chart
+hardiness:
+  min: "2a"
+  max: "11b"
+  sources:
+    - title: "Cucumis melo Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/cucumis-melo/
 ---
 Melons are a group of species in the Cucurbitaceae family. They produce sweet fruits that grow on sprawling vines. Types of melons include: watermelons, cantaloupe, honeydew, casaba, and crenshaw. More growing information is available in individual species entries.

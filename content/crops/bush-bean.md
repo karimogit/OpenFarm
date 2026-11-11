@@ -35,6 +35,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [hoe]
 ---
 
 Bush beans are compact forms of the common bean grown for their young pods (green, yellow "wax"

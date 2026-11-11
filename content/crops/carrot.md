@@ -33,5 +33,6 @@ seed_saving:
   cross_note: "Crosses with wild carrot (Queen Anne's lace)."
   sources:
     - seed-matters-chart
+tools: [hoe, wheel-hoe]
 ---
 The carrot is a root vegetable. It is usually orange in color, but some cultivars are purple, black, red, white, and yellow. The most commonly eaten part of the plant is the taproot, but the greens are sometimes eaten as well. The leaves appear first, and the taproot grows more slowly beneath the soil. Fast-growing cultivars mature within three months of sowing the seed. Slower-maturing cultivars are harvested four months after sowing.
