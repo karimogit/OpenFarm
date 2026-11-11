@@ -59,6 +59,7 @@ export const loadGuides = () => loadNested("guides");
 export const loadRegions = () => loadFlat("regions").sort((a, b) => a.data.order - b.data.order);
 export const loadProblems = () => loadFlat("problems");
 export const loadSeedSources = () => loadFlat("seed-sources");
+export const loadTools = () => loadFlat("tools");
 export const loadCompanions = () => loadYaml("companions.yaml") || [];
 export const loadSources = () => loadYaml("sources.yaml") || {};
 

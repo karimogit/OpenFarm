@@ -6,14 +6,14 @@ import path from "node:path";
 import Ajv from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import {
-  ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadSeedSources,
+  ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadSeedSources, loadTools,
   loadCompanions, loadSources, koppenToRegion,
 } from "./content.js";
 
 const ajv = new Ajv({ allErrors: true, strict: false });
 addFormats(ajv);
 const compile = (name) => ajv.compile(JSON.parse(fs.readFileSync(path.join(ROOT, "schema", `${name}.schema.json`), "utf8")));
-const V = Object.fromEntries(["crop", "variety", "guide", "region", "problem", "seed-source", "companions", "sources"].map((n) => [n, compile(n)]));
+const V = Object.fromEntries(["crop", "variety", "guide", "region", "problem", "seed-source", "companions", "sources", "tool"].map((n) => [n, compile(n)]));
 
 let errors = 0;
 const fail = (file, msg) => { errors++; console.error(`✗ ${file}: ${msg}`); };
@@ -111,6 +111,16 @@ for (const s of seedSources) {
   if (s.data.slug !== s.slug) fail(s.file, `slug must equal file name "${s.slug}"`);
   for (const r of s.data.regions || []) if (!regionSlugs.has(r)) fail(s.file, `unknown region "${r}"`);
 }
+// Tools: no shop or affiliate links in tool pages; crops and guides may only reference known tools.
+const tools = loadTools();
+const toolSlugs = new Set(tools.map((t) => t.data.slug));
+for (const t of tools) {
+  if (!check(V.tool, t.data, t.file)) continue;
+  if (t.data.slug !== t.slug) fail(t.file, `slug must equal file name "${t.slug}"`);
+  checkSources(t.file, t.data.sources);
+  if (/https?:\/\/(?!([a-z]+\.)?(wikipedia|wikimedia)\.org)/i.test(t.body || "")) fail(t.file, "no external (shop) links in tool text – put references in sources");
+}
+for (const x of [...crops, ...guides]) for (const s of x.data.tools || []) if (!toolSlugs.has(s)) fail(x.file, `unknown tool "${s}"`);
 const companions = loadCompanions();
 if (check(V.companions, companions, "content/companions.yaml")) {
   companions.forEach((c, i) => {
@@ -121,4 +131,4 @@ if (check(V.companions, companions, "content/companions.yaml")) {
 
 if (errors) { console.error(`\n${errors} problem(s).`); process.exit(1); }
 console.log(`✓ Valid: ${crops.length} crops, ${varieties.length} varieties, ${guides.length} guides, ${regions.length} regions ` +
-  `(${ALL_KG.length} Köppen classes), ${problems.length} problems, ${seedSources.length} seed sources, ${companions.length} companion pairs.`);
+  `(${ALL_KG.length} Köppen classes), ${problems.length} problems, ${seedSources.length} seed sources, ${tools.length} tools, ${companions.length} companion pairs.`);
