@@ -325,3 +325,24 @@ usda-grin:
     were applied from the official taxonomy_data.cab dump dated 5 October 2026
     (https://npgsweb.ars-grin.gov/gringlobal/uploads/documents/taxonomy_data.cab).
     Checked 11 November 2026.
+ctahr-tomato:
+  title: Home Garden Tomato (HGV-5)
+  publisher: University of Hawaiʻi at Mānoa, College of Tropical Agriculture and Human Resources
+  url: https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/HGV-5.pdf
+  license: all-rights-reserved
+  use: citation
+  note: "Richard Ebesu, May 2004. Checked 11 November 2026."
+ctahr-lettuce:
+  title: Lettuce for the Home Garden (HGV-2)
+  publisher: University of Hawaiʻi at Mānoa, College of Tropical Agriculture and Human Resources
+  url: https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/HGV-2.pdf
+  license: all-rights-reserved
+  use: citation
+  note: "April 2000, slightly revised May 2000. Checked 11 November 2026."
+ctahr-carrot:
+  title: Carrots (Home Garden Vegetable no. 1)
+  publisher: University of Hawaiʻi at Mānoa, College of Tropical Agriculture and Human Resources
+  url: https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/HGV-1.pdf
+  license: all-rights-reserved
+  use: citation
+  note: "January 1997. Checked 11 November 2026."
