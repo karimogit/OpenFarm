@@ -43,6 +43,8 @@ SOURCES.md                                    Source and licence policy (import 
 schema/*.schema.json                          JSON Schema for every file type – validated in CI
 data/images.json                              Wikimedia Commons photo + author + license per crop/variety
 data/koppen/                                  Köppen-Geiger 0.5° grid, Beck et al. 2018 (CC BY 4.0)
+data/country-climates.json                    Derived country climate-region shares (committed so CI need not run GIS)
+data/grin-edibility.json                      GRIN Taxonomy matches applied to crops (public domain; dump not shipped)
 scripts/validate.js                           Schemas + cross-references + region coverage (npm run validate)
 scripts/import_rescue.js                      Imports the CC0 openfarm-crops-rescue dataset (npm run import:rescue)
 scripts/fetch_images.js                       Finds freely licensed Commons photos (npm run images)
@@ -54,16 +56,20 @@ Public URLs (the site is served under `/OpenFarm/` on GitHub Pages):
 - Crop: `/crops/<crop>/` · variety: `/crops/<crop>/<variety>/` · variety group: `/crops/<crop>/<group>/`
 - Growing guide: `/crops/<crop>/<region>/` (variety-specific: `/crops/<crop>/<variety>/<region>/`). Old `/guides/…` URLs redirect.
 - Tools: `/tools/<tool>/` and category pages `/tools/<category>/`
-- Climate region: `/regions/<region>/` · hardiness zone: `/zones/<zone>/` (1a–13b)
-- Readable location links: `?place=<city-slug>-<iso2>` (for example `?place=amsterdam-nl`)
-- JSON API: `/api/` (docs), `/api/all.json`, `/api/guides.json`, `/api/tools.json`, `/crops/<crop>.json`, `/regions/<region>.json`, `/zones/<zone>.json`
+- Climate region: `/regions/<region>/` · country: `/countries/<iso2>/` · hardiness zone: `/zones/<zone>/` (1a–13b)
+- Readable location links: `?place=<city-slug>-<iso2>` (for example `?place=amsterdam-nl`); the climate sidebar links the country page when a country code is known
+- JSON API: `/api/` (docs), `/api/all.json`, `/api/guides.json`, `/api/tools.json`, `/api/countries.json`, `/crops/<crop>.json`, `/regions/<region>.json`, `/countries/<iso2>.json`, `/zones/<zone>.json`
 
 
-**Today:** 271 crops (8 curated, 263 imported), 73 varieties, 194 sourced guides, 38 tools, 15 climate
-regions covering all 31 Köppen-Geiger classes, and hardiness-zone pages for USDA-style zones 1a–13b. 65 crops are fruit, fruit trees, berries or nuts.
+**Today:** 271 crops (8 curated, 263 imported; 208 with a sourced GRIN edible use), 80 varieties and
+2 variety groups, 197 sourced guides, 38 tools, 15 climate regions covering all 31 Köppen-Geiger
+classes, country pages for 252 GeoNames countries and territories, and hardiness-zone pages for
+USDA-style zones 1a–13b. 65 crops are fruit, fruit trees, berries or nuts. Ten of the 15 regions
+currently have at least one primary guide (tropical rainforest now has three; cold desert, hot
+semi-arid, subpolar oceanic, subtropical highland and tundra-polar still have none).
 Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
-University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, Jordbruksverket and
-others) and carry an honest `confidence` rating and `uncertainty` note.
+University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, University of Hawaiʻi
+CTAHR, Jordbruksverket and others) and carry an honest `confidence` rating and `uncertainty` note.
 
 ### Climate regions
 
@@ -88,11 +94,13 @@ region** (each region lists its `similar` regions in order), clearly labelled
 
 | Page | JSON |
 |---|---|
-| `/guides/<crop>/<region>/` | – |
 | `/crops/<crop>/` | `/crops/<crop>.json` |
-| `/crops/<crop>/varieties/<variety>/` | (inside the crop JSON) |
+| `/crops/<crop>/<variety>/` or `/crops/<crop>/<group>/` | (inside the crop JSON) |
+| `/crops/<crop>/<region>/` (legacy `/guides/…` redirects) | (inside the crop JSON; also `/api/guides.json`) |
 | `/regions/<region>/` | `/regions/<region>.json` |
-| `/problems/<problem>/`, `/crops/#seed-sources`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
+| `/countries/<iso2>/` | `/countries/<iso2>.json`, index `/api/countries.json` |
+| `/zones/<zone>/` | `/zones/<zone>.json` |
+| `/problems/<problem>/`, `/tools/<tool>/`, `/crops/#seed-sources`, `/search/` | `/api/all.json`, `/api/guides.json`, `/api/tools.json` |
 
 ## Confidence
 
@@ -121,7 +129,7 @@ Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (fav
 - **Local profile, no account.** Your location, favourites (the heart on crops, varieties and guides) and "What I'm
   growing" list (with sow dates and notes) are stored only in your browser's `localStorage`
   (key `openfarm.profile`, versioned JSON). Nothing is sent to a server. Changes autosave immediately (notes after a short pause), with a brief “Saved” notice, and stay in sync across open tabs. The profile page can export it (JSON, CSV, calendar, Markdown),
-  import a JSON backup (the shape is validated) and clear it. “What I'm growing” is a card list; Add opens a crop/variety search, and a card opens a dialog to edit variety, dates, bed, quantity, status and notes.
+  import a JSON backup (the shape is validated) and clear it. “What I'm growing” has a Cards/Calendar view switch. Add opens a crop/variety search, and a card opens a dialog to edit variety, dates, bed, quantity, status and notes.
 - **Reminders.** Worked out in the browser from your growing list, your climate region's calendar and the
   Open-Meteo forecast: "Sow tomatoes indoors this month", "Frost forecast Thursday", "Dry week ahead – water …".
   You can opt in to browser notifications with a click (never asked on page load).
@@ -159,6 +167,17 @@ Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (fav
 - **Imported data is marked.** The 263 crops imported from the rescue dataset keep their CC0
   license, an `origin: imported` flag and the raw rescue fields, and are shown as unreviewed
   until someone curates them (`origin: curated`). The importer never overwrites curated files.
+  Wiki-derived rescue fields (spacing, prose, sun, sowing) are not treated as an authority.
+- **Variety groups.** Cultivar groups (for example garlic Hardneck Group and Softneck Group) are
+  `kind: group` records under `content/varieties/<crop>/`, at `/crops/<crop>/<group>/`. Scientific
+  names use sourced ICNCP forms only; ranks are not invented.
+- **Edibility.** `edible` / `edible_parts` and recorded poisonous uses come from USDA-ARS GRIN
+  Taxonomy economic uses (public domain), cited per record, and are omitted when unsourced. They
+  are for cultivated crops, not for identifying wild plants or foraging.
+- **Countries.** `/countries/<iso2>/` pages use GeoNames names and cities (CC BY 4.0) and
+  approximate climate-region shares from the Beck et al. 2018 0.5° grid (CC BY 4.0) assigned with
+  Natural Earth 50m boundaries (public domain). Tiny territories use a city sample instead of an
+  area share.
 
 ### Guide format
 
@@ -226,7 +245,7 @@ We'd rather cooperate than compete:
 - [x] 263 crops imported from the CC0 rescue dataset; Commons photos; Pagefind search; Open-Meteo weather
 - [x] 166 regional guides from extension planting calendars (Arizona, Clemson, UF/IFAS, Iowa State, Colorado State, Alaska Fairbanks)
 - [x] Hardiness zones (Open-Meteo ERA5), tools, help page, profile export (JSON, CSV, .ics, Markdown)
-- [ ] Guides for the regions that still have none (tropical rainforest, cold desert, hot semi-arid, subpolar oceanic, subtropical highland, tundra)
+- [ ] Guides for the regions that still have few or none (tropical rainforest has a first three; cold desert, hot semi-arid, subpolar oceanic, subtropical highland and tundra-polar still have none)
 - [ ] Review imported crops one by one and promote them to `origin: curated`
 - [ ] Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0)
 - [ ] Native southern-hemisphere variants (instead of the shifted calendar)
@@ -293,10 +312,13 @@ credits come from git history. Full policy, allowlist and exclusions: [SOURCES.m
 - **Weather:** [Open-Meteo.com](https://open-meteo.com/), CC BY 4.0 – fetched in the browser, no key.
 - **Map tiles and Nominatim fallback:** © [OpenStreetMap](https://www.openstreetmap.org/copyright)
   contributors, via the OSM tile server and Nominatim (used within their usage policies).
-- **Offline place search:** [GeoNames](https://www.geonames.org/) gazetteer (`cities15000`), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Built by `npm run places` into `data/places.json`.
+- **Offline place search and country names:** [GeoNames](https://www.geonames.org/) gazetteer (`countryInfo`, `cities15000`, `admin1CodesASCII`), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Built by `npm run places` into `data/places.json`.
+- **Country boundaries (climate shares only):** [Natural Earth](https://www.naturalearthdata.com/) Admin 0 1:50m, public domain. The shapefile is not shipped; derived shares are in `data/country-climates.json`.
+- **Edibility:** [USDA-ARS GRIN Taxonomy](https://npgsweb.ars-grin.gov/gringlobal/taxon/taxonomysearch) economic uses, public domain (GRIN-Global FAQ). The bulk dump is not shipped; matches are in `data/grin-edibility.json`.
 - **Interface icons:** [Lucide](https://lucide.dev/), ISC License.
 - **Country flags:** [flag-icons](https://github.com/lipis/flag-icons) by Panayiotis Lipiridis, MIT License.
 - **Leaflet:** BSD-2-Clause. **Pagefind:** MIT.
 
-Advice in the guides is general. Always check local conditions and local advice. Imported crop data
-is unreviewed – never use it to decide whether a plant is safe to eat.
+The site carries no advertising, affiliate links or tracking pixels. Advice in the guides is general.
+Always check local conditions and local advice. Imported crop data is unreviewed – never use it to
+decide whether a plant is safe to eat.
