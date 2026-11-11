@@ -10,6 +10,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ROOT, loadCrops, loadVarieties, loadRegions, loadTools } from "./content.js";
+import { looksLikeIllustration } from "./image_kind.js";
 
 const OUT = path.join(ROOT, "data", "images.json");
 const UA = "OpenFarm/0.2 (https://github.com/karimogit/OpenFarm; image attribution lookup)";
@@ -60,11 +61,14 @@ async function fileInfo(files) {
       const m = ii.extmetadata || {};
       const license = strip(m.LicenseShortName?.value);
       if (m.NonFree?.value === "true" || !FREE.test(license)) continue;
+      const fileName = (p.title || "").replace(/^File:/, "");
+      const author = strip(m.Artist?.value) || "Unknown author";
+      if (looksLikeIllustration({ file: fileName, author, src: ii.url })) continue;
       out[(map[p.title] || p.title).replace(/^File:/, "")] = out[p.title.replace(/^File:/, "")] = {
         src: (ii.thumburl || ii.url).replace(/\?.*$/, ""), width: ii.thumbwidth, height: ii.thumbheight,
         orig_url: String(ii.url).replace(/[?#].*$/, ""), orig_width: ii.width, orig_height: ii.height,
         author: strip(m.Artist?.value) || "Unknown author", license, license_url: (m.LicenseUrl?.value || "").replace(/^http:\/\//, "https://") || null,
-        source: ii.descriptionurl,
+        source: ii.descriptionurl, image_type: "photo",
       };
     }
     await sleep(300);
@@ -100,7 +104,7 @@ async function main() {
   const fixed = wanted.filter((w) => w.file && (refresh || !cache[w.key] || cache[w.key].file !== w.file));
   if (fixed.length) {
     const info = await fileInfo(fixed.map((w) => w.file));
-    for (const w of fixed) if (info[w.file]) cache[w.key] = { ...info[w.file], file: w.file, picked: true };
+    for (const w of fixed) if (info[w.file]) cache[w.key] = { ...info[w.file], file: w.file, picked: true, image_type: info[w.file].image_type || "photo" };
   }
   const todo = wanted.filter((w) => !(w.key in cache) && !w.file);
   console.log(`${wanted.length} entries, ${todo.length} to look up.`);
@@ -133,7 +137,8 @@ async function main() {
     const pick = hits.find((p) => {
       if (!p.title.toLowerCase().includes(genus)) return false;
       const m = p.imageinfo?.[0]?.extmetadata || {};
-      return m.NonFree?.value !== "true" && FREE.test(strip(m.LicenseShortName?.value));
+      if (m.NonFree?.value === "true" || !FREE.test(strip(m.LicenseShortName?.value))) return false;
+      return !looksLikeIllustration({ file: p.title.replace(/^File:/, ""), author: strip(m.Artist?.value), src: p.imageinfo?.[0]?.url });
     });
     if (pick) {
       const ii = pick.imageinfo[0]; const m = ii.extmetadata;
@@ -142,7 +147,7 @@ async function main() {
         orig_url: String(ii.url).replace(/[?#].*$/, ""), orig_width: ii.width, orig_height: ii.height,
         author: strip(m.Artist?.value) || "Unknown author", license: strip(m.LicenseShortName?.value),
         license_url: (m.LicenseUrl?.value || "").replace(/^http:\/\//, "https://") || null, source: ii.descriptionurl, file: pick.title.replace(/^File:/, ""),
-        found_by: `Commons search for "${q}"`,
+        found_by: `Commons search for "${q}"`, image_type: "photo",
       };
     } else pending.push(w);
     await sleep(300);
