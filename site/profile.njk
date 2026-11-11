@@ -48,8 +48,17 @@ pageScripts: [profile.js]
     </section>
     <section class="side-card">
       <h3>My data</h3>
-      <p class="row"><button type="button" data-profile-export>⬇ Export JSON</button>
-        <label class="button secondary file-btn">⬆ Import JSON<input type="file" id="import-file" accept="application/json,.json" class="visually-hidden"></label></p>
+      <div class="export-menu">
+        <p><strong>Export</strong></p>
+        <ul class="plain export-list">
+          <li><button type="button" data-profile-export>⬇ JSON</button> <span class="small muted">full backup – can be imported again</span></li>
+          <li><button type="button" id="csv-btn" class="secondary">⬇ CSV</button> <span class="small muted">favourites and growing list with notes, for spreadsheets</span></li>
+          <li><button type="button" id="ics-btn-2" class="secondary">⬇ Calendar (.ics)</button> <span class="small muted">sow, plant and harvest reminders</span></li>
+          <li><button type="button" id="md-btn" class="secondary">⬇ Markdown</button> <span class="small muted">a readable garden notebook</span></li>
+        </ul>
+      </div>
+      <p class="row">
+        <label class="button secondary file-btn">⬆ Import JSON backup<input type="file" id="import-file" accept="application/json,.json" class="visually-hidden"></label></p>
       <p id="import-msg" class="small" role="status"></p>
       <p><button type="button" id="clear-data" class="danger">Clear my data</button></p>
       <p class="credit">Format: versioned JSON (version {{ 1 }}). Stored in this browser's localStorage under <code>openfarm.profile</code>.</p>

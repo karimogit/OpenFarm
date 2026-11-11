@@ -1,0 +1,78 @@
+---
+layout: base.njk
+title: Help
+permalink: /help/
+description: "How OpenFarm works: climate regions and Köppen codes, hardiness zones, the Unreviewed badge, confidence, your local profile and exports, reminders, the JSON API and contributing."
+---
+<article class="prose" data-pagefind-body>
+<h1>Help</h1>
+<nav class="toc" aria-label="On this page"><ul class="chips">
+  <li><a class="chip" href="#koppen">Climate regions &amp; Köppen codes</a></li>
+  <li><a class="chip" href="#hardiness">Hardiness zones</a></li>
+  <li><a class="chip" href="#unreviewed">Unreviewed badge</a></li>
+  <li><a class="chip" href="#confidence">Confidence</a></li>
+  <li><a class="chip" href="#profile">Your profile &amp; exports</a></li>
+  <li><a class="chip" href="#notifications">Reminders</a></li>
+  <li><a class="chip" href="#labels">Filters &amp; labels</a></li>
+  <li><a class="chip" href="#api">JSON API</a></li>
+  <li><a class="chip" href="#contribute">Contributing</a></li>
+</ul></nav>
+
+<h2 id="koppen">Climate regions and Köppen codes</h2>
+<p>OpenFarm groups the world into {{ db.regions.length }} <a href="{{ '/regions/' | url }}">climate regions</a> built from the
+<a href="https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification">Köppen–Geiger classification</a>. A Köppen code has two or three letters:
+the first is the main group (A tropical, B dry, C temperate, D continental, E polar), the second the rainfall pattern (f no dry season, s dry summer, w dry winter; for B: W desert, S steppe) and the third the summer heat (a hot, b warm, c cool, d very cold winter; for B: h hot, k cold).
+Your location is looked up on a 0.5° grid (about 50 km) of the Beck et al. (2018) map, so mountains and coasts can differ from the cell.
+Every code on the site links to its region; hover it to see the full name.</p>
+<table class="kg-table"><thead><tr><th scope="col">Code</th><th scope="col">Name</th><th scope="col">Region</th></tr></thead><tbody>
+{% for c in koppen.classes %}{% if c and db.kgToRegion[c[0]] %}<tr id="kg-{{ c[0] }}"><td><a class="kg" href="{{ ('/regions/' + db.kgToRegion[c[0]] + '/') | url }}" title="Köppen {{ c[0] }}: {{ c[1] }}">{{ c[0] }}</a></td><td>{{ c[1] }} <span class="small muted">– {{ c[2] }}</span></td><td><a href="{{ ('/regions/' + db.kgToRegion[c[0]] + '/') | url }}">{{ db.regionBy[db.kgToRegion[c[0]]].name }}</a></td></tr>{% endif %}{% endfor %}
+</tbody></table>
+
+<h2 id="hardiness">Hardiness zones</h2>
+<p>A plant hardiness zone (USDA-style) describes how cold winters get: it is based on the <strong>average yearly extreme minimum temperature</strong>.
+Zone 1 starts at −51.1 °C (−60 °F); each zone is 10 °F (about 5.6 °C) wide and split into a colder <em>a</em> and a warmer <em>b</em> half (for example 8b = −9.4 to −6.7 °C).</p>
+<p><strong>Your zone</strong> is worked out in your browser: OpenFarm asks the <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo historical weather API</a> (ERA5 reanalysis, about 25 km grid, CC BY 4.0) for the daily minimum temperatures of 1991–2020 at your location, takes the coldest night of each year and averages them.
+The result is cached in this browser. Limits: a 25 km grid smooths out frost pockets, valleys and city heat, and reanalysis tends to be a little milder than station records in cold spots – treat the zone as a guide, not a guarantee.</p>
+<p><strong>Plant ranges</strong> (e.g. “zones 5–9”) come from cited sources – currently the <a href="https://plants.ces.ncsu.edu/">NC State Extension Gardener Plant Toolbox</a>. Crops without a sourced range show none; we never estimate one. When your zone is outside a plant's range, its page shows a warning.</p>
+
+<h2 id="unreviewed">The “Unreviewed” badge</h2>
+<p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
+
+<h2 id="confidence">Confidence</h2>
+<p>Every climate-region guide states a confidence level, shown next to its sources. The rule:</p>
+<ul>
+  <li><strong>High</strong> – at least two sources from <em>different publishers</em> agree, at least one of them written for a place inside the guide's Köppen classes (its reference location), and the guide was reviewed within the last three years.</li>
+  <li><strong>Medium</strong> – at least one regional source (an extension service, national horticultural society, government or research body writing for a place in this climate), but not enough for high.</li>
+  <li><strong>Low</strong> – the timing is adapted from a source for a different or broader climate, or rests on a single general (non-regional) source.</li>
+</ul>
+<p>The publisher count and review age are checked automatically by <code>npm run validate</code>: a guide cannot say “high” with fewer than two publishers or an old review. Whether a source is regional is checked by reviewers.</p>
+
+<h2 id="profile">Your profile and exports</h2>
+<p>Your location, favourites (♡) and “what I'm growing” list are <strong>stored only in this browser</strong> (localStorage) – nothing is sent to a server, and there is no account. Clearing your browser data removes it. On <a href="{{ '/profile/' | url }}">Profile</a> you can export it:</p>
+<ul>
+  <li><strong>JSON</strong> – a full backup that you can import again (on another browser or device). Imports are validated before anything is replaced.</li>
+  <li><strong>CSV</strong> – your favourites and growing list with sow dates and notes, for spreadsheets.</li>
+  <li><strong>Calendar (.ics)</strong> – yearly sow, plant and harvest reminders for the crops you grow, from your region's guides; works in Google Calendar, Apple Calendar and Outlook.</li>
+  <li><strong>Markdown</strong> – a readable garden notebook.</li>
+</ul>
+<p>“Clear my data” removes the profile and reminder state from this browser.</p>
+
+<h2 id="notifications">Reminders and notifications</h2>
+<p>The 🔔 bell shows reminders worked out in your browser from your growing list, your region's calendar and the weather forecast (frost, dry or very wet days). Browser notifications are optional and only asked for when you click the button. Because there is no server, reminders only appear while a page of the site is open – use the <strong>.ics export</strong> to get them in your calendar when the site is closed.</p>
+
+<h2 id="labels">Filters and labels</h2>
+<p>Crop cards show only the category and, where relevant, the Unreviewed badge. Open <em>Filters &amp; labels</em> above a list to show extra labels (number of guides and varieties, annual/perennial, hardiness zones, Köppen codes) or to show only crops with a guide, reviewed crops or perennials. Your choice is remembered in this browser.</p>
+
+<h2 id="api">JSON API</h2>
+<p>All data is available as static JSON (no key needed):</p>
+<ul>
+  <li><a href="{{ '/api/all.json' | url }}"><code>/api/all.json</code></a> – everything (regions, crops with varieties and guides, problems, tools, seed sources, companions)</li>
+  <li><a href="{{ '/api/guides.json' | url }}"><code>/api/guides.json</code></a> – compact guide index</li>
+  <li><a href="{{ '/api/tools.json' | url }}"><code>/api/tools.json</code></a> – tools</li>
+  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>) and <code>/regions/&lt;region&gt;.json</code></li>
+</ul>
+<p>Content is CC BY-SA 4.0 (imported records CC0); please credit “OpenFarm contributors”.</p>
+
+<h2 id="contribute">Contributing</h2>
+<p>Everything is plain Markdown in the <a href="{{ site.repo }}">GitHub repository</a>. Each page has one button at the bottom – <em>Edit this guide / crop / variety</em> – that opens the file on GitHub. Guides need real sources (extension services, national horticultural societies, FAO and similar), an honest confidence level and a note on what is uncertain. See <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> for the details.</p>
+</article>

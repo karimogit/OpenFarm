@@ -16,13 +16,14 @@
       <input type="search" name="q" placeholder="Search crops, guides, regions…" aria-label="Search OpenFarm">
     </form>
     {%- set u = page.url or "" -%}
-    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("seeds" if u.indexOf("/seeds/") == 0 else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
+    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("seeds" if u.indexOf("/seeds/") == 0 else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else ""))))))) %}
     <nav class="main-nav" aria-label="Main">
       <a href="{{ '/' | url }}#where"{% if sect == "home" %} aria-current="page"{% endif %}>Find guides</a>
       <a href="{{ '/crops/' | url }}"{% if sect == "crops" %} aria-current="page"{% endif %}>Crops</a>
       <a href="{{ '/regions/' | url }}"{% if sect == "regions" %} aria-current="page"{% endif %}>Climate regions</a>
       <a href="{{ '/seeds/' | url }}"{% if sect == "seeds" %} aria-current="page"{% endif %}>Seeds</a>
       <a href="{{ '/tools/' | url }}"{% if sect == "tools" %} aria-current="page"{% endif %}>Tools</a>
+      <a href="{{ '/help/' | url }}"{% if sect == "help" %} aria-current="page"{% endif %}>Help</a>
       <a href="{{ '/contribute/' | url }}"{% if sect == "about" %} aria-current="page"{% endif %}>About</a>
     </nav>
     <div class="top-icons">
@@ -42,6 +43,7 @@
         <p><strong>🌱 OpenFarm</strong> – © {{ site.attribution }}. Built in the spirit of the original <a href="https://github.com/openfarmcc">OpenFarm</a>, with thanks to everyone who contributed to it.</p>
         <p>Code: <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · Guide content: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
           <a href="{{ site.repo }}">Source on GitHub</a></p>
+        <p><a href="{{ '/help/' | url }}">Help</a> · <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> · <a href="{{ '/help/' | url }}#api">JSON API</a></p>
         <p class="small">Always check local advice – climates vary at small scales.</p>
       </div>
       <div>

@@ -124,5 +124,5 @@ export default function () {
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
     images: crops.filter((c) => c.image).length,
   };
-  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, types, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, types, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

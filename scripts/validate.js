@@ -98,6 +98,15 @@ for (const list of Object.values(byCrop)) {
   }
 }
 
+// Confidence rule (see README "Confidence"): "high" needs at least two sources from different publishers
+// and a review within the last three years; anything else may be at most "medium".
+for (const g of guides) {
+  const pubs = new Set((g.data.sources || []).map((s) => { const e = typeof s === "string" ? sources[s] : s; try { return e?.publisher || new URL(e.url).hostname; } catch { return null; } }).filter(Boolean));
+  const age = (Date.now() - new Date(g.data.last_reviewed)) / (365.25 * 864e5);
+  if (g.data.confidence === "high" && pubs.size < 2) fail(g.file, `confidence "high" needs sources from at least 2 different publishers (has ${pubs.size})`);
+  if (g.data.confidence === "high" && !(age <= 3)) fail(g.file, `confidence "high" needs last_reviewed within 3 years`);
+}
+
 // Problems, seed sources, companions
 for (const p of problems) {
   if (!check(V.problem, p.data, p.file)) continue;

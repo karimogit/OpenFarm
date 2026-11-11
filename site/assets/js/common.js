@@ -106,11 +106,52 @@ export function clearProfile() {
   document.dispatchEvent(new CustomEvent("openfarm:profile", { detail: emptyProfile() }));
   document.dispatchEvent(new CustomEvent("openfarm:location", { detail: null }));
 }
-export function exportProfile() {
-  const blob = new Blob([JSON.stringify(loadProfile(), null, 2)], { type: "application/json" });
-  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: `openfarm-profile-${new Date().toISOString().slice(0, 10)}.json` });
+export function downloadText(text, type, name) {
+  const blob = new Blob([text], { type });
+  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
   document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
+const today = () => new Date().toISOString().slice(0, 10);
+// JSON: full backup, re-importable.
+export function exportProfile() {
+  downloadText(JSON.stringify(loadProfile(), null, 2), "application/json", `openfarm-profile-${today()}.json`);
+}
+// CSV: one row per favourite or growing-list entry, for spreadsheets.
+export function profileCSV(p = loadProfile()) {
+  const q = (s) => `"${String(s ?? "").replace(/"/g, '""')}"`;
+  const rows = [["list", "kind", "crop", "variety", "region", "sown", "notes", "url"]];
+  for (const g of p.growing) rows.push(["growing", g.variety ? "variety" : "crop", g.crop, g.variety || "", "", g.sown || "", g.notes || "",
+    location.origin + BASE + (g.variety ? `crops/${g.crop}/varieties/${g.variety}/` : `crops/${g.crop}/`)]);
+  for (const c of p.favourites.crops) rows.push(["favourite", "crop", c, "", "", "", "", location.origin + BASE + `crops/${c}/`]);
+  for (const v of p.favourites.varieties) { const [c, s] = v.split("/"); rows.push(["favourite", "variety", c, s, "", "", "", location.origin + BASE + `crops/${c}/varieties/${s}/`]); }
+  for (const g of p.favourites.guides) { const [c, r] = g.split("/"); rows.push(["favourite", "guide", c, "", r, "", "", location.origin + BASE + `guides/${c}/${r}/`]); }
+  return rows.map((r) => r.map(q).join(",")).join("\r\n") + "\r\n";
+}
+export const exportCSV = () => downloadText("\ufeff" + profileCSV(), "text/csv;charset=utf-8", `openfarm-garden-${today()}.csv`);
+// Markdown: a readable garden notebook.
+export function profileMarkdown(p = loadProfile()) {
+  let cat = null; try { cat = JSON.parse(document.getElementById("of-catalog")?.textContent || "null"); } catch {}
+  const name = (slug) => cat?.crops?.find((c) => c.slug === slug)?.name || INDEX.guides.find((g) => g.crop === slug)?.name || slug.replace(/-/g, " ");
+  const L = [`# My garden notebook`, ``, `_Exported from OpenFarm on ${today()}._`, ``];
+  if (p.location) { const r = REGION_BY[p.location.region]; L.push(`**Location:** ${p.location.label?.split(",")[0] || `${p.location.lat}, ${p.location.lon}`}${r ? ` · ${r.name} (Köppen ${p.location.symbol})` : ""}`, ``); }
+  L.push(`## What I'm growing`, ``);
+  if (!p.growing.length) L.push(`_Nothing yet._`);
+  for (const g of p.growing) L.push(`- **${name(g.crop)}**${g.variety ? ` – ${g.variety.replace(/-/g, " ")}` : ""}${g.sown ? ` · sown ${g.sown}` : ""}${g.notes ? `\n  ${g.notes.replace(/\n/g, "\n  ")}` : ""}`);
+  const mine = myCropGuides(p);
+  if (mine.length) {
+    L.push(``, `## Calendar for my region`, ``);
+    for (const x of mine) { const c = x.m.g.calendar || {};
+      const part = (k, label) => c[k]?.length ? `${label} ${c[k].map((m) => MONTHS[m - 1]).join(", ")}` : null;
+      L.push(`- **${name(x.crop)}** (${x.m.g.title}): ${[part("sow_indoors", "sow indoors"), part("sow_direct", "sow outside"), part("plant", "plant"), part("harvest", "harvest")].filter(Boolean).join("; ")}`); }
+  }
+  L.push(``, `## Favourites`, ``);
+  for (const c of p.favourites.crops) L.push(`- Crop: ${name(c)}`);
+  for (const v of p.favourites.varieties) L.push(`- Variety: ${v.split("/")[1].replace(/-/g, " ")} (${name(v.split("/")[0])})`);
+  for (const g of p.favourites.guides) L.push(`- Guide: ${name(g.split("/")[0])} – ${REGION_BY[g.split("/")[1]]?.name || g.split("/")[1]}`);
+  if (!p.favourites.crops.length && !p.favourites.varieties.length && !p.favourites.guides.length) L.push(`_None yet._`);
+  return L.join("\n") + "\n";
+}
+export const exportMarkdown = () => downloadText(profileMarkdown(), "text/markdown;charset=utf-8", `openfarm-notebook-${today()}.md`);
 const FAV_KINDS = { crop: "crops", variety: "varieties", guide: "guides" };
 export const isFav = (kind, id, p = loadProfile()) => p.favourites[FAV_KINDS[kind]].includes(id);
 export function toggleFav(kind, id) {
@@ -583,4 +624,34 @@ export const hardinessLine = (h) => h
     else if (z > hi) msg = `Your zone (${h.zone}) is warmer than this plant's range (${el.dataset.min}–${el.dataset.max}): winters may be too mild (e.g. too little chilling) for it to thrive.`;
     el.innerHTML = msg ? `<p class="warn small">⚠ ${esc(msg)}</p>` : `<p class="small ok">✓ Your zone (${esc(h.zone)}) is within its range.</p>`;
   } catch { /* offline or API limit: show nothing */ }
+})();
+
+// ---- Filters & labels panel (crop and guide card lists); remembered in localStorage ----
+(function cardFilters() {
+  const KEY = "openfarm.ui";
+  let ui = {}; try { ui = JSON.parse(localStorage.getItem(KEY)) || {}; } catch {}
+  const apply = () => {
+    document.body.classList.toggle("show-labels", !!ui.labels);
+    let shown = 0, total = 0;
+    document.querySelectorAll(".crop-grid > li[data-guides]").forEach((li) => {
+      const out = (ui.withGuide && li.dataset.guides === "0") || (ui.reviewed && li.dataset.reviewed === "0") ||
+        (ui.perennial && li.dataset.life !== "perennial");
+      li.classList.toggle("ui-out", !!out); total++; if (!out) shown++;
+    });
+    const filtered = !!(ui.withGuide || ui.reviewed || ui.perennial);
+    document.body.classList.toggle("ui-filtered", filtered);
+    document.querySelectorAll("[data-ui-count]").forEach((el) => (el.textContent = filtered ? `${shown} of ${total} shown` : ""));
+    document.querySelectorAll("[data-ui]").forEach((cb) => (cb.checked = !!ui[cb.dataset.ui]));
+    dispatchEvent(new Event("openfarm:filters"));
+  };
+  document.addEventListener("change", (e) => {
+    const cb = e.target.closest("[data-ui]"); if (!cb) return;
+    ui[cb.dataset.ui] = cb.checked; try { localStorage.setItem(KEY, JSON.stringify(ui)); } catch {}
+    apply();
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-ui-reset]")) return;
+    ui = {}; try { localStorage.removeItem(KEY); } catch {} apply();
+  });
+  apply();
 })();

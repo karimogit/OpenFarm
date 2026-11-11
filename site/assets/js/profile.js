@@ -1,5 +1,5 @@
 // Profile page: everything here lives in localStorage (see common.js) – nothing is sent anywhere.
-import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine } from "./common.js";
+import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown } from "./common.js";
 
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
 const CROP = Object.fromEntries(CAT.crops.map((c) => [c.slug, c]));
@@ -17,7 +17,7 @@ function render() {
   const loc = p.location, region = loc && REGION_BY[loc.region];
   $("#profile-location").innerHTML = loc
     ? `<p><strong>${esc((loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`)}</strong><br><span class="small">${loc.lat}, ${loc.lon}</span></p>
-       ${region ? `<p>${swatch(region)}<a href="${BASE}regions/${region.slug}/">${esc(region.name)}</a> <span class="kg">${esc(loc.symbol || "")}</span></p>` : ""}
+       ${region ? `<p>${swatch(region)}<a href="${BASE}regions/${region.slug}/">${esc(region.name)}</a> <a class="kg" href="${BASE}help/#koppen" title="Köppen climate class – see Help">${esc(loc.symbol || "")}</a></p>` : ""}
        <div id="hz-box"></div>
        <p class="small"><a href="${BASE}#where">Change location</a></p>`
     : `<p class="small">No location saved. <a href="${BASE}#where">Find your location</a> on the home page.</p>`;
@@ -56,7 +56,7 @@ function render() {
   pg.innerHTML = list.length ? `<p class="small muted">${mine.size ? "For your favourites and the crops you grow" : "All guides"} in ${swatch(region)}${esc(region.name)}.</p>
     <ul class="crop-grid guide-grid">${list.map(({ g, kind, via }) => `<li><a href="${BASE}guides/${g.crop}/${g.region}/">${thumbHTML(g.img)}
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em><span class="gtitle">${esc(g.title)}</span>
-      <span class="badges">${kind === "similar" ? `<span class="flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : `<span class="conf conf-${g.confidence}">${g.confidence}</span>`}</span></a></li>`).join("")}</ul>`
+      <span class="badges">${kind === "similar" ? `<span class="flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : ""}</span></a></li>`).join("")}</ul>`
     : `<p class="small muted">No guides for these crops in your climate region (or a similar one) yet.</p>`;
 }
 
@@ -109,3 +109,7 @@ $("#ics-btn").addEventListener("click", () => {
 });
 document.addEventListener("openfarm:profile", render);
 render();
+
+$("#csv-btn")?.addEventListener("click", exportCSV);
+$("#md-btn")?.addEventListener("click", exportMarkdown);
+$("#ics-btn-2")?.addEventListener("click", () => downloadICS());

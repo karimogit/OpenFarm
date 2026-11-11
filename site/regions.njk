@@ -11,7 +11,7 @@ permalink: /regions/
   {% set n = (r.guides | where("primary", true)).length %}
   <li class="card">{% if r.image %}<a class="region-photo" href="{{ ('/regions/' + r.slug + '/') | url }}" tabindex="-1" aria-hidden="true"><span class="thumb wide"><img src="{{ r.image | wmThumb(330) }}" srcset="{{ r.image | wmSrcset(330) }}" alt="" loading="lazy" style="max-width:{{ r.image.orig_width }}px;max-height:{{ r.image.orig_height }}px"></span></a>{% endif %}<h2><span class="swatch" style="background:{{ r.color }}"></span> <a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a></h2>
     <p class="small">{{ r.examples }}</p>
-    <p>{% for k in r.koppen %}<span class="kg">{{ k }}</span>{% endfor %} · {{ n }} guide{% if n != 1 %}s{% endif %} written for it{% if r.guides.length > n %}, {{ r.guides.length - n }} more cover part of it{% endif %}</p>
+    <p>{% for k in r.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %} · {{ n }} guide{% if n != 1 %}s{% endif %} written for it{% if r.guides.length > n %}, {{ r.guides.length - n }} more cover part of it{% endif %}</p>
     {% if r.image %}<p class="credit">Photo: {{ r.image.author | truncate(50) }} · {{ r.image.license }} · <a href="{{ r.image.source }}">Wikimedia Commons</a></p>{% endif %}</li>
 {% endfor %}
 </ul>

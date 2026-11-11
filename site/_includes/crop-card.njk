@@ -1,8 +1,12 @@
-{# expects `c` (crop) – uniform crop card with photo, names, badges, favourite button and category chip #}
-<li data-name="{{ c.name | lower }} {{ c.scientific_name | lower }} {{ c.family | lower }}"><a href="{{ ('/crops/' + c.slug + '/') | url }}">
+{# expects `c` (crop) – uniform crop card: photo, names, category chip and (if unreviewed) the Unreviewed badge.
+   Extra labels (.xlabel) are hidden unless the visitor turns them on in the Filters panel. #}
+<li data-name="{{ c.name | lower }} {{ c.scientific_name | lower }} {{ c.family | lower }}" data-guides="{{ c.guides.length }}" data-reviewed="{{ '0' if c.origin == 'imported' else '1' }}" data-life="{{ c.lifecycle or '' }}"><a href="{{ ('/crops/' + c.slug + '/') | url }}">
   {% if c.image %}<span class="thumb"><img src="{{ c.image | wmThumb(250) }}" srcset="{{ c.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ c.image.orig_width or 250 }}px;max-height:{{ c.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
   <strong class="name">{{ c.name }}</strong><em class="sci1">{% if c.scientific_name %}{{ c.scientific_name }}{% else %}&nbsp;{% endif %}</em>
-  <span class="badges">{% if c.guides.length %}<span class="badge guide">{{ c.guides.length }} guide{% if c.guides.length > 1 %}s{% endif %}</span>{% endif %}
-    {% if c.varieties.length %}<span class="badge">{{ c.varieties.length }} variet{% if c.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}</span>
+  <span class="badges">{% if c.origin == "imported" %}<span class="badge unrev" title="Community data, not yet verified against sources">Unreviewed</span>{% endif %}
+    {% if c.guides.length %}<span class="badge guide xlabel">{{ c.guides.length }} guide{% if c.guides.length > 1 %}s{% endif %}</span>{% endif %}
+    {% if c.varieties.length %}<span class="badge xlabel">{{ c.varieties.length }} variet{% if c.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}
+    {% if c.lifecycle %}<span class="badge xlabel">{{ c.lifecycle }}</span>{% endif %}
+    {% if c.hardiness %}<span class="badge xlabel" title="USDA hardiness zones">zones {{ c.hardiness.min }}–{{ c.hardiness.max }}</span>{% endif %}</span>
 </a><button class="fav card-fav" type="button" data-fav="crop:{{ c.slug }}" aria-pressed="false" title="Add to favourites">♡</button>
 <span class="card-chip">{% set ty = c.type %}{% include "type-chip.njk" %}</span></li>

@@ -17,13 +17,14 @@ eleventyComputed:
     {% set img = r.image %}{% set alt = "Typical farmland or gardens in a " + (r.name | lower) + " climate" %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ r.html | safe }}</div>
     {% if r.examples %}<p class="small"><strong>Examples:</strong> {{ r.examples }}</p>{% endif %}
-    <p>Köppen-Geiger classes: {% for k in r.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span> {{ koppen.classes | kgName(k) }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+    <p>Köppen-Geiger classes: {% for k in r.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion, true) | safe }} {{ koppen.classes | kgName(k) }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
 
     <h2>Growing guides for this region</h2>
     {% set primary = r.guides | where("primary", true) %}
     {% set also = r.guides | where("primary", false) %}
     {% if primary.length %}
-    <ul class="crop-grid guide-grid">{% set extraKg = false %}{% for x in primary %}{% set g = x.g %}{% include "guide-tile.njk" %}{% endfor %}</ul>
+    {% include "filters.njk" %}
+<ul class="crop-grid guide-grid">{% set extraKg = false %}{% for x in primary %}{% set g = x.g %}{% include "guide-tile.njk" %}{% endfor %}</ul>
     {% else %}
     <p>No guides written for this region yet.</p>
     {% endif %}

@@ -15,7 +15,8 @@ spacing:
 sun: full
 water: moderate
 problems: [late-blight]
-confidence: high
+confidence: medium
+uncertainty: "Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to high."
 sources:
   - title: "Potatoes: grow your own"
     publisher: Royal Horticultural Society (RHS)

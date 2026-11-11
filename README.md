@@ -82,7 +82,29 @@ region** (each region lists its `similar` regions in order), clearly labelled
 | `/regions/<region>/` | `/regions/<region>.json` |
 | `/problems/<problem>/`, `/seeds/`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
 
+## Confidence
+
+Every guide has a `confidence` of `high`, `medium` or `low`, shown on the guide page next to its sources:
+
+- **high** – at least two sources from *different publishers* agree, at least one written for a place inside the guide's Köppen classes (the `reference_location`), and `last_reviewed` is within the last three years.
+- **medium** – at least one regional source (extension service, national horticultural society, government or research body writing for a place in this climate), but not enough for high.
+- **low** – timing adapted from a source for a different or broader climate, or a single general (non-regional) source.
+
+`npm run validate` enforces the mechanical part: `high` fails with fewer than two distinct publishers or a review older than three years. Whether a source is regional is checked in review. Confidence is not shown on cards or overviews.
+
+## Hardiness zones
+
+USDA-style zones (average yearly extreme minimum temperature; zone 1 starts at −60 °F, 10 °F per zone, a/b halves).
+The visitor's zone is computed in the browser from the [Open-Meteo historical weather API](https://open-meteo.com/en/docs/historical-weather-api)
+(ERA5 reanalysis, ~25 km, CC BY 4.0): the coldest daily minimum of each year 1991–2020, averaged, cached in localStorage.
+Limits: the coarse grid smooths frost pockets, valleys and urban heat, and reanalysis is often slightly milder than station data in cold spots.
+Crop ranges (`hardiness: {min, max, sources}`) come only from cited sources (currently NC State Extension's Plant Toolbox,
+filled by `scripts/fetch_hardiness.py`, which only accepts a page whose heading names the same species). No zones are estimated.
+
 ## Your profile, reminders and privacy
+
+Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (favourites and growing list with notes), **.ics** (sow/plant/harvest reminders) and **Markdown** (a readable garden notebook). See also the in-site [Help](https://karimogit.github.io/OpenFarm/help/) page.
+
 
 - **Local profile, no account.** Your location, favourites (♡ on crops, varieties and guides) and "What I'm
   growing" list (with sow dates and notes) are stored only in your browser's `localStorage`

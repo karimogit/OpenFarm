@@ -30,7 +30,7 @@ function card({ g, kind, via, calendar, shifted }, region) {
   const sow = [...(calendar.sow_indoors || []), ...(calendar.sow_direct || []), ...(calendar.plant || [])];
   const when = [sow.length ? `Sow/plant ${monthRanges(sow)}` : "", calendar.harvest ? `Harvest ${monthRanges(calendar.harvest)}` : ""].filter(Boolean).join(" · ");
   const flag = kind === "similar" ? `<span class="flag">nearest region: ${esc(via.name.toLowerCase())}</span>`
-    : shifted ? `<span class="flag">months shifted +6 – unverified</span>` : `<span class="conf conf-${g.confidence}">${g.confidence}</span>`;
+    : shifted ? `<span class="flag">months shifted +6 – unverified</span>` : "";
   return `<li><a href="${href}">${thumbHTML(g.img)}
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em>
       <span class="gtitle">${esc(when)}</span>
@@ -59,7 +59,7 @@ async function choose(lat, lon, label, country) {
   $("#climate-box").innerHTML = `
     <p class="kg-big"><span class="swatch" style="background:${region.color}"></span>
       <a href="${BASE}regions/${region.slug}/"><strong>${esc(region.name)}</strong></a></p>
-    <p class="small">${place ? `${esc(place)} · ` : ""}Köppen <span class="kg">${kg.symbol}</span> ${esc(kg.name)} – ${esc(kg.desc)}</p>
+    <p class="small">${place ? `${esc(place)} · ` : ""}Köppen <a class="kg" href="${BASE}help/#koppen" title="Köppen ${kg.symbol}: ${esc(kg.name)}">${kg.symbol}</a> ${esc(kg.name)} – ${esc(kg.desc)}</p>
     <div id="hz-box"><p class="small muted">Hardiness zone: working it out…</p></div>
     <p class="hint">${lat}, ${lon}${kg.nearest ? " · nearest land cell used" : ""}. 0.5° grid (~50 km) – mountains and coasts can differ.</p>`;
   hardinessZone(lat, lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = h ? hardinessLine(h) : ""; })

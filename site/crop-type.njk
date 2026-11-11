@@ -13,6 +13,7 @@ eleventyComputed:
 <div class="title-row"><h1>{{ t.label }} <small class="muted">({{ t.crops.length }})</small></h1>
   <span class="title-actions">{% set ty = t.slug %}{% include "type-chip.njk" %}</span></div>
 <ul class="chips type-chips">{% for o in db.types %}<li><a class="type-chip t-{{ o.slug }}" href="{{ ('/crops/type/' + o.slug + '/') | url }}"{% if o.slug == t.slug %} aria-current="page"{% endif %}>{{ o.label }} <small>{{ o.crops.length }}</small></a></li>{% endfor %}</ul>
+{% include "filters.njk" %}
 <ul class="crop-grid">
 {% for c in t.crops %}{% include "crop-card.njk" %}{% endfor %}
 </ul>

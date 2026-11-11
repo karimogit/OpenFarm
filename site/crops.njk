@@ -8,7 +8,7 @@ permalink: /crops/
 <p>{{ db.stats.crops }} crops. Each has general facts; crops with a <span class="badge guide">guide</span> also have climate-specific
   growing calendars.</p>
 <ul class="chips type-chips">{% for t in db.types %}<li><a class="type-chip t-{{ t.slug }}" href="#{{ t.slug }}">{{ t.label }} <small>{{ t.crops.length }}</small></a></li>{% endfor %}</ul>
-<p><input type="search" id="crop-filter" placeholder="Filter crops…" aria-label="Filter crops"></p>
+<div class="filter-row"><input type="search" id="crop-filter" placeholder="Filter crops…" aria-label="Filter crops">{% include "filters.njk" %}</div>
 {% for t in db.types %}
 <section class="card type-block" id="{{ t.slug }}" data-label="{{ t.label }}">
   <h2><a href="{{ ('/crops/type/' + t.slug + '/') | url }}">{{ t.label }}</a> <small>({{ t.crops.length }})</small></h2>
@@ -44,12 +44,13 @@ permalink: /crops/
   }
   collapse();
   addEventListener("hashchange", collapse);
+  addEventListener("openfarm:filters", () => { document.body.classList.toggle("filtering", document.body.classList.contains("ui-filtered")); blocks.forEach((s) => (s.hidden = !s.querySelector("li:not([hidden]):not(.ui-out)"))); });
   let w = innerWidth; addEventListener("resize", () => { if (innerWidth !== w) { w = innerWidth; collapse(); } });
   document.getElementById("crop-filter").addEventListener("input", (e) => {
     const q = e.target.value.trim().toLowerCase();
     document.body.classList.toggle("filtering", !!q);
     document.querySelectorAll(".crop-grid li").forEach((li) => (li.hidden = q && !li.dataset.name.includes(q)));
-    blocks.forEach((s) => (s.hidden = q && !s.querySelector("li:not([hidden])")));
+    blocks.forEach((s) => (s.hidden = q && !s.querySelector("li:not([hidden]):not(.ui-out)")));
   });
 })();
 </script>

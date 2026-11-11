@@ -15,7 +15,8 @@ sun: full
 water: moderate
 varieties: [honeoye]
 problems: [grey-mould, vine-weevil]
-confidence: high
+confidence: medium
+uncertainty: "Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to high."
 sources:
   - rhs-strawberries
 license: CC-BY-SA-4.0

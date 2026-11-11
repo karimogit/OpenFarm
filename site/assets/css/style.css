@@ -266,3 +266,21 @@ body.filtering .show-all { display: none; }
 .seed-photo { margin: 0 0 .6rem; }
 .seed-photo .thumb { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; background: var(--frame-bg, #f3f1ea); border-radius: var(--radius-sm, 6px); overflow: hidden; }
 .seed-photo .thumb img { width: 100%; height: 100%; object-fit: contain; }
+.export-list { list-style: none; padding: 0; margin: 0 0 .6rem; display: grid; gap: .35rem; }
+.export-list button { min-width: 9rem; text-align: left; }
+a.kg { text-decoration: none; } a.kg:hover, a.kg:focus-visible { background: var(--green); color: #fff; }
+/* Card labels: category chip + Unreviewed by default; the rest only when "Extra labels" is on. */
+.xlabel { display: none; } body.show-labels .xlabel { display: inline-block; }
+.guide-grid .kg, .crop-grid .badges .kg { display: none; } body.show-labels .crop-grid .badges .kg { display: inline-block; }
+.badge.unrev { background: #fff3d6; color: #6b4a00; border: 1px solid #e8cf8f; }
+.crop-grid > li.ui-out { display: none !important; }
+.filter-row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: flex-start; margin: .6rem 0; }
+.filter-row input[type=search] { flex: 1 1 14rem; }
+.filters { border: 1px solid var(--line); border-radius: var(--radius-sm); background: #fff; padding: .35rem .7rem; margin: .4rem 0 .8rem; }
+.filters summary { cursor: pointer; font-weight: 600; }
+.filters fieldset { border: 0; margin: .4rem 0; padding: 0; display: grid; gap: .25rem; }
+.filters legend { font-size: .85rem; color: var(--muted); padding: 0; }
+.kg-table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.kg-table th, .kg-table td { text-align: left; padding: .3rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.kg-table tr:target { background: #fff8e6; }
+.prose { max-width: 50rem; }
