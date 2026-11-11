@@ -1,17 +1,20 @@
 # 🌱 OpenFarm
 
-**Open, git-based, climate-aware growing guides for every garden on Earth.**
+**OpenFarm helps anyone, anywhere grow food. It's an open, community-built library of growing
+guides matched to your climate region. Find your location, get advice that fits your conditions,
+and share what you know.**
 
 👉 Live demo: **https://karimogit.github.io/OpenFarm/**
 
 Pick a place on the map (or search, or type lat/lon) → OpenFarm looks up its
-**Köppen-Geiger climate class** offline in your browser → you get the guides written
-for that climate and a month-by-month planting calendar. No accounts, no backend,
-no tracking.
+**Köppen-Geiger climate class** in your browser and maps it to one of **15 climate regions**
+that together cover every place on Earth → you get the guides written for your climate region,
+a month-by-month calendar, a 7-day forecast with frost risk and soil temperature, varieties that
+suit your region and seed sources near you. No accounts, no backend, no tracking.
 
-| | |
-|---|---|
-| ![Location lookup](docs/screenshots/home-ermelo.png) | ![Guide page](docs/screenshots/mobile-guide-garlic.png) |
+| | | |
+|---|---|---|
+| ![Home – Ermelo](docs/screenshots/v2-home-ermelo.png) | ![Crop page – no guide for your region yet](docs/screenshots/v2-crop-strawberry-bangkok.png) | ![Mobile](docs/screenshots/v2-mobile-umea.png) |
 
 ## Why
 
@@ -25,31 +28,91 @@ whole planet, so it works as a shared key for organising guides worldwide.
 ## What's in this repository
 
 ```
-content/guides/<crop>/<variant>.md   Growing guides: YAML frontmatter + Markdown  (CC BY-SA 4.0)
-content/TEMPLATE.md                  Template for new guides
-schema/guide.schema.json             JSON Schema for the frontmatter – validated in CI
-data/koppen/                         Köppen-Geiger 0.5° grid, Beck et al. 2018 (CC BY 4.0)
-scripts/validate.js                  Schema + cross-file checks (npm run validate)
-scripts/build_koppen.py              Builds the 25 kB climate lookup + map overlay
-site/                                Eleventy templates, CSS and a small vanilla-JS app (MIT)
-.github/workflows/                   CI validation + GitHub Pages deploy
+content/crops/<crop>.md                       A crop: facts true everywhere (type, family, seed saving, perennial facts)
+content/varieties/<crop>/<variety>.md         A variety/cultivar: maturity, tolerances, resistance, its seeds block
+content/guides/<crop>/<region>.md             How to grow one crop in one climate region: calendar, spacing, varieties, problems
+content/regions/<region>.md                   The 15 climate regions, their Köppen classes, colour and "most similar" order
+content/problems/<problem>.md                 Pests, diseases and disorders – written once, linked from every crop they affect
+content/seed-sources/<source>.md              Seed libraries, networks, gene banks and companies, by country
+content/companions.yaml                       Companion-planting pairs with an evidence level
+content/sources.yaml                          Citation registry – reuse a source by key instead of copying it
+schema/*.schema.json                          JSON Schema for every file type – validated in CI
+data/images.json                              Wikimedia Commons photo + author + license per crop/variety
+data/koppen/                                  Köppen-Geiger 0.5° grid, Beck et al. 2018 (CC BY 4.0)
+scripts/validate.js                           Schemas + cross-references + region coverage (npm run validate)
+scripts/import_rescue.js                      Imports the CC0 openfarm-crops-rescue dataset (npm run import:rescue)
+scripts/fetch_images.js                       Finds freely licensed Commons photos (npm run images)
+site/                                         Eleventy templates, CSS and small vanilla-JS modules (MIT)
 ```
 
-**Today:** 5 crops (tomato, potato, garlic, kale, bush bean) × 19 climate variants
-covering temperate oceanic (Cfb – e.g. Netherlands), cold continental and subarctic
-(Dfb/Dfc – e.g. Sweden), Mediterranean (Csa/Csb) and tropical wet–dry (Aw/Am).
-Every guide cites public sources (RHS, University of Minnesota Extension,
-University of California ANR, UF/IFAS, Jordbruksverket and others) and carries an
-honest `confidence` rating and `uncertainty` note.
+**Today:** 270 crops (7 curated, 263 imported), 73 varieties, 28 sourced guides and 15 climate
+regions covering all 31 Köppen-Geiger classes. 65 crops are fruit, fruit trees, berries or nuts.
+Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
+University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, Jordbruksverket and
+others) and carry an honest `confidence` rating and `uncertainty` note.
+
+### Climate regions
+
+The 31 Köppen-Geiger classes are grouped into 15 climate regions that gardeners can recognise:
+
+| Region | Köppen classes | Region | Köppen classes |
+|---|---|---|---|
+| Tropical rainforest | Af | Humid subtropical | Cfa, Cwa |
+| Tropical monsoon | Am | Subtropical highland | Cwb, Cwc |
+| Tropical savanna (wet and dry) | Aw, As | Temperate oceanic | Cfb |
+| Hot desert | BWh | Subpolar oceanic | Cfc |
+| Cold desert | BWk | Humid continental | Dfa, Dfb, Dwa, Dwb, Dsa, Dsb |
+| Hot semi-arid steppe | BSh | Subarctic (boreal) | Dfc, Dfd, Dwc, Dwd, Dsc, Dsd |
+| Cold semi-arid steppe | BSk | Tundra and polar | ET, EF |
+| Mediterranean | Csa, Csb, Csc | | |
+
+When a crop has no guide for your region, the site shows the guide from the **most similar
+region** (each region lists its `similar` regions in order), clearly labelled
+"nearest region – not written for yours", with a link to add a guide for your region.
+
+### URLs and JSON
+
+| Page | JSON |
+|---|---|
+| `/guides/<crop>/<region>/` | – |
+| `/crops/<crop>/` | `/crops/<crop>.json` |
+| `/crops/<crop>/varieties/<variety>/` | (inside the crop JSON) |
+| `/regions/<region>/` | `/regions/<region>.json` |
+| `/problems/<problem>/`, `/seeds/`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
+
+## Data model rationale
+
+- **Crop → varieties → guides.** A *crop* holds facts that are true everywhere; a *variety*
+  holds what differs between cultivars; a *guide* holds only what changes with the climate
+  (calendar, spacing, which varieties and problems matter there). Nothing is repeated in
+  every guide any more – the old guides each copied the scientific name, family and companions.
+- **Seeds are split three ways.** How a *species* is pollinated, how far to isolate it and how
+  long seed stays viable is botany, so it lives on the crop (`seed_saving`). Whether a
+  *variety* is open-pollinated, F1 or clonal – and so whether saved seed comes true – lives on
+  the variety (`seeds`), overriding the crop default. *Where to get seed* changes by country,
+  not by climate, so seed sources are their own files with a `countries` list, and the site
+  puts the ones serving your country first. Climate-specific seed timing goes in the guide
+  (`seed_saving_note`).
+- **Problems and companions are shared.** Late blight hits tomatoes and potatoes in every wet
+  climate; writing it once in `content/problems/` with an `affects` list keeps the advice and
+  sources consistent, and a guide just lists which problems matter locally. Companion pairs
+  live once in `content/companions.yaml` with an evidence level (research / extension-advice /
+  traditional), because most companion claims are folklore and should say so.
+- **Sources are a registry.** `content/sources.yaml` lets many files cite the same RHS or
+  extension page by key, so a moved URL is fixed in one place.
+- **Regions are data, not code.** Region names, colours, Köppen classes and fallback order
+  live in `content/regions/`, so they can be reviewed and changed like any other content, and
+  CI checks that every Köppen class belongs to exactly one region.
+- **Imported data is marked.** The 263 crops imported from the rescue dataset keep their CC0
+  license, an `origin: imported` flag and the raw rescue fields, and are shown as unreviewed
+  until someone curates them (`origin: curated`). The importer never overwrites curated files.
 
 ### Guide format
 
 ```yaml
 crop: potato
-common_name: Potato
-scientific_name: Solanum tuberosum
-family: Solanaceae
-variant: temperate-oceanic
+region: temperate-oceanic
+title: Potatoes in mild oceanic climates (Netherlands, UK, Belgium)
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: Netherlands / UK lowlands
@@ -57,13 +120,13 @@ calendar: { plant: [3, 4, 5], harvest: [6, 7, 8, 9, 10] }
 spacing: { in_row_cm: [30, 37], between_rows_cm: [60, 75] }
 sun: full
 water: moderate
+problems: [late-blight]
 confidence: high
 sources: [{ title: "Potatoes: grow your own", publisher: RHS, url: https://www.rhs.org.uk/vegetables/potatoes/grow-your-own }]
 license: CC-BY-SA-4.0
 ```
 
-Full field reference: [`schema/guide.schema.json`](schema/guide.schema.json) and
-[`content/TEMPLATE.md`](content/TEMPLATE.md).
+Full field reference: [`schema/`](schema/) and [`content/TEMPLATE.md`](content/TEMPLATE.md).
 
 ## How this differs from the original OpenFarm
 
@@ -105,12 +168,17 @@ We'd rather cooperate than compete:
 - [x] Guide format, JSON Schema and CI validation
 - [x] Offline location → Köppen lookup, monthly calendar, mobile-friendly static site
 - [x] First 19 sourced guides across 5 crops and 4 climate groups
+- [x] All 31 Köppen classes in 15 climate regions, with nearest-region fallback
+- [x] Crop → variety → guide data model; seeds, problems, companions and seed sources as shared files
+- [x] 263 crops imported from the CC0 rescue dataset; Commons photos; Pagefind search; Open-Meteo weather
+- [ ] Guides for the 7 regions that have none yet (tropical rainforest and monsoon, deserts, subpolar oceanic, subtropical highland, tundra)
+- [ ] Review imported crops one by one and promote them to `origin: curated`
 - [ ] Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0)
 - [ ] Native southern-hemisphere variants (instead of the shifted calendar)
 - [ ] 50 crops × major climate groups; regional reviewers per climate
 - [ ] Translations (Dutch, Swedish, Spanish, …) – the structured format makes this easy
 - [ ] Frost-date and day-length hints; climate-change view (2041–2070 Köppen maps)
-- [ ] Public JSON export (`/api/guides.json` already exists) and a small API for apps
+- [x] Public JSON export (`/api/all.json`, one JSON file per crop and region)
 - [ ] Import openly licensed facts (e.g. OpenPlantDB CC0) with attribution
 
 ## Sustainability
@@ -130,9 +198,11 @@ We'd rather cooperate than compete:
 
 ```bash
 npm ci
-npm run validate   # check all guides
-npm run dev        # http://localhost:8080/OpenFarm/
-npm run build      # validate + build static site into _site/
+npm run validate        # check every content file against schema/ + cross-references
+npm run dev             # http://localhost:8080/OpenFarm/ (search needs a full build)
+npm run build           # validate + Eleventy + Pagefind search index into _site/
+npm run import:rescue   # re-import the rescue dataset (never touches curated files)
+npm run images          # refresh data/images.json from Wikimedia Commons
 ```
 
 Node 20+. The climate assets in `site/assets/` are committed; rebuild them with
@@ -145,17 +215,24 @@ Node 20+. The climate assets in `site/assets/` are committed; rebuild them with
 3. Push to `main`. The *Deploy to GitHub Pages* workflow publishes the site to
    `https://karimogit.github.io/OpenFarm/`.
 
-## Licenses
+## Licenses and credits
 
-- **Code:** [MIT](LICENSE).
-- **Guide content** (`content/`): [CC BY-SA 4.0](content/LICENSE). You may reuse and
-  adapt it, also commercially, with attribution, under the same license.
+- **Code:** [MIT](LICENSE) – © 2026 OpenFarm contributors.
+- **Content** (`content/`): [CC BY-SA 4.0](content/LICENSE) – attribute as "OpenFarm contributors".
+  You may reuse and adapt it, also commercially, with attribution, under the same license.
+- **Imported crop records:** [openfarm-crops-rescue](https://github.com/thefullnacho/openfarm-crops-rescue)
+  (data recovered from the original OpenFarm.cc via the Wayback Machine), **CC0 1.0**. Files carrying
+  `license: CC0-1.0` stay CC0.
 - **Climate data:** Beck, H.E. et al. (2018), *Present and future Köppen-Geiger climate
   classification maps at 1-km resolution*, Scientific Data 5:180214,
   [doi:10.1038/sdata.2018.214](https://doi.org/10.1038/sdata.2018.214) –
   [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [`data/koppen/`](data/koppen/README.md).
+- **Photos:** [Wikimedia Commons](https://commons.wikimedia.org/) – each photo shows its author and
+  license (CC0, public domain, CC BY or CC BY-SA only); details in `data/images.json`.
+- **Weather:** [Open-Meteo.com](https://open-meteo.com/), CC BY 4.0 – fetched in the browser, no key.
 - **Map tiles and place search:** © [OpenStreetMap](https://www.openstreetmap.org/copyright)
   contributors, via the OSM tile server and Nominatim (used within their usage policies).
-- **Leaflet:** BSD-2-Clause.
+- **Leaflet:** BSD-2-Clause. **Pagefind:** MIT.
 
-Advice in the guides is general. Always check local conditions and local advice.
+Advice in the guides is general. Always check local conditions and local advice. Imported crop data
+is unreviewed – never use it to decide whether a plant is safe to eat.
