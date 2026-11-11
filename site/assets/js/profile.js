@@ -102,14 +102,15 @@ $("#clear-data").addEventListener("click", () => {
   clearProfile(); $("#import-msg").textContent = "Your data was deleted from this browser.";
 });
 
-$("#ics-btn").addEventListener("click", () => {
+function icsClick() {
   const n = myCropGuides().filter((x) => x.growing).length;
   if (!n) { $("#import-msg").textContent = ""; alert("Add crops to “What I'm growing” and save a location first – the calendar uses your region's guides."); return; }
   downloadICS();
-});
+}
+$("#ics-btn").addEventListener("click", icsClick);
 document.addEventListener("openfarm:profile", render);
 render();
 
 $("#csv-btn")?.addEventListener("click", exportCSV);
 $("#md-btn")?.addEventListener("click", exportMarkdown);
-$("#ics-btn-2")?.addEventListener("click", () => downloadICS());
+$("#ics-btn-2")?.addEventListener("click", icsClick);

@@ -14,9 +14,9 @@ that together cover every place on Earth → you get the guides written for your
 a month-by-month calendar, a 7-day forecast with frost risk and soil temperature, varieties that
 suit your region and seed sources near you. No accounts, no backend, no tracking.
 
-| | | |
-|---|---|---|
-| ![Home – Utrecht](docs/screenshots/v2-home-utrecht.png) | ![Crop page – no guide for your region yet](docs/screenshots/v2-crop-strawberry-bangkok.png) | ![Mobile](docs/screenshots/v2-mobile-umea.png) |
+| | | | |
+|---|---|---|---|
+| ![Home – Utrecht](docs/screenshots/v2-home-utrecht.png) | ![Guide – carrot in the hot desert](docs/screenshots/v2-guide-hot-desert.png) | ![Crop page with hardiness check](docs/screenshots/v2-crop-apple.png) | ![Mobile](docs/screenshots/v2-mobile-home.png) |
 
 ## Why
 

@@ -62,8 +62,8 @@ async function fileInfo(files) {
       if (m.NonFree?.value === "true" || !FREE.test(license)) continue;
       out[(map[p.title] || p.title).replace(/^File:/, "")] = out[p.title.replace(/^File:/, "")] = {
         src: (ii.thumburl || ii.url).replace(/\?.*$/, ""), width: ii.thumbwidth, height: ii.thumbheight,
-        orig_url: ii.url, orig_width: ii.width, orig_height: ii.height,
-        author: strip(m.Artist?.value) || "Unknown author", license, license_url: m.LicenseUrl?.value || null,
+        orig_url: String(ii.url).replace(/[?#].*$/, ""), orig_width: ii.width, orig_height: ii.height,
+        author: strip(m.Artist?.value) || "Unknown author", license, license_url: (m.LicenseUrl?.value || "").replace(/^http:\/\//, "https://") || null,
         source: ii.descriptionurl,
       };
     }
@@ -81,7 +81,7 @@ async function backfillSizes() {
     const norm = {}; for (const n of j.query?.normalized || []) norm[n.to] = n.from;
     const byFile = {};
     for (const p of j.query?.pages || []) if (p.imageinfo) byFile[(norm[p.title] || p.title).replace(/^File:/, "")] = byFile[p.title.replace(/^File:/, "")] = p.imageinfo[0];
-    for (const k of batch) { const ii = byFile[cache[k].file]; if (ii) Object.assign(cache[k], { orig_url: ii.url, orig_width: ii.width, orig_height: ii.height }); }
+    for (const k of batch) { const ii = byFile[cache[k].file]; if (ii) Object.assign(cache[k], { orig_url: String(ii.url).replace(/[?#].*$/, ""), orig_width: ii.width, orig_height: ii.height }); }
     await sleep(300);
   }
 }
@@ -139,9 +139,9 @@ async function main() {
       const ii = pick.imageinfo[0]; const m = ii.extmetadata;
       cache[w.key] = {
         src: (ii.thumburl || ii.url).replace(/\?.*$/, ""), width: ii.thumbwidth, height: ii.thumbheight,
-        orig_url: ii.url, orig_width: ii.width, orig_height: ii.height,
+        orig_url: String(ii.url).replace(/[?#].*$/, ""), orig_width: ii.width, orig_height: ii.height,
         author: strip(m.Artist?.value) || "Unknown author", license: strip(m.LicenseShortName?.value),
-        license_url: m.LicenseUrl?.value || null, source: ii.descriptionurl, file: pick.title.replace(/^File:/, ""),
+        license_url: (m.LicenseUrl?.value || "").replace(/^http:\/\//, "https://") || null, source: ii.descriptionurl, file: pick.title.replace(/^File:/, ""),
         found_by: `Commons search for "${q}"`,
       };
     } else pending.push(w);

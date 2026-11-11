@@ -98,7 +98,7 @@ eleventyComputed:
       <h3>Perennial &amp; fruit facts</h3>
       <dl class="kv">
         {% if pe.years_to_first_crop is defined %}<div><dt>First crop</dt><dd>{{ pe.years_to_first_crop | range(" yr after planting") }}</dd></div>{% endif %}
-        {% if pe.productive_years %}<div><dt>Productive for</dt><dd>{{ pe.productive_years }} years</dd></div>{% endif %}
+        {% if pe.productive_years %}<div><dt>Productive for</dt><dd>{{ pe.productive_years }}{% if pe.productive_years | string | first in "0123456789" %} years{% endif %}</dd></div>{% endif %}
         {% if pe.pollination %}<div><dt>Pollination</dt><dd>{{ pe.pollination | label }}</dd></div>{% endif %}
         {% if pe.chill_hours %}<div><dt>Chill hours</dt><dd>{{ pe.chill_hours | range(" h") }} <small>below 7 °C</small></dd></div>{% endif %}
       </dl>

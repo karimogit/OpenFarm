@@ -28,4 +28,4 @@ note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
 ---
-Rich, deep purplish black fruits can grow to enormous size. Tender & tasty at all stages. http://burpee.com/more/60324
+Rich, deep purplish black fruits can grow to enormous size. Tender & tasty at all stages.

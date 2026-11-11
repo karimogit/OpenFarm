@@ -47,7 +47,7 @@ def info(pages, genus):
         if ii["width"] < 300: continue
         return {"file": p["title"][5:], "orig_url": ii["url"], "orig_width": ii["width"], "orig_height": ii["height"],
                 "src": ii.get("thumburl", ii["url"]), "author": strip(m.get("Artist", {}).get("value")) or "Unknown author",
-                "license": lic, "license_url": m.get("LicenseUrl", {}).get("value"), "source": ii["descriptionurl"]}
+                "license": lic, "license_url": (m.get("LicenseUrl", {}).get("value") or "").replace("http://", "https://", 1) or None, "source": ii["descriptionurl"]}
     return None
 
 PROPS = {"prop": "imageinfo", "iiprop": "url|size|extmetadata", "iiurlwidth": 500}

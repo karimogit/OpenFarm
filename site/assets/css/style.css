@@ -1,5 +1,5 @@
 :root { --t-vegetable:#2f7d32; --t-legume:#6d8b1e; --t-herb:#2e8b6f; --t-spice:#b5521b; --t-fruit:#c0392b; --t-fruit-tree:#a0522d;
-  --t-berry:#8e2d6b; --t-nut:#7a5a2f; --t-grain:#a6841c; --t-fungus:#6b5b4f; --t-flower:#b03a7a; --t-cover-crop:#4f7a3a; --t-other:#5d6b5f; --nav-hover:#ffffff26; --nav-active:#ffffff3d; --focus:#ffd166; --focus-ink:#1f5fbf; --danger:#a12a14; --radius-sm:6px; --green:#2f6b3a; --green-2:#e8f2e6; --ink:#1d2a1f; --muted:#5d6b5f; --line:#d9e3d6; --bg:#fafcf8; --sow:#7fb069; --sowd:#b5d99c; --plant:#3c8dbc; --harvest:#e07a1f; --prune:#8e6bbf; }
+  --t-berry:#8e2d6b; --t-nut:#7a5a2f; --t-grain:#a6841c; --t-fungus:#6b5b4f; --t-flower:#b03a7a; --t-cover-crop:#4f7a3a; --t-other:#5d6b5f; --nav-hover:#ffffff26; --nav-active:#1c4524; --focus:#ffd166; --focus-ink:#1f5fbf; --danger:#a12a14; --radius-sm:6px; --green:#2f6b3a; --green-2:#e8f2e6; --ink:#1d2a1f; --muted:#5d6b5f; --line:#d9e3d6; --bg:#fafcf8; --sow:#7fb069; --sowd:#b5d99c; --plant:#3c8dbc; --harvest:#e07a1f; --prune:#8e6bbf; }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
@@ -193,6 +193,7 @@ button:hover, .button:hover { filter: brightness(1.08); }
 .region-list.two-col { columns: 2; column-gap: 1.2rem; }
 .kg-big a { color: var(--ink); }
 @media (max-width: 860px) {
+  .home-layout { grid-template-columns: 1fr; }
   .home-layout .col-side { order: -1; }
   .details-panel > details > summary { display: flex; justify-content: space-between; align-items: center; gap: .5rem; cursor: pointer; list-style: none;
     background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: .7rem .9rem; font-weight: 600; margin-bottom: .5rem; }
@@ -248,10 +249,10 @@ body.filtering .show-all { display: none; }
 
 /* ---- crop category chips (type colours) ---- */
 .type-chip { --tc: var(--t-other); display: inline-flex; align-items: center; gap: .25rem; padding: .15rem .6rem; border-radius: 999px; font-size: .82rem; font-weight: 600;
-  color: var(--tc) !important; background: color-mix(in srgb, var(--tc) 12%, white); border: 1px solid color-mix(in srgb, var(--tc) 35%, white); text-decoration: none; white-space: nowrap; }
+  color: color-mix(in srgb, var(--tc) 70%, black) !important; background: color-mix(in srgb, var(--tc) 12%, white); border: 1px solid color-mix(in srgb, var(--tc) 35%, white); text-decoration: none; white-space: nowrap; }
 .type-chip:hover { background: color-mix(in srgb, var(--tc) 22%, white); }
-.type-chip[aria-current="page"] { background: var(--tc); color: #fff !important; }
-.type-chip small { color: inherit; opacity: .75; font-weight: 400; }
+.type-chip[aria-current="page"] { background: color-mix(in srgb, var(--tc) 70%, black); color: #fff !important; }
+.type-chip small { color: inherit; font-weight: 400; }
 .t-vegetable { --tc: var(--t-vegetable); } .t-legume { --tc: var(--t-legume); } .t-herb { --tc: var(--t-herb); } .t-spice { --tc: var(--t-spice); }
 .t-fruit { --tc: var(--t-fruit); } .t-fruit-tree { --tc: var(--t-fruit-tree); } .t-berry { --tc: var(--t-berry); } .t-nut { --tc: var(--t-nut); }
 .t-grain { --tc: var(--t-grain); } .t-fungus { --tc: var(--t-fungus); } .t-flower { --tc: var(--t-flower); } .t-cover-crop { --tc: var(--t-cover-crop); } .t-other { --tc: var(--t-other); }
@@ -284,3 +285,6 @@ a.kg { text-decoration: none; } a.kg:hover, a.kg:focus-visible { background: var
 .kg-table th, .kg-table td { text-align: left; padding: .3rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 .kg-table tr:target { background: #fff8e6; }
 .prose { max-width: 50rem; }
+.file-btn:focus-within { outline: 3px solid var(--focus-ink); outline-offset: 2px; }
+.kv:has(> div) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem .9rem; }
+.kv > div.wide { grid-column: 1 / -1; }

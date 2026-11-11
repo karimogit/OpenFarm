@@ -56,5 +56,5 @@ native range but grown as annuals almost everywhere. Depending on the cultivar i
 ## Fruit types
 
 Cherry and grape types (small and sweet), beefsteak (large slicing fruit) and Roma or plum/paste
-types (meaty, few seeds, for cooking and canning). Look at the [varieties](varieties/) to compare
+types (meaty, few seeds, for cooking and canning). Look at the [varieties](#varieties) to compare
 days to harvest, habit and disease resistance.

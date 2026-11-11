@@ -1,5 +1,5 @@
 // Home page: the "your details" panel (location search, map, climate region) and the guide cards.
-import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS } from "./common.js";
+import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine } from "./common.js";
 
 const map = L.map("map", { worldCopyJump: true, zoomControl: true }).setView([30, 10], 1);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12, attribution: "© OpenStreetMap contributors" }).addTo(map);

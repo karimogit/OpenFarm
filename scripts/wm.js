@@ -4,7 +4,7 @@ const WM_STEPS = [250, 330, 500, 960, 1280, 1920];
 
 export function wmThumb(img, want) {
   if (!img) return "";
-  const orig = img.orig_url, ow = img.orig_width;
+  const orig = String(img.orig_url || "").replace(/[?#].*$/, ""), ow = img.orig_width;
   if (!orig || !ow) return img.src;
   const w = WM_STEPS.find((s) => s >= want) || WM_STEPS.at(-1);
   if (w >= ow) return orig;
