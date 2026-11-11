@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Seeds and seed sources
+permalink: /seeds/
+---
+<div class="layout">
+<article class="col-main" data-pagefind-body>
+<h1>Seeds</h1>
+<p>Seed facts live on each crop (how the species is pollinated, isolation distance, how long seed stays viable) and each variety
+  (open-pollinated or F1 hybrid, whether saved seed comes true). Seed <em>sources</em> – libraries, networks, gene banks and companies –
+  are listed separately here, by the countries they serve.</p>
+<h2>Seed sources</h2>
+<ul class="seed-cards">
+{% for s in db.seedSources %}
+<li class="card" data-countries="{{ s.countries | join(',') }}"><h3><a href="{{ s.url }}">{{ s.name }}</a></h3>
+  <p class="small muted">{{ s.kind | label }} · {{ s.countries | join(", ") }}{% if s.focus %} · {{ s.focus }}{% endif %}</p>
+  {{ s.html | safe }}</li>
+{% endfor %}
+</ul>
+<p><a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#seed-sources">Add a seed library or company near you →</a></p>
+<h2>Crops with seed-saving notes</h2>
+<ul class="guide-list">{% for c in db.crops %}{% if c.seed_saving %}<li><a href="{{ ('/crops/' + c.slug + '/') | url }}"><strong>{{ c.name }}</strong></a> –
+  {{ c.seed_saving.difficulty | label }}{% if c.seed_saving.isolation_m %}, isolate {{ c.seed_saving.isolation_m | range(" m") }}{% endif %}{% if c.seed_saving.viability_years %}, seed keeps {{ c.seed_saving.viability_years | range(" years") }}{% endif %}</li>{% endif %}{% endfor %}</ul>
+</article>
+<aside class="col-side">{% include "weather.njk" %}</aside>
+</div>

@@ -2,4 +2,4 @@
 permalink: /api/guides.json
 eleventyExcludeFromCollections: true
 ---
-{{ guides | guideIndex | json | safe }}
+{{ db.clientIndex.guides | json | safe }}

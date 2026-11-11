@@ -1,10 +1,10 @@
 {# expects `cal` (calendar object) #}
 <div class="cal" role="table" aria-label="Planting calendar">
   <div class="cal-row cal-head" role="row"><span class="cal-label" role="columnheader"></span>{% for m in range(1, 13) %}<span role="columnheader" data-m="{{ (m | monthName)[0] }}">{{ m | monthName }}</span>{% endfor %}</div>
-  {% for key, label in [["sow_indoors","Sow indoors"],["sow_direct","Sow outside"],["plant","Plant out"],["harvest","Harvest"]] %}
+  {% for key, label in [["sow_indoors","Sow indoors"],["sow_direct","Sow outside"],["plant","Plant out"],["prune","Prune"],["harvest","Harvest"]] %}
     {% if cal[key] %}
     <div class="cal-row" role="row"><span class="cal-label" role="rowheader">{{ label }}</span>{% for m in range(1, 13) %}<span class="{% if m in cal[key] %}on {{ key }}{% endif %}" role="cell" title="{{ label }} – {{ m | monthName }}"></span>{% endfor %}</div>
     {% endif %}
   {% endfor %}
 </div>
-<p class="cal-legend"><i class="on sow_indoors"></i>sow indoors <i class="on sow_direct"></i>sow outside <i class="on plant"></i>plant out <i class="on harvest"></i>harvest</p>
+<p class="cal-legend"><i class="on sow_indoors"></i>sow indoors <i class="on sow_direct"></i>sow outside <i class="on plant"></i>plant out{% if cal.prune %} <i class="on prune"></i>prune{% endif %} <i class="on harvest"></i>harvest</p>

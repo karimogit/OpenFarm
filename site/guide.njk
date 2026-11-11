@@ -1,42 +1,72 @@
 ---
 layout: base.njk
 pagination:
-  data: guides
+  data: db.guides
   size: 1
   alias: g
-permalink: "/guides/{{ g.crop }}/{{ g.variant }}/"
+permalink: "/guides/{{ g.crop }}/{{ g.region }}/"
 eleventyComputed:
   title: "{{ g.title }}"
-  description: "{{ g.common_name }} growing guide for Köppen {{ g.koppen | join(', ') }} climates."
+  description: "How to grow {{ g.cropName | lower }} in a {{ g.regionName | lower }} climate region: calendar, spacing, varieties and sources."
 ---
-<article class="guide">
-  <p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.common_name }}</a> /</p>
-  <h1>{{ g.title }}</h1>
-  <p class="sci-line"><em>{{ g.scientific_name }}</em> · {{ g.family }}</p>
-  <p>{% for k in g.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endfor %}
-     <span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span></p>
-  {% if g.uncertainty %}<aside class="warn"><strong>Uncertainty:</strong> {{ g.uncertainty }}</aside>{% endif %}
+{% set crop = db.cropBy[g.crop] %}
+<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.cropName }}</a> / <a href="{{ ('/regions/' + g.region + '/') | url }}">{{ g.regionName }}</a> /</p>
+<div class="layout">
+  <article class="col-main guide" data-pagefind-body>
+    <h1>{{ g.title }}</h1>
+    <p class="sci-line"><a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.cropName }}</a> · <em>{{ g.scientific_name }}</em> · {{ g.family }}</p>
+    <p><a class="chip" href="{{ ('/regions/' + g.region + '/') | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a>
+      {% for k in g.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endfor %}
+      <span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span></p>
+    {% if g.alsoRegions.length %}<p class="small">Also used for: {% for r in g.alsoRegions %}<a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %} (the listed Köppen classes reach into these regions).</p>{% endif %}
+    {% if g.uncertainty %}<aside class="warn"><strong>Uncertainty:</strong> {{ g.uncertainty }}</aside>{% endif %}
 
-  <h2>Calendar <small>({{ g.hemisphere }}ern hemisphere{% if g.hemisphere == "any" %} – not tied to hemisphere{% endif %}; checked against {{ g.reference_location }})</small></h2>
-  {% set cal = g.calendar %}{% include "calendar.njk" %}
+    <h2>Calendar <small>({{ g.hemisphere }}ern hemisphere{% if g.hemisphere == "any" %} – not tied to hemisphere{% endif %}; checked against {{ g.reference_location }})</small></h2>
+    {% set cal = g.calendar %}{% include "calendar.njk" %}
 
-  <dl class="facts">
-    <div><dt>Days to maturity</dt><dd>{{ g.days_to_maturity | range(" days") }}</dd></div>
-    <div><dt>In-row spacing</dt><dd>{{ g.spacing.in_row_cm | range(" cm") }}</dd></div>
-    <div><dt>Between rows</dt><dd>{{ g.spacing.between_rows_cm | range(" cm") }}</dd></div>
-    <div><dt>Sun</dt><dd>{{ g.sun }}</dd></div>
-    <div><dt>Water</dt><dd>{{ g.water }}</dd></div>
-    {% if g.companions and (g.companions.good or g.companions.avoid) %}
-    <div><dt>Companions <small>({{ g.companions.evidence }})</small></dt><dd>{% if g.companions.good %}👍 {{ g.companions.good | join(", ") }}{% endif %}{% if g.companions.avoid %} 👎 {{ g.companions.avoid | join(", ") }}{% endif %}</dd></div>
+    <div class="body">{{ g.html | safe }}</div>
+
+    {% if g.varietyList.length %}
+    <h2>Suggested varieties</h2>
+    <ul class="variety-grid">{% for v in g.varietyList %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong><span>{{ v.category }}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>{% endfor %}</ul>
     {% endif %}
-  </dl>
+    {% if g.problemList.length %}
+    <h2>Watch out for</h2>
+    <ul>{% for p in g.problemList %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}">{{ p.name }}</a>{% if p.conditions %} – <span class="small">{{ p.conditions }}</span>{% endif %}</li>{% endfor %}</ul>
+    {% endif %}
 
-  <div class="body">{{ g.html | safe }}</div>
+    <h2>Sources</h2>
+    {% set srcs = g.sources %}{% include "sources.njk" %}
+    <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
+      <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ g.file }}">✏️ Improve this guide on GitHub</a> ·
+      <a href="{{ site.repo }}/blob/{{ site.branch }}/{{ g.file }}">View source</a></p>
+  </article>
 
-  <h2>Sources</h2>
-  <ol class="sources">{% for s in g.sources %}<li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.publisher %} – {{ s.publisher }}{% endif %}</li>{% endfor %}</ol>
-
-  <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ g.file }}">✏️ Improve this guide on GitHub</a> ·
-    <a href="{{ site.repo }}/blob/{{ site.branch }}/{{ g.file }}">View source</a></p>
-</article>
+  <aside class="col-side">
+    <section class="side-card">
+      <h3>At a glance</h3>
+      <dl class="kv">
+        <div class="wide"><dt>Climate region</dt><dd><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</dd></div>
+        {% if g.calendar.sow_indoors %}<div><dt>Sow indoors</dt><dd>{{ g.calendar.sow_indoors | monthList }}</dd></div>{% endif %}
+        {% if g.calendar.sow_direct %}<div><dt>Sow outside</dt><dd>{{ g.calendar.sow_direct | monthList }}</dd></div>{% endif %}
+        {% if g.calendar.plant %}<div><dt>Plant out</dt><dd>{{ g.calendar.plant | monthList }}</dd></div>{% endif %}
+        <div><dt>Harvest</dt><dd>{{ g.calendar.harvest | monthList }}</dd></div>
+        {% if g.days_to_maturity %}<div><dt>Days to maturity</dt><dd>{{ g.days_to_maturity | range("") }}</dd></div>{% endif %}
+        {% if g.spacing and g.spacing.in_row_cm %}<div><dt>In-row spacing</dt><dd>{{ g.spacing.in_row_cm | range(" cm") }}</dd></div>{% endif %}
+        {% if g.spacing and g.spacing.between_rows_cm %}<div><dt>Between rows</dt><dd>{{ g.spacing.between_rows_cm | range(" cm") }}</dd></div>{% endif %}
+        <div><dt>Sun</dt><dd>{{ g.sun | label }}</dd></div>
+        <div><dt>Water</dt><dd>{{ g.water | label }}</dd></div>
+        {% if g.varietyList.length %}<div class="wide"><dt>Varieties</dt><dd>{% for v in g.varietyList %}<a href="{{ v.url | url }}">{{ v.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>{% endif %}
+      </dl>
+    </section>
+    {% include "weather.njk" %}
+    {% if crop.seed_saving %}
+    <section class="side-card">
+      <h3>Seeds</h3>
+      {% set ss = crop.seed_saving %}{% set vs = false %}{% include "seeds.njk" %}
+      {% if g.seed_saving_note %}<p class="small"><strong>In this region:</strong> {{ g.seed_saving_note }}</p>{% endif %}
+    </section>
+    {% endif %}
+    {% include "seed-sources.njk" %}
+  </aside>
+</div>

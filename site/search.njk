@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Search
+permalink: /search/
+---
+<h1>Search</h1>
+<p class="muted">Full-text search over every crop, variety, guide, region and problem page – it runs entirely in your browser.</p>
+<link href="{{ '/pagefind/pagefind-ui.css' | url }}" rel="stylesheet">
+<div id="pagefind"></div>
+<script src="{{ '/pagefind/pagefind-ui.js' | url }}"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const ui = new PagefindUI({ element: "#pagefind", showSubResults: true, showImages: false, resetStyles: false });
+    const q = new URLSearchParams(location.search).get("q");
+    if (q) ui.triggerSearch(q);
+  });
+</script>

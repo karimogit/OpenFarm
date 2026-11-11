@@ -4,27 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if title %}{{ title }} · {% endif %}{{ site.name }}</title>
-  <meta name="description" content="{{ description or site.tagline }}">
+  <meta name="description" content="{{ description or site.short }}">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+  {% if jsonUrl %}<link rel="alternate" type="application/json" href="{{ jsonUrl | url }}">{% endif %}
 </head>
 <body>
   <header class="top">
     <a class="brand" href="{{ '/' | url }}">🌱 <strong>OpenFarm</strong></a>
+    <form class="top-search" action="{{ '/search/' | url }}" role="search">
+      <input type="search" name="q" placeholder="Search crops, guides, regions…" aria-label="Search OpenFarm">
+    </form>
     <nav>
       <a href="{{ '/' | url }}#where">Find guides</a>
       <a href="{{ '/crops/' | url }}">Crops</a>
-      <a href="{{ '/contribute/' | url }}">Contribute</a>
-      <a href="{{ site.repo }}">GitHub</a>
+      <a href="{{ '/regions/' | url }}">Climate regions</a>
+      <a href="{{ '/seeds/' | url }}">Seeds</a>
+      <a href="{{ '/contribute/' | url }}">About</a>
     </nav>
+    <a class="here" href="{{ '/' | url }}#where" data-here hidden></a>
   </header>
   <main>
     {{ content | safe }}
   </main>
   <footer class="foot">
-    <p>Guide content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> · Code is <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> ·
-      Climate data: <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a>, CC BY 4.0 · Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a></p>
-    <p>A community revival in the spirit of the original <a href="https://github.com/openfarmcc">OpenFarm</a>. Always check local advice – climates vary at small scales.</p>
+    <div class="foot-cols">
+      <div>
+        <p><strong>🌱 OpenFarm</strong> – © {{ site.attribution }}. A community revival in the spirit of the original
+          <a href="https://github.com/openfarmcc">OpenFarm</a>.</p>
+        <p>Code: <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · Guide content: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+          (imported crop data: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>) ·
+          <a href="{{ site.repo }}">Source on GitHub</a></p>
+        <p class="small">Always check local advice – climates vary at small scales.</p>
+      </div>
+      <div>
+        <p><strong>Data &amp; credits</strong></p>
+        <ul class="credits">
+          <li>Climate regions: Köppen-Geiger map by <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a>, CC BY 4.0</li>
+          <li>Crop records: <a href="https://github.com/thefullnacho/openfarm-crops-rescue">openfarm-crops-rescue</a>, CC0</li>
+          <li>Photos: <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> – author and license shown on each picture</li>
+          <li>Maps &amp; place search: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="https://nominatim.org/">Nominatim</a></li>
+          <li>Weather: <a href="https://open-meteo.com/">Open-Meteo.com</a>, CC BY 4.0</li>
+          <li>Map library: <a href="https://leafletjs.com/">Leaflet</a> · Search: <a href="https://pagefind.app/">Pagefind</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
+  <script id="of-index" type="application/json">{{ db.clientIndex | json | safe }}</script>
+  <script id="of-koppen" type="application/json">{{ koppen | json | safe }}</script>
+  <script>window.OPENFARM_BASE = "{{ '/' | url }}"; window.OPENFARM_REPO = "{{ site.repo }}";</script>
+  <script type="module" src="{{ '/assets/js/common.js' | url }}"></script>
+  {% for s in pageScripts %}<script type="module" src="{{ ('/assets/js/' + s) | url }}"></script>{% endfor %}
 </body>
 </html>

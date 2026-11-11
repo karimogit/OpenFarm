@@ -18,7 +18,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Validate guide frontmatter against schema/guide.schema.json
+      - name: Validate all content against the JSON Schemas in schema/
         run: npm run validate
-      - name: Build site
-        run: npx @11ty/eleventy
+      - name: Build site and search index
+        run: npx @11ty/eleventy && npx pagefind --site _site

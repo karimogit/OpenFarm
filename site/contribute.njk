@@ -1,16 +1,42 @@
 ---
 layout: base.njk
-title: Contribute
+title: About and contribute
 permalink: /contribute/
 ---
-<h1>Contribute a guide</h1>
-<p>Guides are plain Markdown files with YAML frontmatter in
-  <a href="{{ site.repo }}/tree/main/content/guides"><code>content/guides/&lt;crop&gt;/&lt;climate-variant&gt;.md</code></a>.
-  If you can edit a text file, you can contribute – no account on this site, no database.</p>
+<article data-pagefind-body>
+<h1>About OpenFarm</h1>
+<p class="lead">{{ site.tagline }}</p>
+
+<h2>How it works</h2>
+<p>Pick a place and OpenFarm looks up its climate in your browser – no account, no tracking. Under the hood it uses the
+  Köppen-Geiger classification (Beck et al. 2018, 0.5° grid), which describes the <em>whole</em> climate – summer heat,
+  dry seasons, season length – not just winter cold like USDA zones. The {{ koppen.classes.length - 1 }} Köppen classes are
+  grouped into {{ db.regions.length }} <a href="{{ '/regions/' | url }}">climate regions</a>, so every place on Earth gets one.
+  Where a crop has no guide for your region yet, you see the guide from the most similar region, clearly labelled.</p>
+
+<h2>Contribute</h2>
+<p>Every guide is a plain text file on GitHub, so anyone can suggest improvements and every change is tracked.
+  If you can edit a text file, you can contribute – use the "✏️ Improve on GitHub" link on any page.</p>
 <ol>
-  <li>Copy <a href="{{ site.repo }}/blob/main/content/TEMPLATE.md"><code>content/TEMPLATE.md</code></a> into the crop's folder.</li>
-  <li>Fill in the Köppen class(es), the month calendar for <em>your</em> climate, and at least one real source.</li>
-  <li>Open a pull request. CI validates the frontmatter against the <a href="{{ '/schema/guide.schema.json' | url }}">JSON Schema</a>.</li>
+  <li>Find your climate region and the crop you know how to grow.</li>
+  <li>Copy <a href="{{ site.repo }}/blob/main/content/TEMPLATE.md"><code>content/TEMPLATE.md</code></a> to <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>.</li>
+  <li>Fill in the calendar for <em>your</em> climate and at least one real source (extension service, horticultural society, research).</li>
+  <li>Open a pull request. CI checks every file against the <a href="{{ '/schema/guide.schema.json' | url }}">JSON Schemas</a>.</li>
 </ol>
-<p>Full details are in <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
-  By contributing guide content you agree to license it under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+
+<h2>The data model</h2>
+<ul>
+  <li><strong>Crop</strong> (<code>content/crops/&lt;crop&gt;.md</code>) – facts that are true everywhere: type, family, sun, size, how the species is pollinated and saved, perennial facts like chill hours and rootstocks.</li>
+  <li><strong>Variety</strong> (<code>content/varieties/&lt;crop&gt;/&lt;variety&gt;.md</code>) – a cultivar: days to maturity, growth habit, tolerances, disease resistance, and whether its seed is open-pollinated or F1 hybrid.</li>
+  <li><strong>Guide</strong> (<code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems.</li>
+  <li><strong>Shared files</strong> – <a href="{{ '/regions/' | url }}">climate regions</a>, <a href="{{ '/problems/' | url }}">pests &amp; diseases</a>, companion pairs (with evidence level) and <a href="{{ '/seeds/' | url }}">seed sources</a> are written once and linked from every crop and guide that needs them.</li>
+</ul>
+<p>Machine-readable: every crop has a JSON file (e.g. <a href="{{ '/crops/tomato.json' | url }}">/crops/tomato.json</a>), every region too, and there is a full dump at <a href="{{ '/api/all.json' | url }}">/api/all.json</a>.</p>
+
+<h2>Licenses and credits</h2>
+<p>Code is MIT. Guide content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> – © {{ site.attribution }}.
+  {{ db.stats.imported }} crop records were imported from the CC0 <a href="https://github.com/thefullnacho/openfarm-crops-rescue">openfarm-crops-rescue</a>
+  dataset (recovered from the original OpenFarm.cc) and are marked as imported and unreviewed until someone checks them.
+  Photos come from Wikimedia Commons with their author and license shown. Full details are in
+  <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+</article>

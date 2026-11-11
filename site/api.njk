@@ -1,0 +1,9 @@
+---
+pagination:
+  data: db.crops
+  size: 1
+  alias: crop
+permalink: "/crops/{{ crop.slug }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ crop | cropOut | prettyJson | safe }}

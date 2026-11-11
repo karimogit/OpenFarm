@@ -1,0 +1,14 @@
+{# expects `ss` (crop-level seed_saving) and optional `vs` (variety seeds) #}
+<dl class="kv">
+  {% if vs %}<div><dt>Seed type</dt><dd>{{ vs.type | label }}{% if vs.heirloom %} (heirloom){% endif %}</dd></div>
+  {% if vs.true_to_type is defined %}<div><dt>Saved seed comes true</dt><dd>{{ "Yes" if vs.true_to_type else "No" }}</dd></div>{% endif %}{% endif %}
+  {% set diff = (vs.saving_difficulty if vs and vs.saving_difficulty) or (ss.difficulty if ss) %}
+  {% if diff %}<div><dt>Seed saving</dt><dd>{{ diff | label }}</dd></div>{% endif %}
+  {% if ss and ss.pollination %}<div><dt>Pollination</dt><dd>{{ ss.pollination | label }}</dd></div>{% endif %}
+  {% set iso = (vs.isolation_m if vs and vs.isolation_m) or (ss.isolation_m if ss) %}
+  {% if iso %}<div><dt>Isolation distance</dt><dd>{{ iso | range(" m") }}</dd></div>{% endif %}
+  {% set via = (vs.viability_years if vs and vs.viability_years) or (ss.viability_years if ss) %}
+  {% if via %}<div><dt>Seed stays viable</dt><dd>{{ via | range(" years") }}</dd></div>{% endif %}
+</dl>
+{% if vs and vs.notes %}<p class="small">{{ vs.notes }}</p>{% endif %}
+{% if ss and ss.notes %}<p class="small">{{ ss.notes }}</p>{% endif %}

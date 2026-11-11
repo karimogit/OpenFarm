@@ -1,0 +1,11 @@
+{# expects `img` (image record or null), `alt` and optional `inherited` #}
+{% if img %}
+<figure class="photo">
+  <img src="{{ img.src }}" alt="{{ alt }}" loading="lazy" width="{{ img.width }}" height="{{ img.height }}">
+  <figcaption>{% if inherited %}Crop photo (no variety photo yet). {% endif %}Photo: {{ img.author | truncate(60) }} ·
+    {% if img.license_url %}<a href="{{ img.license_url }}">{{ img.license }}</a>{% else %}{{ img.license }}{% endif %} ·
+    <a href="{{ img.source }}">Wikimedia Commons</a></figcaption>
+</figure>
+{% else %}
+<div class="photo photo-empty">No free photo yet – <a href="https://commons.wikimedia.org/">add one on Wikimedia Commons</a>, then set <code>commons_file</code>.</div>
+{% endif %}

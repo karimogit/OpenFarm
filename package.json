@@ -8,9 +8,11 @@
   "scripts": {
     "validate": "node scripts/validate.js",
     "build:climate": "python3 scripts/build_koppen.py",
-    "build": "npm run validate && eleventy",
+    "build": "npm run validate && eleventy && pagefind --site _site",
     "dev": "eleventy --serve",
-    "test": "npm run validate"
+    "test": "npm run validate",
+    "import:rescue": "node scripts/import_rescue.js",
+    "images": "node scripts/fetch_images.js"
   },
   "engines": {
     "node": ">=20"
@@ -20,7 +22,9 @@
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "gray-matter": "^4.0.3",
+    "js-yaml": "^4.3.2",
     "leaflet": "^1.9.4",
-    "markdown-it": "^15.0.3"
+    "markdown-it": "^15.0.3",
+    "pagefind": "^1.6.0"
   }
 }

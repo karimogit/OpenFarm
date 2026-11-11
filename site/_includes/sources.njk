@@ -1,0 +1,2 @@
+{# expects `srcs` #}
+<ol class="sources">{% for s in srcs %}<li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.publisher %} – {{ s.publisher }}{% endif %}{% if s.license %} ({{ s.license }}){% endif %}</li>{% endfor %}</ol>

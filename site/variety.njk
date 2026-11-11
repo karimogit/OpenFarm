@@ -1,0 +1,68 @@
+---
+layout: base.njk
+pagination:
+  data: db.varieties
+  size: 1
+  alias: v
+permalink: "/crops/{{ v.crop }}/varieties/{{ v.slug }}/"
+eleventyComputed:
+  title: "{{ v.name }} ({{ v.cropName }})"
+  description: "{{ v.name }} – a {{ v.cropName | lower }} variety: traits, seeds and suitable climate regions."
+---
+{% set crop = db.cropBy[v.crop] %}
+<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + crop.slug + '/') | url }}">{{ crop.name }}</a> / <a href="{{ ('/crops/' + crop.slug + '/') | url }}#varieties">Varieties</a> /</p>
+<div class="layout">
+  <article class="col-main" data-pagefind-body>
+    <h1>{{ v.name }} <small class="muted">{{ crop.name }}</small></h1>
+    <p class="sci-line"><em>{{ v.scientific_name or crop.scientific_name }}</em>{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
+    {% if v.origin == "imported" %}<aside class="warn" data-pagefind-ignore><strong>Imported, unreviewed data.</strong> {{ v.note }}</aside>{% endif %}
+    {% set img = v.image %}{% set alt = v.name + " " + crop.name %}{% set inherited = v.imageInherited %}{% include "image.njk" %}
+    <div class="body">{{ v.html | safe }}</div>
+    {% if v.fruit %}<p><strong>Fruit:</strong> {{ v.fruit }}</p>{% endif %}
+    {% if v.history %}<p><strong>History:</strong> {{ v.history }}</p>{% endif %}
+
+    <h2>Climate regions</h2>
+    {% if v.suitable_regions and v.suitable_regions.length %}
+      <p>{% for r in v.suitable_regions %}{% set reg = db.regionBy[r] %}<a class="chip" href="{{ ('/regions/' + r + '/') | url }}"><span class="swatch sm" style="background:{{ reg.color }}"></span>{{ reg.name }}</a> {% endfor %}</p>
+      {% if v.regions_note %}<p class="small">{{ v.regions_note }}</p>{% endif %}
+    {% else %}
+      <p class="muted">No sourced climate-region recommendation yet.</p>
+    {% endif %}
+    {% set used = crop.guides | whereIn("varieties", v.slug) %}
+    {% if used.length %}<p>Suggested in: {% for g in used %}<a href="{{ g.url | url }}">{{ g.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+
+    {% if v.disease_resistance and v.disease_resistance.length %}<h2>Disease resistance</h2><p>{{ v.disease_resistance | join(", ") }}</p>{% endif %}
+    {% if v.disease_note %}<p class="small">{{ v.disease_note }}</p>{% endif %}
+
+    <h2>Sources</h2>
+    {% set srcs = v.sources %}{% include "sources.njk" %}
+    {% if v.rescue %}<p class="small">Original OpenFarm record: <a href="{{ v.rescue.wayback_url }}">Wayback Machine capture</a>.</p>{% endif %}
+    <p class="meta">License {{ v.license }} · <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ v.file }}">✏️ Improve on GitHub</a></p>
+  </article>
+  <aside class="col-side">
+    <section class="side-card">
+      <h3>Traits</h3>
+      <dl class="kv">
+        {% if v.growth_habit %}<div><dt>Growth habit</dt><dd>{{ v.growth_habit | label }}</dd></div>{% endif %}
+        {% if v.days_to_maturity %}<div><dt>Days to maturity</dt><dd>{{ v.days_to_maturity | range("") }}{% if v.days_from %} from {{ v.days_from }}{% endif %}</dd></div>{% endif %}
+        {% if v.cold_tolerance %}<div><dt>Cold tolerance</dt><dd>{{ v.cold_tolerance | label }}</dd></div>{% endif %}
+        {% if v.heat_tolerance %}<div><dt>Heat tolerance</dt><dd>{{ v.heat_tolerance | label }}</dd></div>{% endif %}
+        {% if v.chill_hours %}<div><dt>Chill hours</dt><dd>{{ v.chill_hours | range(" h") }}</dd></div>{% endif %}
+        {% if v.pollination_partners %}<div><dt>Pollinated by</dt><dd>{% for p in v.pollination_partners %}<a href="{{ ('/crops/' + v.crop + '/varieties/' + p + '/') | url }}">{{ p | replace("-", " ") | title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>{% endif %}
+        {% if v.sun %}<div><dt>Sun</dt><dd>{{ v.sun | label }}</dd></div>{% endif %}
+        {% if v.size and v.size.height_cm %}<div><dt>Height</dt><dd>{{ v.size.height_cm }} cm</dd></div>{% endif %}
+        {% if v.size and v.size.spread_cm %}<div><dt>Spread</dt><dd>{{ v.size.spread_cm }} cm</dd></div>{% endif %}
+      </dl>
+      {% if v.cold_note %}<p class="small">{{ v.cold_note }}</p>{% endif %}
+      {% if v.pollination_note %}<p class="small">{{ v.pollination_note }}</p>{% endif %}
+      {% if v.harvest_note %}<p class="small">{{ v.harvest_note }}</p>{% endif %}
+    </section>
+    <section class="side-card">
+      <h3>Seeds</h3>
+      {% set ss = crop.seed_saving %}{% set vs = v.seeds %}{% include "seeds.njk" %}
+      {% if not v.seeds %}<p class="small muted">Variety seed type not recorded; values shown are for the crop.</p>{% endif %}
+    </section>
+    {% include "weather.njk" %}
+    {% include "seed-sources.njk" %}
+  </aside>
+</div>
