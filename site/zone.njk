@@ -1,0 +1,31 @@
+---
+layout: base.njk
+pagination:
+  data: db.zones
+  size: 1
+  alias: z
+permalink: "/zones/{{ z.slug }}/"
+eleventyComputed:
+  title: "Zone {{ z.slug }}"
+  description: "USDA-style hardiness zone {{ z.slug }}: average extreme winter minima from {{ z.min_c }} to {{ z.max_c }} °C, and plants with a sourced range that includes this zone."
+  jsonUrl: "/zones/{{ z.slug }}.json"
+---
+{% set crumbs = [{href: "/zones/", label: "Hardiness zones"}, {label: z.label, current: true}] %}{% include "crumbs.njk" %}
+<article data-pagefind-body>
+<h1>{{ z.label }}</h1>
+<p class="lead">Average yearly extreme minimum temperature: <strong>{{ z.min_c }} to {{ z.max_c }} °C</strong> ({{ z.min_f }} to {{ z.max_f }} °F).</p>
+<p>These bounds follow the <a href="https://planthardiness.ars.usda.gov/">USDA Plant Hardiness Zone Map</a> scale. OpenFarm does not invent a zone for a plant: the list below is only crops whose <em>sourced</em> hardiness range includes this zone. A crop missing from the list may still be grown here as an annual, or may simply not have a cited range yet.</p>
+<p>Your own zone is estimated from Open-Meteo ERA5 1991–2020 daily minima at your location (about 25 km grid, CC BY 4.0). That is a guide, not a frost-pocket guarantee. Hardiness is only winter cold — see <a href="{{ '/regions/' | url }}">climate regions</a> and <a href="{{ '/help/' | url }}#hardiness">Help</a> for the rest of the climate.</p>
+
+<h2>Plants with a sourced range that includes {{ z.label }}</h2>
+{% if z.plants.length %}
+<ul class="crop-list">
+  {% for c in z.plants %}
+  <li><a href="{{ c.url | url }}">{{ c.name }}</a> <span class="muted">zones {{ c.min }}–{{ c.max }}</span></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No crop in the catalogue has a sourced hardiness range that includes this zone yet.</p>
+{% endif %}
+<p class="meta"><a href="{{ ('/zones/' + z.slug + '.json') | url }}">JSON</a></p>
+</article>

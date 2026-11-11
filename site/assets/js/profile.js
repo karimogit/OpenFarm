@@ -1,5 +1,5 @@
 // Profile page: everything here lives in localStorage (see common.js) – nothing is sent anywhere.
-import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce, loadPlaces, locationHref } from "./common.js";
+import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce, loadPlaces, locationHref, guideHref, favGuideHref, MONTHS } from "./common.js";
 import { icon } from "./icons.js";
 
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
@@ -32,11 +32,62 @@ function growCard(g) {
   </li>`;
 }
 
+const UI_KEY = "openfarm.ui";
+function loadUi() { try { return JSON.parse(localStorage.getItem(UI_KEY)) || {}; } catch { return {}; } }
+function saveUi(ui) { try { localStorage.setItem(UI_KEY, JSON.stringify(ui)); } catch {} }
+function growingView() { return loadUi().growingView === "calendar" ? "calendar" : "cards"; }
+
+function monthOf(iso) {
+  if (!iso) return null;
+  const m = String(iso).match(/^\d{4}-(\d{2})/);
+  return m ? +m[1] : null;
+}
+
+function renderGrowingCalendar(p) {
+  const loc = p.location;
+  const byCrop = {};
+  if (loc?.symbol) {
+    for (const { crop, m } of myCropGuides(p)) byCrop[crop] = m;
+  }
+  const head = ["<th scope='col'>Crop</th>", ...MONTHS.map((mo) => `<th scope='col'>${esc(mo)}</th>`)].join("");
+  const rows = p.growing.map((g) => {
+    const c = CROP[g.crop];
+    const vName = varietyName(g.crop, g.variety);
+    const cal = byCrop[g.crop]?.calendar || {};
+    const sownM = monthOf(g.sown), plantedM = monthOf(g.planted);
+    const cells = MONTHS.map((_, i) => {
+      const mo = i + 1;
+      const bits = [];
+      if ((cal.sow_indoors || []).includes(mo)) bits.push(`<span class="mark sow">sow in</span>`);
+      if ((cal.sow_direct || []).includes(mo)) bits.push(`<span class="mark sow">sow</span>`);
+      if ((cal.plant || []).includes(mo)) bits.push(`<span class="mark plant">plant</span>`);
+      if ((cal.harvest || []).includes(mo)) bits.push(`<span class="mark harvest">harvest</span>`);
+      if ((cal.prune || []).includes(mo)) bits.push(`<span class="mark">prune</span>`);
+      if (sownM === mo) bits.push(`<span class="mark done">sown${g.sown ? " " + esc(g.sown.slice(8)) : ""}</span>`);
+      if (plantedM === mo) bits.push(`<span class="mark done">planted${g.planted ? " " + esc(g.planted.slice(8)) : ""}</span>`);
+      return `<td>${bits.join("")}</td>`;
+    }).join("");
+    return `<tr><th class="crop" scope="row"><button type="button" class="cal-crop" data-edit="${esc(g.id)}">${esc(c?.name || g.crop)}${vName ? ` <em>${esc(vName)}</em>` : ""}</button></th>${cells}</tr>`;
+  }).join("");
+  return `<div class="growing-cal"><table><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table>
+    <p class="small muted">${loc?.symbol ? "Windows come from your region's guide, when one exists. Dates you recorded are labelled sown/planted." : "Save a location to see sowing and harvest windows from your region's guides. Dates you recorded still appear."}</p></div>`;
+}
+
 function renderGrowing(p) {
+  const view = growingView();
+  const cardsBtn = $("#grow-view-cards"), calBtn = $("#grow-view-cal");
+  if (cardsBtn && calBtn) {
+    cardsBtn.setAttribute("aria-pressed", view === "cards" ? "true" : "false");
+    calBtn.setAttribute("aria-pressed", view === "calendar" ? "true" : "false");
+  }
   const gl = $("#growing-list");
-  gl.innerHTML = p.growing.length
-    ? `<ul class="crop-grid growing-grid">${p.growing.map(growCard).join("")}</ul>`
-    : `<p class="small muted">Nothing yet. Use Add to put a crop or variety on your list.</p>`;
+  if (!p.growing.length) {
+    gl.innerHTML = `<p class="small muted">Nothing yet. Use Add to put a crop or variety on your list.</p>`;
+    return;
+  }
+  gl.innerHTML = view === "calendar"
+    ? renderGrowingCalendar(p)
+    : `<ul class="crop-grid growing-grid">${p.growing.map(growCard).join("")}</ul>`;
 }
 
 function render() {
@@ -66,9 +117,9 @@ function render() {
   let h = "";
   if (f.crops.length) h += `<h3 class="group">Crops</h3><ul class="crop-grid">${f.crops.map((s) => tile(`${BASE}crops/${s}/`, CROP[s]?.img, CROP[s]?.name || s, CROP[s]?.sci, `crop:${s}`)).join("")}</ul>`;
   if (f.varieties.length) h += `<h3 class="group">Varieties</h3><ul class="crop-grid">${f.varieties.map((id) => { const v = VAR[id], [c, s] = id.split("/");
-    return tile(`${BASE}crops/${c}/varieties/${s}/`, CROP[c]?.img, v?.name || s, v?.cultivarName || CROP[c]?.name, `variety:${id}`); }).join("")}</ul>`;
-  if (f.guides.length) h += `<h3 class="group">Guides</h3><ul class="crop-grid">${f.guides.map((id) => { const g = GUIDE[id], [c, r] = id.split("/");
-    return tile(`${BASE}guides/${c}/${r}/`, CROP[c]?.img, g?.title || id, REGION_BY[r]?.name, `guide:${id}`); }).join("")}</ul>`;
+    return tile(`${BASE}crops/${c}/${s}/`, CROP[c]?.img, v?.name || s, v?.cultivarName || CROP[c]?.name, `variety:${id}`); }).join("")}</ul>`;
+  if (f.guides.length) h += `<h3 class="group">Guides</h3><ul class="crop-grid">${f.guides.map((id) => { const g = GUIDE[id], parts = id.split("/"), c = parts[0], r = parts.at(-1);
+    return tile(favGuideHref(parts.join("/")), CROP[c]?.img, g?.title || id, REGION_BY[r]?.name, `guide:${id}`); }).join("")}</ul>`;
   $("#fav-list").innerHTML = h || `<p class="small muted">No favourites yet — use the heart on any crop, variety or guide.</p>`;
 
   const mine = new Set([...f.crops, ...p.growing.map((g) => g.crop), ...f.varieties.map((x) => x.split("/")[0]), ...f.guides.map((x) => x.split("/")[0])]);
@@ -76,7 +127,7 @@ function render() {
   if (!loc?.symbol) { pg.innerHTML = `<p class="small muted">Save a location to see the guides for your climate region.</p>`; return; }
   const list = matchGuides(loc.symbol, loc.lat).filter((m) => !mine.size || mine.has(m.g.crop));
   pg.innerHTML = list.length ? `<p class="small muted">${mine.size ? "For your favourites and the crops you grow" : "All guides"} in ${swatch(region)}${esc(region.name)}.</p>
-    <ul class="crop-grid guide-grid">${list.map(({ g, kind, via }) => `<li><a href="${BASE}guides/${g.crop}/${g.region}/">${thumbHTML(g.img)}
+    <ul class="crop-grid guide-grid">${list.map(({ g, kind, via }) => `<li><a href="${guideHref(g)}">${thumbHTML(g.img)}
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em><span class="gtitle">${esc(g.title)}</span>
       <span class="badges">${kind === "similar" ? `<span class="note-flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : ""}</span></a></li>`).join("")}</ul>`
     : `<p class="small muted">No guides for these crops in your climate region (or a similar one) yet.</p>`;
@@ -164,6 +215,15 @@ $("#grow-remove").addEventListener("click", () => {
 $("#growing-list").addEventListener("click", (e) => {
   const btn = e.target.closest("[data-edit]"); if (btn) openEditor(btn.dataset.edit);
 });
+
+function setGrowingView(view) {
+  const ui = loadUi();
+  ui.growingView = view;
+  saveUi(ui);
+  renderGrowing(loadProfile());
+}
+$("#grow-view-cards")?.addEventListener("click", () => setGrowingView("cards"));
+$("#grow-view-cal")?.addEventListener("click", () => setGrowingView("calendar"));
 
 function searchHits(q) {
   const nq = q.trim().toLowerCase();

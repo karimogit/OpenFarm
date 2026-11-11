@@ -1,0 +1,111 @@
+# Crop-rotation groups and rules, stored once and shown on crop pages as "Rotation & neighbours".
+# Only statements taken from the cited sources; nothing is invented.
+groups:
+  - slug: brassica
+    name: Brassicas
+    families: [Brassicaceae]
+    notes: >-
+      The RHS brassica group includes Brussels sprouts, cabbage, cauliflower, kale, kohl-rabi,
+      oriental greens, radish, swede and turnips. Swedes and turnips are brassicas, not "roots",
+      in this rotation. OpenFarm applies the group to crops in the cabbage family (Brassicaceae).
+    sources: [rhs-crop-rotation]
+  - slug: legume
+    name: Legumes
+    families: [Fabaceae]
+    notes: >-
+      The RHS lists peas, broad beans, French beans and runner beans in this group. OpenFarm
+      applies it to crops in the pea and bean family (Fabaceae).
+    sources: [rhs-crop-rotation]
+  - slug: onion
+    name: Onions
+    families: [Amaryllidaceae]
+    notes: >-
+      The RHS onion group is onion, garlic, shallot and leek. OpenFarm applies it to crops in
+      Amaryllidaceae (the family that includes Allium).
+    sources: [rhs-crop-rotation]
+  - slug: potato-family
+    name: Potato family
+    families: [Solanaceae]
+    notes: >-
+      The RHS potato family group is potato and tomato. It notes that pepper and aubergine
+      (eggplant) suffer from fewer problems and can be grown anywhere in the rotation. The
+      group is still applied to Solanaceae so those crops show the same family context.
+    sources: [rhs-crop-rotation]
+  - slug: roots
+    name: Roots
+    crops: [beet, carrot, celeriac, celery, fennel, parsley, parsnip]
+    notes: >-
+      The RHS roots group is beetroot, carrot, celeriac, celery, Florence fennel, parsley,
+      parsnip, and other root crops except swedes and turnips (which stay with the brassicas).
+    sources: [rhs-crop-rotation]
+  - slug: flexible
+    name: Grown where convenient
+    crops: [cucumber, zucchini, pumpkin, squash, lettuce, corn]
+    notes: >-
+      The RHS says cucurbits (courgettes, pumpkins, squashes, cucumbers), salads (endive,
+      lettuce and chicory) and sweetcorn can be grown wherever convenient, merely avoiding
+      growing them too often in the same place. They are not in the three-year potato/brassica
+      sequence. Perennial vegetables such as rhubarb and asparagus do not fit into the rotation.
+    sources: [rhs-crop-rotation]
+
+rules:
+  - kind: prefer-follow
+    from: legume
+    to: brassica
+    reason: >-
+      In the RHS traditional three-year plan, brassicas follow the combined legumes, onions and roots section.
+    sources: [rhs-crop-rotation]
+  - kind: prefer-follow
+    from: onion
+    to: brassica
+    reason: >-
+      In the RHS traditional three-year plan, brassicas follow the combined legumes, onions and roots section.
+    sources: [rhs-crop-rotation]
+  - kind: prefer-follow
+    from: roots
+    to: brassica
+    reason: >-
+      In the RHS traditional three-year plan, brassicas follow the combined legumes, onions and roots section.
+    sources: [rhs-crop-rotation]
+  - kind: prefer-follow
+    from: potato-family
+    to: legume
+    reason: >-
+      In the RHS traditional three-year plan, legumes, onions and roots follow potatoes.
+    sources: [rhs-crop-rotation]
+  - kind: prefer-follow
+    from: potato-family
+    to: onion
+    reason: >-
+      In the RHS traditional three-year plan, legumes, onions and roots follow potatoes.
+    sources: [rhs-crop-rotation]
+  - kind: prefer-follow
+    from: potato-family
+    to: roots
+    reason: >-
+      In the RHS traditional three-year plan, legumes, onions and roots follow potatoes.
+    sources: [rhs-crop-rotation]
+  - kind: prefer-follow
+    from: brassica
+    to: potato-family
+    reason: >-
+      In the RHS traditional three-year plan, potatoes follow brassicas.
+    sources: [rhs-crop-rotation]
+  - kind: note
+    group: brassica
+    reason: >-
+      The RHS lists clubroot in brassicas among the common diseases that rotation helps to avoid,
+      by reducing the build-up of crop-specific pests and diseases when host plants are absent.
+    sources: [rhs-crop-rotation]
+  - kind: note
+    group: onion
+    reason: >-
+      The RHS lists onion white rot among the common diseases that rotation helps to avoid.
+    sources: [rhs-crop-rotation]
+  - kind: note
+    group: flexible
+    reason: >-
+      The RHS says these crops can be grown wherever convenient, merely avoiding growing them too
+      often in the same place, and that perennial vegetables such as rhubarb and asparagus do not
+      fit into the rotation.
+    sources: [rhs-crop-rotation]

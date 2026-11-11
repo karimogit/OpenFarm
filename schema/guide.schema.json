@@ -274,6 +274,11 @@
       },
       "uniqueItems": true,
       "description": "Slugs of tools in content/tools/ that are useful for this crop or guide."
+    },
+    "variety": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Set only when a source gives variety-specific regional advice. File: content/guides/<crop>/<variety>/<region>.md"
     }
   },
   "allOf": [
@@ -294,5 +299,6 @@
         ]
       }
     }
-  ]
+  ],
+  "description": "OpenFarm growing guide (content/guides/<crop>/<region>.md, or content/guides/<crop>/<variety>/<region>.md for variety-specific advice)."
 }

@@ -36,8 +36,10 @@ content/guides/<crop>/<region>.md             How to grow one crop in one climat
 content/regions/<region>.md                   The 15 climate regions, their Köppen classes, colour and "most similar" order
 content/problems/<problem>.md                 Pests, diseases and disorders – written once, linked from every crop they affect
 content/seed-sources/<source>.md              Seed libraries, networks, gene banks and companies, by country
-content/companions.yaml                       Companion-planting pairs with an evidence level
-content/sources.yaml                          Citation registry – reuse a source by key instead of copying it
+content/companions.yaml                       Companion-planting pairs with an evidence level (published sources only)
+content/rotation.yaml                         Crop rotation groups and rules
+content/sources.yaml                          Citation registry – reuse a source by key; each entry has license and use
+SOURCES.md                                    Source and licence policy (import allowlist, citations, wiki-data rule)
 schema/*.schema.json                          JSON Schema for every file type – validated in CI
 data/images.json                              Wikimedia Commons photo + author + license per crop/variety
 data/koppen/                                  Köppen-Geiger 0.5° grid, Beck et al. 2018 (CC BY 4.0)
@@ -47,8 +49,18 @@ scripts/fetch_images.js                       Finds freely licensed Commons phot
 site/                                         Eleventy templates, CSS and small vanilla-JS modules (MIT)
 ```
 
-**Today:** 271 crops (8 curated, 263 imported), 73 varieties, 194 sourced guides, 10 tools and 15 climate
-regions covering all 31 Köppen-Geiger classes. 65 crops are fruit, fruit trees, berries or nuts.
+Public URLs (the site is served under `/OpenFarm/` on GitHub Pages):
+
+- Crop: `/crops/<crop>/` · variety: `/crops/<crop>/<variety>/` · variety group: `/crops/<crop>/<group>/`
+- Growing guide: `/crops/<crop>/<region>/` (variety-specific: `/crops/<crop>/<variety>/<region>/`). Old `/guides/…` URLs redirect.
+- Tools: `/tools/<tool>/` and category pages `/tools/<category>/`
+- Climate region: `/regions/<region>/` · hardiness zone: `/zones/<zone>/` (1a–13b)
+- Readable location links: `?place=<city-slug>-<iso2>` (for example `?place=amsterdam-nl`)
+- JSON API: `/api/` (docs), `/api/all.json`, `/api/guides.json`, `/api/tools.json`, `/crops/<crop>.json`, `/regions/<region>.json`, `/zones/<zone>.json`
+
+
+**Today:** 271 crops (8 curated, 263 imported), 73 varieties, 194 sourced guides, 38 tools, 15 climate
+regions covering all 31 Köppen-Geiger classes, and hardiness-zone pages for USDA-style zones 1a–13b. 65 crops are fruit, fruit trees, berries or nuts.
 Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
 University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, Jordbruksverket and
 others) and carry an honest `confidence` rating and `uncertainty` note.
@@ -222,7 +234,8 @@ We'd rather cooperate than compete:
 - [ ] Translations (Dutch, Swedish, Spanish, …) – the structured format makes this easy
 - [ ] Frost-date and day-length hints; climate-change view (2041–2070 Köppen maps)
 - [x] Public JSON export (`/api/all.json`, one JSON file per crop and region)
-- [ ] Import openly licensed facts (e.g. OpenPlantDB CC0) with attribution
+- [ ] Import openly licensed facts (e.g. OpenPlantDB CC0) with attribution, following [SOURCES.md](SOURCES.md)
+- [ ] **Offline ZIM for Kiwix:** for major tagged releases, a release-triggered GitHub Action will build an offline OpenFarm ZIM (relative links, small bundled Commons images with attribution, Kiwix search instead of Pagefind, graceful offline behaviour for location, calendar and profile). The action will run zimwriterfs and zimcheck and attach the `.zim` to the GitHub release; a later step is to submit it to the Kiwix library.
 
 ## Sustainability
 
@@ -253,6 +266,15 @@ Node 20+. The climate assets in `site/assets/` are committed; rebuild them with
 2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 3. Push to `main`. The *Deploy to GitHub Pages* workflow publishes the site to
    `https://karimogit.github.io/OpenFarm/`.
+
+## Sources and licences
+
+Content is CC BY-SA 4.0; code is MIT. We only *import* (copy or adapt) data from public
+domain/CC0, CC BY or CC BY-SA sources. NC, ND, all-rights-reserved, unclear and copyleft
+code licences are not imported. Extension and RHS pages are usually *cited* rather than
+copied. Wiki-derived rescue data is not treated as an authority. Edible-part fields, when
+present, are cited and are not for foraging. Each record names its sources; contributor
+credits come from git history. Full policy, allowlist and exclusions: [SOURCES.md](SOURCES.md).
 
 ## Licenses and credits
 

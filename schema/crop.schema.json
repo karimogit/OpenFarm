@@ -483,7 +483,9 @@
     "license": {
       "enum": [
         "CC-BY-SA-4.0",
-        "CC0-1.0"
+        "CC0-1.0",
+        "CC-BY-4.0",
+        "PD-USGov"
       ]
     },
     "authors": {
@@ -571,6 +573,77 @@
       },
       "uniqueItems": true,
       "description": "Slugs of tools in content/tools/ that are useful for this crop or guide."
+    },
+    "edible": {
+      "type": "boolean",
+      "description": "Whether a source records this plant as having an edible use. Omit when unknown; never invent."
+    },
+    "edible_parts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "fruit",
+          "leaf",
+          "seed",
+          "root",
+          "tuber",
+          "bulb",
+          "flower",
+          "stem",
+          "shoot",
+          "oil",
+          "sap",
+          "pod",
+          "nut",
+          "bark",
+          "sprout"
+        ]
+      },
+      "description": "Plant parts a source records as eaten. Only set when a source names the part."
+    },
+    "field_sources": {
+      "type": "object",
+      "description": "Per-field attribution for imported records. Keys are crop field names; values are source lists.",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$",
+              "description": "Key in content/sources.yaml"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "title",
+                "url"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "publisher": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "species": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Optional species slug when this crop is a cultivar group or a named crop of a broader species record."
     }
   },
   "allOf": [

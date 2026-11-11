@@ -8,168 +8,291 @@ openfarm-rescue:
     Community wiki data from the original OpenFarm.cc. Treat as a scaffold, not an authority –
     the dataset's own README warns that descriptions, spacing and companion entries are only as
     good as the wiki edits they came from.
+  use: import
+  license_url: https://creativecommons.org/publicdomain/zero/1.0/
 beck-2018:
   title: "Present and future Köppen-Geiger climate classification maps at 1-km resolution"
   publisher: Beck et al. (2018), Scientific Data 5, 180214
   url: https://www.gloh2o.org/koppen/
   license: CC-BY-4.0
+  use: import
+  license_url: https://creativecommons.org/licenses/by/4.0/
 seed-matters-chart:
   title: Seed Saving Chart (isolation distances, plant numbers and seed life)
   publisher: Seed Matters (hosted by WebJunction)
   url: https://www.webjunction.org/content/dam/WebJunction/Documents/Seed-Viability-Chart.pdf
+  license: all-rights-reserved
+  use: citation
 wvu-seed-saving:
   title: Seed Saving
   publisher: West Virginia University Extension
   url: https://extension.wvu.edu/lawn-gardening-pests/gardening/gardening-101/seed-saving
+  license: all-rights-reserved
+  use: citation
 umd-seed-saving:
   title: "Seed Saving 101 – Vegetables"
   publisher: University of Maryland Extension
   url: https://extension.umd.edu/sites/extension.umd.edu/files/2021-02/Seed%20Saving%20Veggies%20Resources.pdf
+  license: all-rights-reserved
+  use: citation
 clemson-tomato:
   title: "Tomato (HGIC 1323)"
   publisher: Clemson Cooperative Extension, Home & Garden Information Center
   url: https://hgic.clemson.edu/factsheet/tomato/
+  license: all-rights-reserved
+  use: citation
 rhs-apples:
   title: How to grow apples
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/fruit/apples/grow-your-own
+  license: all-rights-reserved
+  use: citation
 rhs-strawberries:
   title: How to grow strawberries
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/fruit/strawberries/grow-your-own
+  license: all-rights-reserved
+  use: citation
 umn-strawberries:
   title: Growing strawberries in the home garden
   publisher: University of Minnesota Extension
   url: https://extension.umn.edu/fruit/growing-strawberries-home-garden
+  license: all-rights-reserved
+  use: citation
 ucanr-low-chill-apples:
   title: Low-Chill Apples
   publisher: University of California Cooperative Extension (UC ANR)
   url: https://ucanr.edu/sites/default/files/2011-03/80158.pdf
+  license: all-rights-reserved
+  use: citation
 ufifas-low-chill-apples:
   title: "Low-Chill Apple Cultivars for North Florida and North Central Florida (MG368)"
   publisher: University of Florida IFAS Extension
   url: https://ask.ifas.ufl.edu/publication/MG368
+  license: all-rights-reserved
+  use: citation
 fedco-sungold:
   title: Sungold cherry tomato
   publisher: Fedco Seeds
   url: https://fedcoseeds.com/seeds/sungold-cherry-tomato-4250
+  license: all-rights-reserved
+  use: citation
 csu-tomatoes:
   title: Growing Tomatoes
   publisher: Colorado State University Extension
   url: https://extension.colostate.edu/resource/growing-tomatoes/
+  license: all-rights-reserved
+  use: citation
 csu-planting-dates:
   title: "1626 – Soil Temperatures, Frosts and Planting Dates"
   publisher: Colorado State University Extension (PlantTalk Colorado)
   url: https://planttalk.colostate.edu/topics/soils-amendments-composting/1626-soil-temperatures-frosts-planting-dates/
+  license: all-rights-reserved
+  use: citation
 csu-veg-hints:
   title: Vegetable Garden Hints
   publisher: Colorado State University Extension
   url: https://extension.colostate.edu/resource/vegetable-garden-hints/
+  license: all-rights-reserved
+  use: citation
 csu-veg-planting-guide:
   title: Vegetable Planting Guide
   publisher: Colorado State University Extension
   url: https://extension.colostate.edu/resource/vegetable-planting-guide/
+  license: all-rights-reserved
+  use: citation
 csu-garlic-western-co:
   title: "Fall Planting: Garlic in Western Colorado"
   publisher: Colorado State University Extension, Tri River Area
   url: https://tra.extension.colostate.edu/2025/09/23/fall-planting-garlic-in-western-colorado/
+  license: all-rights-reserved
+  use: citation
 ua-tomatoes:
   title: Growing Tomatoes
   publisher: University of Arizona Cooperative Extension
   url: https://extension.arizona.edu/publication/growing-tomatoes
+  license: all-rights-reserved
+  use: citation
 ua-maricopa-calendar:
   title: Vegetable Planting Calendar for Maricopa County
   publisher: University of Arizona Cooperative Extension
   url: https://extension.arizona.edu/publication/vegetable-planting-calendar-maricopa-county
+  license: all-rights-reserved
+  use: citation
 rhs-tomato-blight:
   title: "Tomato blight: symptoms & control"
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/disease/tomato-blight
+  license: all-rights-reserved
+  use: citation
 rhs-potato-blight:
   title: "Potato blight: symptoms & control"
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/disease/potato-blight
+  license: all-rights-reserved
+  use: citation
 rhs-blossom-end-rot:
   title: Blossom end rot
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/problems/blossom-end-rot
+  license: all-rights-reserved
+  use: citation
 rhs-club-root:
   title: Club root
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/disease/club-root
+  license: all-rights-reserved
+  use: citation
 rhs-apple-scab:
   title: Apple scab and pear scab
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/disease/apple-and-pear-scab
+  license: all-rights-reserved
+  use: citation
 rhs-grey-mould:
   title: Grey mould
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/disease/grey-mould
+  license: all-rights-reserved
+  use: citation
 rhs-vine-weevil:
   title: Vine weevil
   publisher: Royal Horticultural Society (RHS)
   url: https://www.rhs.org.uk/biodiversity/vine-weevil
+  license: all-rights-reserved
+  use: citation
 csu-tomatoes-1817:
   title: "1817 – Tomatoes for Home Gardens"
   publisher: Colorado State University Extension (PlantTalk Colorado)
   url: https://planttalk.colostate.edu/topics/vegetables/1817-tomatoes-home-gardens/
+  license: all-rights-reserved
+  use: citation
 csu-potatoes-home-garden:
   title: Potatoes for the home garden
   publisher: Colorado State University Extension
   url: https://archives.mountainscholar.org/digital/collection/p17393coll94/id/17988/
+  license: all-rights-reserved
+  use: citation
 csu-garlic-harvest:
   title: "1827 – Harvesting Garlic"
   publisher: Colorado State University Extension (PlantTalk Colorado)
   url: https://planttalk.colostate.edu/topics/vegetables/1827-harvesting-garlic/
+  license: all-rights-reserved
+  use: citation
 csu-garlic-plant:
   title: "It's Time to Plant Garlic"
   publisher: Colorado State University Extension, Tri River Area
   url: https://tra.extension.colostate.edu/wp-content/uploads/sites/44/2018/09/Sept-29-2018-Garlic.pdf
+  license: all-rights-reserved
+  use: citation
 osu-seed-saving-chart:
   title: "Seed Saving Chart: Easy annual vegetables and flowers"
   publisher: Oregon State University Extension (with KidsGardening)
   url: https://workspace.oregonstate.edu/hubfs/Extension/Seed-Saving-Chart_Kids%20Gardening.pdf
+  license: all-rights-reserved
+  use: citation
 umn-saving-seeds:
   title: Saving vegetable seeds
   publisher: University of Minnesota Extension
   url: https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/saving-vegetable-seeds
+  license: all-rights-reserved
+  use: citation
 wisc-tool-maintenance:
   title: Maintaining lawn and garden tools
   publisher: University of Wisconsin–Madison Extension
   url: https://hort.extension.wisc.edu/articles/maintaining-lawn-and-garden-tools/
+  license: all-rights-reserved
+  use: citation
 isu-tools-winter:
   title: How should I prepare my garden tools for winter?
   publisher: Iowa State University Extension
   url: https://yardandgarden.extension.iastate.edu/faq/how-should-i-prepare-my-garden-tools-winter
+  license: all-rights-reserved
+  use: citation
 osu-sharpening-tools:
   title: Sharpening garden tools
   publisher: Oregon State University Extension
   url: https://extension.oregonstate.edu/sites/extd8/files/documents/12281/sharpeninggardentools.pdf
+  license: all-rights-reserved
+  use: citation
 umn-seeds-indoors:
   title: Starting seeds indoors
   publisher: University of Minnesota Extension
   url: https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/starting-seeds-indoors
+  license: all-rights-reserved
+  use: citation
 isu-seed-starting:
   title: How to successfully start seed indoors
   publisher: Iowa State University Extension
   url: https://yardandgarden.extension.iastate.edu/how-to/how-successfully-start-seed-indoors
+  license: all-rights-reserved
+  use: citation
 clemson-planning-a-garden:
   title: "Planning a Garden (HGIC 1256): Table 1 planting chart and Table 2 days to harvest"
   publisher: Clemson Cooperative Extension, Home & Garden Information Center
   url: https://hgic.clemson.edu/factsheet/planning-a-garden/
+  license: all-rights-reserved
+  use: citation
 uf-vh021:
   title: "Florida Vegetable Gardening Guide (SP103 / VH021), Table 1"
   publisher: University of Florida IFAS Extension
   url: https://ask.ifas.ufl.edu/publication/VH021.pdf
+  license: all-rights-reserved
+  use: citation
 isu-planting-harvesting-times:
   title: Planting and harvesting times for garden vegetables (PM 534, central Iowa)
   publisher: Iowa State University Extension and Outreach
   url: https://www.extension.iastate.edu/keokuk/files/documents/Planting%20and%20harvesting%20times.pdf
+  license: all-rights-reserved
+  use: citation
 uaf-gbg-note40:
   title: "Seed Starting Chart for Vegetables Grown at the Georgeson Botanical Garden (Botanical Notes No. 40)"
   publisher: University of Alaska Fairbanks, Georgeson Botanical Garden
   url: https://www.uaf.edu/afes/places/gbg/research/files/pdfs/2014.-Matheke-Holloway.-Note-40.pdf
+  license: all-rights-reserved
+  use: citation
 uaf-ready-set-grow:
   title: "Ready, Set, Grow a Garden this Summer! (Interior Alaska garden calendar)"
   publisher: University of Alaska Fairbanks Cooperative Extension Service
   url: https://itgrowsinalaska.community.uaf.edu/2022/03/04/ready-set-grow-a-garden-this-summer/
+  license: all-rights-reserved
+  use: citation
+rhs-crop-rotation:
+  title: Crop rotation
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/crop-rotation
+  note: "Checked 11 November 2026. Describes a traditional three-year and a four-year vegetable rotation, grouped as brassicas; legumes; onions; the potato family; and roots (not including swedes and turnips, which are brassicas)."
+  license: all-rights-reserved
+  use: citation
+wikidata:
+  title: Wikidata structured data
+  publisher: Wikimedia Foundation / Wikidata contributors
+  url: https://www.wikidata.org/wiki/Wikidata:Licensing
+  license: CC0-1.0
+  note: "Structured data in the main, Property, Lexeme and EntitySchema namespaces is released under CC0. Checked 11 November 2026."
+  use: import
+  license_url: https://www.wikidata.org/wiki/Wikidata:Licensing
+usda-plants:
+  title: The PLANTS Database
+  publisher: USDA, NRCS, National Plant Data Team
+  url: https://plants.usda.gov/
+  license: PD-USGov
+  note: "PLANTS Help (2022) states that plant information, including distribution maps, lists and text, is not copyrighted and is free for any use. Images may be copyrighted and were not imported. Checked 11 November 2026."
+  use: import
+  license_url: https://plants.usda.gov/home
+growstuff:
+  title: Growstuff crop data
+  publisher: Growstuff
+  url: https://www.growstuff.org/policy/api
+  license: CC-BY-SA-3.0
+  note: "Structured data is licensed CC BY-SA 3.0 Unported (API and Data Use Policy, and the Support FAQ). Checked 11 November 2026. Records derived from it are adapted under CC BY-SA 4.0 with attribution."
+  use: import
+  license_url: https://www.growstuff.org/policy/api
+gbif-terms:
+  title: GBIF terms of use
+  publisher: Global Biodiversity Information Facility
+  url: https://www.gbif.org/terms
+  note: "Occurrence datasets are licensed CC0, CC BY, or CC BY-NC. Mixed-licence occurrence dumps were not imported. Checked 11 November 2026."
+  license: mixed-CC0-CC-BY-CC-BY-NC
+  use: citation
+  license_url: https://www.gbif.org/terms

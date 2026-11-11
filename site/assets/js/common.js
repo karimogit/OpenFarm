@@ -52,7 +52,7 @@ export async function lookup(lat, lon) {
 // have a sow date, otherwise planned. Changes are written to localStorage immediately (text fields debounced).
 export const PROFILE_VERSION = 1;
 const PKEY = "openfarm.profile", OLD_LOCATION_KEY = "openfarm.location";
-const SLUG = /^[a-z0-9][a-z0-9-]*$/, PAIR = /^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/, DATE = /^\d{4}-\d{2}-\d{2}$/;
+const SLUG = /^[a-z0-9][a-z0-9-]*$/, PAIR = /^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/, GUIDE_ID = /^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*){1,2}$/, DATE = /^\d{4}-\d{2}-\d{2}$/;
 export const emptyProfile = () => ({ version: PROFILE_VERSION, location: null, favourites: { crops: [], varieties: [], guides: [] }, growing: [], updated: null });
 const newId = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 export const GROW_STATUSES = ["planned", "sown", "growing", "harvested"];
@@ -75,7 +75,7 @@ export function validateProfile(p) {
   }
   const f = p.favourites ?? {};
   if (typeof f !== "object" || Array.isArray(f)) errors.push("favourites must be an object.");
-  else for (const [k, re] of [["crops", SLUG], ["varieties", PAIR], ["guides", PAIR]]) {
+  else for (const [k, re] of [["crops", SLUG], ["varieties", PAIR], ["guides", GUIDE_ID]]) {
     const list = f[k] ?? [];
     if (!Array.isArray(list) || list.length > 5000 || !list.every((x) => typeof x === "string" && re.test(x))) errors.push(`favourites.${k} must be a list of ids like ${k === "crops" ? '"tomato"' : '"tomato/…"'}.`);
     else out.favourites[k] = [...new Set(list)];
@@ -161,10 +161,10 @@ export function profileCSV(p = loadProfile()) {
   const q = (s) => `"${String(s ?? "").replace(/"/g, '""')}"`;
   const rows = [["list", "kind", "crop", "variety", "region", "status", "sown", "planted", "bed", "quantity", "notes", "url"]];
   for (const g of p.growing) rows.push(["growing", g.variety ? "variety" : "crop", g.crop, g.variety || "", "", growStatus(g), g.sown || "", g.planted || "", g.bed || "", g.quantity || "", g.notes || "",
-    location.origin + BASE + (g.variety ? `crops/${g.crop}/varieties/${g.variety}/` : `crops/${g.crop}/`)]);
+    location.origin + BASE + (g.variety ? `crops/${g.crop}/${g.variety}/` : `crops/${g.crop}/`)]);
   for (const c of p.favourites.crops) rows.push(["favourite", "crop", c, "", "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/`]);
-  for (const v of p.favourites.varieties) { const [c, s] = v.split("/"); rows.push(["favourite", "variety", c, s, "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/varieties/${s}/`]); }
-  for (const g of p.favourites.guides) { const [c, r] = g.split("/"); rows.push(["favourite", "guide", c, "", r, "", "", "", "", "", "", location.origin + BASE + `guides/${c}/${r}/`]); }
+  for (const v of p.favourites.varieties) { const [c, s] = v.split("/"); rows.push(["favourite", "variety", c, s, "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/${s}/`]); }
+  for (const g of p.favourites.guides) { const parts = g.split("/"); const c = parts[0], r = parts.at(-1), vari = parts.length === 3 ? parts[1] : ""; rows.push(["favourite", "guide", c, vari, r, "", "", "", "", "", "", location.origin + favGuideHref(parts.join("/"))]); }
   return rows.map((r) => r.map(q).join(",")).join("\r\n") + "\r\n";
 }
 export const exportCSV = () => downloadText("\ufeff" + profileCSV(), "text/csv;charset=utf-8", `openfarm-garden-${today()}.csv`);
@@ -194,7 +194,7 @@ export function profileMarkdown(p = loadProfile()) {
   L.push(``, `## Favourites`, ``);
   for (const c of p.favourites.crops) L.push(`- Crop: ${name(c)}`);
   for (const v of p.favourites.varieties) L.push(`- Variety: ${v.split("/")[1].replace(/-/g, " ")} (${name(v.split("/")[0])})`);
-  for (const g of p.favourites.guides) L.push(`- Guide: ${name(g.split("/")[0])} – ${REGION_BY[g.split("/")[1]]?.name || g.split("/")[1]}`);
+  for (const g of p.favourites.guides) { const p = g.split("/"); L.push(`- Guide: ${name(p[0])} – ${REGION_BY[p.at(-1)]?.name || p.at(-1)}${p.length === 3 ? " (" + p[1] + ")" : ""}`); }
   if (!p.favourites.crops.length && !p.favourites.varieties.length && !p.favourites.guides.length) L.push(`_None yet._`);
   return L.join("\n") + "\n";
 }
@@ -383,16 +383,16 @@ function renderYourRegion(loc) {
   const vars = INDEX.varieties.filter((v) => v.crop === crop && v.regions.includes(region.slug));
   let h = `<h2>${swatch(region)} For ${place(loc)}: ${esc(region.name)}</h2>`;
   if (m && m.kind !== "similar") {
-    h += `<p>✅ <a href="${BASE}guides/${m.g.crop}/${m.g.region}/"><strong>${esc(m.g.title)}</strong></a> fits your climate region${m.kind === "region" ? ` (written for a related class, not ${esc(loc.symbol)} exactly)` : ""}.</p>`;
+    h += `<p>✅ <a href="${guideHref(m.g)}"><strong>${esc(m.g.title)}</strong></a> fits your climate region${m.kind === "region" ? ` (written for a related class, not ${esc(loc.symbol)} exactly)` : ""}.</p>`;
   } else {
     h += `<p>No guide for <strong>${esc(region.name.toLowerCase())}</strong> yet – meanwhile:</p><ul class="small">`;
-    if (m) h += `<li>Nearest region with a guide: <a href="${BASE}guides/${m.g.crop}/${m.g.region}/"><strong>${esc(m.g.title)}</strong></a>
+    if (m) h += `<li>Nearest region with a guide: <a href="${guideHref(m.g)}"><strong>${esc(m.g.title)}</strong></a>
       <span class="note-flag">${esc(m.via.name.toLowerCase())} – not written for yours, check the timing</span></li>`;
     h += `<li>The general facts – sowing, spacing, temperatures and days to harvest – are under <a href="#facts">Quick facts</a> and apply everywhere.</li>`;
     h += `<li><a href="${addGuideUrl(crop, region.slug)}" target="_blank" rel="noopener noreferrer">No guide for ${esc(region.name)} yet – write one<span class="visually-hidden"> (opens in new tab)</span></a></li></ul>`;
   }
   if (m?.shifted) h += `<p class="note-flag">Southern hemisphere: the guide's months are for the north – shift by about six months (unverified).</p>`;
-  if (vars.length) h += `<p class="small">Varieties recommended for your region: ${vars.map((v) => `<a href="${BASE}crops/${v.crop}/varieties/${v.slug}/">${esc(v.name)}</a>`).join(", ")}</p>`;
+  if (vars.length) h += `<p class="small">Varieties recommended for your region: ${vars.map((v) => `<a href="${BASE}crops/${v.crop}/${v.slug}/">${esc(v.name)}</a>`).join(", ")}</p>`;
   box.innerHTML = h;
   renderCropGuides(loc, crop);
 }
@@ -438,7 +438,7 @@ function renderCropGuides(loc, crop) {
   const region = regionOf(loc.symbol); const [m] = matchGuides(loc.symbol, loc.lat, el.dataset.crop);
   if (!region) return;
   el.innerHTML = m && m.kind !== "similar"
-    ? `For your region (${swatch(region)}${esc(region.name)}): <a href="${BASE}guides/${m.g.crop}/${m.g.region}/">${esc(m.g.title)}</a>.`
+    ? `For your region (${swatch(region)}${esc(region.name)}): <a href="${guideHref(m.g)}">${esc(m.g.title)}</a>.`
     : `No guide for ${swatch(region)}${esc(region.name)} yet – <a href="${addGuideUrl(el.dataset.crop, region.slug)}" target="_blank" rel="noopener noreferrer">write one<span class="visually-hidden"> (opens in new tab)</span></a>.`;
 })();
 
@@ -646,7 +646,7 @@ export function myCropGuides(p = loadProfile()) {
 export async function computeReminders() {
   const p = loadProfile(), out = [], now = new Date(), month = now.getMonth() + 1, ym = now.toISOString().slice(0, 7);
   for (const { crop, growing, m } of myCropGuides(p)) {
-    const name = lc(m.g.name), url = `${BASE}guides/${m.g.crop}/${m.g.region}/`;
+    const name = lc(m.g.name), url = `${guideHref(m.g)}`;
     const items = p.growing.filter((g) => g.crop === crop);
     const allHarvested = items.length > 0 && items.every((g) => growStatus(g) === "harvested");
     if (allHarvested) continue;
@@ -747,8 +747,8 @@ export function buildICS(p = loadProfile()) {
         const title = `${tmpl.replace("%s", lc(m.g.name))}${a === b ? "" : ` (${MONTHS[a - 1]}–${MONTHS[b - 1]})`}`;
         lines.push("BEGIN:VEVENT", `UID:openfarm-${crop}-${k}-${a}@openfarm`, `DTSTAMP:${stamp}`,
           `DTSTART;VALUE=DATE:${year}${pad(a)}01`, `DTEND;VALUE=DATE:${end}`, "RRULE:FREQ=YEARLY", "TRANSP:TRANSPARENT",
-          fold(`SUMMARY:${esc("🌱 " + title)}`), fold(`DESCRIPTION:${esc(`${m.g.title}${m.kind === "similar" ? " (nearest region – not written for yours)" : ""}${m.shifted ? " (months shifted for the southern hemisphere – unverified)" : ""}\n${site}guides/${m.g.crop}/${m.g.region}/`)}`),
-          fold(`URL:${site}guides/${m.g.crop}/${m.g.region}/`),
+          fold(`SUMMARY:${esc("🌱 " + title)}`), fold(`DESCRIPTION:${esc(`${m.g.title}${m.kind === "similar" ? " (nearest region – not written for yours)" : ""}${m.shifted ? " (months shifted for the southern hemisphere – unverified)" : ""}\n${site}${m.g.url ? m.g.url.replace(/^\//, "") : `crops/${m.g.crop}/${m.g.region}/`}`)}`),
+          fold(`URL:${site}${m.g.url ? m.g.url.replace(/^\//, "") : `crops/${m.g.crop}/${m.g.region}/`}`),
           "BEGIN:VALARM", "ACTION:DISPLAY", fold(`DESCRIPTION:${esc(title)}`), "TRIGGER;RELATED=START:PT9H", "END:VALARM", "END:VEVENT");
       }
     }
@@ -821,10 +821,12 @@ export const hardinessLine = (h) => h
     let shown = 0, total = 0;
     document.querySelectorAll(".crop-grid > li[data-guides]").forEach((li) => {
       const out = (ui.withGuide && li.dataset.guides === "0") || (ui.reviewed && li.dataset.reviewed === "0") ||
-        (ui.perennial && li.dataset.life !== "perennial");
+        (ui.perennial && li.dataset.life !== "perennial") ||
+        (ui.edible && li.dataset.edible !== "1") ||
+        (ui.flowers && li.dataset.type !== "flower");
       li.classList.toggle("ui-out", !!out); total++; if (!out) shown++;
     });
-    const filtered = !!(ui.withGuide || ui.reviewed || ui.perennial);
+    const filtered = !!(ui.withGuide || ui.reviewed || ui.perennial || ui.edible || ui.flowers);
     document.body.classList.toggle("ui-filtered", filtered);
     document.querySelectorAll("[data-ui-count]").forEach((el) => (el.textContent = filtered ? `${shown} of ${total} shown` : ""));
     document.querySelectorAll("[data-ui]").forEach((cb) => (cb.checked = !!ui[cb.dataset.ui]));
@@ -1117,6 +1119,16 @@ export function locationSearch(lat, lon, knownSlug) {
   if (n?.near) return `?place=${encodeURIComponent(n.place.slug)}`;
   return `?lat=${(+lat).toFixed(4)}&lon=${(+lon).toFixed(4)}`;
 }
+// Public URL for a guide record from the client index (legacy /guides/… pages redirect).
+export function guideHref(g) {
+  if (g && g.url) return `${BASE}${String(g.url).replace(/^\//, "")}`;
+  if (!g) return BASE;
+  return g.variety ? `${BASE}crops/${g.crop}/${g.variety}/${g.region}/` : `${BASE}crops/${g.crop}/${g.region}/`;
+}
+export function favGuideHref(id) {
+  return `${BASE}crops/${String(id).replace(/^\//, "")}/`;
+}
+
 export function locationHref(lat, lon, knownSlug) {
   return `${BASE}${locationSearch(lat, lon, knownSlug)}`;
 }

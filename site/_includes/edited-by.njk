@@ -1,0 +1,6 @@
+{% if editFile and credits[editFile] and credits[editFile].length %}
+<p class="edits-by">Edited by {% for u in credits[editFile] %}<a href="https://github.com/{{ u }}">{{ u }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+{% endif %}
+{% if showRescueCredit %}
+<p class="edits-by">Imported from the <a href="https://github.com/thefullnacho/openfarm-crops-rescue">OpenFarm crops rescue</a> dataset of original <a href="https://github.com/openfarmcc">OpenFarm.cc</a> community data.</p>
+{% endif %}

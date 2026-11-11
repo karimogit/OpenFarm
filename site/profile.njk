@@ -12,7 +12,13 @@ pageScripts: [profile.js]
     <section class="card" id="growing">
       <div class="section-head">
         <h2>What I'm growing</h2>
-        <button type="button" id="add-growing-btn" class="button">{% set icon = "plus" %}{% include "icon.njk" %} Add</button>
+        <div class="growing-toolbar">
+          <div class="view-switch" role="group" aria-label="View">
+            <button type="button" id="grow-view-cards" aria-pressed="true">Cards</button>
+            <button type="button" id="grow-view-cal" aria-pressed="false">Calendar</button>
+          </div>
+          <button type="button" id="add-growing-btn" class="button">{% set icon = "plus" %}{% include "icon.njk" %} Add</button>
+        </div>
       </div>
       <div id="growing-list"></div>
     </section>

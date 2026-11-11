@@ -6,7 +6,7 @@ import path from "node:path";
 import markdownIt from "markdown-it";
 import {
   ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadTools, loadSeedSources,
-  loadCompanions, loadSources, resolveSources, koppenToRegion,
+  loadCompanions, loadRotation, loadSources, resolveSources, koppenToRegion,
 } from "../../scripts/content.js";
 
 const md = markdownIt({ html: false, linkify: true, typographer: true });
@@ -59,7 +59,7 @@ export default function () {
       hardiness: d.hardiness ? { ...d.hardiness, sources: resolveSources(d.hardiness.sources, registry) } : null,
       seed_saving: d.seed_saving ? { ...d.seed_saving, sources: resolveSources(d.seed_saving.sources, registry) } : null,
       perennial: d.perennial ? { ...d.perennial, sources: resolveSources(d.perennial.sources, registry) } : null,
-      varieties: [], guides: [], companions: [], problemList: [],
+      varieties: [], groups: [], guides: [], varietyGuides: [], companions: [], problemList: [], rotation: null,
     };
   }).sort((a, b) => a.name.localeCompare(b.name));
   const cropBy = Object.fromEntries(crops.map((c) => [c.slug, c]));
@@ -67,31 +67,55 @@ export default function () {
   const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   // "Watermelon Radish" (crop Radish) → "Watermelon"; an explicit `cultivar` field wins.
   const cultivarOf = (d, crop) => d.cultivar || d.name.replace(new RegExp(`\\s+${esc(crop.name)}e?s?$`, "i"), "").trim() || d.name;
-  const varieties = loadVarieties().map((v) => {
+  const allVarietyRecords = loadVarieties().map((v) => {
     const d = v.data; const crop = cropBy[d.crop];
     const own = images[`variety:${d.crop}/${d.slug}`];
+    const kind = d.kind === "group" ? "group" : "variety";
     return {
-      ...d, file: v.file, html: md.render(v.body), cropName: crop.name,
+      ...d, kind, file: v.file, html: md.render(v.body), cropName: crop?.name,
       // Cultivar epithet for the 'Cultivar' form, e.g. Solanum lycopersicum 'Sungold' (ICNCP style).
-      cultivar: cultivarOf(d, crop),
-      cultivarName: crop.scientific_name ? `${crop.scientific_name} '${cultivarOf(d, crop)}'` : null,
-      sciHtml: scientificMarkup(d.scientific_name, crop.scientific_name, cultivarOf(d, crop)),
-      sciText: scientificText(d.scientific_name, crop.scientific_name, cultivarOf(d, crop)),
-      image: own ? { ...own, note: d.image_note || null } : crop.image, imageInherited: !own && !!crop.image,
+      cultivar: crop ? cultivarOf(d, crop) : d.name,
+      cultivarName: crop?.scientific_name ? `${crop.scientific_name} '${cultivarOf(d, crop)}'` : null,
+      sciHtml: scientificMarkup(d.scientific_name, crop?.scientific_name, crop ? cultivarOf(d, crop) : (d.cultivar || d.name)),
+      sciText: scientificText(d.scientific_name, crop?.scientific_name, crop ? cultivarOf(d, crop) : (d.cultivar || d.name)),
+      image: own ? { ...own, note: d.image_note || null } : crop?.image, imageInherited: !own && !!crop?.image,
       sources: resolveSources(d.sources, registry),
-      url: `/crops/${d.crop}/varieties/${d.slug}/`,
+      url: `/crops/${d.crop}/${d.slug}/`,
+      legacyUrl: `/crops/${d.crop}/varieties/${d.slug}/`,
+      members: [], guides: [],
     };
   }).sort((a, b) => a.name.localeCompare(b.name));
+  const groupByKey = Object.fromEntries(allVarietyRecords.filter((v) => v.kind === "group").map((g) => [`${g.crop}/${g.slug}`, g]));
+  const varieties = allVarietyRecords.filter((v) => v.kind !== "group");
+  const groups = allVarietyRecords.filter((v) => v.kind === "group");
   for (const v of varieties) {
-    cropBy[v.crop].varieties.push(v);
+    if (v.group) {
+      const g = groupByKey[`${v.crop}/${v.group}`];
+      if (g) { v.groupRecord = g; g.members.push(v); }
+    }
+    cropBy[v.crop]?.varieties.push(v);
     for (const r of v.suitable_regions || []) regionBy[r]?.varieties.push(v);
+  }
+  for (const g of groups) cropBy[g.crop]?.groups.push(g);
+
+  const varietyRedirects = [];
+  for (const v of allVarietyRecords) {
+    varietyRedirects.push({ from: v.legacyUrl, to: v.url, name: v.name });
+    for (const old of v.redirect_from || []) {
+      varietyRedirects.push({ from: `/crops/${v.crop}/${old}/`, to: v.url, name: v.name });
+      varietyRedirects.push({ from: `/crops/${v.crop}/varieties/${old}/`, to: v.url, name: v.name });
+    }
   }
 
   const guides = loadGuides().map((g) => {
     const d = g.data; const crop = cropBy[d.crop]; const region = regionBy[d.region];
+    const varietySlug = g.variety || d.variety || null;
+    const url = varietySlug ? `/crops/${d.crop}/${varietySlug}/${d.region}/` : `/crops/${d.crop}/${d.region}/`;
+    const legacyUrl = varietySlug ? `/guides/${d.crop}/${varietySlug}/${d.region}/` : `/guides/${d.crop}/${d.region}/`;
     return {
-      ...d, file: g.file, html: md.render(g.body), cropName: crop.name, scientific_name: crop.scientific_name, family: crop.family,
-      regionName: region.name, regionColor: region.color, url: `/guides/${d.crop}/${d.region}/`,
+      ...d, variety: varietySlug, file: g.file, html: md.render(g.body), cropName: crop.name, scientific_name: crop.scientific_name, family: crop.family,
+      regionName: region.name, regionColor: region.color, url, legacyUrl,
+      favId: varietySlug ? `${d.crop}/${varietySlug}/${d.region}` : `${d.crop}/${d.region}`,
       examplePlaces: region.examplePlaces, examplesText: region.examples,
       sources: resolveSources(d.sources, registry),
       varietyList: (d.varieties || []).map((s) => varieties.find((v) => v.crop === d.crop && v.slug === s)),
@@ -100,9 +124,18 @@ export default function () {
       alsoRegions: [...new Set(d.koppen.map((k) => kg2region[k]).filter((r) => r !== d.region))].map((r) => regionBy[r]),
     };
   }).sort((a, b) => a.cropName.localeCompare(b.cropName) || regionBy[a.region].order - regionBy[b.region].order);
+  const guideRedirects = guides.map((g) => ({ from: g.legacyUrl, to: g.url, name: g.title || `${g.cropName} in ${g.regionName}` }));
+
+  const varietyByKey = Object.fromEntries(varieties.map((v) => [`${v.crop}/${v.slug}`, v]));
   for (const g of guides) {
-    cropBy[g.crop].guides.push(g);
-    for (const r of new Set([g.region, ...g.koppen.map((k) => kg2region[k])])) regionBy[r].guides.push({ g, primary: r === g.region });
+    if (g.variety) {
+      const v = varietyByKey[`${g.crop}/${g.variety}`];
+      if (v) v.guides.push(g);
+      cropBy[g.crop].varietyGuides.push(g);
+    } else {
+      cropBy[g.crop].guides.push(g);
+    }
+    for (const r of new Set([g.region, ...g.koppen.map((k) => kg2region[k])])) regionBy[r].guides.push({ g, primary: r === g.region && !g.variety });
   }
 
   for (const p of problems) for (const c of p.affects) cropBy[c]?.problemList.push(p);
@@ -112,6 +145,28 @@ export default function () {
     const [a, b] = c.crops;
     cropBy[a]?.companions.push({ ...c, other: cropBy[b] });
     cropBy[b]?.companions.push({ ...c, other: cropBy[a] });
+  }
+
+  const rotationRaw = loadRotation();
+  const rotationGroups = (rotationRaw.groups || []).map((g) => ({ ...g, sources: resolveSources(g.sources, registry), crops: [] }));
+  const rotationGroupBy = Object.fromEntries(rotationGroups.map((g) => [g.slug, g]));
+  const familyToGroup = {};
+  for (const g of rotationGroups) for (const f of g.families || []) familyToGroup[f] = g;
+  const cropToGroup = {};
+  for (const g of rotationGroups) for (const s of g.crops || []) cropToGroup[s] = g;
+  for (const c of crops) {
+    const g = cropToGroup[c.slug] || (c.family && familyToGroup[c.family]) || null;
+    if (!g) continue;
+    if (!g.crops.includes(c)) g.crops.push(c);
+    c.rotationGroup = g;
+  }
+  const rotationRules = (rotationRaw.rules || []).map((r) => ({ ...r, sources: resolveSources(r.sources, registry),
+    fromGroup: r.from ? rotationGroupBy[r.from] : (r.group ? rotationGroupBy[r.group] : null),
+    toGroup: r.to ? rotationGroupBy[r.to] : null }));
+  for (const c of crops) {
+    if (!c.rotationGroup) continue;
+    const slug = c.rotationGroup.slug;
+    c.rotationRules = rotationRules.filter((r) => r.from === slug || r.to === slug || r.group === slug);
   }
 
   const catLabel = Object.fromEntries(TOOL_CATEGORIES.map((c) => [c.slug, c.label]));
@@ -135,27 +190,57 @@ export default function () {
   const clientIndex = {
     regions: regions.map((r) => ({ slug: r.slug, name: r.name, koppen: r.koppen, color: r.color, similar: r.similar })),
     guides: guides.map((g) => ({
-      crop: g.crop, name: g.cropName, region: g.region, title: g.title, koppen: g.koppen, hemisphere: g.hemisphere,
+      crop: g.crop, name: g.cropName, region: g.region, variety: g.variety || null, title: g.title, url: g.url, favId: g.favId, koppen: g.koppen, hemisphere: g.hemisphere,
       calendar: g.calendar, confidence: g.confidence, type: cropBy[g.crop].type,
       sci: cropBy[g.crop].scientific_name || null,
       img: cropBy[g.crop].image ? { src: wmThumb(cropBy[g.crop].image, 250), srcset: wmSrcset(cropBy[g.crop].image, 250), w: cropBy[g.crop].image.orig_width || null, h: cropBy[g.crop].image.orig_height || null } : null,
     })),
-    varieties: varieties.filter((v) => v.suitable_regions?.length).map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cropName: v.cropName, regions: v.suitable_regions })),
+    varieties: varieties.filter((v) => v.suitable_regions?.length).map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cropName: v.cropName, regions: v.suitable_regions, url: v.url })),
   };
 
   // Small catalogue for the profile page (names + card images), so favourites can be listed offline.
   const catalog = {
     crops: crops.map((c) => ({ slug: c.slug, name: c.name, sci: c.scientific_name || null,
       img: c.image ? { src: wmThumb(c.image, 250), srcset: wmSrcset(c.image, 250), w: c.image.orig_width || null, h: c.image.orig_height || null } : null })),
-    varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName, sci: v.sciText, sciHtml: v.sciHtml })),
+    varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName, sci: v.sciText, sciHtml: v.sciHtml, group: v.group || null, url: v.url })),
   };
+
+
+  const zoneHalf = [];
+  for (let i = 0; i < 26; i++) {
+    const n = Math.floor(i / 2) + 1, half = i % 2 ? "b" : "a";
+    const minF = -60 + i * 5, maxF = minF + 5;
+    const toC = (f) => Math.round(((f - 32) * 50) / 9) / 10;
+    zoneHalf.push({
+      slug: `${n}${half}`, index: i, zone: n, half,
+      min_f: minF, max_f: maxF, min_c: toC(minF), max_c: toC(maxF),
+      label: `Zone ${n}${half}`,
+      url: `/zones/${n}${half}/`,
+    });
+  }
+  const zoneIndex = (z) => {
+    const m = String(z || "").trim().toLowerCase().match(/^(\d{1,2})([ab])$/);
+    return m ? (Number(m[1]) - 1) * 2 + (m[2] === "b" ? 1 : 0) : null;
+  };
+  for (const z of zoneHalf) {
+    z.plants = crops.filter((c) => {
+      if (!c.hardiness?.min || !c.hardiness?.max) return false;
+      const a = zoneIndex(c.hardiness.min), b = zoneIndex(c.hardiness.max), i = z.index;
+      return a != null && b != null && i >= a && i <= b;
+    }).map((c) => ({ slug: c.slug, name: c.name, url: `/crops/${c.slug}/`, min: c.hardiness.min, max: c.hardiness.max }));
+  }
 
   const stats = {
     crops: crops.length, imported: crops.filter((c) => c.origin === "imported").length, curated: crops.filter((c) => c.origin === "curated").length,
-    varieties: varieties.length, guides: guides.length, regions: regions.length,
+    varieties: varieties.length, groups: groups.length, guides: guides.length, regions: regions.length,
     regionsWithGuides: regions.filter((r) => r.guides.some((x) => x.primary)).length,
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
+    flowers: crops.filter((c) => c.type === "flower").length,
+    edible: crops.filter((c) => c.edible === true).length,
+    companions: companions.length,
+    rotationGroups: rotationGroups.length,
+    rotationRules: rotationRules.length,
     images: crops.filter((c) => c.image).length,
   };
-  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, toolCategories, types, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, groups, allVarietyRecords, varietyRedirects, guideRedirects, guides, regions, regionBy, problems, problemBy, companions, rotationGroups, rotationRules, seedSources, tools, toolBy, toolCategories, types, zones: zoneHalf, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

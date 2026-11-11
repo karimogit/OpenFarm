@@ -1,0 +1,29 @@
+{# Rotation & neighbours: rotation group/rules plus sourced companion pairs. Expects `crop`. #}
+{% if crop.rotationGroup or crop.companions.length or (crop.rescue and crop.rescue.companions_unverified) %}
+<section id="rotation" class="rotation-box">
+  <h2>Rotation &amp; neighbours</h2>
+  {% if crop.rotationGroup %}
+  <p>This crop is in the <strong>{{ crop.rotationGroup.name }}</strong> rotation group{% if crop.family %} ({{ crop.family }}){% endif %}.</p>
+  {% if crop.rotationGroup.notes %}<p class="small">{{ crop.rotationGroup.notes }}</p>{% endif %}
+  {% if crop.rotationRules and crop.rotationRules.length %}
+  <ul>
+    {% for r in crop.rotationRules %}
+    <li>{% if r.kind == "avoid-follow" %}Do not follow {% if r.fromGroup %}{{ r.fromGroup.name }}{% endif %} with {% if r.toGroup %}{{ r.toGroup.name }}{% endif %}
+      {% elif r.kind == "prefer-follow" %}A traditional sequence is to follow {% if r.fromGroup %}{{ r.fromGroup.name }}{% endif %} with {% if r.toGroup %}{{ r.toGroup.name }}{% endif %}
+      {% elif r.kind == "gap-years" %}Leave {{ r.years }} years before growing {{ crop.rotationGroup.name }} in the same bed again
+      {% else %}{{ r.reason }}{% endif %}{% if r.kind != "note" %} – {{ r.reason }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <p class="small muted">Rotation advice is from {% for s in crop.rotationGroup.sources %}<a href="{{ s.url | cleanUrl }}">{{ s.publisher or s.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  {% endif %}
+  {% if crop.companions.length %}
+  <h3>Companions</h3>
+  <ul>{% for c in crop.companions %}<li>{{ "Good with" if c.relation == "good" else "Keep away from" }} <a href="{{ ('/crops/' + c.other.slug + '/') | url }}">{{ c.other.name }}</a> –
+    {{ c.reason }} <span class="badge ev-{{ c.evidence }}">{{ c.evidence | label }}</span></li>{% endfor %}</ul>
+  {% endif %}
+  {% if crop.rescue and crop.rescue.companions_unverified %}
+  <p class="small">Old OpenFarm wiki listed as companions (unverified): {% for s in crop.rescue.companions_unverified %}{% if db.cropBy[s] %}<a href="{{ ('/crops/' + s + '/') | url }}">{{ db.cropBy[s].name }}</a>{% else %}{{ s }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  {% endif %}
+</section>
+{% endif %}

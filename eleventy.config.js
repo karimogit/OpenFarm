@@ -12,17 +12,17 @@ const sourceOut = (s) => pick(s, ["key", "title", "publisher", "url", "license"]
 const varietyOut = (v) => ({
   ...pick(v, ["crop", "slug", "name", "synonyms", "scientific_name", "category", "fruit", "growth_habit", "days_to_maturity", "days_from",
     "cold_tolerance", "heat_tolerance", "disease_resistance", "chill_hours", "pollination_partners", "suitable_regions", "seeds",
-    "sun", "size", "origin", "license", "rescue", "cultivar", "cultivarName", "hardiness"]),
+    "sun", "size", "origin", "license", "rescue", "cultivar", "cultivarName", "hardiness", "kind", "group"]),
   url: v.url, sources: v.sources.map(sourceOut),
 });
 const guideOut = (g) => ({
-  ...pick(g, ["crop", "region", "title", "koppen", "hemisphere", "reference_location", "calendar", "days_to_maturity", "spacing",
+  ...pick(g, ["crop", "region", "variety", "title", "koppen", "hemisphere", "reference_location", "calendar", "days_to_maturity", "spacing",
     "sun", "water", "varieties", "problems", "confidence", "uncertainty", "license", "authors", "last_reviewed", "tools"]),
   url: g.url, sources: g.sources.map(sourceOut),
 });
 const cropOut = (c) => ({
   ...pick(c, ["slug", "name", "aliases", "scientific_name", "family", "type", "lifecycle", "sun", "water", "sowing_method", "size",
-    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools"]),
+    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools", "edible", "edible_parts"]),
   url: `/crops/${c.slug}/`,
   sources: c.sources.map(sourceOut),
   varieties: c.varieties.map(varietyOut),
@@ -48,6 +48,10 @@ const allOut = (db) => ({
   tools: db.tools.map(toolOut),
   seed_sources: db.seedSources.map((s) => pick(s, ["slug", "name", "url", "kind", "countries", "regions", "focus"])),
   companions: db.companions.map((c) => ({ ...pick(c, ["crops", "relation", "evidence", "reason"]), sources: (c.sources || []).map(sourceOut) })),
+  rotation: {
+    groups: (db.rotationGroups || []).map((g) => ({ ...pick(g, ["slug", "name", "families", "notes"]), crops: (g.crops || []).map((c) => c.slug || c), sources: (g.sources || []).map(sourceOut) })),
+    rules: (db.rotationRules || []).map((r) => ({ ...pick(r, ["kind", "from", "to", "group", "years", "reason"]), sources: (r.sources || []).map(sourceOut) })),
+  },
 });
 
 export default function (eleventyConfig) {

@@ -1,0 +1,19 @@
+---
+layout: false
+pagination:
+  data: db.guideRedirects
+  size: 1
+  alias: r
+permalink: "{{ r.from }}"
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Redirecting to {{ r.name }}</title>
+<link rel="canonical" href="{{ r.to | url }}">
+<meta http-equiv="refresh" content="0;url={{ r.to | url }}">
+<meta name="robots" content="noindex">
+<p>This guide has moved to <a href="{{ r.to | url }}">{{ r.name }}</a>.</p>
+<script>location.replace({{ r.to | url | json | safe }});</script>
+</html>

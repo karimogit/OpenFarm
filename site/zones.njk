@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Hardiness zones
+permalink: /zones/
+description: USDA-style plant hardiness zones 1a–13b, with temperature ranges and plants that have a sourced range covering each zone.
+---
+{% set crumbs = [{label: "Hardiness zones", current: true}] %}{% include "crumbs.njk" %}
+<article data-pagefind-body>
+<h1>Hardiness zones</h1>
+<p class="lead">A USDA-style plant hardiness zone describes how cold winters get: the average yearly extreme minimum temperature. Zone 1 starts at −51.1 °C (−60 °F). Each full zone is 10 °F (about 5.6 °C) wide and is split into a colder <em>a</em> and a warmer <em>b</em> half.</p>
+<p>The scale below follows the <a href="https://planthardiness.ars.usda.gov/">USDA Plant Hardiness Zone Map</a>. Your own zone on this site is worked out in the browser from Open-Meteo ERA5 1991–2020 minima — see <a href="{{ '/help/' | url }}#hardiness">Help</a> for the method and its limits. Hardiness zones are not the same as <a href="{{ '/regions/' | url }}">climate regions</a>, which also describe summer heat, dry seasons and season length.</p>
+<table class="zones-table">
+  <thead><tr><th>Zone</th><th>Minimum temperature</th><th>Sourced plants hardy here</th></tr></thead>
+  <tbody>
+  {% for z in db.zones %}
+    <tr>
+      <th><a href="{{ z.url | url }}">{{ z.label }}</a></th>
+      <td>{{ z.min_c }} to {{ z.max_c }} °C ({{ z.min_f }} to {{ z.max_f }} °F)</td>
+      <td>{{ z.plants.length }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</article>

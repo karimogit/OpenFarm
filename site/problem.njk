@@ -17,5 +17,6 @@ eleventyComputed:
   <div class="body">{{ p.html | safe }}</div>
   <h2>Sources</h2>
   {% set srcs = p.sources %}{% include "sources.njk" %}
-  {% set editFile = p.file %}{% set editLabel = "Edit this page" %}{% include "edit-button.njk" %}
+  {% set editFile = p.file %}{% include "edited-by.njk" %}
+  {% set editLabel = "Edit this page" %}{% include "edit-button.njk" %}
 </article>
