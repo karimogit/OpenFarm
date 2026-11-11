@@ -16,7 +16,9 @@ OUT = os.path.join(ROOT, "data/seed-images.json")
 UA = {"User-Agent": "OpenFarm-seed-images/1.0 (https://github.com/karimogit/OpenFarm)"}
 FREE = re.compile(r"^(cc0|cc[ -]by(-sa)?[ -][0-9.]+|cc[ -]by(-sa)?|public domain|pd)", re.I)
 SEEDWORD = re.compile(r"\b(seeds?|samen|graines?|semillas?|sementes?|zaden|semi|frø|frö)\b", re.I)
-BAD = re.compile(r"(book|catalog|catalogue|packet|label|illustration|drawing|plate|herbarium|poster|stamp|seedling|germinat|sprout)", re.I)
+BAD = re.compile(r"(book|catalog|catalogue|packet|label|illustration|drawing|plate|herbarium|poster|stamp|seedling|germinat|sprout|Garden and farm seeds|Hoffman Seeds|Recalcitrant seed|Compilation|seed potato|Production of|Wellcome|viability test|midden|poop)", re.I)
+# Files rejected in manual review (wrong species, generic or misleading); see PR notes.
+REJECT = re.compile(r"Fabaceae \(seeds\)|Eastern dodder|Cassava seed|Turmeric seeds|Citrus reticulata x sinensis|Hazel tree seed pods|Rongmei|East-West Seed|source of sesame|Kincaid|Pyrus bourgaeana|Musa yunnanensis|Sambucus racemosa|Vicia hirsuta|Morus rubra|Am\. blitoides|Robusta|Thyme Seed Power|Passiflora ligularis|Inga feuillei")
 strip = lambda s: re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s or "")).strip()
 
 def api(params):
@@ -40,7 +42,7 @@ def info(pages, genus):
         title, cats = p["title"], strip(m.get("Categories", {}).get("value"))
         # The file name must say "seed" and the file must be about this genus (name or Commons category);
         # catalogues, books, packets and drawings are skipped.
-        if not SEEDWORD.search(title.replace("_", " ")) or BAD.search(title + " " + cats): continue
+        if not SEEDWORD.search(title.replace("_", " ")) or BAD.search(title + " " + cats) or REJECT.search(title): continue
         if genus.lower() not in (title + " " + cats).lower(): continue
         if ii["width"] < 300: continue
         return {"file": p["title"][5:], "orig_url": ii["url"], "orig_width": ii["width"], "orig_height": ii["height"],
