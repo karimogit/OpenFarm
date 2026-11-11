@@ -73,11 +73,17 @@ export default function () {
     const kind = d.kind === "group" ? "group" : "variety";
     return {
       ...d, kind, file: v.file, html: md.render(v.body), cropName: crop?.name,
-      // Cultivar epithet for the 'Cultivar' form, e.g. Solanum lycopersicum 'Sungold' (ICNCP style).
-      cultivar: crop ? cultivarOf(d, crop) : d.name,
-      cultivarName: crop?.scientific_name ? `${crop.scientific_name} '${cultivarOf(d, crop)}'` : null,
-      sciHtml: scientificMarkup(d.scientific_name, crop?.scientific_name, crop ? cultivarOf(d, crop) : (d.cultivar || d.name)),
-      sciText: scientificText(d.scientific_name, crop?.scientific_name, crop ? cultivarOf(d, crop) : (d.cultivar || d.name)),
+      // Cultivar epithet for the 'Cultivar' form; cultivar *groups* use the ICNCP "Name Group" form, not quotes.
+      cultivar: kind === "group" ? null : (crop ? cultivarOf(d, crop) : d.name),
+      cultivarName: kind === "group"
+        ? (crop?.scientific_name ? `${crop.scientific_name} ${d.name} Group` : null)
+        : (crop?.scientific_name ? `${crop.scientific_name} '${cultivarOf(d, crop)}'` : null),
+      sciHtml: kind === "group"
+        ? (scientificMarkup(d.scientific_name, crop?.scientific_name, null) + (crop?.scientific_name || d.scientific_name ? ` ${String(d.name).replace(/&/g, "&amp;").replace(/</g, "&lt;")} Group` : ""))
+        : scientificMarkup(d.scientific_name, crop?.scientific_name, crop ? cultivarOf(d, crop) : (d.cultivar || d.name)),
+      sciText: kind === "group"
+        ? scientificText(d.scientific_name, crop?.scientific_name, null) + (crop?.scientific_name || d.scientific_name ? ` ${d.name} Group` : "")
+        : scientificText(d.scientific_name, crop?.scientific_name, crop ? cultivarOf(d, crop) : (d.cultivar || d.name)),
       image: own ? { ...own, note: d.image_note || null } : crop?.image, imageInherited: !own && !!crop?.image,
       sources: resolveSources(d.sources, registry),
       url: `/crops/${d.crop}/${d.slug}/`,

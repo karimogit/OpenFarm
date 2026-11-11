@@ -16,7 +16,7 @@ eleventyComputed:
   <article class="col-main" data-pagefind-body>
     <div class="title-row"><h1>{{ g.name }} <small class="muted">{{ crop.name }} group</small></h1>
       <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}</span></div>
-    <p class="sci-line">{% if g.scientific_name %}<em>{{ g.scientific_name }}</em>{% elif crop.scientific_name %}<em>{{ crop.scientific_name }}</em>{% endif %}{% if g.synonyms %} · also called {{ g.synonyms | join(", ") }}{% endif %}</p>
+    <p class="sci-line">{% if g.sciHtml %}{{ g.sciHtml | safe }}{% endif %}{% if g.synonyms %} · also called {{ g.synonyms | join(", ") }}{% endif %}</p>
     {% if g.origin == "imported" %}<p class="sci-line">{% set editFile = g.file %}{% include "unreviewed.njk" %}</p>{% endif %}
     {% set img = g.image %}{% set alt = g.name + " " + crop.name %}{% set inherited = g.imageInherited %}{% include "image.njk" %}
     <div class="body">{{ g.html | safe }}</div>
@@ -27,7 +27,7 @@ eleventyComputed:
     {% if g.members.length %}
     <ul class="variety-grid">
       {% for v in g.members %}
-      <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
+      <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>{% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
         <span>{% if v.days_to_maturity %}{{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
       {% endfor %}
     </ul>
