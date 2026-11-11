@@ -1,7 +1,7 @@
 ---
 crop: capsicum
 region: subarctic
-title: "Capsicum in Interior Alaska"
+title: Capsicum in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

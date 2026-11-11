@@ -1,7 +1,7 @@
 ---
 crop: radish
 region: humid-continental
-title: "Radish in central Iowa"
+title: Radish in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

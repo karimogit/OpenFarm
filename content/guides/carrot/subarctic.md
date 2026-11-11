@@ -1,7 +1,7 @@
 ---
 crop: carrot
 region: subarctic
-title: "Carrot in Interior Alaska"
+title: Carrot in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

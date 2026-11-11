@@ -1,7 +1,7 @@
 ---
 crop: broccoli
 region: subarctic
-title: "Broccoli in Interior Alaska"
+title: Broccoli in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

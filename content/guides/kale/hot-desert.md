@@ -1,7 +1,7 @@
 ---
 crop: kale
 region: hot-desert
-title: "Kale in the low desert (Phoenix, Arizona)"
+title: Kale in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

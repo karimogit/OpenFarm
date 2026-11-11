@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: tropical-savanna
-title: Potatoes in tropical lowlands (cool dry-season crop)
+title: Potato in tropical savanna climates
 koppen: [Aw, Am]
 hemisphere: north
 reference_location: South Florida, USA

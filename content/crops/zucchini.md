@@ -43,5 +43,7 @@ seed_saving:
   sources:
     - seed-matters-chart
     - osu-seed-saving-chart
+tools: [garden-line, soaker-hose, harvest-knife, trug]
+
 ---
 Zucchini is a type of summer squash. It's soft, edible skin ranges from light to dark green and is sometimes striped. It can grow to a meter in length, but is usually harvested at 15-25 cm, when the flesh is tender and the seeds relatively undeveloped. It can be eaten raw or cooked. It has spiny leaves and stems and large yellow flowers. The flowers are edible, but eating them prevents the zucchini from developing.

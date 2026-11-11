@@ -1,7 +1,7 @@
 ---
 crop: pumpkin
 region: tropical-monsoon
-title: "Pumpkin in South Florida"
+title: Pumpkin in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

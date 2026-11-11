@@ -17,6 +17,22 @@ permalink: /crops/
   </ul>
 </section>
 {% endfor %}
+
+<section id="seed-sources" class="card seed-sources-block" data-seed-sources>
+  <h2>Seed sources</h2>
+  <p class="small">Libraries, seed-saving networks, gene banks and companies, listed by the countries they serve. No rankings, prices or affiliate links. Seed facts and seed-saving notes live on each crop page.</p>
+  <p class="small" data-seed-filter-status hidden></p>
+  <ul class="seed-cards">
+  {% for s in db.seedSources %}
+    <li class="card" data-countries="{{ s.countries | join(',') }}" data-regions="{{ (s.regions or []) | join(',') }}">
+      <h3><a href="{{ s.url | cleanUrl }}">{{ s.name }}</a></h3>
+      <p class="small muted">{{ s.kind | label }} · {% for code in s.countries %}{% set cc = code %}{% include "flag.njk" %}{{ countries[code] or code }}{% if not loop.last %}, {% endif %}{% endfor %}{% if s.focus %} · {{ s.focus }}{% endif %}</p>
+    </li>
+  {% endfor %}
+  </ul>
+  <p class="row"><button type="button" class="secondary small" data-seed-show-all hidden>Show all</button>
+    <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#seed-sources">Add a seed library or company near you</a></p>
+</section>
 </div>
 <script>
 // Progressive enhancement: without JS every crop is listed. With JS each type shows ~2 rows,

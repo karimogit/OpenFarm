@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: mediterranean
-title: Potatoes in Mediterranean climates (spring and autumn crops)
+title: Potato in Mediterranean climates
 koppen: [Csa, Csb]
 hemisphere: north
 reference_location: California interior valleys (Sacramento)

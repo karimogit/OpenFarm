@@ -1,7 +1,7 @@
 ---
 crop: broccoli
 region: humid-subtropical
-title: "Broccoli in the South Carolina coast"
+title: Broccoli in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

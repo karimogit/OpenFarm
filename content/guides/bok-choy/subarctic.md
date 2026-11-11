@@ -1,7 +1,7 @@
 ---
 crop: bok-choy
 region: subarctic
-title: "Bok Choy in Interior Alaska"
+title: Bok Choy in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

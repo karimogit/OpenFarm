@@ -1,7 +1,7 @@
 ---
 crop: collard-greens
 region: humid-subtropical
-title: "Collard Greens in the South Carolina coast"
+title: Collard Greens in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

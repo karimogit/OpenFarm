@@ -1,7 +1,7 @@
 ---
 crop: pea
 region: hot-desert
-title: "Pea in the low desert (Phoenix, Arizona)"
+title: Pea in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

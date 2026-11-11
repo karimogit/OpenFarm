@@ -1,7 +1,7 @@
 ---
 crop: kohlrabi
 region: subarctic
-title: "Kohlrabi in Interior Alaska"
+title: Kohlrabi in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

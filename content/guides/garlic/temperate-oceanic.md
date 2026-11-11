@@ -1,7 +1,7 @@
 ---
 crop: garlic
 region: temperate-oceanic
-title: Garlic in mild oceanic climates (Netherlands, UK, Belgium)
+title: Garlic in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: Netherlands / UK lowlands

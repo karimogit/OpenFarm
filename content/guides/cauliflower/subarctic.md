@@ -1,7 +1,7 @@
 ---
 crop: cauliflower
 region: subarctic
-title: "Cauliflower in Interior Alaska"
+title: Cauliflower in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

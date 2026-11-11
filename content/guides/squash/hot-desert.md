@@ -1,7 +1,7 @@
 ---
 crop: squash
 region: hot-desert
-title: "Squash in the low desert (Phoenix, Arizona)"
+title: Squash in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

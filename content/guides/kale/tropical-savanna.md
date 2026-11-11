@@ -1,7 +1,7 @@
 ---
 crop: kale
 region: tropical-savanna
-title: Kale in tropical savanna climates (dry-season crop)
+title: Kale in tropical savanna climates
 koppen: [Aw, Am]
 hemisphere: north
 reference_location: South Florida, USA

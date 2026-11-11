@@ -1,7 +1,7 @@
 ---
 crop: garlic
 region: humid-continental
-title: Garlic in cold-winter climates (Sweden, Finland, Minnesota)
+title: Garlic in humid continental climates
 koppen: [Dfb, Dfc, Dfa]
 hemisphere: north
 reference_location: Minnesota, USA; southern and central Sweden

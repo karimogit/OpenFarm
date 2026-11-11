@@ -1,7 +1,7 @@
 ---
 crop: turnip
 region: humid-continental
-title: "Turnip in central Iowa"
+title: Turnip in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

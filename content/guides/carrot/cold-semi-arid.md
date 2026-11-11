@@ -1,7 +1,7 @@
 ---
 crop: carrot
 region: cold-semi-arid
-title: "Carrot in the Colorado Front Range"
+title: Carrot in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

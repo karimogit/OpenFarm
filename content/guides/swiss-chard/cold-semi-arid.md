@@ -1,7 +1,7 @@
 ---
 crop: swiss-chard
 region: cold-semi-arid
-title: "Swiss Chard in the Colorado Front Range"
+title: Swiss Chard in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

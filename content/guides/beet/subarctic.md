@@ -1,7 +1,7 @@
 ---
 crop: beet
 region: subarctic
-title: "Beet in Interior Alaska"
+title: Beet in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

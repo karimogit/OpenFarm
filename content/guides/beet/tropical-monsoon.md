@@ -1,7 +1,7 @@
 ---
 crop: beet
 region: tropical-monsoon
-title: "Beet in South Florida"
+title: Beet in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

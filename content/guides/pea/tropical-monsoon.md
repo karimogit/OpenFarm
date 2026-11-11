@@ -1,7 +1,7 @@
 ---
 crop: pea
 region: tropical-monsoon
-title: "Pea in South Florida"
+title: Pea in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

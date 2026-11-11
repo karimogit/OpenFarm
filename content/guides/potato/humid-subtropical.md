@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: humid-subtropical
-title: "Potato in the South Carolina coast"
+title: Potato in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

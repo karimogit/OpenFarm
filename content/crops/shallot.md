@@ -24,5 +24,6 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+tools: [dibber, bulb-planter, garden-line]
 ---
 Shallots are a type of small onion with a subtle, distinguished flavor. The bulb is covered in papery red skin tinted rust, gold, or purple and has a tapered oblong shape with multiple cloves. They can be used fresh or dried in a variety of dishes.

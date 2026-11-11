@@ -2,7 +2,7 @@
 layout: base.njk
 title: Help
 permalink: /help/
-description: "How OpenFarm works: climate regions and Köppen codes, hardiness zones, the Unreviewed badge, confidence, your local profile and exports, reminders, the JSON API and contributing."
+description: "How OpenFarm works: climate regions and Köppen codes, hardiness zones, the Unreviewed note on crop pages, your local profile and exports, reminders, the JSON API and contributing."
 ---
 <article class="prose" data-pagefind-body>
 <h1>Help</h1>
@@ -10,7 +10,6 @@ description: "How OpenFarm works: climate regions and Köppen codes, hardiness z
   <li><a class="chip" href="#koppen">Climate regions &amp; Köppen codes</a></li>
   <li><a class="chip" href="#hardiness">Hardiness zones</a></li>
   <li><a class="chip" href="#unreviewed">Unreviewed badge</a></li>
-  <li><a class="chip" href="#confidence">Confidence</a></li>
   <li><a class="chip" href="#profile">Your profile &amp; exports</a></li>
   <li><a class="chip" href="#notifications">Reminders</a></li>
   <li><a class="chip" href="#labels">Filters &amp; labels</a></li>
@@ -38,30 +37,22 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
 <h2 id="unreviewed">The “Unreviewed” badge</h2>
 <p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
 
-<h2 id="confidence">Confidence</h2>
-<p>Every climate-region guide states a confidence level, shown next to its sources. The rule:</p>
-<ul>
-  <li><strong>High</strong> – at least two sources from <em>different publishers</em> agree, at least one of them written for a place inside the guide's Köppen classes (its reference location), and the guide was reviewed within the last three years.</li>
-  <li><strong>Medium</strong> – at least one regional source (an extension service, national horticultural society, government or research body writing for a place in this climate), but not enough for high.</li>
-  <li><strong>Low</strong> – the timing is adapted from a source for a different or broader climate, or rests on a single general (non-regional) source.</li>
-</ul>
-<p>The publisher count and review age are checked automatically by <code>npm run validate</code>: a guide cannot say “high” with fewer than two publishers or an old review. Whether a source is regional is checked by reviewers.</p>
 
 <h2 id="profile">Your profile and exports</h2>
-<p>Your location, favourites (♡) and “what I'm growing” list are <strong>stored only in this browser</strong> (localStorage) – nothing is sent to a server, and there is no account. Clearing your browser data removes it. On <a href="{{ '/profile/' | url }}">Profile</a> you can export it:</p>
+<p>Your location, favourites (the heart button), list filters and “what I'm growing” list are <strong>stored only in this browser</strong> (localStorage) – nothing is sent to a server, and there is no account. Changes save automatically (notes after a short pause) and a brief “Saved” notice confirms it. Open tabs stay in sync. Clearing your browser data removes it. On <a href="{{ '/profile/' | url }}">Profile</a> you can export it:</p>
 <ul>
   <li><strong>JSON</strong> – a full backup that you can import again (on another browser or device). Imports are validated before anything is replaced.</li>
-  <li><strong>CSV</strong> – your favourites and growing list with sow dates and notes, for spreadsheets.</li>
+  <li><strong>CSV</strong> – your favourites and growing list with status, sow/plant dates, bed, quantity and notes, for spreadsheets.</li>
   <li><strong>Calendar (.ics)</strong> – yearly sow, plant and harvest reminders for the crops you grow, from your region's guides; works in Google Calendar, Apple Calendar and Outlook.</li>
   <li><strong>Markdown</strong> – a readable garden notebook.</li>
 </ul>
 <p>“Clear my data” removes the profile and reminder state from this browser.</p>
 
 <h2 id="notifications">Reminders and notifications</h2>
-<p>The 🔔 bell shows reminders worked out in your browser from your growing list, your region's calendar and the weather forecast (frost, dry or very wet days). Browser notifications are optional and only asked for when you click the button. Because there is no server, reminders only appear while a page of the site is open – use the <strong>.ics export</strong> to get them in your calendar when the site is closed.</p>
+<p>The reminders bell shows reminders worked out in your browser from your growing list, your region's calendar and the weather forecast (frost, dry or very wet days). Browser notifications are optional and only asked for when you click the button. Because there is no server, reminders only appear while a page of the site is open – use the <strong>.ics export</strong> to get them in your calendar when the site is closed.</p>
 
 <h2 id="labels">Filters and labels</h2>
-<p>Crop cards show only the category and, where relevant, the Unreviewed badge. Open <em>Filters &amp; labels</em> above a list to show extra labels (number of guides and varieties, annual/perennial, hardiness zones, Köppen codes) or to show only crops with a guide, reviewed crops or perennials. Your choice is remembered in this browser.</p>
+<p>Crop cards show the plant photo and names (a coloured left edge marks the category on mixed lists). The Unreviewed note appears on the crop or variety page, not on the card. Open <em>Filters &amp; labels</em> above a list to show extra labels (number of guides and varieties, annual/perennial, hardiness zones, Köppen codes) or to show only crops with a guide, reviewed crops or perennials. Your choice is remembered in this browser.</p>
 
 <h2 id="api">JSON API</h2>
 <p>All data is available as static JSON (no key needed):</p>
@@ -74,5 +65,5 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
 <p>Content is CC BY-SA 4.0 (imported records CC0); please credit “OpenFarm contributors”.</p>
 
 <h2 id="contribute">Contributing</h2>
-<p>Everything is plain Markdown in the <a href="{{ site.repo }}">GitHub repository</a>. Each page has one button at the bottom – <em>Edit this guide / crop / variety</em> – that opens the file on GitHub. Guides need real sources (extension services, national horticultural societies, FAO and similar), an honest confidence level and a note on what is uncertain. See <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> for the details.</p>
+<p>Everything is plain Markdown in the <a href="{{ site.repo }}">GitHub repository</a>. Each page has one button at the bottom – <em>Edit this guide / crop / variety</em> – that opens the file on GitHub. Guides need real sources (extension services, national horticultural societies, FAO and similar). See <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> for the details.</p>
 </article>

@@ -1,7 +1,7 @@
 ---
 crop: carrot
 region: humid-subtropical
-title: "Carrot in the South Carolina coast"
+title: Carrot in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

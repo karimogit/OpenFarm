@@ -1,7 +1,7 @@
 ---
 crop: capsicum
 region: hot-desert
-title: "Capsicum in the low desert (Phoenix, Arizona)"
+title: Capsicum in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

@@ -1,7 +1,7 @@
 ---
 crop: cantaloupe
 region: hot-desert
-title: "Cantaloupe in the low desert (Phoenix, Arizona)"
+title: Cantaloupe in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

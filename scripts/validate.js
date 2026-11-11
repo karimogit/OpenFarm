@@ -85,6 +85,7 @@ for (const g of guides) {
   for (const v of d.varieties || []) if (!varietyKeys.has(`${d.crop}/${v}`)) fail(g.file, `unknown variety "${v}" (content/varieties/${d.crop}/${v}.md)`);
   for (const p of d.problems || []) if (!problemSlugs.has(p)) fail(g.file, `unknown problem "${p}"`);
   checkSources(g.file, d.sources);
+  if (/[()]/.test(d.title)) fail(g.file, "guide title must not contain parentheses (use '<Crop> in <region> climates'; put places on the region)");
   if (g.body.trim().length < 200) fail(g.file, "body is too short (< 200 characters) – add real growing notes");
   if (!/^##\s+/m.test(g.body)) fail(g.file, "body should contain at least one '## ' section");
   (byCrop[d.crop] ||= []).push(g);
@@ -138,6 +139,19 @@ if (check(V.companions, companions, "content/companions.yaml")) {
   });
 }
 
+
+// Tools should appear in at least one crop or guide `tools:` list, unless marked general.
+let warnings = 0;
+const warn = (file, msg) => { warnings++; console.warn(`⚠ ${file}: ${msg}`); };
+const toolUsed = Object.fromEntries(tools.map((x) => [x.data.slug, { crops: 0, guides: 0 }]));
+for (const c of crops) for (const s of c.data.tools || []) if (toolUsed[s]) toolUsed[s].crops++;
+for (const g of guides) for (const s of g.data.tools || []) if (toolUsed[s]) toolUsed[s].guides++;
+for (const t of tools) {
+  const u = toolUsed[t.data.slug] || { crops: 0, guides: 0 };
+  if (!t.data.general && u.crops === 0 && u.guides === 0) warn(t.file, "no crops or guides list this tool in tools: frontmatter (Used in will be empty)");
+}
+
 if (errors) { console.error(`\n${errors} problem(s).`); process.exit(1); }
+if (warnings) console.warn(`\n${warnings} warning(s).`);
 console.log(`✓ Valid: ${crops.length} crops, ${varieties.length} varieties, ${guides.length} guides, ${regions.length} regions ` +
   `(${ALL_KG.length} Köppen classes), ${problems.length} problems, ${seedSources.length} seed sources, ${tools.length} tools, ${companions.length} companion pairs.`);

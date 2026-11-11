@@ -1,7 +1,7 @@
 ---
 crop: onion
 region: humid-subtropical
-title: "Onion in the South Carolina coast"
+title: Onion in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

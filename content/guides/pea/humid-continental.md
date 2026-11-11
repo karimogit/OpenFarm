@@ -1,7 +1,7 @@
 ---
 crop: pea
 region: humid-continental
-title: "Pea in central Iowa"
+title: Pea in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

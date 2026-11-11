@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: humid-continental
-title: Potatoes in cold-winter climates with warm summers (southern and central Sweden)
+title: Potato in humid continental climates
 koppen: [Dfb, Dfa]
 hemisphere: north
 reference_location: Southern and central Sweden; Minnesota, USA

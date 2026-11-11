@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: hot-desert
-title: "Bush bean (dwarf French bean) in the low desert (Phoenix, Arizona)"
+title: Bush bean in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

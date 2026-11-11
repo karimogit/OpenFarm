@@ -1,7 +1,7 @@
 ---
 crop: celery
 region: hot-desert
-title: "Celery in the low desert (Phoenix, Arizona)"
+title: Celery in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

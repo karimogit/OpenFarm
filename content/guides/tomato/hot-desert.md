@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: hot-desert
-title: Tomatoes in hot desert climates (low desert, spring and autumn crops)
+title: Tomato in hot desert climates
 koppen: [BWh, BSh]
 hemisphere: north
 reference_location: Phoenix / Maricopa County, Arizona, USA

@@ -1,7 +1,7 @@
 ---
 crop: cucumber
 region: cold-semi-arid
-title: "Cucumber in the Colorado Front Range"
+title: Cucumber in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

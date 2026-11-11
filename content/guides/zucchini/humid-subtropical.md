@@ -1,7 +1,7 @@
 ---
 crop: zucchini
 region: humid-subtropical
-title: "Zucchini in the South Carolina coast"
+title: Zucchini in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

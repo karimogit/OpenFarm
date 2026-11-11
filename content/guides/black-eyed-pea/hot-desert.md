@@ -1,7 +1,7 @@
 ---
 crop: black-eyed-pea
 region: hot-desert
-title: "Black-Eyed Pea in the low desert (Phoenix, Arizona)"
+title: Black-Eyed Pea in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

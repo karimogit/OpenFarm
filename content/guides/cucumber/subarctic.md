@@ -1,7 +1,7 @@
 ---
 crop: cucumber
 region: subarctic
-title: "Cucumber in Interior Alaska"
+title: Cucumber in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

@@ -1,7 +1,7 @@
 ---
 crop: cucumber
 region: hot-desert
-title: "Cucumber in the low desert (Phoenix, Arizona)"
+title: Cucumber in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

@@ -1,7 +1,7 @@
 ---
 crop: arugula
 region: tropical-monsoon
-title: "Arugula in South Florida"
+title: Arugula in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

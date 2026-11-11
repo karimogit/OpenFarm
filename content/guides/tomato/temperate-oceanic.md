@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: temperate-oceanic
-title: Tomatoes in mild oceanic climates (Netherlands, UK, Belgium)
+title: Tomato in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: Netherlands / UK lowlands

@@ -1,7 +1,7 @@
 ---
 crop: swiss-chard
 region: tropical-monsoon
-title: "Swiss Chard in South Florida"
+title: Swiss Chard in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

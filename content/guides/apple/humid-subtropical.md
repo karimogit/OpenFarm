@@ -1,7 +1,7 @@
 ---
 crop: apple
 region: humid-subtropical
-title: Low-chill apples in humid subtropical climates (north Florida)
+title: Apple in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: North and north-central Florida, USA

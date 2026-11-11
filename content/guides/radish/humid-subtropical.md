@@ -1,7 +1,7 @@
 ---
 crop: radish
 region: humid-subtropical
-title: "Radish in the South Carolina coast"
+title: Radish in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

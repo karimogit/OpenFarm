@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: humid-continental
-title: "Bush bean (dwarf French bean) in central Iowa"
+title: Bush bean in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

@@ -37,7 +37,7 @@ pageScripts: [home.js]
 
   <aside class="col-side details-panel" data-pagefind-ignore>
     <details id="details-panel" open>
-      <summary id="details-summary"><span>📍 Your details</span><span class="chg">change</span></summary>
+      <summary id="details-summary"><span>Set your location to see your climate region and hardiness zone</span><span class="chg">change</span></summary>
       <section id="where" class="side-card where">
         <h3>Your location</h3>
         <form id="search" class="search-main" autocomplete="off" role="search">
@@ -45,7 +45,7 @@ pageScripts: [home.js]
           <button type="submit">Find</button>
         </form>
         <ul id="results" class="results" hidden></ul>
-        <p><button type="button" id="geo" class="secondary small">📍 Use my current location</button></p>
+        <p><button type="button" id="geo" class="secondary small">Use my current location</button></p>
         <div id="map" aria-label="Map – click to choose a location"></div>
         <details class="small coords-details">
           <summary>Coordinates · climate map</summary>
@@ -53,20 +53,18 @@ pageScripts: [home.js]
             <label>Lat <input id="lat" type="number" step="any" min="-90" max="90" required></label>
             <label>Lon <input id="lon" type="number" step="any" min="-180" max="180" required></label>
             <button type="submit">Go</button>
-            <label class="toggle"><input type="checkbox" id="overlay"> Show Köppen map</label>
+            <label class="toggle"><input type="checkbox" id="overlay"> <span id="overlay-label">Show climate map</span></label>
           </form>
         </details>
         <p class="credit">Stored only in this browser.</p>
       </section>
-      <section id="climate" class="side-card" hidden>
-        <h3>Your climate region</h3>
-        <div id="climate-box"></div>
-      </section>
+      {% include "your-climate.njk" %}
+      <div id="climate-box" hidden></div>
       {% include "weather.njk" %}
       <section class="side-card profile-card" data-profile-summary>
-        <h3>♥ Your garden</h3>
-        <p class="small" data-profile-counts>No favourites yet – tap ♡ on any crop, variety or guide.</p>
-        <p class="row"><a class="button small" href="{{ '/profile/' | url }}">My profile</a>
+        <h3>Your profile</h3>
+        <p class="small" data-profile-counts>No favourites yet — use the heart on any crop, variety or guide.</p>
+        <p class="row"><a class="button small" href="{{ '/profile/' | url }}">My Profile</a>
           <button type="button" class="secondary small" data-profile-export>Export</button></p>
         <p class="credit">Stored only in this browser – nothing is sent anywhere.</p>
       </section>

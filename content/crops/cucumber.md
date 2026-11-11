@@ -33,7 +33,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
-tools: [seed-trays, hoe]
+tools: [seed-trays, hoe, trellis, garden-line, soaker-hose, harvest-knife]
 ---
 
 Cucumbers are warm-season, frost-tender vines grown for their fruit. They are sown directly

@@ -1,7 +1,7 @@
 ---
 crop: capsicum
 region: humid-continental
-title: "Capsicum in central Iowa"
+title: Capsicum in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

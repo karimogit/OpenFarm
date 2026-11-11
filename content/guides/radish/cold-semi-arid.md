@@ -1,7 +1,7 @@
 ---
 crop: radish
 region: cold-semi-arid
-title: "Radish in the Colorado Front Range"
+title: Radish in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

@@ -1,7 +1,7 @@
 ---
 crop: sweet-potato
 region: hot-desert
-title: "Sweet Potato in the low desert (Phoenix, Arizona)"
+title: Sweet Potato in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

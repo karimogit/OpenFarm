@@ -1,7 +1,7 @@
 ---
 crop: swiss-chard
 region: subarctic
-title: "Swiss Chard in Interior Alaska"
+title: Swiss Chard in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

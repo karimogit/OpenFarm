@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: temperate-oceanic
-title: Dwarf French beans in mild oceanic climates (Netherlands, UK, Belgium)
+title: Bush bean in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: Netherlands / UK lowlands

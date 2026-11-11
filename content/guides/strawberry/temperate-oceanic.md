@@ -1,7 +1,7 @@
 ---
 crop: strawberry
 region: temperate-oceanic
-title: Strawberries in mild oceanic climates (UK, Netherlands, Belgium)
+title: Strawberry in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: United Kingdom

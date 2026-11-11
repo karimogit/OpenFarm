@@ -1,7 +1,7 @@
 ---
 crop: squash
 region: humid-subtropical
-title: "Squash in the South Carolina coast"
+title: Squash in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

@@ -1,7 +1,7 @@
 ---
 crop: squash
 region: subarctic
-title: "Squash in Interior Alaska"
+title: Squash in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

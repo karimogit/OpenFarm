@@ -1,7 +1,7 @@
 ---
 crop: cauliflower
 region: cold-semi-arid
-title: "Cauliflower in the Colorado Front Range"
+title: Cauliflower in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

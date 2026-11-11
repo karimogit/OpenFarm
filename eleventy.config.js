@@ -66,6 +66,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("regionOut", regionOut);
   eleventyConfig.addFilter("allOut", allOut);
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "data/places.json": "assets/places.json" });
   eleventyConfig.addPassthroughCopy({ "node_modules/leaflet/dist": "assets/vendor/leaflet" });
   eleventyConfig.addPassthroughCopy({ schema: "schema" });
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v).replace(/</g, "\\u003c"));
@@ -91,6 +92,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("kgName", (classes, code) => (classes.find((c) => c && c[0] === code) || [code, code])[1]);
   eleventyConfig.addFilter("where", (arr, key, val) => (arr || []).filter((x) => x && x[key] === val));
   eleventyConfig.addFilter("whereIn", (arr, key, val) => (arr || []).filter((x) => x && (x[key] || []).includes(val)));
+  eleventyConfig.addFilter("cleanUrl", (u) => String(u || "").replace(/[?#].*$/, "").replace(/^http:\/\//, "https://"));
   eleventyConfig.addFilter("cssUrl", (s) => String(s).replace(/[()'"\s]/g, encodeURIComponent));
   eleventyConfig.addFilter("addGuideUrl", (site, crop, region) => {
     const value = `---\ncrop: ${crop}\nregion: ${region}\ntitle: \nkoppen: []\nhemisphere: north\nreference_location: \ncalendar:\n  harvest: []\nsun: full\nwater: moderate\nconfidence: medium\nuncertainty: \nsources:\n  - title: \n    url: https://\nlicense: CC-BY-SA-4.0\nauthors: []\nlast_reviewed: ${new Date().toISOString().slice(0, 10)}\n---\n\n## Summary\n\n`;

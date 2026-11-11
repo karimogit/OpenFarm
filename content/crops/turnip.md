@@ -35,5 +35,6 @@ seed_saving:
   cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
   sources:
     - seed-matters-chart
+tools: [broadfork, garden-line, garden-fork]
 ---
 Turnips are smooth, round root vegetables 5-20 cm in diameter. They are often white below the soil line and bright purple or green above. Turnips usually have white flesh and a slightly sweet and bitter taste, similar to cabbage. The edible foliage tastes similar to mustard greens. Turnips are a cool-weather crop and do best as spring or fall plantings.

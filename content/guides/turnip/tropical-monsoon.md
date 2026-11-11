@@ -1,7 +1,7 @@
 ---
 crop: turnip
 region: tropical-monsoon
-title: "Turnip in South Florida"
+title: Turnip in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

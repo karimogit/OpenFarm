@@ -1,7 +1,7 @@
 ---
 crop: spinach
 region: tropical-monsoon
-title: "Spinach in South Florida"
+title: Spinach in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

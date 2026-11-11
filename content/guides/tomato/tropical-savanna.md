@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: tropical-savanna
-title: Tomatoes in tropical savanna and monsoon climates (dry-season crop)
+title: Tomato in tropical savanna climates
 koppen: [Aw, Am]
 hemisphere: north
 reference_location: South Florida, USA

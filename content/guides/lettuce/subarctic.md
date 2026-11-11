@@ -1,7 +1,7 @@
 ---
 crop: lettuce
 region: subarctic
-title: "Lettuce in Interior Alaska"
+title: Lettuce in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

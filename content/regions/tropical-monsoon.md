@@ -5,7 +5,11 @@ koppen: [Am]
 color: "#0078ff"
 order: 2
 similar: [tropical-savanna, tropical-rainforest]
-examples: Mumbai, Miami (edge), Yangon, Conakry
+examples:
+  - {name: Mumbai, country: IN}
+  - {name: Miami, country: US, note: edge}
+  - {name: Yangon, country: MM}
+  - {name: Conakry, country: GN}
 commons_file: "Paddy field in Kerala.jpg"
 ---
 

@@ -1,7 +1,7 @@
 ---
 crop: lettuce
 region: tropical-monsoon
-title: "Lettuce in South Florida"
+title: Lettuce in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

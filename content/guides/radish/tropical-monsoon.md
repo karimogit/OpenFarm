@@ -1,7 +1,7 @@
 ---
 crop: radish
 region: tropical-monsoon
-title: "Radish in South Florida"
+title: Radish in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

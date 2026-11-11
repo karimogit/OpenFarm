@@ -1,5 +1,6 @@
 // Profile page: everything here lives in localStorage (see common.js) – nothing is sent anywhere.
-import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown } from "./common.js";
+import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce } from "./common.js";
+import { icon } from "./icons.js";
 
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
 const CROP = Object.fromEntries(CAT.crops.map((c) => [c.slug, c]));
@@ -8,12 +9,38 @@ const GUIDE = Object.fromEntries(INDEX.guides.map((g) => [`${g.crop}/${g.region}
 
 function tile(href, img, name, sub, fav) {
   return `<li><a href="${href}">${thumbHTML(img)}<strong class="name">${esc(name)}</strong><em class="sci1">${sub ? esc(sub) : "&nbsp;"}</em></a>
-    <button class="fav card-fav on" type="button" data-fav="${fav}" aria-pressed="true" title="Remove from favourites">♥</button></li>`;
+    <button class="fav card-fav on" type="button" data-fav="${fav}" aria-pressed="true" title="Remove from favourites">${icon("heart", { filled: true })}<span class="visually-hidden">Remove from favourites</span></button></li>`;
+}
+
+function varietyName(crop, slug) {
+  if (!slug) return "";
+  return VAR[`${crop}/${slug}`]?.name || slug.replace(/-/g, " ");
+}
+
+function growCard(g) {
+  const c = CROP[g.crop];
+  const vName = varietyName(g.crop, g.variety);
+  const task = nextGrowTask(g);
+  const st = growStatus(g);
+  return `<li>
+    <button type="button" class="growing-card" data-edit="${esc(g.id)}" aria-haspopup="dialog">
+      ${thumbHTML(c?.img, "thumb")}
+      <strong class="name">${esc(c?.name || g.crop)}</strong>
+      <em class="sci1">${vName ? esc(vName) : "&nbsp;"}</em>
+      <span class="grow-meta"><span class="grow-status-pill st-${st}">${esc(GROW_STATUS_LABEL[st])}</span> · ${esc(task)}</span>
+    </button>
+  </li>`;
+}
+
+function renderGrowing(p) {
+  const gl = $("#growing-list");
+  gl.innerHTML = p.growing.length
+    ? `<ul class="crop-grid growing-grid">${p.growing.map(growCard).join("")}</ul>`
+    : `<p class="small muted">Nothing yet. Use Add to put a crop or variety on your list.</p>`;
 }
 
 function render() {
   const p = loadProfile();
-  // location
   const loc = p.location, region = loc && REGION_BY[loc.region];
   $("#profile-location").innerHTML = loc
     ? `<p><strong>${esc((loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`)}</strong><br><span class="small">${loc.lat}, ${loc.lon}</span></p>
@@ -23,22 +50,8 @@ function render() {
     : `<p class="small">No location saved. <a href="${BASE}#where">Find your location</a> on the home page.</p>`;
   if (loc) hardinessZone(loc.lat, loc.lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = hardinessLine(h); }).catch(() => {});
 
-  // growing
-  const gl = $("#growing-list");
-  gl.innerHTML = p.growing.length ? `<ul class="growing">${p.growing.map((g) => {
-    const c = CROP[g.crop], vars = CAT.varieties.filter((v) => v.crop === g.crop);
-    return `<li data-id="${esc(g.id)}">
-      <div class="g-head">${thumbHTML(c?.img, "thumb mini")}
-        <div><a href="${BASE}crops/${g.crop}/"><strong>${esc(c?.name || g.crop)}</strong></a>${c?.sci ? ` <em class="sci">${esc(c.sci)}</em>` : ""}</div>
-        <button type="button" class="link-btn" data-remove>Remove</button></div>
-      <div class="g-fields">
-        ${vars.length ? `<label>Variety <select data-field="variety"><option value="">–</option>${vars.map((v) => `<option value="${v.slug}"${v.slug === g.variety ? " selected" : ""}>${esc(v.name)}</option>`).join("")}</select></label>` : ""}
-        <label>Sown <input type="date" data-field="sown" value="${esc(g.sown)}"></label>
-        <label class="notes">Notes <textarea data-field="notes" rows="2" maxlength="5000" placeholder="Bed, source of seed, how it went…">${esc(g.notes)}</textarea></label>
-      </div></li>`;
-  }).join("")}</ul>` : `<p class="small muted">Nothing yet. Add a crop below, or tap “＋ I'm growing this” on any crop, variety or guide page.</p>`;
+  renderGrowing(p);
 
-  // favourites
   const f = p.favourites;
   let h = "";
   if (f.crops.length) h += `<h3 class="group">Crops</h3><ul class="crop-grid">${f.crops.map((s) => tile(`${BASE}crops/${s}/`, CROP[s]?.img, CROP[s]?.name || s, CROP[s]?.sci, `crop:${s}`)).join("")}</ul>`;
@@ -46,9 +59,8 @@ function render() {
     return tile(`${BASE}crops/${c}/varieties/${s}/`, CROP[c]?.img, v?.name || s, v?.cultivarName || CROP[c]?.name, `variety:${id}`); }).join("")}</ul>`;
   if (f.guides.length) h += `<h3 class="group">Guides</h3><ul class="crop-grid">${f.guides.map((id) => { const g = GUIDE[id], [c, r] = id.split("/");
     return tile(`${BASE}guides/${c}/${r}/`, CROP[c]?.img, g?.title || id, REGION_BY[r]?.name, `guide:${id}`); }).join("")}</ul>`;
-  $("#fav-list").innerHTML = h || `<p class="small muted">No favourites yet – tap ♡ on any crop, variety or guide.</p>`;
+  $("#fav-list").innerHTML = h || `<p class="small muted">No favourites yet — use the heart on any crop, variety or guide.</p>`;
 
-  // guides for my region, for the crops I care about (favourites + growing), else all
   const mine = new Set([...f.crops, ...p.growing.map((g) => g.crop), ...f.varieties.map((x) => x.split("/")[0]), ...f.guides.map((x) => x.split("/")[0])]);
   const pg = $("#profile-guides");
   if (!loc?.symbol) { pg.innerHTML = `<p class="small muted">Save a location to see the guides for your climate region.</p>`; return; }
@@ -56,32 +68,168 @@ function render() {
   pg.innerHTML = list.length ? `<p class="small muted">${mine.size ? "For your favourites and the crops you grow" : "All guides"} in ${swatch(region)}${esc(region.name)}.</p>
     <ul class="crop-grid guide-grid">${list.map(({ g, kind, via }) => `<li><a href="${BASE}guides/${g.crop}/${g.region}/">${thumbHTML(g.img)}
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em><span class="gtitle">${esc(g.title)}</span>
-      <span class="badges">${kind === "similar" ? `<span class="flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : ""}</span></a></li>`).join("")}</ul>`
+      <span class="badges">${kind === "similar" ? `<span class="note-flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : ""}</span></a></li>`).join("")}</ul>`
     : `<p class="small muted">No guides for these crops in your climate region (or a similar one) yet.</p>`;
 }
 
-// edits to the growing list (saved as you type)
-document.addEventListener("input", (e) => {
-  const li = e.target.closest("#growing-list li[data-id]"); const field = e.target.dataset.field;
-  if (!li || !field) return;
-  const p = loadProfile(), item = p.growing.find((g) => g.id === li.dataset.id); if (!item) return;
-  item[field] = e.target.value || (field === "variety" ? null : "");
-  saveProfile(p, { silent: true });
+// ---- Add search dialog + edit dialog ----
+const searchDlg = $("#grow-search"), editDlg = $("#grow-edit"), searchQ = $("#grow-search-q"), searchRes = $("#grow-search-results");
+const editForm = $("#grow-edit-form");
+let editingId = null, searchActive = -1;
+
+function openDlg(dlg) { dlg.showModal(); }
+function closeDlg(dlg) { if (dlg.open) dlg.close(); }
+
+function fillVarietyOptions(crop, selected) {
+  const vars = CAT.varieties.filter((v) => v.crop === crop);
+  const sel = $("#grow-variety");
+  sel.innerHTML = `<option value="">–</option>` + vars.map((v) => `<option value="${esc(v.slug)}"${v.slug === selected ? " selected" : ""}>${esc(v.name || v.slug)}</option>`).join("");
+  sel.closest("label").hidden = vars.length === 0;
+}
+
+function openEditor(id) {
+  const p = loadProfile(), item = p.growing.find((g) => g.id === id);
+  if (!item) return;
+  editingId = id;
+  const c = CROP[item.crop];
+  $("#grow-edit-title").textContent = c?.name || item.crop;
+  $("#grow-edit-lead").textContent = [c?.sci, item.variety ? varietyName(item.crop, item.variety) : ""].filter(Boolean).join(" · ");
+  fillVarietyOptions(item.crop, item.variety);
+  $("#grow-sown").value = item.sown || "";
+  $("#grow-planted").value = item.planted || "";
+  $("#grow-bed").value = item.bed || "";
+  $("#grow-quantity").value = item.quantity || "";
+  $("#grow-notes").value = item.notes || "";
+  const st = growStatus(item);
+  for (const r of editForm.querySelectorAll('input[name="status"]')) r.checked = r.value === st;
+  openDlg(editDlg);
+}
+
+function readEdit() {
+  const status = editForm.querySelector('input[name="status"]:checked')?.value || "planned";
+  return {
+    variety: $("#grow-variety").value || null,
+    sown: $("#grow-sown").value || "",
+    planted: $("#grow-planted").value || "",
+    bed: $("#grow-bed").value.trim(),
+    quantity: $("#grow-quantity").value.trim(),
+    status,
+    notes: $("#grow-notes").value,
+  };
+}
+
+function persistEdit({ announce = true, silent = true } = {}) {
+  if (!editingId) return;
+  const p = loadProfile(), item = p.growing.find((g) => g.id === editingId);
+  if (!item) return;
+  Object.assign(item, readEdit());
+  saveProfile(p, { silent, announce });
+  renderGrowing(p);
+}
+
+const persistNotes = debounce(() => persistEdit({ announce: true, silent: true }), 400);
+
+editForm.addEventListener("input", (e) => {
+  if (!editingId) return;
+  if (e.target.name === "notes") persistNotes();
+  else { persistNotes.cancel(); persistEdit({ announce: true, silent: true }); }
 });
-document.addEventListener("click", (e) => {
-  const rm = e.target.closest("[data-remove]"); if (!rm) return;
-  const id = rm.closest("li[data-id]").dataset.id, p = loadProfile();
-  p.growing = p.growing.filter((g) => g.id !== id); saveProfile(p);
+editForm.addEventListener("change", (e) => {
+  if (!editingId || e.target.name === "notes") return;
+  persistNotes.cancel();
+  persistEdit({ announce: true, silent: true });
 });
-$("#add-growing").addEventListener("submit", (e) => {
+editDlg.addEventListener("close", () => { persistNotes.flush(); editingId = null; });
+
+$("#grow-remove").addEventListener("click", () => {
+  if (!editingId || !confirm("Remove this crop from “What I'm growing”?")) return;
+  persistNotes.cancel();
+  const id = editingId, p = loadProfile();
+  p.growing = p.growing.filter((g) => g.id !== id);
+  editingId = null;
+  saveProfile(p);
+  closeDlg(editDlg);
+});
+
+$("#growing-list").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-edit]"); if (btn) openEditor(btn.dataset.edit);
+});
+
+function searchHits(q) {
+  const nq = q.trim().toLowerCase();
+  const hits = [];
+  const scoreName = (name, slug, extra) => {
+    const nn = (name || "").toLowerCase(), ns = (slug || "").toLowerCase(), hay = `${nn} ${ns} ${extra || ""}`.toLowerCase();
+    if (nn === nq || ns === nq) return 100;
+    if (nn.startsWith(nq) || ns.startsWith(nq)) return 80;
+    if (hay.includes(nq)) return 40;
+    return 0;
+  };
+  if (!nq) {
+    return CAT.crops.slice(0, 10).map((c) => ({ kind: "crop", crop: c.slug, variety: null, name: c.name, sub: c.sci, img: c.img }));
+  }
+  for (const c of CAT.crops) {
+    const s = scoreName(c.name, c.slug, c.sci);
+    if (s) hits.push({ kind: "crop", crop: c.slug, variety: null, name: c.name, sub: c.sci, img: c.img, score: s });
+  }
+  for (const v of CAT.varieties) {
+    const c = CROP[v.crop];
+    const s = scoreName(v.name, v.slug, `${c?.name || ""} ${v.cultivarName || ""}`) - 2;
+    if (s > 0) hits.push({ kind: "variety", crop: v.crop, variety: v.slug, name: v.name || v.slug, sub: c?.name, img: c?.img, score: s });
+  }
+  hits.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  return hits.slice(0, 12);
+}
+
+function renderSearch(q) {
+  const hits = searchHits(q);
+  searchActive = hits.length ? 0 : -1;
+  searchRes.innerHTML = hits.length ? hits.map((it, i) => `<li role="option" id="gs-${i}" class="sg-opt" data-i="${i}" aria-selected="${i === 0}">
+      ${thumbHTML(it.img, "thumb mini")}<span><strong>${esc(it.name)}</strong><em class="sci1">${it.sub ? esc(it.sub) : it.kind === "variety" ? "Variety" : "&nbsp;"}</em></span>
+    </li>`).join("") : `<li class="sg-note">No matching crops or varieties.</li>`;
+  searchRes._hits = hits;
+}
+
+function addFromHit(it) {
+  if (!it) return;
+  const item = addGrowing(it.crop, it.variety);
+  closeDlg(searchDlg);
+  render();
+  openEditor(item.id);
+}
+
+function setSearchActive(i) {
+  const hits = searchRes._hits || [];
+  if (!hits.length) return;
+  searchActive = (i + hits.length) % hits.length;
+  searchRes.querySelectorAll("[role=option]").forEach((el, j) => el.setAttribute("aria-selected", j === searchActive));
+  searchRes.querySelector(`[data-i="${searchActive}"]`)?.scrollIntoView({ block: "nearest" });
+}
+
+$("#add-growing-btn").addEventListener("click", () => {
+  searchQ.value = "";
+  renderSearch("");
+  openDlg(searchDlg);
+  searchQ.focus();
+});
+searchQ.addEventListener("input", () => renderSearch(searchQ.value));
+searchQ.addEventListener("keydown", (e) => {
+  const hits = searchRes._hits || [];
+  if (e.key === "ArrowDown") { e.preventDefault(); setSearchActive(searchActive + 1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); setSearchActive(searchActive - 1); }
+  else if (e.key === "Enter") { e.preventDefault(); addFromHit(hits[searchActive]); }
+});
+searchRes.addEventListener("mousedown", (e) => {
+  const li = e.target.closest("[data-i]"); if (!li) return;
   e.preventDefault();
-  const q = $("#add-crop").value.trim().toLowerCase(); if (!q) return;
-  const c = CAT.crops.find((x) => x.name.toLowerCase() === q || x.slug === q || (x.sci || "").toLowerCase() === q);
-  if (!c) { $("#add-crop").setCustomValidity("Pick a crop from the list"); $("#add-crop").reportValidity(); return; }
-  $("#add-crop").setCustomValidity(""); $("#add-crop").value = "";
-  addGrowing(c.slug);
+  addFromHit((searchRes._hits || [])[+li.dataset.i]);
 });
-$("#add-crop").addEventListener("input", () => $("#add-crop").setCustomValidity(""));
+
+for (const dlg of [searchDlg, editDlg]) {
+  dlg.addEventListener("click", (e) => {
+    if (e.target === dlg || e.target.closest("[data-dialog-close]")) closeDlg(dlg);
+  });
+}
 
 // import / clear
 $("#import-file").addEventListener("change", async (e) => {
@@ -107,10 +255,35 @@ function icsClick() {
   if (!n) { $("#import-msg").textContent = ""; alert("Add crops to “What I'm growing” and save a location first – the calendar uses your region's guides."); return; }
   downloadICS();
 }
-$("#ics-btn").addEventListener("click", icsClick);
+$("#ics-btn")?.addEventListener("click", icsClick);
 document.addEventListener("openfarm:profile", render);
+document.addEventListener("openfarm:location", render);
 render();
 
-$("#csv-btn")?.addEventListener("click", exportCSV);
-$("#md-btn")?.addEventListener("click", exportMarkdown);
-$("#ics-btn-2")?.addEventListener("click", icsClick);
+(function exportMenu() {
+  const btn = $("#export-btn"), menu = $("#export-menu");
+  if (!btn || !menu) return;
+  const items = () => [...menu.querySelectorAll("[role=menuitem]")];
+  const close = () => { menu.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+  const open = () => { menu.hidden = false; btn.setAttribute("aria-expanded", "true"); items()[0]?.focus(); };
+  btn.addEventListener("click", () => (menu.hidden ? open() : close()));
+  btn.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+  });
+  menu.addEventListener("keydown", (e) => {
+    const list = items(); const i = list.indexOf(document.activeElement);
+    if (e.key === "Escape") { e.preventDefault(); close(); btn.focus(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); list[(i - 1 + list.length) % list.length]?.focus(); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); list[(i + 1) % list.length]?.focus(); }
+    else if (e.key === "Tab") close();
+  });
+  menu.addEventListener("click", (e) => {
+    const it = e.target.closest("[role=menuitem]"); if (!it) return;
+    close();
+    if (it.dataset.export === "json") exportProfile();
+    else if (it.dataset.export === "csv") exportCSV();
+    else if (it.dataset.export === "ics") icsClick();
+    else if (it.dataset.export === "md") exportMarkdown();
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest("[data-export-drop]")) close(); });
+})();

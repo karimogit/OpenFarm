@@ -20,5 +20,6 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+tools: [pruning-shears, spade, loppers, pruning-saw, pole-pruner]
 ---
 A cherry is the fruit of many plants of the genus Prunus, and is a fleshy drupe. Commercial cherries are obtained from cultivars of several species, such as the sweet Prunus avium and the sour Prunus cerasus.

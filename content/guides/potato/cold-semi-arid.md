@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: cold-semi-arid
-title: Potatoes in cold semi-arid climates (Colorado Front Range and similar high plains)
+title: Potato in cold semi-arid steppe climates
 koppen: [BSk, BWk]
 hemisphere: north
 reference_location: Colorado Front Range, USA

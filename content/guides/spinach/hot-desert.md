@@ -1,7 +1,7 @@
 ---
 crop: spinach
 region: hot-desert
-title: "Spinach in the low desert (Phoenix, Arizona)"
+title: Spinach in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

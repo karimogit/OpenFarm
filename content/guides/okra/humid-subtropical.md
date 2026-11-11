@@ -1,7 +1,7 @@
 ---
 crop: okra
 region: humid-subtropical
-title: "Okra in the South Carolina coast"
+title: Okra in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

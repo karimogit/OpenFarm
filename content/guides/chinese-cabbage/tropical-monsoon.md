@@ -1,7 +1,7 @@
 ---
 crop: chinese-cabbage
 region: tropical-monsoon
-title: "Chinese Cabbage in South Florida"
+title: Chinese Cabbage in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

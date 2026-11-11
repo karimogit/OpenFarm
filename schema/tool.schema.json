@@ -71,6 +71,17 @@
       "enum": [
         "CC-BY-SA-4.0"
       ]
+    },
+    "general": {
+      "type": "boolean",
+      "description": "If true, the tool page says it is used for most crops, plus any tasks listed."
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key jobs this general tool is used for, shown on the tool page."
     }
   }
 }

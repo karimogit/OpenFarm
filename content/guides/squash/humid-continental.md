@@ -1,7 +1,7 @@
 ---
 crop: squash
 region: humid-continental
-title: "Squash in central Iowa"
+title: Squash in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

@@ -8,7 +8,7 @@ permalink: "/problems/{{ p.slug }}/"
 eleventyComputed:
   title: "{{ p.name }}"
 ---
-<p class="crumbs"><a href="{{ '/problems/' | url }}">Pests &amp; diseases</a> /</p>
+{% set crumbs = [{href: "/problems/", label: "Pests & diseases"}, {label: p.name, current: true}] %}{% include "crumbs.njk" %}
 <article data-pagefind-body>
   <h1>{{ p.name }} {% if p.scientific_name %}<em class="sci">{{ p.scientific_name }}</em>{% endif %}</h1>
   <p class="sci-line">{{ p.kind | capitalize }}{% if p.caused_by %} · {{ p.caused_by }}{% endif %}</p>

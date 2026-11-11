@@ -1,7 +1,7 @@
 ---
 crop: collard-greens
 region: tropical-monsoon
-title: "Collard Greens in South Florida"
+title: Collard Greens in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

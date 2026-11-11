@@ -80,17 +80,17 @@ region** (each region lists its `similar` regions in order), clearly labelled
 | `/crops/<crop>/` | `/crops/<crop>.json` |
 | `/crops/<crop>/varieties/<variety>/` | (inside the crop JSON) |
 | `/regions/<region>/` | `/regions/<region>.json` |
-| `/problems/<problem>/`, `/seeds/`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
+| `/problems/<problem>/`, `/crops/#seed-sources`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
 
 ## Confidence
 
-Every guide has a `confidence` of `high`, `medium` or `low`, shown on the guide page next to its sources:
+Every guide has a `confidence` of `high`, `medium` or `low` in its frontmatter (also in the JSON API). This is for maintainers and is not shown on the public guide pages:
 
 - **high** – at least two sources from *different publishers* agree, at least one written for a place inside the guide's Köppen classes (the `reference_location`), and `last_reviewed` is within the last three years.
 - **medium** – at least one regional source (extension service, national horticultural society, government or research body writing for a place in this climate), but not enough for high.
 - **low** – timing adapted from a source for a different or broader climate, or a single general (non-regional) source.
 
-`npm run validate` enforces the mechanical part: `high` fails with fewer than two distinct publishers or a review older than three years. Whether a source is regional is checked in review. Confidence is not shown on cards or overviews.
+`npm run validate` enforces the mechanical part: `high` fails with fewer than two distinct publishers or a review older than three years. Whether a source is regional is checked in review. Confidence is not shown on the public site (cards, overviews or guide pages).
 
 ## Hardiness zones
 
@@ -106,11 +106,11 @@ filled by `scripts/fetch_hardiness.py`, which only accepts a page whose heading 
 Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (favourites and growing list with notes), **.ics** (sow/plant/harvest reminders) and **Markdown** (a readable garden notebook). See also the in-site [Help](https://karimogit.github.io/OpenFarm/help/) page.
 
 
-- **Local profile, no account.** Your location, favourites (♡ on crops, varieties and guides) and "What I'm
+- **Local profile, no account.** Your location, favourites (the heart on crops, varieties and guides) and "What I'm
   growing" list (with sow dates and notes) are stored only in your browser's `localStorage`
-  (key `openfarm.profile`, versioned JSON). Nothing is sent to a server. The profile page can export it as a JSON
-  file, import it again (the shape is validated) and clear it.
-- **Reminders (🔔).** Worked out in the browser from your growing list, your climate region's calendar and the
+  (key `openfarm.profile`, versioned JSON). Nothing is sent to a server. Changes autosave immediately (notes after a short pause), with a brief “Saved” notice, and stay in sync across open tabs. The profile page can export it (JSON, CSV, calendar, Markdown),
+  import a JSON backup (the shape is validated) and clear it. “What I'm growing” is a card list; Add opens a crop/variety search, and a card opens a dialog to edit variety, dates, bed, quantity, status and notes.
+- **Reminders.** Worked out in the browser from your growing list, your climate region's calendar and the
   Open-Meteo forecast: "Sow tomatoes indoors this month", "Frost forecast Thursday", "Dry week ahead – water …".
   You can opt in to browser notifications with a click (never asked on page load).
 - **Limits.** OpenFarm is a static site with no push server, so reminders and notifications only appear while
@@ -185,8 +185,8 @@ this restart:
 - **Climate-based.** Guides are keyed to Köppen-Geiger classes and hemisphere, not
   just USDA zones, so the same crop gets different calendars in Utrecht, Umeå, Seville
   and Bangkok.
-- **Sourced and honest.** Every guide links real sources and states its confidence,
-  so readers can tell well-tested advice from a first draft.
+- **Sourced and honest.** Every guide links real sources. Maintainers record a confidence
+  rating in the file (and JSON API) so weak guides can be found and improved.
 - **Tiny and cheap to run.** A static site on free hosting – nothing to keep alive,
   no servers to pay for.
 - **AI-assisted tooling, human-reviewed content.** Modern tools make it fast to draft
@@ -273,8 +273,11 @@ Node 20+. The climate assets in `site/assets/` are committed; rebuild them with
 - **Photos:** [Wikimedia Commons](https://commons.wikimedia.org/) – each photo shows its author and
   license (CC0, public domain, CC BY or CC BY-SA only); details in `data/images.json`.
 - **Weather:** [Open-Meteo.com](https://open-meteo.com/), CC BY 4.0 – fetched in the browser, no key.
-- **Map tiles and place search:** © [OpenStreetMap](https://www.openstreetmap.org/copyright)
+- **Map tiles and Nominatim fallback:** © [OpenStreetMap](https://www.openstreetmap.org/copyright)
   contributors, via the OSM tile server and Nominatim (used within their usage policies).
+- **Offline place search:** [GeoNames](https://www.geonames.org/) gazetteer (`cities15000`), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Built by `npm run places` into `data/places.json`.
+- **Interface icons:** [Lucide](https://lucide.dev/), ISC License.
+- **Country flags:** [flag-icons](https://github.com/lipis/flag-icons) by Panayiotis Lipiridis, MIT License.
 - **Leaflet:** BSD-2-Clause. **Pagefind:** MIT.
 
 Advice in the guides is general. Always check local conditions and local advice. Imported crop data

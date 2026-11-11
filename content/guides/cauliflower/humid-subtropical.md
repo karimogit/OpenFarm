@@ -1,7 +1,7 @@
 ---
 crop: cauliflower
 region: humid-subtropical
-title: "Cauliflower in the South Carolina coast"
+title: Cauliflower in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

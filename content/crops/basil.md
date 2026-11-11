@@ -29,5 +29,6 @@ hardiness:
     - title: "Ocimum basilicum Play pronunciation \u2013 Plant Toolbox"
       publisher: NC State Extension
       url: https://plants.ces.ncsu.edu/plants/ocimum-basilicum/
+tools: [seed-trays, watering-can, harvest-knife, soil-thermometer]
 ---
 

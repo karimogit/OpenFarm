@@ -33,5 +33,7 @@ seed_saving:
   cross_note: "Crosses with all Brassica oleracea crops (cabbage, kale, broccoli, cauliflower, kohlrabi, collards\u2026)."
   sources:
     - seed-matters-chart
+tools: [transplanter, harvest-knife]
+
 ---
 Collards are a loose-leafed cultivar of Brassica oleracea. They are members of the Acephala Group of the species, which includes kale and spring greens. Collards have big, thick, slightly bitter leaves that are high in vitamins and minerals. They are a staple of Southern Cuisine and can be eaten boiled, sautéed, baked, or raw.

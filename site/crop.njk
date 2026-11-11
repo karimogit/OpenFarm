@@ -10,12 +10,14 @@ eleventyComputed:
   description: "{{ crop.name }}{% if crop.scientific_name %} ({{ crop.scientific_name }}){% endif %}: general growing facts, varieties and climate-region guides."
   jsonUrl: "/crops/{{ crop.slug }}.json"
 ---
-<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/type/' + crop.type + '/') | url }}">{{ db.typeLabels[crop.type] }}</a> /</p>
+{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/type/" + crop.type + "/", label: db.typeLabels[crop.type]}, {label: crop.name, current: true}] %}{% include "crumbs.njk" %}
 <div class="layout">
   <article class="col-main" data-pagefind-body>
     <div class="title-row"><h1>{{ crop.name }} {% if crop.scientific_name %}<em class="sci">{{ crop.scientific_name }}</em>{% endif %}</h1>
-      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="crop:{{ crop.slug }}" data-label aria-pressed="false">♡</button>
+      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="crop:{{ crop.slug }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button>
       <button type="button" class="grow" data-grow="{{ crop.slug }}">＋ I'm growing this</button></span></div>
+    <p class="your-climate-line" data-your-climate-line hidden></p>
+    {% if crop.hardiness %}<p class="hz-range"><strong>Hardiness:</strong> USDA zones {{ crop.hardiness.min }}–{{ crop.hardiness.max }}{% if crop.lifecycle == "annual" %} <span class="small muted">(as a perennial; usually grown as an annual)</span>{% endif %}</p>{% endif %}
     <p class="sci-line">{% if crop.family %}{{ crop.family }}{% endif %}{% if crop.lifecycle %} · {{ crop.lifecycle | label }}{% endif %}{% if crop.aliases %} · also called {{ crop.aliases | join(", ") }}{% endif %}
       {% if crop.origin == "imported" %} · {% set editFile = crop.file %}{% include "unreviewed.njk" %}{% endif %}</p>
     {% set img = crop.image %}{% set alt = crop.name %}{% set inherited = false %}{% include "image.njk" %}
@@ -75,6 +77,7 @@ eleventyComputed:
   </article>
 
   <aside class="col-side">
+    {% include "your-climate.njk" %}
     {% set hz = crop.hardiness %}{% set annual = crop.lifecycle == "annual" %}{% include "hardiness.njk" %}
     <section class="side-card" id="facts">
       <h3>Quick facts</h3>
@@ -116,6 +119,5 @@ eleventyComputed:
     </section>
     {% endif %}
     {% include "weather.njk" %}
-    {% include "seed-sources.njk" %}
   </aside>
 </div>

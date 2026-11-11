@@ -1,7 +1,7 @@
 ---
 crop: sweet-potato
 region: humid-subtropical
-title: "Sweet Potato in the South Carolina coast"
+title: Sweet Potato in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

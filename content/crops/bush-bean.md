@@ -35,7 +35,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
-tools: [hoe]
+tools: [hoe, wheel-hoe, garden-line, stirrup-hoe, soil-thermometer]
 ---
 
 Bush beans are compact forms of the common bean grown for their young pods (green, yellow "wax"

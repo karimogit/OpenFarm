@@ -1,7 +1,7 @@
 ---
 crop: lettuce
 region: hot-desert
-title: "Lettuce in the low desert (Phoenix, Arizona)"
+title: Lettuce in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

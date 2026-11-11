@@ -1,0 +1,2 @@
+{# Expects `places` (array of {name, country?, note?}) and optional `lead` (default "Common in:"). Flags only next to places, never on the region name. #}
+{% if places and places.length %}<p class="places-line small muted">{% if lead %}{{ lead }} {% else %}Common in: {% endif %}{% for p in places %}{% set cc = p.country %}{% include "flag.njk" %}{{ p.name }}{% if p.note %} ({{ p.note }}){% endif %}{% if not loop.last %}<span class="place-sep">,</span> {% endif %}{% endfor %}</p>{% endif %}

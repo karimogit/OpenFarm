@@ -1,7 +1,7 @@
 ---
 crop: eggplant
 region: humid-subtropical
-title: "Eggplant in the South Carolina coast"
+title: Eggplant in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

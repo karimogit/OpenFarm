@@ -1,7 +1,7 @@
 ---
 crop: sweet-potato
 region: tropical-monsoon
-title: "Sweet Potato in South Florida"
+title: Sweet Potato in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

@@ -5,8 +5,12 @@ koppen: [BSh]
 color: "#f5a500"
 order: 6
 similar: [hot-desert, tropical-savanna, mediterranean]
-examples: Niamey, Karachi (edge), Monterrey, Hyderabad
-commons_file: "ASC Leiden - F. van der Kraaij Collection - 07 - 007 - Épis de sorgho dans un champ - Mossi Plateau, Plateau-Central, Burkina Faso, 1982.tif"
+examples:
+  - {name: Niamey, country: NE}
+  - {name: Karachi, country: PK, note: edge}
+  - {name: Monterrey, country: MX}
+  - {name: Hyderabad, country: IN}
+commons_file: "Pearl millet in summer.jpg"
 ---
 
 Dry and hot, with a short rainy season. Somewhat wetter than a desert, but rain is unreliable and water is the main limit.

@@ -1,7 +1,7 @@
 ---
 crop: parsnip
 region: cold-semi-arid
-title: "Parsnip in the Colorado Front Range"
+title: Parsnip in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

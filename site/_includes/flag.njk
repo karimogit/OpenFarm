@@ -1,0 +1,2 @@
+{# Expects `cc` (ISO 3166-1 alpha-2). Decorative next to a country or place name. flag-icons (MIT), self-hosted. #}
+{% if cc %}<img class="flag" src="{{ ('/assets/flags/' + (cc | lower) + '.svg') | url }}" width="16" height="12" alt="" title="{{ countries[cc] or cc }}" loading="lazy" decoding="async">{% endif %}

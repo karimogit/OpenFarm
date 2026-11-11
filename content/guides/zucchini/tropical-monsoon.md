@@ -1,7 +1,7 @@
 ---
 crop: zucchini
 region: tropical-monsoon
-title: "Zucchini in South Florida"
+title: Zucchini in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

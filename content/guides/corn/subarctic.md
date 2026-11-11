@@ -1,7 +1,7 @@
 ---
 crop: corn
 region: subarctic
-title: "Corn in Interior Alaska"
+title: Corn in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

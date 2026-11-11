@@ -31,7 +31,9 @@
     },
     "title": {
       "type": "string",
-      "minLength": 5
+      "minLength": 5,
+      "pattern": "^[^()]+$",
+      "description": "Use '<Crop> in <region name> climates'. No parentheses or place lists; example places live on the region."
     },
     "koppen": {
       "type": "array",

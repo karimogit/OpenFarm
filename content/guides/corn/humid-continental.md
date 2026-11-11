@@ -1,7 +1,7 @@
 ---
 crop: corn
 region: humid-continental
-title: "Corn in central Iowa"
+title: Corn in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

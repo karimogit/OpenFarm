@@ -1,7 +1,7 @@
 ---
 crop: kale
 region: temperate-oceanic
-title: Kale in mild oceanic climates (Netherlands, UK, Belgium)
+title: Kale in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: Netherlands / UK lowlands

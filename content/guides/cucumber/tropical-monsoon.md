@@ -1,7 +1,7 @@
 ---
 crop: cucumber
 region: tropical-monsoon
-title: "Cucumber in South Florida"
+title: Cucumber in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

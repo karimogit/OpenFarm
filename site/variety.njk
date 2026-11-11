@@ -10,11 +10,13 @@ eleventyComputed:
   description: "{{ v.name }} – a {{ v.cropName | lower }} variety: traits, seeds and suitable climate regions."
 ---
 {% set crop = db.cropBy[v.crop] %}
-<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + crop.slug + '/') | url }}">{{ crop.name }}</a> / <a href="{{ ('/crops/' + crop.slug + '/') | url }}#varieties">Varieties</a> /</p>
+{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + crop.slug + "/", label: crop.name}, {href: "/crops/" + crop.slug + "/#varieties", label: "Varieties"}, {label: v.name, current: true}] %}{% include "crumbs.njk" %}
+<p class="your-climate-line" data-your-climate-line hidden></p>
 <div class="layout">
+
   <article class="col-main" data-pagefind-body>
     <div class="title-row"><h1>{{ v.name }} <small class="muted">{{ crop.name }}</small></h1>
-      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="variety:{{ crop.slug }}/{{ v.slug }}" data-label aria-pressed="false">♡</button>
+      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="variety:{{ crop.slug }}/{{ v.slug }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button>
       <button type="button" class="grow" data-grow="{{ crop.slug }}/{{ v.slug }}">＋ I'm growing this</button></span></div>
     <p class="sci-line">{% if v.scientific_name %}<em>{{ v.scientific_name }}</em>{% elif crop.scientific_name %}<em>{{ crop.scientific_name }}</em> '{{ v.cultivar }}'{% endif %}{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
     {% if v.origin == "imported" %}<p class="sci-line">{% set editFile = v.file %}{% include "unreviewed.njk" %}</p>{% endif %}
@@ -60,6 +62,7 @@ eleventyComputed:
     {% set editFile = v.file %}{% set editLabel = "Edit this variety" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
+    {% include "your-climate.njk" %}
     {% set hz = v.hardiness or crop.hardiness %}{% set annual = crop.lifecycle == "annual" %}{% include "hardiness.njk" %}
     <section class="side-card">
       <h3>Traits</h3>
@@ -84,6 +87,5 @@ eleventyComputed:
       {% if not v.seeds %}<p class="small muted">Variety seed type not recorded; values shown are for the crop.</p>{% endif %}
     </section>
     {% include "weather.njk" %}
-    {% include "seed-sources.njk" %}
   </aside>
 </div>

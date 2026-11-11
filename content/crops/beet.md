@@ -36,6 +36,6 @@ seed_saving:
   cross_note: "Beet and chard are the same species and cross with each other."
   sources:
     - seed-matters-chart
-tools: [hoe]
+tools: [hoe, broadfork, wheel-hoe, garden-line, stirrup-hoe, hand-fork]
 ---
 Typically grown for its round or cylindrical taproot, the leaves of the beet are also edible. Leaves resemble Swiss chard on a smaller scale and are good sautéed. The taproot, or beet, ranges in color from deep red to gold, orange, or white and red striped. The beet has a delicious, earthy flavor with a touch of sweetness to it when roasted.

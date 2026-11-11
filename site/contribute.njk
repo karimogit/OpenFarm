@@ -19,7 +19,7 @@ permalink: /contribute/
 
 <h2>Contribute</h2>
 <p>Every guide is a plain text file on GitHub, so anyone can suggest improvements and every change is tracked.
-  If you can edit a text file, you can contribute – use the "✏️ Edit this …" button at the bottom of any page.</p>
+  If you can edit a text file, you can contribute – use the “Edit this …” button at the bottom of any page.</p>
 <ol>
   <li>Find your climate region and the crop you know how to grow.</li>
   <li>Copy <a href="{{ site.repo }}/blob/main/content/TEMPLATE.md"><code>content/TEMPLATE.md</code></a> to <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>.</li>
@@ -32,9 +32,25 @@ permalink: /contribute/
   <li><strong>Crop</strong> (<code>content/crops/&lt;crop&gt;.md</code>) – facts that are true everywhere: type, family, sun, size, how the species is pollinated and saved, perennial facts like chill hours and rootstocks.</li>
   <li><strong>Variety</strong> (<code>content/varieties/&lt;crop&gt;/&lt;variety&gt;.md</code>) – a cultivar: days to maturity, growth habit, tolerances, disease resistance, and whether its seed is open-pollinated or F1 hybrid.</li>
   <li><strong>Guide</strong> (<code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems.</li>
-  <li><strong>Shared files</strong> – <a href="{{ '/regions/' | url }}">climate regions</a>, <a href="{{ '/problems/' | url }}">pests &amp; diseases</a>, companion pairs (with evidence level) and <a href="{{ '/seeds/' | url }}">seed sources</a> are written once and linked from every crop and guide that needs them.</li>
+  <li><strong>Shared files</strong> – <a href="{{ '/regions/' | url }}">climate regions</a>, <a href="{{ '/problems/' | url }}">pests &amp; diseases</a>, companion pairs (with evidence level) and <a href="{{ '/crops/' | url }}#seed-sources">seed sources</a> are written once and listed on the crops page.</li>
 </ul>
 <p>Machine-readable: every crop has a JSON file (e.g. <a href="{{ '/crops/tomato.json' | url }}">/crops/tomato.json</a>), every region too, and there is a full dump at <a href="{{ '/api/all.json' | url }}">/api/all.json</a>.</p>
+
+
+<h2 id="credits">Data and credits</h2>
+<p>OpenFarm stands on other open work. Required attributions:</p>
+<ul>
+  <li>Climate regions: Köppen-Geiger map by <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a>, CC BY 4.0</li>
+  <li>Photos: <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> – author and license shown on each picture</li>
+  <li>Scientific names and families: <a href="https://www.wikidata.org/">Wikidata</a>, CC0</li>
+  <li>Maps and Nominatim fallback: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="https://nominatim.org/">Nominatim</a></li>
+  <li>Offline place search: <a href="https://www.geonames.org/">GeoNames</a>, CC BY 4.0</li>
+  <li>Weather: <a href="https://open-meteo.com/">Open-Meteo.com</a>, CC BY 4.0</li>
+  <li>Map library: <a href="https://leafletjs.com/">Leaflet</a> (BSD) · Search: <a href="https://pagefind.app/">Pagefind</a> (MIT)</li>
+  <li>Interface icons: <a href="https://lucide.dev/">Lucide</a> (ISC)</li>
+  <li>Country flags: <a href="https://github.com/lipis/flag-icons">flag-icons</a> by Panayiotis Lipiridis (MIT)</li>
+</ul>
+<p>See also the <a href="{{ '/crops/' | url }}#seed-sources">seed sources</a> list and <a href="{{ site.repo }}/blob/main/README.md">README</a>.</p>
 
 <h2>Licenses and credits</h2>
 <p>Code is MIT. Guide content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> – © {{ site.attribution }}.

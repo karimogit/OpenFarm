@@ -1,7 +1,7 @@
 ---
 crop: swiss-chard
 region: hot-desert
-title: "Swiss Chard in the low desert (Phoenix, Arizona)"
+title: Swiss Chard in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

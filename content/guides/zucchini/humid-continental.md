@@ -1,7 +1,7 @@
 ---
 crop: zucchini
 region: humid-continental
-title: "Zucchini in central Iowa"
+title: Zucchini in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

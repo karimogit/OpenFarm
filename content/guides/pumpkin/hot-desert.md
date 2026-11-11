@@ -1,7 +1,7 @@
 ---
 crop: pumpkin
 region: hot-desert
-title: "Pumpkin in the low desert (Phoenix, Arizona)"
+title: Pumpkin in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

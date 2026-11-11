@@ -1,7 +1,7 @@
 ---
 crop: celery
 region: subarctic
-title: "Celery in Interior Alaska"
+title: Celery in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

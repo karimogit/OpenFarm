@@ -1,7 +1,7 @@
 ---
 crop: pea
 region: humid-subtropical
-title: "Pea in the South Carolina coast"
+title: Pea in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

@@ -1,7 +1,7 @@
 ---
 crop: kohlrabi
 region: tropical-monsoon
-title: "Kohlrabi in South Florida"
+title: Kohlrabi in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"
