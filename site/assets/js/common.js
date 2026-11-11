@@ -900,6 +900,65 @@ async function renderYourClimate(loc) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
 })();
 
+// ---- Header search toggle + mobile hamburger ----
+(function headerChrome() {
+  const header = document.querySelector("header.top");
+  if (!header) return;
+  const navBtn = header.querySelector("[data-nav-toggle]");
+  const searchBtn = header.querySelector("[data-search-toggle]");
+  const form = header.querySelector(".top-search");
+  const input = form?.querySelector("input");
+  const mq = () => matchMedia("(max-width: 860px)").matches;
+
+  function setNav(open) {
+    header.classList.toggle("is-nav-open", open);
+    navBtn?.setAttribute("aria-expanded", open ? "true" : "false");
+    const lab = navBtn?.querySelector(".visually-hidden");
+    if (lab) lab.textContent = open ? "Close menu" : "Menu";
+    if (navBtn) navBtn.title = open ? "Close menu" : "Menu";
+  }
+  function setSearch(open) {
+    header.classList.toggle("is-search-open", open);
+    searchBtn?.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) {
+      requestAnimationFrame(() => input?.focus());
+    } else {
+      form?.querySelector(".suggest")?.setAttribute("hidden", "");
+    }
+  }
+  function closeAllChrome() {
+    const wasSearch = header.classList.contains("is-search-open");
+    setNav(false);
+    setSearch(false);
+    return wasSearch;
+  }
+
+  navBtn?.addEventListener("click", () => {
+    const open = !header.classList.contains("is-nav-open");
+    setNav(open);
+  });
+  searchBtn?.addEventListener("click", () => {
+    const open = !header.classList.contains("is-search-open");
+    setSearch(open);
+    if (!open) searchBtn.focus();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (!header.classList.contains("is-nav-open") && !header.classList.contains("is-search-open")) return;
+    const wasSearch = closeAllChrome();
+    if (wasSearch) searchBtn?.focus();
+    else navBtn?.focus();
+  });
+  document.addEventListener("click", (e) => {
+    if (!mq()) return;
+    if (e.target.closest("header.top")) return;
+    closeAllChrome();
+  });
+  matchMedia("(max-width: 860px)").addEventListener("change", (e) => {
+    if (!e.matches) closeAllChrome();
+  });
+})();
+
 // ---- Offline gazetteer (GeoNames cities15000, CC BY 4.0), lazy-loaded ----
 let placesData = null, placesLoading = null;
 const normPlace = (s) => String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();

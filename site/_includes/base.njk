@@ -11,13 +11,11 @@
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
   <header class="top">
+    <div class="top-inner">
     <a class="brand" href="{{ '/' | url }}">{% set icon = "sprout" %}{% include "icon.njk" %} <strong>OpenFarm</strong></a>
-    <form class="top-search" action="{{ '/search/' | url }}" role="search">
-      <input type="search" name="q" placeholder="Search crops, guides, regions…" aria-label="Search OpenFarm">
-    </form>
     {%- set u = page.url or "" -%}
     {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
-    <nav class="main-nav" aria-label="Main">
+    <nav class="main-nav" id="main-nav" aria-label="Main">
       <a href="{{ '/' | url }}#where"{% if sect == "home" %} aria-current="page"{% endif %}>Find guides</a>
 
       <div class="nav-drop" data-nav-drop>
@@ -46,12 +44,24 @@
       <a href="{{ '/help/' | url }}"{% if sect == "help" %} aria-current="page"{% endif %}>Help</a>
       <a href="{{ '/contribute/' | url }}"{% if sect == "about" %} aria-current="page"{% endif %}>About</a>
     </nav>
-    <div class="top-icons">
-      <button type="button" class="icon-btn bell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-controls="bell-panel" title="Reminders">
-        {% set icon = "bell" %}{% include "icon.njk" %}<span class="visually-hidden">Reminders</span><span class="count" data-bell-count hidden></span></button>
-      <div id="bell-panel" class="bell-panel" role="dialog" aria-label="Reminders" hidden></div>
-      <a class="icon-btn profile-icon" href="{{ '/profile/' | url }}"{% if sect == "profile" %} aria-current="page"{% endif %} title="My Profile">
-        {% set icon = "user" %}{% include "icon.njk" %}<span class="visually-hidden">My Profile</span><span class="dot" data-profile-dot hidden></span></a>
+    <div class="top-end">
+    <form class="top-search" id="top-search" action="{{ '/search/' | url }}" role="search">
+      <input type="search" name="q" placeholder="Search crops, guides, regions…" aria-label="Search OpenFarm">
+    </form>
+    <div class="top-tools">
+      <button type="button" class="icon-btn search-toggle" data-search-toggle aria-controls="top-search" aria-expanded="false" title="Search">
+        {% set icon = "search" %}{% include "icon.njk" %}<span class="visually-hidden">Search</span></button>
+      <div class="top-icons">
+        <button type="button" class="icon-btn bell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-controls="bell-panel" title="Reminders">
+          {% set icon = "bell" %}{% include "icon.njk" %}<span class="visually-hidden">Reminders</span><span class="count" data-bell-count hidden></span></button>
+        <div id="bell-panel" class="bell-panel" role="dialog" aria-label="Reminders" hidden></div>
+        <a class="icon-btn profile-icon" href="{{ '/profile/' | url }}"{% if sect == "profile" %} aria-current="page"{% endif %} title="My Profile">
+          {% set icon = "user" %}{% include "icon.njk" %}<span class="visually-hidden">My Profile</span><span class="dot" data-profile-dot hidden></span></a>
+      </div>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-controls="main-nav" aria-expanded="false" title="Menu">
+        {% set icon = "menu" %}{% include "icon.njk" %}<span class="visually-hidden">Menu</span></button>
+    </div>
+    </div>
     </div>
   </header>
   <main>
