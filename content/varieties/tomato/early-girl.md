@@ -14,7 +14,7 @@ regions_note: >-
   performers along Colorado's Front Range; Clemson HGIC lists it for South Carolina.
 sources: [clemson-tomato, csu-tomatoes]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

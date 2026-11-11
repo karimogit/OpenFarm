@@ -19,7 +19,7 @@ seeds:
 history: Originated in the Bahamas in the early 1950s.
 sources: [ufifas-low-chill-apples, ucanr-low-chill-apples]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

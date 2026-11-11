@@ -13,7 +13,7 @@ suitable_regions: [humid-subtropical]
 regions_note: Listed by Clemson HGIC for South Carolina gardens.
 sources: [clemson-tomato]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

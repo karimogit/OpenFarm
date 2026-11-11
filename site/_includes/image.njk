@@ -1,7 +1,7 @@
 {# expects `img` (image record or null), `alt` and optional `inherited` #}
 {% if img %}
 <figure class="photo">
-  <img src="{{ img.src }}" alt="{{ alt }}" loading="lazy" width="{{ img.width }}" height="{{ img.height }}">
+  <div class="frame"><img src="{{ img.src }}" alt="{{ alt }}" loading="lazy" width="{{ img.width }}" height="{{ img.height }}"></div>
   <figcaption>{% if inherited %}Crop photo (no variety photo yet). {% endif %}Photo: {{ img.author | truncate(60) }} ·
     {% if img.license_url %}<a href="{{ img.license_url }}">{{ img.license }}</a>{% else %}{{ img.license }}{% endif %} ·
     <a href="{{ img.source }}">Wikimedia Commons</a></figcaption>

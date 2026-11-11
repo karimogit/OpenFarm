@@ -8,7 +8,7 @@ affects: [tomato, potato]
 conditions: Warm, wet weather; spreads on wind-blown spores, mostly from other gardens and potato crops.
 sources: [rhs-tomato-blight, rhs-potato-blight]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

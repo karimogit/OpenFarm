@@ -14,7 +14,7 @@ permalink: /crops/
   <ul class="crop-grid">
   {% for c in t.crops %}
     <li data-name="{{ c.name | lower }} {{ c.scientific_name | lower }}"><a href="{{ ('/crops/' + c.slug + '/') | url }}">
-      {% if c.image %}<span class="thumb" style="background-image:url('{{ c.image.src | cssUrl }}')"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
+      {% if c.image %}<span class="thumb"><img src="{{ c.image.thumb or c.image.src }}" alt="" loading="lazy"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
       <strong>{{ c.name }}</strong>{% if c.scientific_name %}<em>{{ c.scientific_name }}</em>{% endif %}
       <span>{% if c.guides.length %}<span class="badge guide">{{ c.guides.length }} guide{% if c.guides.length > 1 %}s{% endif %}</span>{% endif %}
         {% if c.varieties.length %}<span class="badge">{{ c.varieties.length }} variet{% if c.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}

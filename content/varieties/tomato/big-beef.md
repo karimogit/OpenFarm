@@ -12,7 +12,7 @@ suitable_regions: [cold-semi-arid, humid-subtropical]
 regions_note: One of CSU Extension's four consistent performers for Colorado; listed by Clemson HGIC for South Carolina.
 sources: [clemson-tomato, csu-tomatoes]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

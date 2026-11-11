@@ -8,7 +8,7 @@ affects: [strawberry]
 conditions: Prolonged cool, wet weather during flowering; flowers wet for more than 12 hours.
 sources: [umn-strawberries, rhs-grey-mould]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

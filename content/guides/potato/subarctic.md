@@ -28,7 +28,7 @@ sources:
     publisher: Jordbruksverket (Swedish Board of Agriculture)
     url: https://www2.jordbruksverket.se/webdav/files/SJV/trycksaker/Pdf_ovrigt/ovr280v2.pdf
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

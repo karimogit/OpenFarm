@@ -26,7 +26,7 @@ sources:
     publisher: UC Master Gardeners, University of California ANR
     url: https://www.ucanr.edu/sites/default/files/2026-04/Vegetable-Planting-Summary.pdf
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

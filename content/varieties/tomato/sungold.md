@@ -19,7 +19,7 @@ seeds:
   notes: An F1 hybrid – saved seed will not grow true to type. Buy fresh seed each year.
 sources: [fedco-sungold, clemson-tomato]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

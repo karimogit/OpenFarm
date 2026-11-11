@@ -14,7 +14,7 @@ suit your region and seed sources near you. No accounts, no backend, no tracking
 
 | | | |
 |---|---|---|
-| ![Home – Ermelo](docs/screenshots/v2-home-ermelo.png) | ![Crop page – no guide for your region yet](docs/screenshots/v2-crop-strawberry-bangkok.png) | ![Mobile](docs/screenshots/v2-mobile-umea.png) |
+| ![Home – Utrecht](docs/screenshots/v2-home-utrecht.png) | ![Crop page – no guide for your region yet](docs/screenshots/v2-crop-strawberry-bangkok.png) | ![Mobile](docs/screenshots/v2-mobile-umea.png) |
 
 ## Why
 
@@ -142,7 +142,7 @@ this restart:
   with full history, attribution and easy forking. Anyone can mirror or reuse the
   whole dataset with `git clone`.
 - **Climate-based.** Guides are keyed to Köppen-Geiger classes and hemisphere, not
-  just USDA zones, so the same crop gets different calendars in Ermelo, Umeå, Seville
+  just USDA zones, so the same crop gets different calendars in Utrecht, Umeå, Seville
   and Bangkok.
 - **Sourced and honest.** Every guide links real sources and states its confidence,
   so readers can tell well-tested advice from a first draft.

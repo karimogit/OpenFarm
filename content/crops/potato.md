@@ -27,7 +27,7 @@ sources:
   - rhs-potato-blight
   - openfarm-rescue
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

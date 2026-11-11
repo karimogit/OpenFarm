@@ -27,7 +27,7 @@ rescue:
   captured: '20191118'
 sources: [clemson-tomato, umd-seed-saving, openfarm-rescue]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 
