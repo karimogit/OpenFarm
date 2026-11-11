@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karimogit.github.io/OpenFarm/schema/seed-source.schema.json",
+  "title": "OpenFarm seed source (content/seed-sources/<source>.md)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "name",
+    "url",
+    "kind",
+    "countries"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "kind": {
+      "enum": [
+        "seed-library",
+        "seed-network",
+        "seed-company",
+        "gene-bank"
+      ]
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}$"
+      },
+      "minItems": 1,
+      "description": "ISO 3166-1 alpha-2 codes of countries served."
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "description": "Optional climate regions the collection specialises in."
+    },
+    "focus": {
+      "type": "string"
+    },
+    "crops": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    }
+  }
+}

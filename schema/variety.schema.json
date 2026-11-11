@@ -1,0 +1,374 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karimogit.github.io/OpenFarm/schema/variety.schema.json",
+  "title": "OpenFarm variety (content/varieties/<crop>/<variety>.md)",
+  "description": "A cultivar or cultivar group of a crop: its traits and its botanical seed facts. Fields left out inherit from the crop.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "crop",
+    "slug",
+    "name",
+    "origin",
+    "sources",
+    "license"
+  ],
+  "properties": {
+    "crop": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scientific_name": {
+      "type": "string",
+      "description": "Only when it differs from the crop (e.g. Red Russian kale is Brassica napus)."
+    },
+    "wikipedia": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "description": "Market/use class, e.g. cherry, beefsteak, paste, June-bearing, dessert."
+    },
+    "fruit": {
+      "type": "string"
+    },
+    "history": {
+      "type": "string"
+    },
+    "growth_habit": {
+      "enum": [
+        "determinate",
+        "semi-determinate",
+        "indeterminate",
+        "bush",
+        "pole",
+        "trailing",
+        "upright"
+      ]
+    },
+    "days_to_maturity": {
+      "oneOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      ]
+    },
+    "days_from": {
+      "enum": [
+        "sowing",
+        "transplant",
+        "planting"
+      ]
+    },
+    "cold_tolerance": {
+      "enum": [
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "cold_note": {
+      "type": "string"
+    },
+    "heat_tolerance": {
+      "enum": [
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "heat_note": {
+      "type": "string"
+    },
+    "disease_resistance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disease_note": {
+      "type": "string"
+    },
+    "chill_hours": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "pollination_partners": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    },
+    "pollination_note": {
+      "type": "string"
+    },
+    "harvest_note": {
+      "type": "string"
+    },
+    "suitable_regions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    },
+    "regions_note": {
+      "type": "string"
+    },
+    "seeds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "open-pollinated",
+            "F1-hybrid",
+            "clonal",
+            "grafted",
+            "unknown"
+          ]
+        },
+        "heirloom": {
+          "type": "boolean"
+        },
+        "true_to_type": {
+          "type": "boolean"
+        },
+        "saving_difficulty": {
+          "enum": [
+            "easy",
+            "moderate",
+            "hard",
+            "not-recommended",
+            "not-applicable"
+          ]
+        },
+        "viability_years": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "isolation_m": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "sun": {
+      "enum": [
+        "full",
+        "full-partial",
+        "partial",
+        "shade"
+      ]
+    },
+    "sowing_method": {
+      "type": "string"
+    },
+    "size": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "spread_cm": {
+          "type": "number"
+        },
+        "row_spacing_cm": {
+          "type": "number"
+        },
+        "height_cm": {
+          "type": "number"
+        }
+      }
+    },
+    "origin": {
+      "enum": [
+        "curated",
+        "imported"
+      ]
+    },
+    "imported": {
+      "type": "string",
+      "format": "date"
+    },
+    "note": {
+      "type": "string"
+    },
+    "rescue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slug",
+        "wayback_url"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "wayback_url": {
+          "type": "string",
+          "pattern": "^https://web\\.archive\\.org/"
+        },
+        "captured": {
+          "type": "string"
+        },
+        "taxon": {
+          "type": "string"
+        },
+        "companions_unverified": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "growing_degree_days_as_recorded": {
+          "type": "number"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Key in content/sources.yaml"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "url"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "publisher": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "license": {
+      "enum": [
+        "CC-BY-SA-4.0",
+        "CC0-1.0"
+      ]
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date"
+    },
+    "commons_file": {
+      "type": "string",
+      "description": "Exact Wikimedia Commons file name to use as the picture (overrides the automatic lookup)."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "curated"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "authors",
+          "last_reviewed"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "imported"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "rescue",
+          "imported"
+        ]
+      }
+    }
+  ]
+}

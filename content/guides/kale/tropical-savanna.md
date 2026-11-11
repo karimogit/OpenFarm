@@ -1,9 +1,6 @@
 ---
 crop: kale
-common_name: Kale
-scientific_name: Brassica oleracea
-family: Brassicaceae
-variant: tropical-wet-dry
+region: tropical-savanna
 title: Kale in tropical savanna climates (dry-season crop)
 koppen: [Aw, Am]
 hemisphere: north
@@ -18,8 +15,6 @@ spacing:
   between_rows_cm: [45, 45]
 sun: full-partial
 water: moderate
-companions:
-  evidence: traditional
 confidence: low
 uncertainty: >-
   From UF/IFAS planting dates for South Florida (September–January). Kale struggles

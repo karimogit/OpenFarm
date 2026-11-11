@@ -1,9 +1,6 @@
 ---
 crop: potato
-common_name: Potato
-scientific_name: Solanum tuberosum
-family: Solanaceae
-variant: temperate-oceanic
+region: temperate-oceanic
 title: Potatoes in mild oceanic climates (Netherlands, UK, Belgium)
 koppen: [Cfb, Cfc]
 hemisphere: north
@@ -17,9 +14,7 @@ spacing:
   between_rows_cm: [60, 75]
 sun: full
 water: moderate
-companions:
-  avoid: [tomato]
-  evidence: extension-advice
+problems: [late-blight]
 confidence: high
 sources:
   - title: "Potatoes: grow your own"

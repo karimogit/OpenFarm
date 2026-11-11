@@ -1,9 +1,6 @@
 ---
 crop: tomato
-common_name: Tomato
-scientific_name: Solanum lycopersicum
-family: Solanaceae
-variant: cold-continental
+region: humid-continental
 title: Tomatoes in cold-winter continental and boreal climates (Sweden, Finland, Minnesota)
 koppen: [Dfb, Dfc, Dfa]
 hemisphere: north
@@ -18,10 +15,7 @@ spacing:
   between_rows_cm: [60, 90]
 sun: full
 water: moderate
-companions:
-  good: [basil]
-  avoid: [potato]
-  evidence: traditional
+problems: [late-blight]
 confidence: medium
 uncertainty: >-
   Calendar is adapted from University of Minnesota guidance (Dfa/Dfb) and general

@@ -1,9 +1,6 @@
 ---
 crop: garlic
-common_name: Garlic
-scientific_name: Allium sativum
-family: Amaryllidaceae
-variant: cold-continental
+region: humid-continental
 title: Garlic in cold-winter climates (Sweden, Finland, Minnesota)
 koppen: [Dfb, Dfc, Dfa]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [30, 75]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: medium
 uncertainty: >-
   Timing rule ("one to two weeks after the first killing frost") is from

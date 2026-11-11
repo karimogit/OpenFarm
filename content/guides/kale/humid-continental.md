@@ -1,9 +1,6 @@
 ---
 crop: kale
-common_name: Kale
-scientific_name: Brassica oleracea
-family: Brassicaceae
-variant: cold-continental
+region: humid-continental
 title: Kale in cold-winter climates (Sweden, Finland, Minnesota)
 koppen: [Dfb, Dfc, Dfa]
 hemisphere: north
@@ -19,8 +16,6 @@ spacing:
   between_rows_cm: [45, 60]
 sun: full-partial
 water: moderate
-companions:
-  evidence: traditional
 confidence: medium
 uncertainty: >-
   Direct-sowing window (mid-April to early July) is from University of Minnesota.

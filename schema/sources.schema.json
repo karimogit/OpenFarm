@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karimogit.github.io/OpenFarm/schema/sources.schema.json",
+  "title": "OpenFarm citation registry (content/sources.yaml)",
+  "type": "object",
+  "propertyNames": {
+    "pattern": "^[a-z0-9-]+$"
+  },
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "title",
+      "url"
+    ],
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "publisher": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      },
+      "license": {
+        "type": "string"
+      },
+      "note": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,9 +1,6 @@
 ---
 crop: bush-bean
-common_name: Bush bean (dwarf French bean)
-scientific_name: Phaseolus vulgaris
-family: Fabaceae
-variant: temperate-oceanic
+region: temperate-oceanic
 title: Dwarf French beans in mild oceanic climates (Netherlands, UK, Belgium)
 koppen: [Cfb, Cfc]
 hemisphere: north
@@ -19,8 +16,6 @@ spacing:
   between_rows_cm: [45, 45]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: high
 sources:
   - title: "French beans: grow your own"

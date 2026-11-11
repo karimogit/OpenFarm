@@ -1,9 +1,6 @@
 ---
 crop: tomato
-common_name: Tomato
-scientific_name: Solanum lycopersicum
-family: Solanaceae
-variant: tropical-wet-dry
+region: tropical-savanna
 title: Tomatoes in tropical savanna and monsoon climates (dry-season crop)
 koppen: [Aw, Am]
 hemisphere: north
@@ -18,10 +15,6 @@ spacing:
   between_rows_cm: [120, 120]
 sun: full
 water: moderate
-companions:
-  good: [basil]
-  avoid: [potato]
-  evidence: traditional
 confidence: low
 uncertainty: >-
   The calendar comes from South Florida (Aw/Am, northern hemisphere), where the

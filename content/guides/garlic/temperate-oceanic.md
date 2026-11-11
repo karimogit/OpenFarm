@@ -1,9 +1,6 @@
 ---
 crop: garlic
-common_name: Garlic
-scientific_name: Allium sativum
-family: Amaryllidaceae
-variant: temperate-oceanic
+region: temperate-oceanic
 title: Garlic in mild oceanic climates (Netherlands, UK, Belgium)
 koppen: [Cfb, Cfc]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [30, 30]
 sun: full
 water: low
-companions:
-  evidence: traditional
 confidence: high
 sources:
   - title: "Garlic: grow your own"

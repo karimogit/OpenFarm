@@ -1,9 +1,6 @@
 ---
 crop: potato
-common_name: Potato
-scientific_name: Solanum tuberosum
-family: Solanaceae
-variant: mediterranean
+region: mediterranean
 title: Potatoes in Mediterranean climates (spring and autumn crops)
 koppen: [Csa, Csb]
 hemisphere: north
@@ -17,9 +14,6 @@ spacing:
   between_rows_cm: [75, 90]
 sun: full
 water: moderate
-companions:
-  avoid: [tomato]
-  evidence: extension-advice
 confidence: medium
 uncertainty: >-
   Dates are from University of California guidance for the interior valleys

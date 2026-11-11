@@ -1,9 +1,6 @@
 ---
 crop: potato
-common_name: Potato
-scientific_name: Solanum tuberosum
-family: Solanaceae
-variant: tropical-wet-dry
+region: tropical-savanna
 title: Potatoes in tropical lowlands (cool dry-season crop)
 koppen: [Aw, Am]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [90, 105]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: low
 uncertainty: >-
   From UF/IFAS planting dates for South Florida (October–January). Potatoes need

@@ -1,9 +1,6 @@
 ---
 crop: potato
-common_name: Potato
-scientific_name: Solanum tuberosum
-family: Solanaceae
-variant: subarctic
+region: subarctic
 title: Potatoes in subarctic climates with short summers (Norrland, northern Finland)
 koppen: [Dfc, Dfd, Dsc]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [50, 65]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: medium
 uncertainty: >-
   Based on Swedish guidance that northern Sweden plants about a week after

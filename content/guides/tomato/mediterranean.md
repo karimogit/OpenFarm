@@ -1,9 +1,6 @@
 ---
 crop: tomato
-common_name: Tomato
-scientific_name: Solanum lycopersicum
-family: Solanaceae
-variant: mediterranean
+region: mediterranean
 title: Tomatoes in hot-summer Mediterranean climates (Spain, Italy, California valleys)
 koppen: [Csa, Csb]
 hemisphere: north
@@ -18,10 +15,7 @@ spacing:
   between_rows_cm: [90, 120]
 sun: full
 water: moderate
-companions:
-  good: [basil]
-  avoid: [potato]
-  evidence: traditional
+problems: [late-blight]
 confidence: medium
 uncertainty: >-
   Dates are from University of California guidance for the interior valleys (Csa).

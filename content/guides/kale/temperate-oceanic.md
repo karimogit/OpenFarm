@@ -1,9 +1,6 @@
 ---
 crop: kale
-common_name: Kale
-scientific_name: Brassica oleracea
-family: Brassicaceae
-variant: temperate-oceanic
+region: temperate-oceanic
 title: Kale in mild oceanic climates (Netherlands, UK, Belgium)
 koppen: [Cfb, Cfc]
 hemisphere: north
@@ -19,8 +16,6 @@ spacing:
   between_rows_cm: [45, 60]
 sun: full-partial
 water: moderate
-companions:
-  evidence: traditional
 confidence: high
 sources:
   - title: "Kale: grow your own"

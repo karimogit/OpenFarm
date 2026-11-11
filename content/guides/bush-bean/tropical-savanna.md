@@ -1,9 +1,6 @@
 ---
 crop: bush-bean
-common_name: Bush bean (dwarf French bean)
-scientific_name: Phaseolus vulgaris
-family: Fabaceae
-variant: tropical-wet-dry
+region: tropical-savanna
 title: Bush beans in tropical savanna and monsoon climates
 koppen: [Aw, Am]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [45, 45]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: low
 uncertainty: >-
   From UF/IFAS planting dates for South Florida (September–April). In other tropical

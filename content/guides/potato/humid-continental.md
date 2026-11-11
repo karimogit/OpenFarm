@@ -1,9 +1,6 @@
 ---
 crop: potato
-common_name: Potato
-scientific_name: Solanum tuberosum
-family: Solanaceae
-variant: cold-continental
+region: humid-continental
 title: Potatoes in cold-winter climates with warm summers (southern and central Sweden)
 koppen: [Dfb, Dfa]
 hemisphere: north
@@ -17,9 +14,7 @@ spacing:
   between_rows_cm: [50, 60]
 sun: full
 water: moderate
-companions:
-  avoid: [tomato]
-  evidence: extension-advice
+problems: [late-blight]
 confidence: high
 sources:
   - title: Integrerat växtskydd – Potatis

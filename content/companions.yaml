@@ -1,0 +1,18 @@
+# Companion-planting relationships, stored once instead of being repeated in every guide.
+# Each entry links two crop slugs. `evidence` says how well supported the claim is:
+#   research          – peer-reviewed trials
+#   extension-advice  – recommended by an extension service / horticultural society
+#   traditional       – garden lore; may be true, but not well tested
+- crops: [tomato, potato]
+  relation: avoid
+  evidence: extension-advice
+  reason: Both get late blight (Phytophthora infestans); keeping them apart limits spread between the crops.
+  sources: [rhs-tomato-blight, rhs-potato-blight]
+- crops: [tomato, basil]
+  relation: good
+  evidence: traditional
+  reason: Classic pairing in gardens and kitchens; benefits are anecdotal.
+- crops: [tomato, african-marigold]
+  relation: good
+  evidence: traditional
+  reason: Often planted together to attract pollinators and deter pests; effects in home gardens are not well established.

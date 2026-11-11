@@ -1,9 +1,6 @@
 ---
 crop: kale
-common_name: Kale
-scientific_name: Brassica oleracea
-family: Brassicaceae
-variant: mediterranean
+region: mediterranean
 title: Kale in Mediterranean climates (cool-season crop)
 koppen: [Csa, Csb]
 hemisphere: north
@@ -19,8 +16,6 @@ spacing:
   between_rows_cm: [45, 60]
 sun: full-partial
 water: moderate
-companions:
-  evidence: traditional
 confidence: medium
 uncertainty: >-
   UC lists August–September planting for the interior valleys (Csa). Cooler

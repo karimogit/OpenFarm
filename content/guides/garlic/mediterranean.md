@@ -1,9 +1,6 @@
 ---
 crop: garlic
-common_name: Garlic
-scientific_name: Allium sativum
-family: Amaryllidaceae
-variant: mediterranean
+region: mediterranean
 title: Garlic in Mediterranean climates (Spain, Italy, California)
 koppen: [Csa, Csb]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [30, 45]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: high
 sources:
   - title: Time of planting – recommended planting dates for major regions of California
