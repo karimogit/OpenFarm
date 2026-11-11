@@ -1,0 +1,151 @@
+{
+ "source": "uf-vh021",
+ "location": "South Florida (below State Road 70; Miami)",
+ "note": "Transcribed from UF/IFAS VH021 Table 1: outdoor planting dates for South Florida and days to harvest (parentheses = from transplants).",
+ "rows": {
+  "Arugula": {
+   "south": "Oct–Mar",
+   "days": "35–60"
+  },
+  "Beans, bush": {
+   "south": "Sept–Apr",
+   "days": "45–60"
+  },
+  "Beets": {
+   "south": "Oct–Jan",
+   "days": "50–70"
+  },
+  "Broccoli": {
+   "south": "Oct–Jan",
+   "days": "75–90 (50–70)"
+  },
+  "Cabbage": {
+   "south": "Sept–Jan",
+   "days": "85–110 (70–90)"
+  },
+  "Cantaloupes": {
+   "south": "Dec–Mar",
+   "days": "85–110 (70–90)"
+  },
+  "Carrots": {
+   "south": "Sept–Mar",
+   "days": "70–120"
+  },
+  "Cauliflower": {
+   "south": "Sept–Jan",
+   "days": "75–90 (50–70)"
+  },
+  "Celery": {
+   "south": "Oct–Mar",
+   "days": "75–90"
+  },
+  "Chinese cabbage": {
+   "south": "Sept–Apr",
+   "days": "70–90 (60–70)"
+  },
+  "Collards": {
+   "south": "Sept–Jan",
+   "days": "70–90 (50–70)"
+  },
+  "Corn, sweet": {
+   "south": "Oct–Mar",
+   "days": "65–90"
+  },
+  "Cucumbers": {
+   "south": "Sep–Feb",
+   "days": "40–65"
+  },
+  "Eggplant": {
+   "south": "Aug–Feb",
+   "days": "90–115 (70–90)"
+  },
+  "Kale": {
+   "south": "Sept–Jan",
+   "days": "50–70"
+  },
+  "Kohlrabi": {
+   "south": "Oct–Feb",
+   "days": "70–80 (50–55)"
+  },
+  "Lettuce": {
+   "south": "Sept–Feb",
+   "days": "60–80"
+  },
+  "Mustard": {
+   "south": "Sept–Jan",
+   "days": "40–50"
+  },
+  "Okra": {
+   "south": "Jan–Mar, Aug–Oct",
+   "days": "60–70"
+  },
+  "Onions, bulbing": {
+   "south": "Oct",
+   "days": "100–130"
+  },
+  "Onions, bunching": {
+   "south": "Sept–Mar",
+   "days": "50–75"
+  },
+  "Peas, snow or English": {
+   "south": "Nov–Feb",
+   "days": "60–80"
+  },
+  "Peas, southern": {
+   "south": "Sept–Apr",
+   "days": "75–90"
+  },
+  "Peppers": {
+   "south": "Aug–Feb",
+   "days": "90–100 (65–75)"
+  },
+  "Potatoes, Irish": {
+   "south": "Oct–Jan",
+   "days": "85–110"
+  },
+  "Potatoes, sweet": {
+   "south": "Dec–Sept",
+   "days": "85–130"
+  },
+  "Pumpkin": {
+   "south": "Early Aug",
+   "days": "80–100 (70–90)"
+  },
+  "Radish": {
+   "south": "Oct–Mar",
+   "days": "20–30"
+  },
+  "Spinach": {
+   "south": "Oct–Feb",
+   "days": "45–60"
+  },
+  "Squash, summer": {
+   "south": "Aug–Mar",
+   "days": "40–50"
+  },
+  "Squash, winter": {
+   "south": "Aug–Mar",
+   "days": "85–120"
+  },
+  "Strawberry": {
+   "south": "Oct",
+   "days": "(30–60)"
+  },
+  "Swiss chard": {
+   "south": "Sept–Mar",
+   "days": "45–60"
+  },
+  "Tomatoes (supported)": {
+   "south": "Aug–Feb",
+   "days": "90–110 (70–90)"
+  },
+  "Turnips": {
+   "south": "Sept–Jan",
+   "days": "40–60"
+  },
+  "Watermelon": {
+   "south": "Dec–Mar",
+   "days": "80–100 (60–90)"
+  }
+ }
+}
