@@ -47,7 +47,7 @@ scripts/fetch_images.js                       Finds freely licensed Commons phot
 site/                                         Eleventy templates, CSS and small vanilla-JS modules (MIT)
 ```
 
-**Today:** 270 crops (7 curated, 263 imported), 73 varieties, 28 sourced guides and 15 climate
+**Today:** 271 crops (8 curated, 263 imported), 73 varieties, 194 sourced guides, 10 tools and 15 climate
 regions covering all 31 Köppen-Geiger classes. 65 crops are fruit, fruit trees, berries or nuts.
 Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
 University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, Jordbruksverket and
@@ -212,7 +212,9 @@ We'd rather cooperate than compete:
 - [x] All 31 Köppen classes in 15 climate regions, with nearest-region fallback
 - [x] Crop → variety → guide data model; seeds, problems, companions and seed sources as shared files
 - [x] 263 crops imported from the CC0 rescue dataset; Commons photos; Pagefind search; Open-Meteo weather
-- [ ] Guides for the 7 regions that have none yet (tropical rainforest and monsoon, deserts, subpolar oceanic, subtropical highland, tundra)
+- [x] 166 regional guides from extension planting calendars (Arizona, Clemson, UF/IFAS, Iowa State, Colorado State, Alaska Fairbanks)
+- [x] Hardiness zones (Open-Meteo ERA5), tools, help page, profile export (JSON, CSV, .ics, Markdown)
+- [ ] Guides for the regions that still have none (tropical rainforest, cold desert, hot semi-arid, subpolar oceanic, subtropical highland, tundra)
 - [ ] Review imported crops one by one and promote them to `origin: curated`
 - [ ] Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0)
 - [ ] Native southern-hemisphere variants (instead of the shifted calendar)
