@@ -18,8 +18,14 @@ ok(crops.includes("country-link.njk") && /data-seed-sources/.test(crops), "seed-
 ok(!/for code in s\.countries %\}.*flag\.njk.*countries\[code\]/.test(crops.replace(/\n/g, " ")), "seed sources no longer print an unlinked flag+name");
 
 const place = fs.readFileSync(path.join(ROOT, "site/place.njk"), "utf8");
-ok(place.includes("country-link.njk"), "place page heading uses country-link.njk");
-ok(/<h1>\{\{\s*p\.name\s*\}\}/.test(place) && place.indexOf("{{ p.name }}") < place.indexOf('include "country-link.njk"'), "place h1 puts the city name before the country link");
+ok(place.includes("country-link.njk") && place.includes("flag.njk"), "place page heading uses the flag include and country-link.njk");
+const placeH1 = (place.match(/<h1>[\s\S]*?<\/h1>/) || [])[0] || "";
+ok(
+  placeH1.includes('include "flag.njk"')
+    && placeH1.indexOf('include "flag.njk"') < placeH1.indexOf("{{ p.name }}")
+    && placeH1.indexOf("{{ p.name }}") < placeH1.indexOf('include "country-link.njk"'),
+  "place h1 puts the flag first, then the city name, then the country link",
+);
 
 const site = path.join(ROOT, "_site");
 function readBuilt(...parts) {
@@ -44,7 +50,7 @@ if (fs.existsSync(site)) {
   const checks = [
     ["regions/temperate-oceanic/index.html", /class="country-link"[\s\S]*\/countries\/[a-z]{2}\//, "built temperate-oceanic region page links example countries to /countries/<iso2>/"],
     ["crops/index.html", /data-seed-sources[\s\S]*class="country-link"[\s\S]*\/countries\//, "built crops page seed sources link countries"],
-    ["places/amsterdam-nl/index.html", /<h1>\s*Amsterdam[\s\S]*class="country-link"[\s\S]*\/countries\/nl\//, "built Amsterdam place heading is City, then a link to the Netherlands"],
+    ["places/amsterdam-nl/index.html", /<h1>[\s\S]*class="flag"[\s\S]*Amsterdam[\s\S]*class="country-link"[\s\S]*\/countries\/nl\//, "built Amsterdam place heading is Flag City, then a link to the Netherlands"],
     ["crops/tomato/temperate-oceanic/index.html", /class="country-link"[\s\S]*\/countries\//, "built tomato temperate-oceanic guide Common-in line links countries"],
   ];
   let stale = false;

@@ -12,9 +12,18 @@ ok(
   /title:\s*"\{\{\s*p\.name\s*\}\}[^{"]*\{\%\s*if p\.countryName\s*\%\},\s*\{\{\s*p\.countryName\s*\}\}/.test(place),
   "place.njk <title> is City, Country when a country name is present",
 );
+ok(place.includes("flag.njk") && place.includes("country-link.njk"), "place.njk h1 uses the flag include and a country link");
+const h1Src = (place.match(/<h1>[\s\S]*?<\/h1>/) || [])[0] || "";
 ok(
-  /<h1>\{\{\s*p\.name\s*\}\}[^{<]*\{\%\s*if p\.cc\s*\%\},\s*\{\%\s*set cc = p\.cc\s*\%\}\{\%\s*include "country-link\.njk"/.test(place),
-  "place.njk h1 is City, then the linked country (flag allowed)",
+  h1Src.includes('include "flag.njk"')
+    && h1Src.indexOf('include "flag.njk"') < h1Src.indexOf("{{ p.name }}")
+    && h1Src.indexOf("{{ p.name }}") < h1Src.indexOf('include "country-link.njk"'),
+  "place.njk h1 is Flag City, then the linked country",
+);
+ok(/omitFlag\s*=\s*true/.test(h1Src), "place.njk country link in the h1 omits a second flag");
+ok(
+  /title:\s*"\{\{\s*p\.name\s*\}\}/.test(place) && !/<title>[\s\S]*flag\.njk/.test(place),
+  "place.njk <title> stays plain City, Country with no flag",
 );
 ok(/zoom:\s*p\.mapZoom or 10/.test(place), "place map pin carries an explicit city zoom");
 
@@ -32,14 +41,18 @@ function walk(rel) {
 }
 if (fs.existsSync(site)) {
   const html = walk("places/amsterdam-nl/index.html");
+  const builtH1 = html && (html.match(/<h1>([\s\S]*?)<\/h1>/) || [])[1];
   if (!html) {
     console.log("skip: places/amsterdam-nl/index.html not in _site — rebuild to assert generated HTML");
-  } else if (!/<title>\s*Amsterdam,\s*The Netherlands\s*·/.test(html)) {
+  } else if (!/<title>\s*Amsterdam,\s*The Netherlands\s*·/.test(html)
+      || !builtH1 || builtH1.indexOf('class="flag"') === -1
+      || builtH1.indexOf('class="flag"') > builtH1.indexOf("Amsterdam")) {
     console.log("skip: _site is stale for places/amsterdam-nl — rebuild to assert generated HTML");
   } else {
+    const title = (html.match(/<title>([^<]+)<\/title>/) || [])[1] || "";
     ok(
-      /<title>\s*Amsterdam,\s*The Netherlands\s*·/.test(html),
-      "built Amsterdam <title> is 'Amsterdam, The Netherlands'",
+      /^Amsterdam,\s*The Netherlands\s*·/.test(title) && !/flag|\.svg/.test(title),
+      "built Amsterdam <title> is plain 'Amsterdam, The Netherlands' with no flag",
     );
     const h1 = html.match(/<h1>([\s\S]*?)<\/h1>/);
     ok(h1, "built Amsterdam page has an h1");
@@ -47,15 +60,17 @@ if (fs.existsSync(site)) {
       const text = h1[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
       ok(
         /^Amsterdam,\s*The Netherlands$/.test(text),
-        `built Amsterdam h1 reads 'Amsterdam, The Netherlands' (got ${JSON.stringify(text)})`,
+        `built Amsterdam h1 readable text is 'Amsterdam, The Netherlands' (got ${JSON.stringify(text)})`,
       );
-      ok(
-        /class="country-link"[\s\S]*\/countries\/nl\//.test(h1[1]),
-        "built Amsterdam h1 links The Netherlands to /countries/nl/",
-      );
+      const flagAt = h1[1].indexOf('class="flag"');
       const cityAt = h1[1].indexOf("Amsterdam");
       const linkAt = h1[1].indexOf("country-link");
-      ok(cityAt >= 0 && linkAt > cityAt, "built Amsterdam h1 puts the city name before the country link");
+      ok(flagAt >= 0 && flagAt < cityAt, "built Amsterdam h1 puts the flag before the city name");
+      ok(cityAt >= 0 && linkAt > cityAt && /class="country-link"[\s\S]*\/countries\/nl\//.test(h1[1]),
+        "built Amsterdam h1 links The Netherlands after the city name");
+      const linkHtml = (h1[1].match(/<a class="country-link"[\s\S]*?<\/a>/) || [])[0] || "";
+      ok(linkHtml && !/class="flag"/.test(linkHtml), "built Amsterdam country link does not duplicate the flag");
+      ok((h1[1].match(/class="flag"/g) || []).length === 1, "built Amsterdam h1 has exactly one flag");
     }
     const pin = html.match(/<script type="application\/json" data-pin>(.*?)<\/script>/);
     ok(pin, "built Amsterdam map includes a pin");
