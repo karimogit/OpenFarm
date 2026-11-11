@@ -20,5 +20,5 @@ jsonUrl: /api/countries.json
   </li>
   {% endfor %}
 </ul>
-<p class="meta"><a href="{{ '/api/countries.json' | url }}">JSON</a></p>
+<p class="meta">{% set jsonHref = "/api/countries.json" %}{% include "raw-data.njk" %}</p>
 </article>

@@ -87,5 +87,5 @@ eleventyComputed:
   {% endif %}
 
   <p class="small muted">{{ db.climateAttribution }} {% if db.outlineAttribution %}{{ db.outlineAttribution }} {% endif %}Names from GeoNames (CC BY 4.0).</p>
-  <p class="meta"><a href="{{ ('/countries/' + c.iso2Lower + '.json') | url }}">JSON</a></p>
+  <p class="meta">{% set jsonHref = "/countries/" + c.iso2Lower + ".json" %}{% include "raw-data.njk" %}</p>
 </article>

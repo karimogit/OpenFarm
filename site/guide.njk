@@ -26,7 +26,9 @@ eleventyComputed:
     <p class="your-climate-line" data-your-climate-line hidden></p>
     <p><a class="chip" href="{{ ('/regions/' + g.region + '/') | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a>
       {% for k in g.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %}</p>
-    {% set places = g.examplePlaces %}{% set lead = "Common in:" %}{% include "places-line.njk" %}
+    {% if g.exampleCountries and g.exampleCountries.length %}
+    <p class="places-line small muted">Common in: {% for cc in g.exampleCountries %}{% include "country-link.njk" %}{% if not loop.last %}<span class="place-sep">,</span> {% endif %}{% endfor %}</p>
+    {% endif %}
     {% if g.alsoRegions.length %}<p class="small">Also used for: {% for r in g.alsoRegions %}<a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %} (the listed Köppen classes reach into these regions).</p>{% endif %}
     
     <h2>Calendar <small>({{ g.hemisphere }}ern hemisphere{% if g.hemisphere == "any" %} – not tied to hemisphere{% endif %}; checked against {{ g.reference_location }})</small></h2>

@@ -94,7 +94,7 @@ eleventyComputed:
     <h2>Sources</h2>
     {% set srcs = crop.sources %}{% include "sources.njk" %}
     <p class="meta">{% if crop.origin == "curated" %}By {{ crop.authors | join(", ") }} · last reviewed {{ crop.last_reviewed }} · {% endif %}
-      License {{ crop.license }} · <a href="{{ ('/crops/' + crop.slug + '.json') | url }}">JSON</a></p>
+      License {{ crop.license }} · {% set jsonHref = "/crops/" + crop.slug + ".json" %}{% include "raw-data.njk" %}</p>
     {% set editFile = crop.file %}{% include "edited-by.njk" %}
     {% set editLabel = "Edit this crop" %}{% include "edit-button.njk" %}
   </article>

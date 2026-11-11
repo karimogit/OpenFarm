@@ -1,0 +1,3 @@
+{# Expects `jsonHref` (site path). Visible "Raw data:" label plus a small JSON button. #}
+<span class="raw-data"><span class="raw-data-label">Raw data:</span>
+  <a class="raw-data-btn" href="{{ jsonHref | url }}"{% if jsonHref %} download{% endif %}>{% set icon = "download" %}{% include "icon.njk" %} JSON</a></span>

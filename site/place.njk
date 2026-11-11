@@ -79,5 +79,5 @@ eleventyComputed:
   {% endif %}
 
   <p class="small muted">{{ db.placePageNote }} Names and coordinates from GeoNames (CC BY 4.0).</p>
-  <p class="meta"><a href="{{ ('/places/' + p.slug + '.json') | url }}">JSON</a></p>
+  <p class="meta">{% set jsonHref = "/places/" + p.slug + ".json" %}{% include "raw-data.njk" %}</p>
 </article>

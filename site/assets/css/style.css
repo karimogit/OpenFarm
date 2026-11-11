@@ -521,11 +521,20 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
 .growing-cal th { background: var(--green-2); color: var(--ink); font-weight: 600; }
 .growing-cal td.crop { text-align: left; white-space: nowrap; }
 .growing-cal button.cal-crop { background: none; color: var(--ink); border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; }
-.growing-cal .mark { display: block; font-size: .72rem; line-height: 1.2; }
-.growing-cal .mark.sow { color: #3d6b2e; }
-.growing-cal .mark.plant { color: #3c8dbc; }
-.growing-cal .mark.harvest { color: #c45d10; }
-.growing-cal .mark.done { color: var(--ink); font-weight: 600; }
+.growing-cal .mark { display: block; font-size: .72rem; line-height: 1.25; border-radius: 3px; padding: .1rem .2rem; margin: .08rem 0; color: var(--ink); }
+.growing-cal .mark.sow_indoors, .growing-cal .mark.sow { background: var(--sow); color: #1d2a1f; }
+.growing-cal .mark.sow_direct { background: var(--sowd); color: #1d2a1f; }
+.growing-cal .mark.plant { background: color-mix(in srgb, var(--plant) 30%, #fff); color: #1a3f55; }
+.growing-cal .mark.harvest { background: color-mix(in srgb, var(--harvest) 30%, #fff); color: #6a3308; }
+.growing-cal .mark.prune { background: color-mix(in srgb, var(--prune) 30%, #fff); color: #3d2a5c; }
+.growing-cal .mark.done { background: var(--green-2); color: var(--ink); font-weight: 600; }
+
+/* Raw data JSON button */
+.raw-data { display: inline-flex; align-items: center; gap: .4rem; vertical-align: middle; }
+.raw-data-label { color: var(--muted); font-size: .9rem; }
+.raw-data-btn { display: inline-flex; align-items: center; gap: .3rem; font: 600 .8rem/1.1 inherit; padding: .25rem .55rem; border: 1px solid var(--green); border-radius: 6px; background: var(--green); color: #fff !important; text-decoration: none; }
+.raw-data-btn:hover, .raw-data-btn:focus-visible { background: var(--nav-active, #1c4524); border-color: var(--nav-active, #1c4524); color: #fff !important; filter: none; }
+.raw-data-btn .icon { width: .9rem; height: .9rem; }
 
 .zones-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
 .zones-table th, .zones-table td { border: 1px solid var(--line); padding: .4rem .55rem; text-align: left; }
