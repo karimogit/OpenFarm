@@ -16,7 +16,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250114072516/https://openfarm.cc/en/crops/shishito-pepper'
   captured: '20250114'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

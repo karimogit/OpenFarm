@@ -18,7 +18,12 @@ rescue:
   taxon: Species
   companions_unverified:
     - fenugreek
+edible: true
+edible_parts: [seed]
+toxic: true
+toxic_parts: [seed]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

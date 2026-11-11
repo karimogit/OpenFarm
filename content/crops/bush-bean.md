@@ -29,7 +29,15 @@ seed_saving:
   harvest: "Leave the pods on the plant until they are dry and the seeds rattle."
   processing: dry-thresh
   processing_note: "Shell the seeds and spread them out to dry. UMN: dry pods indoors for at least two weeks before shelling."
+edible: true
+edible_parts: [seed]
+toxic: true
+field_sources:
+  edible: [usda-grin]
+  edible_parts: [usda-grin]
+  toxic: [usda-grin]
 sources:
+  - usda-grin
   - seed-matters-chart
   - wvu-seed-saving
 license: CC-BY-SA-4.0

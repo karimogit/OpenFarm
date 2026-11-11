@@ -16,7 +16,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250114072954/https://openfarm.cc/en/crops/watercress'
   captured: '20250114'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

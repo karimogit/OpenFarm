@@ -16,7 +16,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20231201184240/https://openfarm.cc/en/crops/chickpea'
   captured: '20231201'
   taxon: Species
+edible: true
+edible_parts: [seed]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

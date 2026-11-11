@@ -15,7 +15,10 @@ rescue:
   slug: pistachio
   wayback_url: 'https://web.archive.org/web/20240418175651/https://openfarm.cc/en/crops/pistachio'
   captured: '20240418'
+edible: true
+edible_parts: [nut]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

@@ -12,7 +12,9 @@ rescue:
   captured: '20241105'
   companions_unverified:
     - st-johns-wort
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

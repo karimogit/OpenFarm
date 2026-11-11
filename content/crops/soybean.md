@@ -17,7 +17,11 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250318005025/https://openfarm.cc/en/crops/soybean'
   captured: '20250318'
   taxon: Species
+edible: true
+edible_parts: [seed, oil]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

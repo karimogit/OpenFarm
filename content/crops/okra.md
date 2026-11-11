@@ -18,7 +18,9 @@ rescue:
   captured: '20240519'
   taxon: Species
   growing_degree_days_as_recorded: 64
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

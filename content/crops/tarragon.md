@@ -17,7 +17,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20241013033541/https://openfarm.cc/en/crops/tarragon'
   captured: '20241013'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

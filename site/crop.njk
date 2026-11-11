@@ -109,6 +109,7 @@ eleventyComputed:
         <div><dt>Type</dt><dd>{{ db.typeLabels[crop.type] }}</dd></div>
         {% if crop.edible == true %}<div><dt>Edible</dt><dd>Yes{% if crop.edible_parts and crop.edible_parts.length %} · {{ crop.edible_parts | join(", ") }}{% endif %}</dd></div>
         {% elif crop.edible == false %}<div><dt>Edible</dt><dd>Not recorded as a food plant</dd></div>{% endif %}
+        {% if crop.toxic == true %}<div><dt>Poisonous use recorded</dt><dd>{% if crop.toxic_parts and crop.toxic_parts.length %}Named part{{ 's' if crop.toxic_parts.length != 1 else '' }}: {{ crop.toxic_parts | join(", ") }}.{% else %}A source records a poisonous use; the plant part is not specified in that record.{% endif %}</dd></div>{% endif %}
         {% if crop.sun %}<div><dt>Sun</dt><dd>{{ crop.sun | label }}</dd></div>{% endif %}
         {% if crop.water %}<div><dt>Water</dt><dd>{{ crop.water | label }}</dd></div>{% endif %}
         {% if crop.temperature and crop.temperature.frost_tender %}<div><dt>Frost</dt><dd>Frost-tender</dd></div>{% endif %}

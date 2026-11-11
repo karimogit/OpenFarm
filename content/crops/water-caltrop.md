@@ -15,7 +15,10 @@ rescue:
   slug: water-caltrop
   wayback_url: 'https://web.archive.org/web/20250114071215/https://openfarm.cc/en/crops/water-caltrop'
   captured: '20250114'
+edible: true
+edible_parts: [nut, seed]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

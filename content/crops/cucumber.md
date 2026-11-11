@@ -26,7 +26,13 @@ seed_saving:
   processing: wet-wash
   processing_note: "Scrape the seeds into a bowl and rub off the slimy coating in a sieve under water (some ferment them like tomato), then dry."
   sources: [seed-matters-chart, osu-seed-saving-chart]
+edible: true
+edible_parts: [fruit]
+field_sources:
+  edible: [usda-grin]
+  edible_parts: [usda-grin]
 sources:
+  - usda-grin
   - clemson-planning-a-garden
   - csu-veg-planting-guide
   - uf-vh021

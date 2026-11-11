@@ -16,7 +16,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20220809165419/https://openfarm.cc/en/crops/fatalii-pepper'
   captured: '20220809'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

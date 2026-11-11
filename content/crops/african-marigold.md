@@ -16,7 +16,9 @@ rescue:
   slug: african-marigold
   wayback_url: 'https://web.archive.org/web/20210511001121/https://openfarm.cc/en/crops/african-marigold'
   captured: '20210511'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

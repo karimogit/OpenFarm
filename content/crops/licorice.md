@@ -16,7 +16,9 @@ rescue:
   slug: licorice
   wayback_url: 'https://web.archive.org/web/20220527052516/https://openfarm.cc/en/crops/licorice'
   captured: '20220527'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

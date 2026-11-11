@@ -17,7 +17,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20241211003825/https://openfarm.cc/en/crops/habanero-pepper'
   captured: '20241211'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

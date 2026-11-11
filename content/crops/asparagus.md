@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20230325114641/https://openfarm.cc/en/crops/asparagus'
   captured: '20230325'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

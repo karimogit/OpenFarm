@@ -32,7 +32,15 @@ seed_saving:
   processing: wet-ferment
   processing_note: "Squeeze the seeds and gel into a jar with some water and let it ferment for 3\u20135 days, stirring; good seed sinks. Rinse and spread out to dry."
 problems: [late-blight, blossom-end-rot]
+edible: true
+edible_parts: [fruit]
+toxic: true
+field_sources:
+  edible: [usda-grin]
+  edible_parts: [usda-grin]
+  toxic: [usda-grin]
 sources:
+  - usda-grin
   - clemson-tomato
   - csu-tomatoes
   - openfarm-rescue

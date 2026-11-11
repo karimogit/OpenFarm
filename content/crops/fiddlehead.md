@@ -16,7 +16,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20200922213013/https://openfarm.cc/en/crops/fiddlehead'
   captured: '20200922'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

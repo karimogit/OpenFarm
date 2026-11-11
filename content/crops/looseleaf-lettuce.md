@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250318002329/https://openfarm.cc/en/crops/looseleaf-lettuce'
   captured: '20250318'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

@@ -312,3 +312,16 @@ natural-earth:
   use: import
   license_url: https://www.naturalearthdata.com/about/terms-of-use/
   note: "Natural Earth's terms of use place the data in the public domain (no restriction, no warranty). Used only to assign 0.5° climate-grid cells to countries; the shapefile is not shipped with the site. Checked 11 November 2026."
+usda-grin:
+  title: USDA-ARS National Plant Germplasm System, GRIN Taxonomy
+  publisher: USDA Agricultural Research Service, National Plant Germplasm System
+  url: https://npgsweb.ars-grin.gov/gringlobal/taxon/taxonomysearch
+  license: PD-USGov
+  use: import
+  license_url: https://www.grin-global.org/help_pw2/Content/A_Introduction%20Topics/faq.htm
+  note: >-
+    The GRIN-Global FAQ states that all information in GRIN is in the public domain;
+    citations are appreciated but not required. Economic uses (FOOD, ADDITIVE, POISON)
+    were applied from the official taxonomy_data.cab dump dated 5 October 2026
+    (https://npgsweb.ars-grin.gov/gringlobal/uploads/documents/taxonomy_data.cab).
+    Checked 11 November 2026.

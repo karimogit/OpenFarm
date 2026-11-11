@@ -602,6 +602,34 @@
       },
       "description": "Plant parts a source records as eaten. Only set when a source names the part."
     },
+    "toxic": {
+      "type": "boolean",
+      "description": "Whether a source records a poisonous use. Omit when unknown; never invent."
+    },
+    "toxic_parts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "fruit",
+          "leaf",
+          "seed",
+          "root",
+          "tuber",
+          "bulb",
+          "flower",
+          "stem",
+          "shoot",
+          "oil",
+          "sap",
+          "pod",
+          "nut",
+          "bark",
+          "sprout"
+        ]
+      },
+      "description": "Plant parts a source names as poisonous. Only set when the source names the part."
+    },
     "field_sources": {
       "type": "object",
       "description": "Per-field attribution for imported records. Keys are crop field names; values are source lists.",

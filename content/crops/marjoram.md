@@ -22,7 +22,9 @@ rescue:
   growing_degree_days_as_recorded: 75
   tags:
     - herb
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

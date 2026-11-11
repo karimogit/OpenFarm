@@ -29,7 +29,13 @@ seed_saving:
     (Fragaria vesca) can be grown from seed.
   sources: [rhs-strawberries]
 problems: [grey-mould, vine-weevil]
+edible: true
+edible_parts: [fruit]
+field_sources:
+  edible: [usda-grin]
+  edible_parts: [usda-grin]
 sources:
+  - usda-grin
   - rhs-strawberries
   - umn-strawberries
   - openfarm-rescue

@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20191016103251/https://openfarm.cc/en/crops/green-tabasco-pepper'
   captured: '20191016'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

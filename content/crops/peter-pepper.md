@@ -15,7 +15,10 @@ rescue:
   slug: peter-pepper
   wayback_url: 'https://web.archive.org/web/20250114071503/https://openfarm.cc/en/crops/peter-pepper'
   captured: '20250114'
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

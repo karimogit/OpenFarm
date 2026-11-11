@@ -22,7 +22,7 @@ const guideOut = (g) => ({
 });
 const cropOut = (c) => ({
   ...pick(c, ["slug", "name", "aliases", "scientific_name", "family", "type", "lifecycle", "sun", "water", "sowing_method", "size",
-    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools", "edible", "edible_parts"]),
+    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools", "edible", "edible_parts", "toxic", "toxic_parts"]),
   url: `/crops/${c.slug}/`,
   sources: c.sources.map(sourceOut),
   varieties: c.varieties.map(varietyOut),

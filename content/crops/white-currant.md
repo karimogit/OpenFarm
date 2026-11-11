@@ -16,7 +16,10 @@ rescue:
   slug: white-currant
   wayback_url: 'https://web.archive.org/web/20240615211845/https://openfarm.cc/en/crops/white-currant'
   captured: '20240615'
+edible: true
+edible_parts: [fruit]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

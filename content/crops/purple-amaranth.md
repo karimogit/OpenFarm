@@ -10,7 +10,10 @@ rescue:
   slug: purple-amaranth
   wayback_url: 'https://web.archive.org/web/20240815063437/https://openfarm.cc/en/crops/purple-amaranth'
   captured: '20240815'
+edible: true
+edible_parts: [seed]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'
