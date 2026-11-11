@@ -1,0 +1,2 @@
+{# Expects `cc` (ISO 3166-1 alpha-2). Flag + country name linking to /countries/<iso2>/. #}
+{% if cc %}<a class="country-link" href="{{ ('/countries/' + (cc | lower) + '/') | url }}">{% include "flag.njk" %}<span>{{ countries[cc] or cc }}</span></a>{% endif %}

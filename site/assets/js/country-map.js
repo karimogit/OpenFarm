@@ -1,46 +1,85 @@
 // Lazy-loaded Leaflet map for country and city pages: Köppen overlay, optional
 // Natural Earth outline, optional pin, bounds fitted to the precomputed view.
 import { BASE, hardinessZone, hardinessLine, zoneIndex, esc } from "./common.js";
-
-const OVERLAY_BOUNDS = [[-85.05112878, -180], [85.05112878, 180]];
+import { viewFor } from "./map-view.js";
+import { attachClimateOverlay } from "./climate-overlay.js";
 
 function loadCss(href) {
-  if (document.querySelector(`link[data-leaflet]`)) return;
-  const l = document.createElement("link");
-  l.rel = "stylesheet";
-  l.href = href;
-  l.dataset.leaflet = "1";
-  document.head.append(l);
+  const existing = document.querySelector("link[data-leaflet]");
+  if (existing) {
+    if (existing.sheet) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      existing.addEventListener("load", () => resolve(), { once: true });
+      existing.addEventListener("error", () => reject(new Error("leaflet css")), { once: true });
+    });
+  }
+  return new Promise((resolve, reject) => {
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = href;
+    l.dataset.leaflet = "1";
+    l.onload = () => resolve();
+    l.onerror = () => reject(new Error("leaflet css"));
+    document.head.append(l);
+  });
 }
 
 function loadScript(src) {
   if (window.L) return Promise.resolve();
+  const existing = document.querySelector("script[data-leaflet]");
+  if (existing) {
+    if (existing.dataset.loaded === "1" && window.L) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      existing.addEventListener("load", () => resolve(), { once: true });
+      existing.addEventListener("error", () => reject(new Error("leaflet js")), { once: true });
+    });
+  }
   return new Promise((resolve, reject) => {
-    const existing = document.querySelector("script[data-leaflet]");
-    if (existing) {
-      existing.addEventListener("load", () => resolve());
-      existing.addEventListener("error", reject);
-      return;
-    }
     const s = document.createElement("script");
     s.src = src;
     s.async = true;
     s.dataset.leaflet = "1";
-    s.onload = resolve;
-    s.onerror = reject;
+    s.onload = () => { s.dataset.loaded = "1"; resolve(); };
+    s.onerror = () => reject(new Error("leaflet js"));
     document.head.append(s);
   });
 }
 
 async function ensureLeaflet() {
-  loadCss(BASE + "assets/vendor/leaflet/leaflet.css");
-  await loadScript(BASE + "assets/vendor/leaflet/leaflet.js");
+  await Promise.all([
+    loadCss(BASE + "assets/vendor/leaflet/leaflet.css"),
+    loadScript(BASE + "assets/vendor/leaflet/leaflet.js"),
+  ]);
+  const L = window.L;
+  if (L?.Icon?.Default) {
+    const dir = BASE + "assets/vendor/leaflet/images/";
+    L.Icon.Default.mergeOptions({
+      iconUrl: dir + "marker-icon.png",
+      iconRetinaUrl: dir + "marker-icon-2x.png",
+      shadowUrl: dir + "marker-shadow.png",
+    });
+  }
 }
 
 function readJson(figure, sel) {
   const s = figure.querySelector(sel);
   if (!s) return null;
   try { return JSON.parse(s.textContent); } catch { return null; }
+}
+
+function applyView(map, view) {
+  if (!map || !view) return;
+  if (view.type === "bounds") {
+    map.fitBounds([[view.south, view.west], [view.north, view.east]], { padding: [20, 20], maxZoom: view.maxZoom });
+  } else {
+    map.setView([view.lat, view.lon], view.zoom);
+  }
+}
+
+function afterLayout() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  });
 }
 
 async function initMap(figure) {
@@ -52,16 +91,26 @@ async function initMap(figure) {
   const bounds = readJson(figure, "script[data-bounds]");
   const outline = readJson(figure, "script[data-outline]");
   const pin = readJson(figure, "script[data-pin]");
+  const view = viewFor(bounds, pin);
   try {
     await ensureLeaflet();
-    mount.hidden = false;
+    // Hide the SVG fallback first so only the live pane is in the layout,
+    // then wait for a real size before constructing the map. Fitting bounds
+    // on a display:none or zero-size pane leaves tiles and the climate
+    // overlay in the wrong place after the pane is shown.
     if (fallback) fallback.hidden = true;
+    mount.hidden = false;
+    await afterLayout();
+    if (mount.clientWidth < 16 || mount.clientHeight < 16) {
+      throw new Error("map pane has no size");
+    }
     const map = window.L.map(mount, { worldCopyJump: true, scrollWheelZoom: false, zoomControl: true });
+    applyView(map, view);
     window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 10,
       attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
-    window.L.imageOverlay(BASE + "assets/koppen-mercator.png", OVERLAY_BOUNDS, {
+    attachClimateOverlay(map, BASE + "assets/koppen-mercator.png", {
       opacity: 0.65,
       attribution: "Köppen–Geiger: Beck et al. 2018 (CC BY 4.0)",
     }).addTo(map);
@@ -74,19 +123,13 @@ async function initMap(figure) {
     if (pin && Number.isFinite(+pin.lat) && Number.isFinite(+pin.lon)) {
       window.L.marker([+pin.lat, +pin.lon]).addTo(map);
     }
-    if (bounds && Number.isFinite(bounds.south) && Number.isFinite(bounds.west)) {
-      let east = bounds.east, west = bounds.west;
-      if (east > 180) east = 180;
-      if (west < -180) west = -180;
-      if (east > west) map.fitBounds([[bounds.south, west], [bounds.north, east]], { padding: [20, 20], maxZoom: 8 });
-      else if (pin) map.setView([+pin.lat, +pin.lon], 6);
-    } else if (pin) {
-      map.setView([+pin.lat, +pin.lon], 7);
-    } else {
-      map.setView([20, 0], 2);
-    }
-    setTimeout(() => map.invalidateSize(), 60);
+    applyView(map, view);
+    const refit = () => { map.invalidateSize(); applyView(map, view); };
+    setTimeout(refit, 80);
+    map.whenReady(refit);
     map.on("click", () => { if (!map.scrollWheelZoom.enabled()) map.scrollWheelZoom.enable(); });
+    figure._map = map;
+    figure._refit = refit;
   } catch {
     figure.dataset.ready = "";
     mount.hidden = true;
@@ -137,5 +180,7 @@ async function fillPlaceHardiness() {
   }
 }
 
-observeMaps();
-fillPlaceHardiness();
+if (typeof document !== "undefined") {
+  observeMaps();
+  fillPlaceHardiness();
+}
