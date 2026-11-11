@@ -1,2 +1,2 @@
-{# Expects `cc` (ISO 3166-1 alpha-2). Flag + country name linking to /countries/<iso2>/. #}
-{% if cc %}<a class="country-link" href="{{ ('/countries/' + (cc | lower) + '/') | url }}">{% include "flag.njk" %}<span>{{ countries[cc] or cc }}</span></a>{% endif %}
+{# Expects `cc` (ISO 3166-1 alpha-2). Flag + country name linking to /countries/<iso2>/. Set omitFlag to render the name only (no flag). #}
+{% if cc %}<a class="country-link" href="{{ ('/countries/' + (cc | lower) + '/') | url }}">{% if not omitFlag %}{% include "flag.njk" %}{% endif %}<span>{{ countries[cc] or cc }}</span></a>{% endif %}
