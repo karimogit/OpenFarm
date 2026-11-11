@@ -9,10 +9,13 @@ const LABELS = {
 // Plain objects for the JSON API (the template data is cross-linked and has cycles).
 const pick = (o, keys) => Object.fromEntries(keys.filter((k) => o[k] !== undefined && o[k] !== null).map((k) => [k, o[k]]));
 const sourceOut = (s) => pick(s, ["key", "title", "publisher", "url", "license"]);
+// Keep internal wayback_url / captured in repo files; do not publish them in the API.
+const rescueOut = (r) => r && pick(r, ["slug", "companions_unverified", "growing_degree_days_as_recorded"]);
 const varietyOut = (v) => ({
   ...pick(v, ["crop", "slug", "name", "synonyms", "scientific_name", "category", "fruit", "growth_habit", "days_to_maturity", "days_from",
     "cold_tolerance", "heat_tolerance", "disease_resistance", "chill_hours", "pollination_partners", "suitable_regions", "seeds",
-    "sun", "size", "origin", "license", "rescue", "cultivar", "cultivarName", "hardiness", "kind", "group"]),
+    "sun", "size", "origin", "license", "cultivar", "cultivarName", "hardiness", "kind", "group"]),
+  ...(rescueOut(v.rescue) ? { rescue: rescueOut(v.rescue) } : {}),
   url: v.url, sources: v.sources.map(sourceOut),
 });
 const guideOut = (g) => ({
@@ -22,7 +25,8 @@ const guideOut = (g) => ({
 });
 const cropOut = (c) => ({
   ...pick(c, ["slug", "name", "aliases", "scientific_name", "family", "type", "lifecycle", "sun", "water", "sowing_method", "size",
-    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools", "edible", "edible_parts", "toxic", "toxic_parts"]),
+    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "image", "wikidata", "hardiness", "seedImage", "tools", "edible", "edible_parts", "toxic", "toxic_parts"]),
+  ...(rescueOut(c.rescue) ? { rescue: rescueOut(c.rescue) } : {}),
   url: `/crops/${c.slug}/`,
   sources: c.sources.map(sourceOut),
   varieties: c.varieties.map(varietyOut),

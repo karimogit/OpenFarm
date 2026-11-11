@@ -10,7 +10,7 @@
     "build:climate": "python3 scripts/build_koppen.py",
     "build": "npm run validate && eleventy && pagefind --site _site",
     "dev": "eleventy --serve",
-    "test": "npm run validate && node scripts/test_profile_save.mjs && node scripts/test_sci.mjs && node scripts/test_filters.mjs && node scripts/test_maps.mjs && node scripts/test_country_links.mjs && node scripts/test_contrast.mjs && node scripts/test_image_layout.mjs && node scripts/test_tool_images.mjs",
+    "test": "npm run validate && node scripts/test_profile_save.mjs && node scripts/test_sci.mjs && node scripts/test_filters.mjs && node scripts/test_maps.mjs && node scripts/test_country_links.mjs && node scripts/test_contrast.mjs && node scripts/test_image_layout.mjs && node scripts/test_tool_images.mjs && node scripts/test_wayback.mjs",
     "import:rescue": "node scripts/import_rescue.js",
     "images": "node scripts/fetch_images.js",
     "check:images": "node scripts/check_images.js",

@@ -93,10 +93,9 @@ eleventyComputed:
 
     <h2>Sources</h2>
     {% set srcs = crop.sources %}{% include "sources.njk" %}
-    {% if crop.rescue %}<p class="small">Original OpenFarm record: <a href="{{ crop.rescue.wayback_url }}">Wayback Machine capture</a>{% if crop.rescue.captured %} ({{ crop.rescue.captured }}){% endif %}.</p>{% endif %}
     <p class="meta">{% if crop.origin == "curated" %}By {{ crop.authors | join(", ") }} · last reviewed {{ crop.last_reviewed }} · {% endif %}
       License {{ crop.license }} · <a href="{{ ('/crops/' + crop.slug + '.json') | url }}">JSON</a></p>
-    {% set editFile = crop.file %}{% set showRescueCredit = crop.origin == "imported" %}{% include "edited-by.njk" %}
+    {% set editFile = crop.file %}{% include "edited-by.njk" %}
     {% set editLabel = "Edit this crop" %}{% include "edit-button.njk" %}
   </article>
 

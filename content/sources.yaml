@@ -1,6 +1,6 @@
 # Reusable citations. Reference them by key in any `sources:` list, e.g. `sources: [openfarm-rescue]`.
 openfarm-rescue:
-  title: "OpenFarm Crops, Rescued (340 crop records recovered from the Wayback Machine)"
+  title: "OpenFarm Crops, Rescued"
   publisher: thefullnacho / homesteaderlabs.com
   url: https://github.com/thefullnacho/openfarm-crops-rescue
   license: CC0-1.0
