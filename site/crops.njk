@@ -6,29 +6,50 @@ permalink: /crops/
 <div data-pagefind-ignore>
 <h1>Crops</h1>
 <p>{{ db.stats.crops }} crops. Each has general facts; crops with a <span class="badge guide">guide</span> also have climate-specific
-  growing calendars. Crops marked <span class="badge imported">imported</span> come from the rescued original OpenFarm data and are not yet reviewed.</p>
+  growing calendars.</p>
+<ul class="chips type-chips">{% for t in db.types %}<li><a class="type-chip t-{{ t.slug }}" href="#{{ t.slug }}">{{ t.label }} <small>{{ t.crops.length }}</small></a></li>{% endfor %}</ul>
 <p><input type="search" id="crop-filter" placeholder="Filter crops…" aria-label="Filter crops"></p>
 {% for t in db.types %}
-<section class="card type-block" id="{{ t.slug }}">
-  <h2>{{ t.label }} <small>({{ t.crops.length }})</small></h2>
+<section class="card type-block" id="{{ t.slug }}" data-label="{{ t.label }}">
+  <h2><a href="{{ ('/crops/type/' + t.slug + '/') | url }}">{{ t.label }}</a> <small>({{ t.crops.length }})</small></h2>
   <ul class="crop-grid">
-  {% for c in t.crops %}
-    <li data-name="{{ c.name | lower }} {{ c.scientific_name | lower }}"><a href="{{ ('/crops/' + c.slug + '/') | url }}">
-      {% if c.image %}<span class="thumb"><img src="{{ c.image.thumb or c.image.src }}" alt="" loading="lazy"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
-      <strong>{{ c.name }}</strong>{% if c.scientific_name %}<em>{{ c.scientific_name }}</em>{% endif %}
-      <span>{% if c.guides.length %}<span class="badge guide">{{ c.guides.length }} guide{% if c.guides.length > 1 %}s{% endif %}</span>{% endif %}
-        {% if c.varieties.length %}<span class="badge">{{ c.varieties.length }} variet{% if c.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}
-        {% if c.origin == "imported" %}<span class="badge imported">imported</span>{% endif %}</span>
-    </a></li>
-  {% endfor %}
+  {% for c in t.crops %}{% include "crop-card.njk" %}{% endfor %}
   </ul>
 </section>
 {% endfor %}
 </div>
 <script>
-document.getElementById("crop-filter").addEventListener("input", (e) => {
-  const q = e.target.value.trim().toLowerCase();
-  document.querySelectorAll(".crop-grid li").forEach((li) => (li.hidden = q && !li.dataset.name.includes(q)));
-  document.querySelectorAll(".type-block").forEach((s) => (s.hidden = q && !s.querySelector("li:not([hidden])")));
-});
+// Progressive enhancement: without JS every crop is listed. With JS each type shows ~2 rows,
+// with a button to show the rest; a type linked by #hash (type chips) or a filter shows in full.
+(() => {
+  const blocks = [...document.querySelectorAll(".type-block")];
+  const cols = (ul) => getComputedStyle(ul).gridTemplateColumns.split(" ").filter(Boolean).length || 1;
+  function collapse() {
+    const open = decodeURIComponent(location.hash.slice(1));
+    for (const s of blocks) {
+      const ul = s.querySelector(".crop-grid"), items = [...ul.children], limit = cols(ul) * 2;
+      let btn = s.querySelector(".show-all");
+      const expanded = s.dataset.expanded === "1" || s.id === open;
+      items.forEach((li, i) => li.classList.toggle("collapsed", !expanded && i >= limit));
+      if (items.length > limit && !expanded) {
+        if (!btn) {
+          btn = Object.assign(document.createElement("button"), { type: "button", className: "show-all secondary" });
+          btn.addEventListener("click", () => { s.dataset.expanded = "1"; collapse(); });
+          ul.after(btn);
+        }
+        btn.textContent = `Show all ${items.length} ${s.dataset.label.toLowerCase()}`;
+        btn.hidden = false;
+      } else if (btn) btn.hidden = true;
+    }
+  }
+  collapse();
+  addEventListener("hashchange", collapse);
+  let w = innerWidth; addEventListener("resize", () => { if (innerWidth !== w) { w = innerWidth; collapse(); } });
+  document.getElementById("crop-filter").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    document.body.classList.toggle("filtering", !!q);
+    document.querySelectorAll(".crop-grid li").forEach((li) => (li.hidden = q && !li.dataset.name.includes(q)));
+    blocks.forEach((s) => (s.hidden = q && !s.querySelector("li:not([hidden])")));
+  });
+})();
 </script>

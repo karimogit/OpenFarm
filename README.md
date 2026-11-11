@@ -1,5 +1,7 @@
 # 🌱 OpenFarm
 
+*Grow food that fits your climate.*
+
 **OpenFarm helps anyone, anywhere grow food. It's an open, community-built library of growing
 guides matched to your climate region. Find your location, get advice that fits your conditions,
 and share what you know.**
@@ -79,6 +81,23 @@ region** (each region lists its `similar` regions in order), clearly labelled
 | `/crops/<crop>/varieties/<variety>/` | (inside the crop JSON) |
 | `/regions/<region>/` | `/regions/<region>.json` |
 | `/problems/<problem>/`, `/seeds/`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
+
+## Your profile, reminders and privacy
+
+- **Local profile, no account.** Your location, favourites (♡ on crops, varieties and guides) and "What I'm
+  growing" list (with sow dates and notes) are stored only in your browser's `localStorage`
+  (key `openfarm.profile`, versioned JSON). Nothing is sent to a server. The profile page can export it as a JSON
+  file, import it again (the shape is validated) and clear it.
+- **Reminders (🔔).** Worked out in the browser from your growing list, your climate region's calendar and the
+  Open-Meteo forecast: "Sow tomatoes indoors this month", "Frost forecast Thursday", "Dry week ahead – water …".
+  You can opt in to browser notifications with a click (never asked on page load).
+- **Limits.** OpenFarm is a static site with no push server, so reminders and notifications only appear while
+  the site is open or when you come back to it. For reminders while the site is closed, use **Export to calendar
+  (.ics)** on the profile page: it creates yearly all-day events for each sowing, planting, pruning and harvest
+  window, with a 09:00 alert, which your phone or computer calendar shows on its own.
+- **Third parties contacted by your browser:** OpenStreetMap tiles and Nominatim (map and place search – only when
+  you search; the header only looks up places when you choose "Find place"), Open-Meteo (forecast for your saved
+  coordinates) and Wikimedia (photos).
 
 ## Data model rationale
 

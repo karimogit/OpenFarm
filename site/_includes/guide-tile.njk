@@ -1,0 +1,8 @@
+{# expects `g` (guide) – a uniform card with the crop photo #}
+{% set gc = db.cropBy[g.crop] %}
+<li><a href="{{ g.url | url }}">
+  {% if gc.image %}<span class="thumb"><img src="{{ gc.image | wmThumb(250) }}" srcset="{{ gc.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ gc.image.orig_width or 250 }}px;max-height:{{ gc.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
+  <strong class="name">{{ gc.name }}</strong><em class="sci1">{% if gc.scientific_name %}{{ gc.scientific_name }}{% else %}&nbsp;{% endif %}</em>
+  <span class="gtitle">{{ g.title }}</span>
+  <span class="badges"><span class="conf conf-{{ g.confidence }}">{{ g.confidence }}</span>{% if extraKg %} {% for k in g.koppen %}{% if k in extraKg %}<span class="kg">{{ k }}</span>{% endif %}{% endfor %}{% endif %}</span>
+</a><button class="fav card-fav" type="button" data-fav="guide:{{ g.crop }}/{{ g.region }}" aria-pressed="false" title="Add to favourites">♡</button></li>

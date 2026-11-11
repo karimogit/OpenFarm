@@ -1,2 +1,2 @@
-{# expects `srcs` #}
-<ol class="sources">{% for s in srcs %}<li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.publisher %} – {{ s.publisher }}{% endif %}{% if s.license %} ({{ s.license }}){% endif %}</li>{% endfor %}</ol>
+{# expects `srcs`; the bulk-import dataset is credited in the repository, not on pages #}
+<ol class="sources">{% for s in srcs %}{% if s.key != "openfarm-rescue" %}<li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.publisher %} – {{ s.publisher }}{% endif %}{% if s.license %} ({{ s.license }}){% endif %}</li>{% endif %}{% endfor %}</ol>

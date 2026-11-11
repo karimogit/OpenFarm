@@ -1,0 +1,60 @@
+---
+layout: base.njk
+title: My profile
+permalink: /profile/
+pageScripts: [profile.js]
+---
+<div data-pagefind-ignore>
+<h1>♥ My garden</h1>
+<p class="privacy-note">🔒 <strong>Stored only in this browser.</strong> No account, no server – nothing on this page is sent anywhere.
+  Use Export to keep a copy or move it to another device.</p>
+
+<div class="layout">
+  <div class="col-main">
+    <section class="card" id="growing">
+      <h2>What I'm growing</h2>
+      <div id="growing-list"></div>
+      <form id="add-growing" class="row">
+        <label class="visually-hidden" for="add-crop">Crop</label>
+        <input id="add-crop" list="crop-options" placeholder="Add a crop, e.g. Tomato" autocomplete="off">
+        <datalist id="crop-options">{% for c in db.catalog.crops %}<option value="{{ c.name }}">{% endfor %}</datalist>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Favourites</h2>
+      <div id="fav-list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Guides for my climate region</h2>
+      <div id="profile-guides"></div>
+    </section>
+  </div>
+
+  <aside class="col-side">
+    <section class="side-card">
+      <h3>📍 My location</h3>
+      <div id="profile-location"></div>
+    </section>
+    {% include "weather.njk" %}
+    <section class="side-card" id="calendar">
+      <h3>📅 Reminders in my calendar</h3>
+      <p class="small">Download your sowing, planting and harvest windows for the crops you grow as a calendar file (.ics).
+        Open it on your phone or computer – your calendar app then reminds you even when this site is closed.</p>
+      <p><button type="button" id="ics-btn">⬇ Export to calendar (.ics)</button></p>
+      <p class="credit">Generated in this browser from your growing list and your climate region's guides. Re-export after you add crops.</p>
+    </section>
+    <section class="side-card">
+      <h3>My data</h3>
+      <p class="row"><button type="button" data-profile-export>⬇ Export JSON</button>
+        <label class="button secondary file-btn">⬆ Import JSON<input type="file" id="import-file" accept="application/json,.json" class="visually-hidden"></label></p>
+      <p id="import-msg" class="small" role="status"></p>
+      <p><button type="button" id="clear-data" class="danger">Clear my data</button></p>
+      <p class="credit">Format: versioned JSON (version {{ 1 }}). Stored in this browser's localStorage under <code>openfarm.profile</code>.</p>
+    </section>
+  </aside>
+</div>
+</div>
+<script id="of-catalog" type="application/json">{{ db.catalog | json | safe }}</script>

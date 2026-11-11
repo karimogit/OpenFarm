@@ -1,0 +1,8 @@
+{# expects `c` (crop) – uniform crop card with photo, names, badges, favourite button and category chip #}
+<li data-name="{{ c.name | lower }} {{ c.scientific_name | lower }} {{ c.family | lower }}"><a href="{{ ('/crops/' + c.slug + '/') | url }}">
+  {% if c.image %}<span class="thumb"><img src="{{ c.image | wmThumb(250) }}" srcset="{{ c.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ c.image.orig_width or 250 }}px;max-height:{{ c.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
+  <strong class="name">{{ c.name }}</strong><em class="sci1">{% if c.scientific_name %}{{ c.scientific_name }}{% else %}&nbsp;{% endif %}</em>
+  <span class="badges">{% if c.guides.length %}<span class="badge guide">{{ c.guides.length }} guide{% if c.guides.length > 1 %}s{% endif %}</span>{% endif %}
+    {% if c.varieties.length %}<span class="badge">{{ c.varieties.length }} variet{% if c.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}</span>
+</a><button class="fav card-fav" type="button" data-fav="crop:{{ c.slug }}" aria-pressed="false" title="Add to favourites">♡</button>
+<span class="card-chip">{% set ty = c.type %}{% include "type-chip.njk" %}</span></li>

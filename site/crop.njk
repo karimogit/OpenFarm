@@ -10,15 +10,14 @@ eleventyComputed:
   description: "{{ crop.name }}{% if crop.scientific_name %} ({{ crop.scientific_name }}){% endif %}: general growing facts, varieties and climate-region guides."
   jsonUrl: "/crops/{{ crop.slug }}.json"
 ---
-<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ '/crops/' | url }}#{{ crop.type }}">{{ db.typeLabels[crop.type] }}</a> /</p>
+<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/type/' + crop.type + '/') | url }}">{{ db.typeLabels[crop.type] }}</a> /</p>
 <div class="layout">
   <article class="col-main" data-pagefind-body>
-    <h1>{{ crop.name }} {% if crop.scientific_name %}<em class="sci">{{ crop.scientific_name }}</em>{% endif %}</h1>
-    <p class="sci-line">{{ db.typeLabels[crop.type] }}{% if crop.family %} · {{ crop.family }}{% endif %}{% if crop.lifecycle %} · {{ crop.lifecycle | label }}{% endif %}{% if crop.aliases %} · also called {{ crop.aliases | join(", ") }}{% endif %}</p>
-    {% if crop.origin == "imported" %}
-    <aside class="warn" data-pagefind-ignore><strong>Imported, unreviewed data.</strong> {{ crop.note }}
-      <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ crop.file }}">Review this crop on GitHub</a>.</aside>
-    {% endif %}
+    <div class="title-row"><h1>{{ crop.name }} {% if crop.scientific_name %}<em class="sci">{{ crop.scientific_name }}</em>{% endif %}</h1>
+      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="crop:{{ crop.slug }}" data-label aria-pressed="false">♡</button>
+      <button type="button" class="grow" data-grow="{{ crop.slug }}">＋ I'm growing this</button></span></div>
+    <p class="sci-line">{% if crop.family %}{{ crop.family }}{% endif %}{% if crop.lifecycle %} · {{ crop.lifecycle | label }}{% endif %}{% if crop.aliases %} · also called {{ crop.aliases | join(", ") }}{% endif %}
+      {% if crop.origin == "imported" %} · {% set editFile = crop.file %}{% include "unreviewed.njk" %}{% endif %}</p>
     {% set img = crop.image %}{% set alt = crop.name %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ crop.html | safe }}</div>
 
@@ -27,24 +26,26 @@ eleventyComputed:
     <h2 id="guides">Growing guides by climate region</h2>
     {% if crop.guides.length %}
       {% for g in crop.guides %}
-      <section class="card guide-card">
+      <section class="card guide-card match">
+        <a class="match-thumb" href="{{ g.url | url }}" tabindex="-1" aria-hidden="true">{% if crop.image %}<span class="thumb"><img src="{{ crop.image | wmThumb(250) }}" srcset="{{ crop.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ crop.image.orig_width or 250 }}px;max-height:{{ crop.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}</a>
+        <div class="match-body">
         <h3><span class="swatch sm" style="background:{{ g.regionColor }}"></span><a href="{{ g.url | url }}">{{ g.regionName }}</a> <small>{{ g.title }}</small></h3>
         <p>{% for k in g.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endfor %}
           <span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span> · checked against {{ g.reference_location }}</p>
         {% set cal = g.calendar %}{% include "calendar.njk" %}
+        </div>
       </section>
       {% endfor %}
     {% else %}
       <p>No climate guides yet. The facts on this page apply everywhere; the timing depends on your climate region.</p>
     {% endif %}
-    <p><a class="button" href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">＋ Add a guide for your climate region</a></p>
 
     {% if crop.varieties.length %}
     <h2 id="varieties">Varieties <small>({{ crop.varieties.length }})</small></h2>
     <ul class="variety-grid">
       {% for v in crop.varieties %}
       <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
-        <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}{% if v.origin == "imported" %} · <span class="badge imported">imported</span>{% endif %}</span></a></li>
+        <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
       {% endfor %}
     </ul>
     {% endif %}
@@ -69,8 +70,8 @@ eleventyComputed:
     {% set srcs = crop.sources %}{% include "sources.njk" %}
     {% if crop.rescue %}<p class="small">Original OpenFarm record: <a href="{{ crop.rescue.wayback_url }}">Wayback Machine capture</a>{% if crop.rescue.captured %} ({{ crop.rescue.captured }}){% endif %}.</p>{% endif %}
     <p class="meta">{% if crop.origin == "curated" %}By {{ crop.authors | join(", ") }} · last reviewed {{ crop.last_reviewed }} · {% endif %}
-      License {{ crop.license }} ·
-      <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ crop.file }}">✏️ Improve on GitHub</a> · <a href="{{ ('/crops/' + crop.slug + '.json') | url }}">JSON</a></p>
+      License {{ crop.license }} · <a href="{{ ('/crops/' + crop.slug + '.json') | url }}">JSON</a></p>
+    {% set editFile = crop.file %}{% set editLabel = "Edit this crop" %}{% include "edit-button.njk" %}
   </article>
 
   <aside class="col-side">
@@ -107,10 +108,10 @@ eleventyComputed:
       {% if pe.rootstocks %}<h4>Rootstocks</h4><ul class="small">{% for r in pe.rootstocks %}<li><strong>{{ r.name }}</strong> ({{ r.vigour | label }}){% if r.notes %} – {{ r.notes }}{% endif %}</li>{% endfor %}</ul>{% endif %}
     </section>
     {% endif %}
-    {% if crop.seed_saving %}
+    {% if crop.seed_saving or crop.seedImage %}
     <section class="side-card">
       <h3>Seeds</h3>
-      {% set ss = crop.seed_saving %}{% set vs = false %}{% include "seeds.njk" %}
+      {% set ss = crop.seed_saving %}{% set vs = false %}{% set simg = crop.seedImage %}{% include "seeds.njk" %}
     </section>
     {% endif %}
     {% include "weather.njk" %}

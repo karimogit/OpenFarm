@@ -15,14 +15,22 @@
     <form class="top-search" action="{{ '/search/' | url }}" role="search">
       <input type="search" name="q" placeholder="Search crops, guides, regions…" aria-label="Search OpenFarm">
     </form>
-    <nav>
-      <a href="{{ '/' | url }}#where">Find guides</a>
-      <a href="{{ '/crops/' | url }}">Crops</a>
-      <a href="{{ '/regions/' | url }}">Climate regions</a>
-      <a href="{{ '/seeds/' | url }}">Seeds</a>
-      <a href="{{ '/contribute/' | url }}">About</a>
+    {%- set u = page.url or "" -%}
+    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("seeds" if u.indexOf("/seeds/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else ""))))) %}
+    <nav class="main-nav" aria-label="Main">
+      <a href="{{ '/' | url }}#where"{% if sect == "home" %} aria-current="page"{% endif %}>Find guides</a>
+      <a href="{{ '/crops/' | url }}"{% if sect == "crops" %} aria-current="page"{% endif %}>Crops</a>
+      <a href="{{ '/regions/' | url }}"{% if sect == "regions" %} aria-current="page"{% endif %}>Climate regions</a>
+      <a href="{{ '/seeds/' | url }}"{% if sect == "seeds" %} aria-current="page"{% endif %}>Seeds</a>
+      <a href="{{ '/contribute/' | url }}"{% if sect == "about" %} aria-current="page"{% endif %}>About</a>
     </nav>
-    <a class="here" href="{{ '/' | url }}#where" data-here hidden></a>
+    <div class="top-icons">
+      <button type="button" class="icon-btn bell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-controls="bell-panel" title="Reminders">
+        <span aria-hidden="true">🔔</span><span class="visually-hidden">Reminders</span><span class="count" data-bell-count hidden></span></button>
+      <div id="bell-panel" class="bell-panel" role="dialog" aria-label="Reminders" hidden></div>
+      <a class="icon-btn profile-icon" href="{{ '/profile/' | url }}"{% if sect == "profile" %} aria-current="page"{% endif %} title="My profile">
+        <span aria-hidden="true">👤</span><span class="visually-hidden">My profile</span><span class="dot" data-profile-dot hidden></span></a>
+    </div>
   </header>
   <main>
     {{ content | safe }}
@@ -30,10 +38,8 @@
   <footer class="foot">
     <div class="foot-cols">
       <div>
-        <p><strong>🌱 OpenFarm</strong> – © {{ site.attribution }}. A community revival in the spirit of the original
-          <a href="https://github.com/openfarmcc">OpenFarm</a>.</p>
-        <p>Code: <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · Guide content: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
-          (imported crop data: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>) ·
+        <p><strong>🌱 OpenFarm</strong> – © {{ site.attribution }}. Built in the spirit of the original <a href="https://github.com/openfarmcc">OpenFarm</a>, with thanks to everyone who contributed to it.</p>
+        <p>Code: <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · Guide content: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
           <a href="{{ site.repo }}">Source on GitHub</a></p>
         <p class="small">Always check local advice – climates vary at small scales.</p>
       </div>
@@ -41,8 +47,8 @@
         <p><strong>Data &amp; credits</strong></p>
         <ul class="credits">
           <li>Climate regions: Köppen-Geiger map by <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a>, CC BY 4.0</li>
-          <li>Crop records: <a href="https://github.com/thefullnacho/openfarm-crops-rescue">openfarm-crops-rescue</a>, CC0</li>
           <li>Photos: <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> – author and license shown on each picture</li>
+          <li>Scientific names and families: <a href="https://www.wikidata.org/">Wikidata</a>, CC0</li>
           <li>Maps &amp; place search: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="https://nominatim.org/">Nominatim</a></li>
           <li>Weather: <a href="https://open-meteo.com/">Open-Meteo.com</a>, CC BY 4.0</li>
           <li>Map library: <a href="https://leafletjs.com/">Leaflet</a> · Search: <a href="https://pagefind.app/">Pagefind</a></li>

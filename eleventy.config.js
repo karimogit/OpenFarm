@@ -1,3 +1,4 @@
+import { wmThumb, wmSrcset } from "./scripts/wm.js";
 // Eleventy config. Content lives in /content (CC BY-SA 4.0 / CC0 imports); site code in /site (MIT).
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const LABELS = {
@@ -47,6 +48,17 @@ const allOut = (db) => ({
 });
 
 export default function (eleventyConfig) {
+  // External links (sources, seed companies, Commons, GitHub, …) open in a new tab and say so;
+  // internal navigation stays in the same tab.
+  eleventyConfig.addTransform("external-links", function (html) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return html;
+    return html.replace(/<a\s([^>]*?href="https?:\/\/[^"]+"[^>]*)>([\s\S]*?)<\/a>/g, (m, attrs, inner) => {
+      if (/\starget=/.test(attrs)) return m;
+      return `<a ${attrs} target="_blank" rel="noopener noreferrer">${inner}<span class="ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a>`;
+    });
+  });
+  eleventyConfig.addFilter("wmThumb", wmThumb);
+  eleventyConfig.addFilter("wmSrcset", wmSrcset);
   eleventyConfig.addFilter("regionOut", regionOut);
   eleventyConfig.addFilter("allOut", allOut);
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });

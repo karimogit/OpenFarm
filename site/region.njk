@@ -14,6 +14,7 @@ eleventyComputed:
 <div class="layout">
   <article class="col-main" data-pagefind-body>
     <h1><span class="swatch" style="background:{{ r.color }}"></span> {{ r.name }}</h1>
+    {% set img = r.image %}{% set alt = "Typical farmland or gardens in a " + (r.name | lower) + " climate" %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ r.html | safe }}</div>
     {% if r.examples %}<p class="small"><strong>Examples:</strong> {{ r.examples }}</p>{% endif %}
     <p>Köppen-Geiger classes: {% for k in r.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span> {{ koppen.classes | kgName(k) }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
@@ -22,13 +23,13 @@ eleventyComputed:
     {% set primary = r.guides | where("primary", true) %}
     {% set also = r.guides | where("primary", false) %}
     {% if primary.length %}
-    <ul class="guide-list">{% for x in primary %}<li><a href="{{ x.g.url | url }}"><strong>{{ x.g.cropName }}</strong> – {{ x.g.title }}</a> <span class="conf conf-{{ x.g.confidence }}">{{ x.g.confidence }}</span></li>{% endfor %}</ul>
+    <ul class="crop-grid guide-grid">{% set extraKg = false %}{% for x in primary %}{% set g = x.g %}{% include "guide-tile.njk" %}{% endfor %}</ul>
     {% else %}
     <p>No guides written for this region yet.</p>
     {% endif %}
     {% if also.length %}
     <h3>Guides from neighbouring regions that also cover some of these classes</h3>
-    <ul class="guide-list">{% for x in also %}<li><a href="{{ x.g.url | url }}"><strong>{{ x.g.cropName }}</strong> – {{ x.g.title }}</a> {% for k in x.g.koppen %}{% if k in r.koppen %}<span class="kg">{{ k }}</span>{% endif %}{% endfor %}</li>{% endfor %}</ul>
+    <ul class="crop-grid guide-grid">{% set extraKg = r.koppen %}{% for x in also %}{% set g = x.g %}{% include "guide-tile.njk" %}{% endfor %}</ul>
     {% endif %}
 
     {% if r.varieties.length %}
@@ -40,12 +41,8 @@ eleventyComputed:
     <p>When a crop has no guide for {{ r.name | lower }}, OpenFarm shows the guide from the most similar region, in this order:
       {% for s in r.similar %}{% set sr = db.regionBy[s] %}<a class="chip" href="{{ ('/regions/' + s + '/') | url }}"><span class="swatch sm" style="background:{{ sr.color }}"></span>{{ sr.name }}</a> {% endfor %}</p>
 
-    <section class="card" id="help">
-      <h2>Help cover this region</h2>
-      <p>Know how to grow something here? Every guide is a plain text file on GitHub.
-        <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">Add a guide for {{ r.name | lower }}</a> –
-        for example {% for c in ["tomato", "potato", "kale", "garlic", "bush-bean", "strawberry", "apple"] %}{% if not (db.cropBy[c].guides | where("region", r.slug)).length %}<a href="{{ site | addGuideUrl(c, r.slug) }}">{{ db.cropBy[c].name | lower }}</a>, {% endif %}{% endfor %}or any of the {{ db.stats.crops }} crops.</p>
-    </section>
+    <p id="help" class="small">Know how to grow something here? <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">Add a guide for {{ r.name | lower }}</a> – every guide is a plain text file on GitHub.</p>
+    {% set editFile = r.file %}{% set editLabel = "Edit this region" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
     {% include "weather.njk" %}

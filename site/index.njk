@@ -3,72 +3,76 @@ layout: base.njk
 title: Growing guides matched to your climate region
 pageScripts: [home.js]
 ---
-<section class="hero">
-  <h1>What can I grow here, and when?</h1>
+<section class="hero home-hero">
+  <h1>{{ site.short }}</h1>
   <p class="lead">{{ site.tagline }}</p>
-  <p class="stats">{{ db.stats.crops }} crops · {{ db.stats.varieties }} varieties · {{ db.stats.guides }} climate guides · {{ db.stats.regions }} climate regions covering the whole planet</p>
 </section>
 
-<div class="layout">
+<div class="layout home-layout">
   <div class="col-main">
-    <section id="where" class="card where" data-pagefind-ignore>
-      <h2>1 · Pick a location</h2>
-      <form id="search" class="row" autocomplete="off">
-        <input id="q" type="search" placeholder="Search a place, e.g. Utrecht or Umeå" aria-label="Place search">
-        <button type="submit">Search</button>
-        <button type="button" id="geo" title="Use my location" aria-label="Use my location">📍</button>
-      </form>
-      <ul id="results" class="results" hidden></ul>
-      <form id="coords" class="row small">
-        <label>Lat <input id="lat" type="number" step="any" min="-90" max="90" required></label>
-        <label>Lon <input id="lon" type="number" step="any" min="-180" max="180" required></label>
-        <button type="submit">Go</button>
-        <label class="toggle"><input type="checkbox" id="overlay"> Show climate map</label>
-      </form>
-      <div id="map" aria-label="Map – click to choose a location"></div>
-      <p class="hint">Or click anywhere on the map. Try:
-        <a href="?lat=52.09&lon=5.12" data-demo>Utrecht (NL)</a> ·
-        <a href="?lat=63.83&lon=20.26" data-demo>Umeå (SE)</a> ·
-        <a href="?lat=37.39&lon=-5.98" data-demo>Seville (ES)</a> ·
-        <a href="?lat=39.74&lon=-104.99" data-demo>Denver (US)</a> ·
-        <a href="?lat=13.75&lon=100.50" data-demo>Bangkok (TH)</a> ·
-        <a href="?lat=-37.81&lon=144.96" data-demo>Melbourne (AU)</a></p>
+    <section id="matches" class="card">
+      <h2>Guides for your climate region</h2>
+      <div id="match-list">
+        <p class="muted" data-pagefind-ignore>Search for your location to see the growing guides that fit your climate.
+          Or <a href="{{ '/crops/' | url }}">browse all {{ db.stats.crops }} crops</a>.</p>
+      </div>
     </section>
 
-    <section id="climate" class="card" hidden>
-      <h2>2 · Your climate region</h2>
-      <div id="climate-box"></div>
-    </section>
-
-    <section id="matches" class="card" hidden>
-      <h2>3 · Guides for your climate region</h2>
-      <div id="match-list"></div>
-    </section>
-  </div>
-
-  <aside class="col-side">
-    {% include "weather.njk" %}
-    <section class="side-card">
-      <h3>Browse crops</h3>
+    <section class="card">
+      <h2>Browse crops</h2>
+      <p class="small muted">{{ db.stats.crops }} crops · {{ db.stats.varieties }} varieties · {{ db.stats.guides }} guides</p>
       <ul class="chips">
-        {% for t in db.types %}<li><a href="{{ '/crops/' | url }}#{{ t.slug }}">{{ t.label }} <small>{{ t.crops.length }}</small></a></li>{% endfor %}
+        {% for t in db.types %}<li><a class="type-chip t-{{ t.slug }}" href="{{ ('/crops/type/' + t.slug + '/') | url }}">{{ t.label }} <small>{{ t.crops.length }}</small></a></li>{% endfor %}
       </ul>
     </section>
-    <section class="side-card">
-      <h3>Climate regions</h3>
-      <ul class="region-list">
+    <section class="card">
+      <h2>Browse climate regions</h2>
+      <p class="small muted">{{ db.stats.regions }} climate regions cover every place on Earth.</p>
+      <ul class="region-list two-col">
         {% for r in db.regions %}<li><a href="{{ ('/regions/' + r.slug + '/') | url }}"><span class="swatch sm" style="background:{{ r.color }}"></span>{{ r.name }}</a></li>{% endfor %}
       </ul>
     </section>
+
+  </div>
+
+  <aside class="col-side details-panel" data-pagefind-ignore>
+    <details id="details-panel" open>
+      <summary id="details-summary"><span>📍 Your details</span><span class="chg">change</span></summary>
+      <section id="where" class="side-card where">
+        <h3>Your location</h3>
+        <form id="search" class="search-main" autocomplete="off" role="search">
+          <input id="q" type="search" placeholder="Search a town or region…" aria-label="Find your location">
+          <button type="submit">Find</button>
+        </form>
+        <ul id="results" class="results" hidden></ul>
+        <p><button type="button" id="geo" class="secondary small">📍 Use my current location</button></p>
+        <div id="map" aria-label="Map – click to choose a location"></div>
+        <details class="small coords-details">
+          <summary>Coordinates · climate map</summary>
+          <form id="coords" class="row">
+            <label>Lat <input id="lat" type="number" step="any" min="-90" max="90" required></label>
+            <label>Lon <input id="lon" type="number" step="any" min="-180" max="180" required></label>
+            <button type="submit">Go</button>
+            <label class="toggle"><input type="checkbox" id="overlay"> Show Köppen map</label>
+          </form>
+        </details>
+        <p class="credit">Stored only in this browser.</p>
+      </section>
+      <section id="climate" class="side-card" hidden>
+        <h3>Your climate region</h3>
+        <div id="climate-box"></div>
+      </section>
+      {% include "weather.njk" %}
+      <section class="side-card profile-card" data-profile-summary>
+        <h3>♥ Your garden</h3>
+        <p class="small" data-profile-counts>No favourites yet – tap ♡ on any crop, variety or guide.</p>
+        <p class="row"><a class="button small" href="{{ '/profile/' | url }}">My profile</a>
+          <button type="button" class="secondary small" data-profile-export>Export</button></p>
+        <p class="credit">Stored only in this browser – nothing is sent anywhere.</p>
+      </section>
+    </details>
   </aside>
 </div>
-
-<section class="card about">
-  <h2>Open by design</h2>
-  <p>Every guide is a plain text file on GitHub, so anyone can suggest improvements and every change is tracked.
-    Guides are written per crop and per climate region, and every fact links to its source.
-    <a href="{{ '/contribute/' | url }}">How it works and how to help →</a></p>
-</section>
 
 <link rel="stylesheet" href="{{ '/assets/vendor/leaflet/leaflet.css' | url }}">
 <script src="{{ '/assets/vendor/leaflet/leaflet.js' | url }}"></script>
