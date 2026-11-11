@@ -1,9 +1,6 @@
 ---
 crop: bush-bean
-common_name: Bush bean (dwarf French bean)
-scientific_name: Phaseolus vulgaris
-family: Fabaceae
-variant: mediterranean
+region: mediterranean
 title: Bush beans in Mediterranean climates (spring and late-summer sowings)
 koppen: [Csa, Csb]
 hemisphere: north
@@ -17,8 +14,6 @@ spacing:
   between_rows_cm: [75, 75]
 sun: full
 water: moderate
-companions:
-  evidence: traditional
 confidence: medium
 uncertainty: >-
   UC lists snap beans April–May and July–August for interior valleys (Csa).

@@ -1,0 +1,9 @@
+---
+pagination:
+  data: db.regions
+  size: 1
+  alias: r
+permalink: "/regions/{{ r.slug }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ r | regionOut | prettyJson | safe }}

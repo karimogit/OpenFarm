@@ -1,0 +1,57 @@
+---
+layout: base.njk
+pagination:
+  data: db.regions
+  size: 1
+  alias: r
+permalink: "/regions/{{ r.slug }}/"
+eleventyComputed:
+  title: "{{ r.name }} climate region"
+  description: "What to grow in a {{ r.name | lower }} climate: growing guides, suitable varieties and Köppen classes."
+  jsonUrl: "/regions/{{ r.slug }}.json"
+---
+<p class="crumbs"><a href="{{ '/regions/' | url }}">Climate regions</a> /</p>
+<div class="layout">
+  <article class="col-main" data-pagefind-body>
+    <h1><span class="swatch" style="background:{{ r.color }}"></span> {{ r.name }}</h1>
+    <div class="body">{{ r.html | safe }}</div>
+    {% if r.examples %}<p class="small"><strong>Examples:</strong> {{ r.examples }}</p>{% endif %}
+    <p>Köppen-Geiger classes: {% for k in r.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span> {{ koppen.classes | kgName(k) }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+
+    <h2>Growing guides for this region</h2>
+    {% set primary = r.guides | where("primary", true) %}
+    {% set also = r.guides | where("primary", false) %}
+    {% if primary.length %}
+    <ul class="guide-list">{% for x in primary %}<li><a href="{{ x.g.url | url }}"><strong>{{ x.g.cropName }}</strong> – {{ x.g.title }}</a> <span class="conf conf-{{ x.g.confidence }}">{{ x.g.confidence }}</span></li>{% endfor %}</ul>
+    {% else %}
+    <p>No guides written for this region yet.</p>
+    {% endif %}
+    {% if also.length %}
+    <h3>Guides from neighbouring regions that also cover some of these classes</h3>
+    <ul class="guide-list">{% for x in also %}<li><a href="{{ x.g.url | url }}"><strong>{{ x.g.cropName }}</strong> – {{ x.g.title }}</a> {% for k in x.g.koppen %}{% if k in r.koppen %}<span class="kg">{{ k }}</span>{% endif %}{% endfor %}</li>{% endfor %}</ul>
+    {% endif %}
+
+    {% if r.varieties.length %}
+    <h2>Varieties recommended here</h2>
+    <ul class="variety-grid">{% for v in r.varieties %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong><span>{{ v.cropName }}{% if v.category %} · {{ v.category }}{% endif %}</span></a></li>{% endfor %}</ul>
+    {% endif %}
+
+    <h2>Most similar regions</h2>
+    <p>When a crop has no guide for {{ r.name | lower }}, OpenFarm shows the guide from the most similar region, in this order:
+      {% for s in r.similar %}{% set sr = db.regionBy[s] %}<a class="chip" href="{{ ('/regions/' + s + '/') | url }}"><span class="swatch sm" style="background:{{ sr.color }}"></span>{{ sr.name }}</a> {% endfor %}</p>
+
+    <section class="card" id="help">
+      <h2>Help cover this region</h2>
+      <p>Know how to grow something here? Every guide is a plain text file on GitHub.
+        <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">Add a guide for {{ r.name | lower }}</a> –
+        for example {% for c in ["tomato", "potato", "kale", "garlic", "bush-bean", "strawberry", "apple"] %}{% if not (db.cropBy[c].guides | where("region", r.slug)).length %}<a href="{{ site | addGuideUrl(c, r.slug) }}">{{ db.cropBy[c].name | lower }}</a>, {% endif %}{% endfor %}or any of the {{ db.stats.crops }} crops.</p>
+    </section>
+  </article>
+  <aside class="col-side">
+    {% include "weather.njk" %}
+    <section class="side-card">
+      <h3>All climate regions</h3>
+      <ul class="region-list">{% for x in db.regions %}<li{% if x.slug == r.slug %} class="current"{% endif %}><a href="{{ ('/regions/' + x.slug + '/') | url }}"><span class="swatch sm" style="background:{{ x.color }}"></span>{{ x.name }}</a></li>{% endfor %}</ul>
+    </section>
+  </aside>
+</div>

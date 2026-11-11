@@ -1,0 +1,21 @@
+---
+layout: base.njk
+pagination:
+  data: db.problems
+  size: 1
+  alias: p
+permalink: "/problems/{{ p.slug }}/"
+eleventyComputed:
+  title: "{{ p.name }}"
+---
+<p class="crumbs"><a href="{{ '/problems/' | url }}">Pests &amp; diseases</a> /</p>
+<article data-pagefind-body>
+  <h1>{{ p.name }} {% if p.scientific_name %}<em class="sci">{{ p.scientific_name }}</em>{% endif %}</h1>
+  <p class="sci-line">{{ p.kind | capitalize }}{% if p.caused_by %} · {{ p.caused_by }}{% endif %}</p>
+  {% if p.conditions %}<p><strong>When:</strong> {{ p.conditions }}</p>{% endif %}
+  <p><strong>Affects:</strong> {% for c in p.affects %}<a href="{{ ('/crops/' + c + '/') | url }}">{{ db.cropBy[c].name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+  <div class="body">{{ p.html | safe }}</div>
+  <h2>Sources</h2>
+  {% set srcs = p.sources %}{% include "sources.njk" %}
+  <p class="meta"><a href="{{ site.repo }}/edit/{{ site.branch }}/{{ p.file }}">✏️ Improve on GitHub</a></p>
+</article>

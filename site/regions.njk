@@ -1,0 +1,16 @@
+---
+layout: base.njk
+title: Climate regions
+permalink: /regions/
+---
+<h1>Climate regions</h1>
+<p>OpenFarm groups all {{ koppen.classes.length - 1 }} Köppen-Geiger climate classes into {{ db.regions.length }} climate regions,
+  so every place on Earth belongs to one. Guides are written per crop and climate region.</p>
+<ul class="region-cards">
+{% for r in db.regions %}
+  {% set n = (r.guides | where("primary", true)).length %}
+  <li class="card"><h2><span class="swatch" style="background:{{ r.color }}"></span> <a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a></h2>
+    <p class="small">{{ r.examples }}</p>
+    <p>{% for k in r.koppen %}<span class="kg">{{ k }}</span>{% endfor %} · {{ n }} guide{% if n != 1 %}s{% endif %} written for it{% if r.guides.length > n %}, {{ r.guides.length - n }} more cover part of it{% endif %}</p></li>
+{% endfor %}
+</ul>

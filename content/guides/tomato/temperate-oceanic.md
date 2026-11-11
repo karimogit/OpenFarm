@@ -1,9 +1,6 @@
 ---
 crop: tomato
-common_name: Tomato
-scientific_name: Solanum lycopersicum
-family: Solanaceae
-variant: temperate-oceanic
+region: temperate-oceanic
 title: Tomatoes in mild oceanic climates (Netherlands, UK, Belgium)
 koppen: [Cfb, Cfc]
 hemisphere: north
@@ -18,10 +15,7 @@ spacing:
   between_rows_cm: [60, 90]
 sun: full
 water: moderate
-companions:
-  good: [basil, marigold]
-  avoid: [potato]
-  evidence: traditional
+problems: [late-blight]
 confidence: high
 sources:
   - title: "Tomatoes: grow your own"
@@ -71,7 +65,7 @@ frost, bring green fruit indoors to ripen.
 - **Late blight**: brown patches on leaves and stems in warm, wet weather. Grow
   blight-resistant varieties, give plants space and air, and avoid wetting foliage.
 - Keep tomatoes and potatoes apart where possible – they share blight and other
-  diseases. (This is the reason for the "avoid" companion above.)
+  diseases. (This is why tomato and potato are listed as companions to avoid.)
 
 > Companion planting notes (basil, marigold) are traditional garden lore, not
 > well-established research results.

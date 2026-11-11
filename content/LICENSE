@@ -1,3 +1,17 @@
+OpenFarm content (everything in content/) – Copyright (c) 2026 OpenFarm contributors.
+
+Licensed under the Creative Commons Attribution-ShareAlike 4.0 International
+license (CC BY-SA 4.0), reproduced below. Attribute as "OpenFarm contributors"
+with a link to https://github.com/karimogit/OpenFarm.
+
+Exception: files whose frontmatter says `license: CC0-1.0` (crops and varieties
+imported from the OpenFarm rescue dataset with `origin: imported`) are dedicated
+to the public domain under CC0 1.0, like their source. Once a contributor adds
+their own content and switches such a file to CC-BY-SA-4.0, the CC BY-SA terms
+apply to that file.
+
+-----------------------------------------------------------------------
+
 Attribution-ShareAlike 4.0 International
 
 =======================================================================

@@ -3,13 +3,32 @@ layout: base.njk
 title: Crops
 permalink: /crops/
 ---
+<div data-pagefind-ignore>
 <h1>Crops</h1>
-<p>Each crop has one guide per climate group. Missing your climate? <a href="{{ '/contribute/' | url }}">Add a variant.</a></p>
-{% for c in crops %}
-<section class="card">
-  <h2><a href="{{ ('/crops/' + c.slug + '/') | url }}">{{ c.common_name }}</a> <em class="sci">{{ c.scientific_name }}</em></h2>
-  <ul class="variant-list">
-    {% for v in c.variants %}<li><a href="{{ ('/guides/' + v.crop + '/' + v.variant + '/') | url }}">{{ v.title }}</a> {% for k in v.koppen %}<span class="kg">{{ k }}</span>{% endfor %}</li>{% endfor %}
+<p>{{ db.stats.crops }} crops. Each has general facts; crops with a <span class="badge guide">guide</span> also have climate-specific
+  growing calendars. Crops marked <span class="badge imported">imported</span> come from the rescued original OpenFarm data and are not yet reviewed.</p>
+<p><input type="search" id="crop-filter" placeholder="Filter crops…" aria-label="Filter crops"></p>
+{% for t in db.types %}
+<section class="card type-block" id="{{ t.slug }}">
+  <h2>{{ t.label }} <small>({{ t.crops.length }})</small></h2>
+  <ul class="crop-grid">
+  {% for c in t.crops %}
+    <li data-name="{{ c.name | lower }} {{ c.scientific_name | lower }}"><a href="{{ ('/crops/' + c.slug + '/') | url }}">
+      {% if c.image %}<span class="thumb" style="background-image:url('{{ c.image.src | cssUrl }}')"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}
+      <strong>{{ c.name }}</strong>{% if c.scientific_name %}<em>{{ c.scientific_name }}</em>{% endif %}
+      <span>{% if c.guides.length %}<span class="badge guide">{{ c.guides.length }} guide{% if c.guides.length > 1 %}s{% endif %}</span>{% endif %}
+        {% if c.varieties.length %}<span class="badge">{{ c.varieties.length }} variet{% if c.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}
+        {% if c.origin == "imported" %}<span class="badge imported">imported</span>{% endif %}</span>
+    </a></li>
+  {% endfor %}
   </ul>
 </section>
 {% endfor %}
+</div>
+<script>
+document.getElementById("crop-filter").addEventListener("input", (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll(".crop-grid li").forEach((li) => (li.hidden = q && !li.dataset.name.includes(q)));
+  document.querySelectorAll(".type-block").forEach((s) => (s.hidden = q && !s.querySelector("li:not([hidden])")));
+});
+</script>

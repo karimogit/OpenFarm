@@ -1,0 +1,7 @@
+<section class="side-card" data-seed-sources>
+  <h3>Where to find seed</h3>
+  <ul class="small seed-src">
+    {% for s in db.seedSources %}<li data-countries="{{ s.countries | join(',') }}"><a href="{{ s.url }}">{{ s.name }}</a> <span class="muted">{{ s.countries | join(", ") }} · {{ s.kind | label }}</span></li>{% endfor %}
+  </ul>
+  <p class="small"><a href="{{ '/seeds/' | url }}">All seed sources</a> · <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#seed-sources">add one near you</a></p>
+</section>

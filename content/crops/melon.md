@@ -1,0 +1,26 @@
+---
+slug: melon
+name: Melon
+type: fruit
+origin: imported
+scientific_name: Cucumis melo
+sun: full
+sowing_method: 'Direct seed. If planting indoors, use peat pots and harden off before transplanting seedlings outside.'
+size:
+  spread_cm: 130
+  row_spacing_cm: 120
+  height_cm: 40
+rescue:
+  slug: melon
+  wayback_url: 'https://web.archive.org/web/20250218033704/https://openfarm.cc/en/crops/melon'
+  captured: '20250218'
+  taxon: Species
+sources:
+  - openfarm-rescue
+license: CC0-1.0
+imported: '2026-11-11'
+note: >-
+  Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
+  for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+---
+Melons are a group of species in the Cucurbitaceae family. They produce sweet fruits that grow on sprawling vines. Types of melons include: watermelons, cantaloupe, honeydew, casaba, and crenshaw. More growing information is available in individual species entries.

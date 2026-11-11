@@ -1,20 +1,119 @@
 ---
 layout: base.njk
 pagination:
-  data: crops
+  data: db.crops
   size: 1
   alias: crop
 permalink: "/crops/{{ crop.slug }}/"
 eleventyComputed:
-  title: "{{ crop.common_name }}"
+  title: "{{ crop.name }}"
+  description: "{{ crop.name }}{% if crop.scientific_name %} ({{ crop.scientific_name }}){% endif %}: general growing facts, varieties and climate-region guides."
+  jsonUrl: "/crops/{{ crop.slug }}.json"
 ---
-<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> /</p>
-<h1>{{ crop.common_name }} <em class="sci">{{ crop.scientific_name }}</em></h1>
-<p>Family {{ crop.family }}. Pick the variant that matches your climate – or <a href="{{ '/' | url }}#where">look up your location</a>.</p>
-{% for v in crop.variants %}
-<section class="card">
-  <h2><a href="{{ ('/guides/' + v.crop + '/' + v.variant + '/') | url }}">{{ v.title }}</a></h2>
-  <p>{% for k in v.koppen %}<span class="kg">{{ k }}</span>{% endfor %} <span class="conf conf-{{ v.confidence }}">{{ v.confidence }} confidence</span> · checked against {{ v.reference_location }}</p>
-  {% set cal = v.calendar %}{% include "calendar.njk" %}
-</section>
-{% endfor %}
+<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ '/crops/' | url }}#{{ crop.type }}">{{ db.typeLabels[crop.type] }}</a> /</p>
+<div class="layout">
+  <article class="col-main" data-pagefind-body>
+    <h1>{{ crop.name }} {% if crop.scientific_name %}<em class="sci">{{ crop.scientific_name }}</em>{% endif %}</h1>
+    <p class="sci-line">{{ db.typeLabels[crop.type] }}{% if crop.family %} · {{ crop.family }}{% endif %}{% if crop.lifecycle %} · {{ crop.lifecycle | label }}{% endif %}{% if crop.aliases %} · also called {{ crop.aliases | join(", ") }}{% endif %}</p>
+    {% if crop.origin == "imported" %}
+    <aside class="warn" data-pagefind-ignore><strong>Imported, unreviewed data.</strong> {{ crop.note }}
+      <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ crop.file }}">Review this crop on GitHub</a>.</aside>
+    {% endif %}
+    {% set img = crop.image %}{% set alt = crop.name %}{% set inherited = false %}{% include "image.njk" %}
+    <div class="body">{{ crop.html | safe }}</div>
+
+    <section class="your-region card" data-your-region data-crop="{{ crop.slug }}" data-crop-name="{{ crop.name }}" data-pagefind-ignore hidden></section>
+
+    <h2 id="guides">Growing guides by climate region</h2>
+    {% if crop.guides.length %}
+      {% for g in crop.guides %}
+      <section class="card guide-card">
+        <h3><span class="swatch sm" style="background:{{ g.regionColor }}"></span><a href="{{ g.url | url }}">{{ g.regionName }}</a> <small>{{ g.title }}</small></h3>
+        <p>{% for k in g.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endfor %}
+          <span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span> · checked against {{ g.reference_location }}</p>
+        {% set cal = g.calendar %}{% include "calendar.njk" %}
+      </section>
+      {% endfor %}
+    {% else %}
+      <p>No climate guides yet. The facts on this page apply everywhere; the timing depends on your climate region.</p>
+    {% endif %}
+    <p><a class="button" href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">＋ Add a guide for your climate region</a></p>
+
+    {% if crop.varieties.length %}
+    <h2 id="varieties">Varieties <small>({{ crop.varieties.length }})</small></h2>
+    <ul class="variety-grid">
+      {% for v in crop.varieties %}
+      <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
+        <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}{% if v.origin == "imported" %} · <span class="badge imported">imported</span>{% endif %}</span></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if crop.problemList.length %}
+    <h2 id="problems">Pests, diseases and disorders</h2>
+    <ul>{% for p in crop.problemList %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}">{{ p.name }}</a> <small class="muted">{{ p.kind }}</small></li>{% endfor %}</ul>
+    {% endif %}
+
+    {% if crop.companions.length or (crop.rescue and crop.rescue.companions_unverified) %}
+    <h2 id="companions">Companion planting</h2>
+    {% if crop.companions.length %}
+    <ul>{% for c in crop.companions %}<li>{{ "👍 Good with" if c.relation == "good" else "👎 Keep away from" }} <a href="{{ ('/crops/' + c.other.slug + '/') | url }}">{{ c.other.name }}</a> –
+      {{ c.reason }} <span class="badge ev-{{ c.evidence }}">{{ c.evidence | label }}</span></li>{% endfor %}</ul>
+    {% endif %}
+    {% if crop.rescue and crop.rescue.companions_unverified %}
+    <p class="small">Old OpenFarm wiki listed as companions (unverified): {% for s in crop.rescue.companions_unverified %}{% if db.cropBy[s] %}<a href="{{ ('/crops/' + s + '/') | url }}">{{ db.cropBy[s].name }}</a>{% else %}{{ s }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+    {% endif %}
+    {% endif %}
+
+    <h2>Sources</h2>
+    {% set srcs = crop.sources %}{% include "sources.njk" %}
+    {% if crop.rescue %}<p class="small">Original OpenFarm record: <a href="{{ crop.rescue.wayback_url }}">Wayback Machine capture</a>{% if crop.rescue.captured %} ({{ crop.rescue.captured }}){% endif %}.</p>{% endif %}
+    <p class="meta">{% if crop.origin == "curated" %}By {{ crop.authors | join(", ") }} · last reviewed {{ crop.last_reviewed }} · {% endif %}
+      License {{ crop.license }} ·
+      <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ crop.file }}">✏️ Improve on GitHub</a> · <a href="{{ ('/crops/' + crop.slug + '.json') | url }}">JSON</a></p>
+  </article>
+
+  <aside class="col-side">
+    <section class="side-card">
+      <h3>Quick facts</h3>
+      <dl class="kv">
+        <div><dt>Type</dt><dd>{{ db.typeLabels[crop.type] }}</dd></div>
+        {% if crop.sun %}<div><dt>Sun</dt><dd>{{ crop.sun | label }}</dd></div>{% endif %}
+        {% if crop.water %}<div><dt>Water</dt><dd>{{ crop.water | label }}</dd></div>{% endif %}
+        {% if crop.temperature and crop.temperature.frost_tender %}<div><dt>Frost</dt><dd>Frost-tender</dd></div>{% endif %}
+        {% if crop.days_to_first_harvest %}<div><dt>To first harvest</dt><dd>{{ crop.days_to_first_harvest | range(" days") }}</dd></div>{% endif %}
+        {% if crop.propagation %}<div><dt>Grown from</dt><dd>{{ crop.propagation | join(", ") | replace("-", " ") }}</dd></div>{% endif %}
+        {% if crop.size and crop.size.height_cm %}<div><dt>Height</dt><dd>{{ crop.size.height_cm }} cm</dd></div>{% endif %}
+        {% if crop.size and crop.size.spread_cm %}<div><dt>Spread</dt><dd>{{ crop.size.spread_cm }} cm</dd></div>{% endif %}
+        {% if crop.size and crop.size.row_spacing_cm %}<div><dt>Row spacing</dt><dd>{{ crop.size.row_spacing_cm }} cm</dd></div>{% endif %}
+        {% if crop.sowing_method %}<div class="wide"><dt>Sowing</dt><dd>{{ crop.sowing_method }}</dd></div>{% endif %}
+        {% if crop.rescue and crop.rescue.growing_degree_days_as_recorded %}<div class="wide"><dt>"Growing degree days" in old OpenFarm</dt><dd>{{ crop.rescue.growing_degree_days_as_recorded }} <small>(as recorded – often looks like days to harvest; unverified)</small></dd></div>{% endif %}
+      </dl>
+      {% if crop.temperature and crop.temperature.note %}<p class="small">{{ crop.temperature.note }}</p>{% endif %}
+    </section>
+    {% if crop.perennial %}{% set pe = crop.perennial %}
+    <section class="side-card">
+      <h3>Perennial &amp; fruit facts</h3>
+      <dl class="kv">
+        {% if pe.years_to_first_crop is defined %}<div><dt>First crop</dt><dd>{{ pe.years_to_first_crop | range(" yr after planting") }}</dd></div>{% endif %}
+        {% if pe.productive_years %}<div><dt>Productive for</dt><dd>{{ pe.productive_years }} years</dd></div>{% endif %}
+        {% if pe.pollination %}<div><dt>Pollination</dt><dd>{{ pe.pollination | label }}</dd></div>{% endif %}
+        {% if pe.chill_hours %}<div><dt>Chill hours</dt><dd>{{ pe.chill_hours | range(" h") }} <small>below 7 °C</small></dd></div>{% endif %}
+      </dl>
+      {% if pe.pollination_notes %}<p class="small">{{ pe.pollination_notes }}</p>{% endif %}
+      {% if pe.chill_note %}<p class="small">{{ pe.chill_note }}</p>{% endif %}
+      {% if pe.first_crop_note %}<p class="small">{{ pe.first_crop_note }}</p>{% endif %}
+      {% if pe.replant_note %}<p class="small">{{ pe.replant_note }}</p>{% endif %}
+      {% if pe.rootstocks %}<h4>Rootstocks</h4><ul class="small">{% for r in pe.rootstocks %}<li><strong>{{ r.name }}</strong> ({{ r.vigour | label }}){% if r.notes %} – {{ r.notes }}{% endif %}</li>{% endfor %}</ul>{% endif %}
+    </section>
+    {% endif %}
+    {% if crop.seed_saving %}
+    <section class="side-card">
+      <h3>Seeds</h3>
+      {% set ss = crop.seed_saving %}{% set vs = false %}{% include "seeds.njk" %}
+    </section>
+    {% endif %}
+    {% include "weather.njk" %}
+    {% include "seed-sources.njk" %}
+  </aside>
+</div>

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karimogit.github.io/OpenFarm/schema/region.schema.json",
+  "title": "OpenFarm climate region (content/regions/<region>.md)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "name",
+    "koppen",
+    "color",
+    "order",
+    "similar"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "koppen": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "Af",
+          "Am",
+          "Aw",
+          "As",
+          "BWh",
+          "BWk",
+          "BSh",
+          "BSk",
+          "Csa",
+          "Csb",
+          "Csc",
+          "Cwa",
+          "Cwb",
+          "Cwc",
+          "Cfa",
+          "Cfb",
+          "Cfc",
+          "Dsa",
+          "Dsb",
+          "Dsc",
+          "Dsd",
+          "Dwa",
+          "Dwb",
+          "Dwc",
+          "Dwd",
+          "Dfa",
+          "Dfb",
+          "Dfc",
+          "Dfd",
+          "ET",
+          "EF"
+        ]
+      },
+      "minItems": 1
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9a-f]{6}$"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "similar": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "description": "Most similar regions first – used when a crop has no guide for this region."
+    },
+    "examples": {
+      "type": "string"
+    }
+  }
+}

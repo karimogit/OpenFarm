@@ -1,0 +1,507 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karimogit.github.io/OpenFarm/schema/crop.schema.json",
+  "title": "OpenFarm crop (content/crops/<crop>.md)",
+  "description": "General, climate-independent facts about a crop. Climate-specific advice lives in guides; cultivar facts in varieties.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "name",
+    "type",
+    "origin",
+    "sources",
+    "license"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scientific_name": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z]+"
+    },
+    "family": {
+      "type": "string",
+      "pattern": "^[A-Z][a-z]+aceae$"
+    },
+    "type": {
+      "enum": [
+        "vegetable",
+        "fruit",
+        "fruit-tree",
+        "berry",
+        "nut",
+        "herb",
+        "spice",
+        "legume",
+        "grain",
+        "fungus",
+        "flower",
+        "cover-crop",
+        "other"
+      ]
+    },
+    "lifecycle": {
+      "enum": [
+        "annual",
+        "biennial",
+        "perennial",
+        "perennial-grown-as-annual"
+      ]
+    },
+    "wikipedia": {
+      "type": "string",
+      "description": "English Wikipedia article title used to fetch a Wikimedia Commons image."
+    },
+    "sun": {
+      "enum": [
+        "full",
+        "full-partial",
+        "partial",
+        "shade"
+      ]
+    },
+    "water": {
+      "enum": [
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "sowing_method": {
+      "type": "string"
+    },
+    "size": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "spread_cm": {
+          "type": "number"
+        },
+        "row_spacing_cm": {
+          "type": "number"
+        },
+        "height_cm": {
+          "type": "number"
+        }
+      }
+    },
+    "propagation": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "seed",
+          "transplant",
+          "tuber",
+          "clove",
+          "runner",
+          "grafted-tree",
+          "cutting",
+          "crown",
+          "division"
+        ]
+      }
+    },
+    "temperature": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "frost_tender": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "days_to_first_harvest": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "growth_habits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "seed_saving": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pollination",
+        "difficulty"
+      ],
+      "properties": {
+        "pollination": {
+          "enum": [
+            "self",
+            "insect",
+            "wind",
+            "vegetative",
+            "mixed"
+          ],
+          "description": "How the species is pollinated (vegetative = grown from tubers, cloves, runners or grafts)."
+        },
+        "isolation_m": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "viability_years": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "difficulty": {
+          "enum": [
+            "easy",
+            "moderate",
+            "hard",
+            "not-applicable"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$",
+                "description": "Key in content/sources.yaml"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "title",
+                  "url"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "publisher": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "perennial": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "years_to_first_crop": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "first_crop_note": {
+          "type": "string"
+        },
+        "productive_years": {
+          "type": "string"
+        },
+        "replant_note": {
+          "type": "string"
+        },
+        "pollination": {
+          "enum": [
+            "self-fertile",
+            "partly-self-fertile",
+            "needs-partner"
+          ]
+        },
+        "pollination_notes": {
+          "type": "string"
+        },
+        "chill_hours": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "chill_note": {
+          "type": "string"
+        },
+        "rootstocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "vigour"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "vigour": {
+                "enum": [
+                  "very-dwarfing",
+                  "dwarfing",
+                  "semi-dwarfing",
+                  "semi-vigorous",
+                  "vigorous"
+                ]
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "rootstock_notes": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$",
+                "description": "Key in content/sources.yaml"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "title",
+                  "url"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "publisher": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    },
+    "origin": {
+      "enum": [
+        "curated",
+        "imported"
+      ]
+    },
+    "imported": {
+      "type": "string",
+      "format": "date"
+    },
+    "note": {
+      "type": "string"
+    },
+    "rescue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slug",
+        "wayback_url"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "wayback_url": {
+          "type": "string",
+          "pattern": "^https://web\\.archive\\.org/"
+        },
+        "captured": {
+          "type": "string"
+        },
+        "taxon": {
+          "type": "string"
+        },
+        "companions_unverified": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "growing_degree_days_as_recorded": {
+          "type": "number"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Key in content/sources.yaml"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "url"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "publisher": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "license": {
+      "enum": [
+        "CC-BY-SA-4.0",
+        "CC0-1.0"
+      ]
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date"
+    },
+    "commons_file": {
+      "type": "string",
+      "description": "Exact Wikimedia Commons file name to use as the picture (overrides the automatic lookup)."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "curated"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "scientific_name",
+          "family",
+          "authors",
+          "last_reviewed"
+        ],
+        "properties": {
+          "license": {
+            "const": "CC-BY-SA-4.0"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "imported"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "rescue",
+          "imported"
+        ]
+      }
+    }
+  ]
+}

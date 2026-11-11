@@ -1,0 +1,8 @@
+---
+layout: base.njk
+title: Pests, diseases and disorders
+permalink: /problems/
+---
+<h1>Pests, diseases and disorders</h1>
+<p>Shared problem pages, linked from every crop and guide they affect – written once, reused everywhere.</p>
+<ul class="guide-list">{% for p in db.problems %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}"><strong>{{ p.name }}</strong></a> <span class="muted">{{ p.kind }} · {% for c in p.affects %}{{ db.cropBy[c].name }}{% if not loop.last %}, {% endif %}{% endfor %}</span></li>{% endfor %}</ul>
