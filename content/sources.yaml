@@ -296,3 +296,19 @@ gbif-terms:
   license: mixed-CC0-CC-BY-CC-BY-NC
   use: citation
   license_url: https://www.gbif.org/terms
+geonames:
+  title: GeoNames gazetteer (countryInfo, cities15000, admin1CodesASCII)
+  publisher: GeoNames
+  url: https://www.geonames.org/
+  license: CC-BY-4.0
+  use: import
+  license_url: https://creativecommons.org/licenses/by/4.0/
+  note: "GeoNames data is licensed CC BY 4.0 (see https://www.geonames.org/). Used for country names, capitals, and the offline place search. Checked 11 November 2026."
+natural-earth:
+  title: Natural Earth Admin 0 – Countries, 1:50m
+  publisher: Natural Earth
+  url: https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries/
+  license: public-domain
+  use: import
+  license_url: https://www.naturalearthdata.com/about/terms-of-use/
+  note: "Natural Earth's terms of use place the data in the public domain (no restriction, no warranty). Used only to assign 0.5° climate-grid cells to countries; the shapefile is not shipped with the site. Checked 11 November 2026."

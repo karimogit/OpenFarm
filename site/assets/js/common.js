@@ -865,11 +865,16 @@ async function renderYourClimate(loc) {
   }
   const region = regionOf(loc.symbol) || REGION_BY[loc.region];
   const placeName = (loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`;
+  const cc = String(loc.country || "").toUpperCase();
+  const countryMeta = (INDEX.countries || {})[cc];
+  const countryHTML = countryMeta
+    ? ` · <a href="${BASE}countries/${cc.toLowerCase()}/">${esc(countryMeta.name)}</a>`
+    : (cc ? ` · ${esc(cc)}` : "");
   const regionHTML = region
     ? `${swatch(region)}<a href="${BASE}regions/${region.slug}/"><strong>${esc(region.name)}</strong></a>`
     : esc(loc.symbol || "Unknown");
   const head = `<p class="kg-big">${regionHTML}</p>
-    <p class="small">${esc(placeName)}${loc.symbol ? ` · Köppen <a class="kg" href="${BASE}help/#koppen">${esc(loc.symbol)}</a>` : ""} · <a href="${BASE}#where">Change</a></p>
+    <p class="small">${esc(placeName)}${countryHTML}${loc.symbol ? ` · Köppen <a class="kg" href="${BASE}help/#koppen">${esc(loc.symbol)}</a>` : ""} · <a href="${BASE}#where">Change</a></p>
     <div data-hz-live><p class="small muted">Hardiness zone: working it out…</p></div>`;
   boxes.forEach((b) => { b.innerHTML = head; });
   const lineBase = `Your climate: ${region ? esc(region.name) : esc(loc.symbol)}`;

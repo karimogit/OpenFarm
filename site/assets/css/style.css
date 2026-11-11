@@ -533,3 +533,16 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
 .crop-list { columns: 2; column-gap: 1.5rem; }
 .crop-list li { break-inside: avoid; margin: 0 0 .25rem; }
 @media (max-width: 600px) { .crop-list { columns: 1; } }
+
+.country-index { list-style: none; padding: 0; margin: 1rem 0 1.5rem; columns: 2; column-gap: 1.5rem; }
+.country-index li { break-inside: avoid; display: flex; gap: .4rem; align-items: baseline; margin: 0 0 .28rem; }
+.country-index a { display: inline-flex; gap: .35rem; align-items: center; }
+.country-index .flag { flex: none; }
+@media (max-width: 600px) { .country-index { columns: 1; } }
+.country-map { margin: 1rem 0 1.25rem; max-width: 32rem; }
+.country-map svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: #d8e4ef; border: 1px solid var(--line); border-radius: 6px; }
+.country-map figcaption { font-size: .85em; color: var(--muted, #5a665c); margin: .4rem 0 0; }
+.city-list { columns: 2; column-gap: 1.5rem; list-style: none; padding: 0; margin: 0 0 1rem; }
+.city-list li { break-inside: avoid; margin: 0 0 .25rem; }
+@media (max-width: 600px) { .city-list { columns: 1; } }
+h1 .flag { width: 1.15em; height: auto; vertical-align: middle; margin-right: .2em; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }

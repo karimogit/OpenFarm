@@ -14,7 +14,7 @@
     <div class="top-inner">
     <a class="brand" href="{{ '/' | url }}">{% set icon = "sprout" %}{% include "icon.njk" %} <strong>OpenFarm</strong></a>
     {%- set u = page.url or "" -%}
-    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
+    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if (u.indexOf("/regions/") == 0 or u.indexOf("/countries/") == 0 or u.indexOf("/zones/") == 0) else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
     <nav class="main-nav" id="main-nav" aria-label="Main">
       <a href="{{ '/' | url }}#where"{% if sect == "home" %} aria-current="page"{% endif %}>Find guides</a>
 
@@ -34,6 +34,8 @@
         <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true" aria-controls="nav-regions" aria-label="Open regions menu">{% set icon = "chevron-down" %}{% include "icon.njk" %}</button>
         <ul id="nav-regions" class="nav-menu" role="menu" hidden>
           <li role="none"><a role="menuitem" href="{{ '/regions/' | url }}"{% if u == "/regions/" %} aria-current="page"{% endif %}>All regions</a></li>
+          <li role="none"><a role="menuitem" href="{{ '/countries/' | url }}"{% if u.indexOf("/countries/") == 0 %} aria-current="page"{% endif %}>Countries</a></li>
+          <li role="none"><a role="menuitem" href="{{ '/zones/' | url }}"{% if u.indexOf("/zones/") == 0 %} aria-current="page"{% endif %}>Hardiness zones</a></li>
           {% for r in db.regions %}
           <li role="none"><a role="menuitem" href="{{ ('/regions/' + r.slug + '/') | url }}"{% if u == "/regions/" + r.slug + "/" %} aria-current="page"{% endif %}><span class="swatch sm" style="background:{{ r.color }}"></span>{{ r.name }}</a></li>
           {% endfor %}
@@ -78,7 +80,7 @@
   </main>
   <div id="save-status" class="save-status" role="status" aria-live="polite" aria-atomic="true" hidden></div>
   <footer class="foot">
-    <p><a href="{{ '/contribute/' | url }}">About</a> · <a href="{{ '/help/' | url }}">Help</a> · <a href="{{ '/zones/' | url }}">Zones</a> · <a href="{{ '/crops/' | url }}#seed-sources">Seed sources</a> · <a href="{{ site.repo }}">GitHub</a>
+    <p><a href="{{ '/contribute/' | url }}">About</a> · <a href="{{ '/help/' | url }}">Help</a> · <a href="{{ '/countries/' | url }}">Countries</a> · <a href="{{ '/zones/' | url }}">Zones</a> · <a href="{{ '/crops/' | url }}#seed-sources">Seed sources</a> · <a href="{{ site.repo }}">GitHub</a>
       · © {{ site.attribution }} · <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · content <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
   </footer>
   <script id="of-index" type="application/json">{{ db.clientIndex | json | safe }}</script>

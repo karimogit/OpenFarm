@@ -9,6 +9,7 @@ description: "How OpenFarm works: climate regions and Köppen codes, hardiness z
 <nav class="toc" aria-label="On this page"><ul class="chips">
   <li><a class="chip" href="#koppen">Climate regions &amp; Köppen codes</a></li>
   <li><a class="chip" href="#hardiness">Hardiness zones</a></li>
+  <li><a class="chip" href="#countries">Countries</a></li>
   <li><a class="chip" href="#unreviewed">Unreviewed badge</a></li>
   <li><a class="chip" href="#profile">Your profile &amp; exports</a></li>
   <li><a class="chip" href="#notifications">Reminders</a></li>
@@ -34,6 +35,9 @@ Zone 1 starts at −51.1 °C (−60 °F); each zone is 10 °F (about 5.6 °C) wi
 <p><strong>Your zone</strong> is worked out in your browser: OpenFarm asks the <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo historical weather API</a> (ERA5 reanalysis, about 25 km grid, CC BY 4.0) for the daily minimum temperatures of 1991–2020 at your location, takes the coldest night of each year and averages them.
 The result is cached in this browser. Limits: a 25 km grid smooths out frost pockets, valleys and city heat, and reanalysis tends to be a little milder than station records in cold spots – treat the zone as a guide, not a guarantee.</p>
 <p><strong>Plant ranges</strong> (e.g. “zones 5–9”) come from cited sources – currently the <a href="https://plants.ces.ncsu.edu/">NC State Extension Gardener Plant Toolbox</a>. Crops without a sourced range show none; we never estimate one. When your zone is outside a plant's range, its page shows a warning.</p>
+
+<h2 id="countries">Countries</h2>
+<p>Each country and territory has a page at <a href="{{ '/countries/' | url }}">/countries/</a> (for example <a href="{{ '/countries/nl/' | url }}">/countries/nl/</a>) with its flag, approximate climate-region coverage, major cities, and seed sources listed for that country. City links use the same <code>?place=</code> slugs as location search (for example <code>?place=amsterdam-nl</code>). Climate shares are approximate area-weighted fractions of the 0.5° Beck et al. (2018) Köppen grid (CC BY 4.0) assigned with Natural Earth 50m boundaries (public domain). Tiny territories use a GeoNames city sample instead of an area share; the method is spelled out on the country page. Names and cities are from GeoNames (CC BY 4.0). Region pages list the countries they cover.</p>
 
 <h2 id="unreviewed">The “Unreviewed” badge</h2>
 <p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety, and don't treat wiki-derived spacing or companions as authoritative. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
@@ -86,7 +90,8 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
   <li><a href="{{ '/api/all.json' | url }}"><code>/api/all.json</code></a> – everything (regions, crops with varieties and guides, problems, tools, seed sources, companions)</li>
   <li><a href="{{ '/api/guides.json' | url }}"><code>/api/guides.json</code></a> – compact guide index</li>
   <li><a href="{{ '/api/tools.json' | url }}"><code>/api/tools.json</code></a> – tools</li>
-  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>), <code>/regions/&lt;region&gt;.json</code>, and <code>/zones/&lt;zone&gt;.json</code></li>
+  <li><a href="{{ '/api/countries.json' | url }}"><code>/api/countries.json</code></a> – countries</li>
+  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>), <code>/regions/&lt;region&gt;.json</code>, <code>/countries/&lt;iso2&gt;.json</code>, and <code>/zones/&lt;zone&gt;.json</code></li>
 </ul>
 <p>Guide URLs in the JSON are now <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code> (old <code>/guides/…</code> HTML pages redirect).
   Content is CC BY-SA 4.0 (imported records CC0); credit “OpenFarm contributors” and keep ShareAlike for adaptations.</p>

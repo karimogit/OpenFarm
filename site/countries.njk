@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Countries
+permalink: /countries/
+description: Climate regions, major cities and seed sources for each country, from GeoNames (CC BY 4.0) and Beck et al. Köppen maps (CC BY 4.0) with Natural Earth boundaries (public domain).
+jsonUrl: /api/countries.json
+---
+{% set crumbs = [{label: "Countries", current: true}] %}{% include "crumbs.njk" %}
+<article data-pagefind-body>
+<h1>Countries</h1>
+<p class="lead">{{ db.countries.length }} countries and territories, with climate-region coverage, major cities, and seed sources listed for that country.</p>
+<p>Country names and cities come from the <a href="https://www.geonames.org/">GeoNames</a> gazetteer (CC BY 4.0). Climate shares are approximate area-weighted fractions of the 0.5° <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a> Köppen–Geiger grid (CC BY 4.0), assigned with <a href="https://www.naturalearthdata.com/">Natural Earth</a> Admin 0 1:50m boundaries (public domain). Territories too small for a 0.5° cell centre use a sample of capitals and cities instead of an area share. Full method and caveats are on each country page.</p>
+<ul class="country-index">
+  {% for c in db.countries %}
+  <li>
+    <a href="{{ c.url | url }}">{% set cc = c.iso2 %}{% include "flag.njk" %} <span>{{ c.name }}</span></a>
+    {% if c.regionShares.length %}
+    <span class="muted">{{ c.regionShares[0].name }}{% if c.climateMethod == "cities" %} <span title="From a city sample, not an area share">(cities)</span>{% endif %}</span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+<p class="meta"><a href="{{ '/api/countries.json' | url }}">JSON</a></p>
+</article>

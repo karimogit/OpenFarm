@@ -230,6 +230,119 @@ export default function () {
     }).map((c) => ({ slug: c.slug, name: c.name, url: `/crops/${c.slug}/`, min: c.hardiness.min, max: c.hardiness.max }));
   }
 
+
+  // Country pages: GeoNames names/cities (CC BY 4.0) + Beck/Natural Earth climate shares.
+  const countryNames = JSON.parse(fs.readFileSync(path.join(ROOT, "data/countries.json"), "utf8"));
+  const climatePack = JSON.parse(fs.readFileSync(path.join(ROOT, "data/country-climates.json"), "utf8"));
+  const placesPack = JSON.parse(fs.readFileSync(path.join(ROOT, "data/places.json"), "utf8"));
+  const flagDir = path.join(ROOT, "site/assets/flags");
+  const hasFlag = (iso) => fs.existsSync(path.join(flagDir, `${iso.toLowerCase()}.svg`));
+  const normPlace = (s) => String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+  const slugifyPlace = (s) => normPlace(s).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  const adminSlugOf = (hit) => {
+    const admin = hit.admin;
+    if (!admin) return "";
+    if (/^[A-Za-z]{1,3}$/.test(admin)) return admin.toLowerCase();
+    const name = placesPack.admin1?.[`${hit.cc}.${admin}`];
+    return slugifyPlace(name || admin);
+  };
+  const cityBaseSlug = (hit) => `${slugifyPlace(hit.ascii || hit.name)}-${String(hit.cc || "").toLowerCase()}`;
+  const cityHits = (placesPack.cities || []).map((c) => {
+    const [name, ascii, cc, admin, lat, lon, pop] = c;
+    return { type: "city", name, ascii, cc, admin, lat, lon, pop: pop || 0 };
+  });
+  const cityCounts = new Map();
+  for (const c of cityHits) cityCounts.set(cityBaseSlug(c), (cityCounts.get(cityBaseSlug(c)) || 0) + 1);
+  const citySlugs = new Set();
+  for (const c of cityHits) {
+    const base = cityBaseSlug(c);
+    let slug = cityCounts.get(base) > 1
+      ? `${slugifyPlace(c.ascii || c.name)}-${adminSlugOf(c)}-${String(c.cc || "").toLowerCase()}`
+      : base;
+    if (citySlugs.has(slug)) slug = `${slug}-${String(c.lat).replace(".", "p")}`;
+    c.slug = slug;
+    citySlugs.add(slug);
+  }
+  const citiesByCc = {};
+  for (const c of cityHits) (citiesByCc[c.cc] ||= []).push(c);
+  for (const list of Object.values(citiesByCc)) list.sort((a, b) => b.pop - a.pop);
+
+  const MAP_W = 1440, MAP_H = 1440, MERC_MAX = 85.05112878;
+  const mercX = (lon) => ((lon + 180) / 360) * MAP_W;
+  const mercY = (lat) => {
+    const r = (Math.max(-MERC_MAX, Math.min(MERC_MAX, lat)) * Math.PI) / 180;
+    return (1 - Math.log(Math.tan(Math.PI / 4 + r / 2)) / Math.PI) / 2 * MAP_H;
+  };
+  const mapView = (bbox) => {
+    if (!bbox) return null;
+    let [w, s, e, n] = bbox;
+    if (e > 180) e = 180;
+    if (w < -180) w = -180;
+    if (e < w) { // dateline: show the larger side
+      if (180 - w >= e - (-180)) e = 180;
+      else w = -180;
+    }
+    const padLon = Math.max(1.2, (e - w) * 0.18 || 1.2);
+    const padLat = Math.max(0.8, (n - s) * 0.18 || 0.8);
+    w -= padLon; e += padLon; s -= padLat; n += padLat;
+    const x1 = mercX(w), x2 = mercX(e), y1 = mercY(n), y2 = mercY(s);
+    const x = Math.max(0, Math.min(x1, x2));
+    const y = Math.max(0, Math.min(y1, y2));
+    const width = Math.min(MAP_W, Math.max(x1, x2)) - x;
+    const height = Math.min(MAP_H, Math.max(y1, y2)) - y;
+    if (!(width > 2 && height > 2)) return null;
+    return { x: +x.toFixed(2), y: +y.toFixed(2), width: +width.toFixed(2), height: +height.toFixed(2), imgW: MAP_W, imgH: MAP_H };
+  };
+
+  const countries = Object.entries(countryNames).map(([iso2, name]) => {
+    const meta = placesPack.countries?.[iso2] || [];
+    const [gnName, capital, clat, clon, pop] = [meta[0], meta[1], meta[2], meta[3], meta[4]];
+    const climate = climatePack.countries[iso2] || null;
+    const regionShares = climate
+      ? Object.entries(climate.regions).map(([slug, share]) => ({ slug, name: regionBy[slug]?.name || slug, color: regionBy[slug]?.color, share, url: `/regions/${slug}/` }))
+      : [];
+    const cityList = (citiesByCc[iso2] || []).slice(0, 12).map((c) => ({
+      name: c.name, slug: c.slug, lat: c.lat, lon: c.lon, pop: c.pop, admin: c.admin,
+      adminName: placesPack.admin1?.[`${c.cc}.${c.admin}`] || null,
+      placeUrl: `/?place=${encodeURIComponent(c.slug)}`,
+    }));
+    let capitalCity = null;
+    if (capital) {
+      const want = normPlace(capital);
+      capitalCity = (citiesByCc[iso2] || []).find((c) => normPlace(c.name) === want || normPlace(c.ascii) === want) || null;
+    }
+    return {
+      iso2,
+      iso2Lower: iso2.toLowerCase(),
+      name: gnName || name,
+      capital: capital || null,
+      capitalPlace: capitalCity ? { name: capitalCity.name, slug: capitalCity.slug, placeUrl: `/?place=${encodeURIComponent(capitalCity.slug)}` } : null,
+      lat: clat ?? null,
+      lon: clon ?? null,
+      population: pop || 0,
+      hasFlag: hasFlag(iso2),
+      url: `/countries/${iso2.toLowerCase()}/`,
+      climate,
+      climateMethod: climate?.method || null,
+      regionShares,
+      koppen: climate ? Object.entries(climate.koppen).map(([code, share]) => ({ code, share })) : [],
+      mapView: mapView(climate?.map_bbox || climate?.bbox || (clat != null && clon != null ? [clon - 1, clat - 0.7, clon + 1, clat + 0.7] : null)),
+      cities: cityList,
+      seedSources: seedSources.filter((s) => (s.countries || []).includes(iso2)),
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name));
+  const countryBy = Object.fromEntries(countries.map((c) => [c.iso2, c]));
+  for (const r of regions) {
+    r.countries = countries
+      .filter((c) => c.regionShares.some((x) => x.slug === r.slug && x.share >= 1))
+      .map((c) => {
+        const share = c.regionShares.find((x) => x.slug === r.slug).share;
+        return { iso2: c.iso2, iso2Lower: c.iso2Lower, name: c.name, url: c.url, hasFlag: c.hasFlag, share, method: c.climateMethod };
+      })
+      .sort((a, b) => b.share - a.share || a.name.localeCompare(b.name));
+  }
+  clientIndex.countries = Object.fromEntries(countries.map((c) => [c.iso2, { name: c.name, url: c.url }]));
+
   const stats = {
     crops: crops.length, imported: crops.filter((c) => c.origin === "imported").length, curated: crops.filter((c) => c.origin === "curated").length,
     varieties: varieties.length, groups: groups.length, guides: guides.length, regions: regions.length,
@@ -241,6 +354,7 @@ export default function () {
     rotationGroups: rotationGroups.length,
     rotationRules: rotationRules.length,
     images: crops.filter((c) => c.image).length,
+    countries: countries.length,
   };
-  return { catalog, crops, cropBy, varieties, groups, allVarietyRecords, varietyRedirects, guideRedirects, guides, regions, regionBy, problems, problemBy, companions, rotationGroups, rotationRules, seedSources, tools, toolBy, toolCategories, types, zones: zoneHalf, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, groups, allVarietyRecords, varietyRedirects, guideRedirects, guides, regions, regionBy, problems, problemBy, companions, rotationGroups, rotationRules, seedSources, tools, toolBy, toolCategories, types, zones: zoneHalf, countries, countryBy, climateAttribution: climatePack.attribution, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

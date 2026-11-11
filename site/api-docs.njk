@@ -45,6 +45,13 @@ description: Read-only JSON endpoints for OpenFarm crops, guides, regions and to
 <h3><code>GET /regions/&lt;region&gt;.json</code></h3>
 <p>One climate region, with its Köppen classes and the guides that cover it. Example: <a href="{{ '/regions/temperate-oceanic.json' | url }}"><code>/regions/temperate-oceanic.json</code></a>.</p>
 
+
+<h3><code>GET /api/countries.json</code></h3>
+<p>All country pages: name, ISO 3166-1 alpha-2 code, climate-region shares, major cities (<code>?place=</code> slugs) and seed sources. Example: <a href="{{ '/api/countries.json' | url }}"><code>/api/countries.json</code></a>. HTML index: <a href="{{ '/countries/' | url }}">/countries/</a>.</p>
+
+<h3><code>GET /countries/&lt;iso2&gt;.json</code></h3>
+<p>One country. Example: <a href="{{ '/countries/nl.json' | url }}"><code>/countries/nl.json</code></a>.</p>
+
 <h3><code>GET /zones/&lt;zone&gt;.json</code></h3>
 <p>One USDA-style hardiness zone (1a–13b), with temperature bounds and plants whose sourced range includes it. Example: <a href="{{ '/zones/8a.json' | url }}"><code>/zones/8a.json</code></a>. There is also an HTML index at <a href="{{ '/zones/' | url }}">/zones/</a>.</p>
 
