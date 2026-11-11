@@ -67,9 +67,8 @@ eleventyComputed:
 
     <h2>Sources</h2>
     {% set srcs = v.sources %}{% include "sources.njk" %}
-    {% if v.rescue %}<p class="small">Original OpenFarm record: <a href="{{ v.rescue.wayback_url }}">Wayback Machine capture</a>.</p>{% endif %}
     <p class="meta">License {{ v.license }}</p>
-    {% set editFile = v.file %}{% set showRescueCredit = v.origin == "imported" %}{% include "edited-by.njk" %}
+    {% set editFile = v.file %}{% include "edited-by.njk" %}
     {% set editLabel = "Edit this variety" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">

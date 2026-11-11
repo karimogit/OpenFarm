@@ -1,2 +1,2 @@
-{# expects `srcs`; the bulk-import dataset is credited in the repository, not on pages #}
+{# expects `srcs`; the rescue dataset is credited once on About, not in per-page source lists #}
 <ol class="sources">{% for s in srcs %}{% if s.key != "openfarm-rescue" %}<li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.publisher %} – {{ s.publisher }}{% endif %}{% if s.license %} ({{ s.license }}){% endif %}</li>{% endif %}{% endfor %}</ol>
