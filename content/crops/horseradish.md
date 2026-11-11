@@ -18,7 +18,10 @@ rescue:
   captured: '20250318'
   companions_unverified:
     - blackberry
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

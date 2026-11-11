@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20220118195035/https://openfarm.cc/en/crops/collard-greens'
   captured: '20220118'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

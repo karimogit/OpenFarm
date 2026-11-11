@@ -16,7 +16,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20240418174113/https://openfarm.cc/en/crops/anise'
   captured: '20240418'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

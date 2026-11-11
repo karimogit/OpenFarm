@@ -39,12 +39,27 @@ eleventyComputed:
     <ul class="variety-grid">{% for v in r.varieties %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>{% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}<span>{{ v.cropName }}{% if v.category %} · {{ v.category }}{% endif %}</span></a></li>{% endfor %}</ul>
     {% endif %}
 
+
+    {% if r.countries.length %}
+    <h2>Countries in this climate</h2>
+    <p>Countries and territories where this region covers at least 1% of the mapped land (or of the city sample, for places too small for a 0.5° area share). Percentages are approximate; see each <a href="{{ '/countries/' | url }}">country page</a> for the method.</p>
+    <ul class="country-index compact">
+      {% for c in r.countries %}
+      <li>
+        <a href="{{ c.url | url }}">{% set cc = c.iso2 %}{% include "flag.njk" %} <span>{{ c.name }}</span></a>
+        <span class="muted">{{ c.share }}%{% if c.method == "cities" %} (cities){% endif %}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
     <h2>Most similar regions</h2>
     <p>When a crop has no guide for {{ r.name | lower }}, OpenFarm shows the guide from the most similar region, in this order:
       {% for s in r.similar %}{% set sr = db.regionBy[s] %}<a class="chip" href="{{ ('/regions/' + s + '/') | url }}"><span class="swatch sm" style="background:{{ sr.color }}"></span>{{ sr.name }}</a> {% endfor %}</p>
 
     <p id="help" class="small">Know how to grow something here? <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">Add a guide for {{ r.name | lower }}</a> – every guide is a plain text file on GitHub.</p>
-    {% set editFile = r.file %}{% set editLabel = "Edit this region" %}{% include "edit-button.njk" %}
+    {% set editFile = r.file %}{% include "edited-by.njk" %}
+    {% set editLabel = "Edit this region" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
     {% include "your-climate.njk" %}

@@ -496,3 +496,53 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
   .grow-dates { grid-template-columns: 1fr; }
   .save-status { right: .7rem; bottom: .7rem; }
 }
+
+/* ---- Rotation & neighbours ---- */
+.rotation-box { background: var(--green-2); border-radius: 12px; padding: 1rem 1.1rem; margin: 1.2rem 0; }
+.rotation-box h2 { margin-top: 0; }
+.rotation-box h3 { font-size: 1rem; margin-top: 1rem; }
+
+.how-it-works { margin: 1.2rem 0 1.6rem; padding: 0; border: 0; }
+.how-it-works svg { display: block; max-width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.how-it-works figcaption { margin: .7rem 0 0; color: var(--muted); font-size: .95rem; }
+.how-it-works figcaption ol { margin: .3rem 0 0; padding-left: 1.2rem; }
+.disclaimer, .forage-note { margin: .8rem 0 1rem; padding: .6rem .8rem; background: #fff8e8; border-left: 4px solid var(--harvest); border-radius: 0 8px 8px 0; font-size: .95rem; }
+.edits-by { font-size: .85rem; color: var(--muted); }
+.edits-by a { color: inherit; }
+
+.growing-toolbar { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+.view-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+.view-switch button { background: #fff; color: var(--ink); border: 0; border-right: 1px solid var(--line); border-radius: 0; padding: .3rem .7rem; font-size: .9rem; }
+.view-switch button:last-child { border-right: 0; }
+.view-switch button[aria-pressed="true"] { background: var(--green-2); color: var(--green); font-weight: 600; }
+.growing-cal { overflow-x: auto; }
+.growing-cal table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.growing-cal th, .growing-cal td { border: 1px solid var(--line); padding: .25rem .3rem; text-align: center; vertical-align: top; }
+.growing-cal th { background: var(--green-2); color: var(--ink); font-weight: 600; }
+.growing-cal td.crop { text-align: left; white-space: nowrap; }
+.growing-cal button.cal-crop { background: none; color: var(--ink); border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; }
+.growing-cal .mark { display: block; font-size: .72rem; line-height: 1.2; }
+.growing-cal .mark.sow { color: #3d6b2e; }
+.growing-cal .mark.plant { color: #3c8dbc; }
+.growing-cal .mark.harvest { color: #c45d10; }
+.growing-cal .mark.done { color: var(--ink); font-weight: 600; }
+
+.zones-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+.zones-table th, .zones-table td { border: 1px solid var(--line); padding: .4rem .55rem; text-align: left; }
+.zones-table thead th { background: var(--green-2); }
+.crop-list { columns: 2; column-gap: 1.5rem; }
+.crop-list li { break-inside: avoid; margin: 0 0 .25rem; }
+@media (max-width: 600px) { .crop-list { columns: 1; } }
+
+.country-index { list-style: none; padding: 0; margin: 1rem 0 1.5rem; columns: 2; column-gap: 1.5rem; }
+.country-index li { break-inside: avoid; display: flex; gap: .4rem; align-items: baseline; margin: 0 0 .28rem; }
+.country-index a { display: inline-flex; gap: .35rem; align-items: center; }
+.country-index .flag { flex: none; }
+@media (max-width: 600px) { .country-index { columns: 1; } }
+.country-map { margin: 1rem 0 1.25rem; max-width: 32rem; }
+.country-map svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: #d8e4ef; border: 1px solid var(--line); border-radius: 6px; }
+.country-map figcaption { font-size: .85em; color: var(--muted, #5a665c); margin: .4rem 0 0; }
+.city-list { columns: 2; column-gap: 1.5rem; list-style: none; padding: 0; margin: 0 0 1rem; }
+.city-list li { break-inside: avoid; margin: 0 0 .25rem; }
+@media (max-width: 600px) { .city-list { columns: 1; } }
+h1 .flag { width: 1.15em; height: auto; vertical-align: middle; margin-right: .2em; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }

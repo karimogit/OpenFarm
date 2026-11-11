@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250114062751/https://openfarm.cc/en/crops/kiwifruit'
   captured: '20250114'
   taxon: Species
+edible: true
+edible_parts: [fruit]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

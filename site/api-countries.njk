@@ -1,0 +1,5 @@
+---
+permalink: /api/countries.json
+eleventyExcludeFromCollections: true
+---
+{{ { license: "CC-BY-SA-4.0", attribution: db.climateAttribution, countries: db.countries | countriesOut } | prettyJson | safe }}

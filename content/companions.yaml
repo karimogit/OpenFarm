@@ -8,11 +8,3 @@
   evidence: extension-advice
   reason: Both get late blight (Phytophthora infestans); keeping them apart limits spread between the crops.
   sources: [rhs-tomato-blight, rhs-potato-blight]
-- crops: [tomato, basil]
-  relation: good
-  evidence: traditional
-  reason: Classic pairing in gardens and kitchens; benefits are anecdotal.
-- crops: [tomato, african-marigold]
-  relation: good
-  evidence: traditional
-  reason: Often planted together to attract pollinators and deter pests; effects in home gardens are not well established.

@@ -1,0 +1,9 @@
+---
+pagination:
+  data: db.zones
+  size: 1
+  alias: z
+permalink: "/zones/{{ z.slug }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ { license: "CC-BY-SA-4.0", slug: z.slug, label: z.label, min_c: z.min_c, max_c: z.max_c, min_f: z.min_f, max_f: z.max_f, url: z.url, plants: z.plants } | prettyJson | safe }}

@@ -33,7 +33,8 @@ eleventyComputed:
 
   <h2>Sources</h2>
   {% set srcs = t.sources %}{% include "sources.njk" %}
-  {% set editFile = t.file %}{% set editLabel = "Edit this tool" %}{% include "edit-button.njk" %}
+  {% set editFile = t.file %}{% include "edited-by.njk" %}
+  {% set editLabel = "Edit this tool" %}{% include "edit-button.njk" %}
 </article>
 <aside class="col-side">
   {% include "your-climate.njk" %}

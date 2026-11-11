@@ -21,7 +21,11 @@ rescue:
     - corn
     - eggplant
     - pea
+edible: true
+edible_parts: [seed]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

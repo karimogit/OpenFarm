@@ -18,7 +18,13 @@ seed_saving:
     Garden garlic is grown from cloves, not seed. Keep the largest healthy bulbs from your own harvest
     to replant in autumn.
   sources: [csu-garlic-western-co]
+edible: true
+toxic: true
+field_sources:
+  edible: [usda-grin]
+  toxic: [usda-grin]
 sources:
+  - usda-grin
   - csu-garlic-western-co
   - openfarm-rescue
 license: CC-BY-SA-4.0

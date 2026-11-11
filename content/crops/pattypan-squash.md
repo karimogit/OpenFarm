@@ -17,7 +17,11 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250114063215/https://openfarm.cc/en/crops/pattypan-squash'
   captured: '20250114'
   taxon: Species
+edible: true
+edible_parts: [fruit]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

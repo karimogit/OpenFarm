@@ -10,7 +10,9 @@ rescue:
   slug: trifoliate-orange
   wayback_url: 'https://web.archive.org/web/20220809170802/https://openfarm.cc/en/crops/trifoliate-orange'
   captured: '20220809'
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

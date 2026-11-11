@@ -19,7 +19,11 @@ rescue:
   taxon: Species
   companions_unverified:
     - uf-micro-tom-tomato
+edible: true
+edible_parts: [oil, flower]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

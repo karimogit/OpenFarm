@@ -1,7 +1,12 @@
 #!/usr/bin/env node
-// Build check: every image URL the site uses (original + standard thumbs) must resolve.
+// Image URL check: every image URL the site uses (original + standard thumbs) must resolve.
 // Commons only serves standard widths (https://w.wiki/GHai); HEAD may be rejected, so
 // fall back to a ranged GET. 429s are retried with backoff.
+//
+//   npm run check:images                 full check (local, or workflow_dispatch)
+//   npm run check:images -- --changed    only URLs new or changed vs a base ref
+//     --base <ref>  or  CHECK_IMAGES_BASE  or  origin/${GITHUB_BASE_REF}  or  origin/main
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { ROOT, loadCrops, loadVarieties, loadRegions, loadTools } from "./content.js";
@@ -9,18 +14,160 @@ import { imageUrls } from "./wm.js";
 
 const UA = "OpenFarm/1.0 (https://github.com/karimogit/OpenFarm; image-check)";
 const WIDTHS = [250, 330, 500, 960];
+const ALLOWED_WIDTHS = new Set([250, 330, 500, 960, 1280, 1920, 3840]);
+const ZERO_SHA = "0".repeat(40);
+
+function parseArgs(argv) {
+  const out = { changed: false, base: process.env.CHECK_IMAGES_BASE || null, help: false };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a === "--changed") out.changed = true;
+    else if (a === "--base") out.base = argv[++i];
+    else if (a === "--help" || a === "-h") out.help = true;
+    else {
+      console.error(`Unknown argument: ${a}`);
+      out.help = true;
+      process.exitCode = 2;
+    }
+  }
+  if (out.base === ZERO_SHA || out.base === "") out.base = null;
+  return out;
+}
+
+function git(args) {
+  return execFileSync("git", ["-C", ROOT, ...args], { encoding: "utf8", maxBuffer: 20 * 1024 * 1024 });
+}
+
+function gitShow(ref, file) {
+  try {
+    return git(["show", `${ref}:${file}`]);
+  } catch {
+    return null;
+  }
+}
+
+function gitLs(ref, dir) {
+  try {
+    return git(["ls-tree", "-r", "--name-only", ref, dir]).split("\n").filter((f) => f.endsWith(".md"));
+  } catch {
+    return [];
+  }
+}
+
+function resolveBase(explicit) {
+  if (explicit) return explicit;
+  if (process.env.GITHUB_BASE_REF) return `origin/${process.env.GITHUB_BASE_REF}`;
+  return "origin/main";
+}
+
+function field(fm, key) {
+  const m = fm.match(new RegExp(`^${key}:\\s*(.+)$`, "m"));
+  if (!m) return null;
+  return m[1].trim().replace(/^['"]|['"]$/g, "") || null;
+}
+
+function wantedKeyFromFile(file, text) {
+  if (!text || !text.startsWith("---")) return null;
+  const fm = text.split("---", 3)[1] || "";
+  if (!field(fm, "commons_file")) return null;
+  if (file.startsWith("content/crops/")) return `crop:${field(fm, "slug") || path.basename(file, ".md")}`;
+  if (file.startsWith("content/varieties/")) {
+    const slug = field(fm, "slug") || path.basename(file, ".md");
+    const crop = field(fm, "crop") || file.split("/")[2];
+    return `variety:${crop}/${slug}`;
+  }
+  if (file.startsWith("content/regions/")) return `region:${field(fm, "slug") || path.basename(file, ".md")}`;
+  if (file.startsWith("content/tools/")) return `tool:${field(fm, "slug") || path.basename(file, ".md")}`;
+  return null;
+}
+
+function wantedFromRef(ref) {
+  const files = [
+    ...gitLs(ref, "content/crops"),
+    ...gitLs(ref, "content/varieties"),
+    ...gitLs(ref, "content/regions"),
+    ...gitLs(ref, "content/tools"),
+  ];
+  const keys = [];
+  for (const f of files) {
+    const k = wantedKeyFromFile(f, gitShow(ref, f));
+    if (k) keys.push(k);
+  }
+  return keys;
+}
+
+function currentWanted() {
+  const keys = [];
+  for (const c of loadCrops()) if (c.data.commons_file) keys.push(`crop:${c.data.slug}`);
+  for (const v of loadVarieties()) if (v.data.commons_file) keys.push(`variety:${v.data.crop}/${v.data.slug}`);
+  for (const r of loadRegions()) if (r.data.commons_file) keys.push(`region:${r.data.slug}`);
+  for (const t of loadTools()) if (t.data.commons_file) keys.push(`tool:${t.data.slug}`);
+  return keys;
+}
+
+function urlSet(img) {
+  return new Set(imageUrls(img, WIDTHS));
+}
+
+function urlKey(set) {
+  return [...set].sort().join("\n");
+}
+
+const args = parseArgs(process.argv.slice(2));
+if (args.help) {
+  console.log(`Usage: node scripts/check_images.js [--changed] [--base <ref>]
+
+  (default)     Check every image URL in data/images.json.
+  --changed     Check only URLs that are new or changed vs the base ref,
+                and only report commons_file keys that are newly missing.
+  --base <ref>  Base commit or branch (default: CHECK_IMAGES_BASE,
+                or origin/\${GITHUB_BASE_REF} on a pull_request, or origin/main).`);
+  process.exit(process.exitCode || 0);
+}
+
 const images = JSON.parse(fs.readFileSync(path.join(ROOT, "data/images.json"), "utf8"));
-
-const wanted = [];
-for (const c of loadCrops()) if (c.data.commons_file) wanted.push(`crop:${c.data.slug}`);
-for (const v of loadVarieties()) if (v.data.commons_file) wanted.push(`variety:${v.data.crop}/${v.data.slug}`);
-for (const r of loadRegions()) if (r.data.commons_file) wanted.push(`region:${r.data.slug}`);
-for (const t of loadTools()) if (t.data.commons_file) wanted.push(`tool:${t.data.slug}`);
-
-const missingKeys = wanted.filter((k) => !images[k]);
-const urls = new Set();
+const wanted = currentWanted();
+let missingKeys = wanted.filter((k) => !images[k]);
+let urls = new Set();
 for (const img of Object.values(images)) {
   for (const u of imageUrls(img, WIDTHS)) urls.add(u);
+}
+
+if (args.changed) {
+  const base = resolveBase(args.base);
+  let baseOk = true;
+  try {
+    git(["rev-parse", "--verify", base]);
+  } catch {
+    baseOk = false;
+  }
+  if (!baseOk) {
+    console.error(`✗ --changed needs a reachable base ref (tried ${base}). Fetch the base branch or pass --base.`);
+    process.exit(1);
+  }
+  const raw = gitShow(base, "data/images.json");
+  const baseImages = raw ? JSON.parse(raw) : {};
+  const baseWanted = new Set(wantedFromRef(base));
+  const changedUrls = new Set();
+  let changedRecords = 0;
+  for (const [k, img] of Object.entries(images)) {
+    const prev = baseImages[k];
+    const now = urlSet(img);
+    const old = prev ? urlSet(prev) : new Set();
+    if (urlKey(now) !== urlKey(old)) {
+      changedRecords++;
+      for (const u of now) if (!old.has(u)) changedUrls.add(u);
+    }
+  }
+  // Newly wanted commons_file keys that have no images.json record.
+  const newMissing = missingKeys.filter((k) => !baseWanted.has(k) || baseImages[k]);
+  const preExistingMissing = missingKeys.filter((k) => !newMissing.includes(k));
+  missingKeys = newMissing;
+  urls = changedUrls;
+  console.log(`Changed-image check vs ${base}: ${changedRecords} updated record(s), ${urls.size} new or changed URL(s).`);
+  if (preExistingMissing.length) {
+    console.log(`Note: ${preExistingMissing.length} pre-existing commons_file key(s) still missing from data/images.json (not failing this changed-only check).`);
+  }
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -72,18 +219,23 @@ async function pool(items, n, fn) {
   return out;
 }
 
-const ALLOWED_WIDTHS = new Set([250, 330, 500, 960, 1280, 1920, 3840]);
 let badWidth = 0;
-for (const url of urls) {
-  const m = url.match(/\/(\d+)px-/);
-  if (m && !ALLOWED_WIDTHS.has(+m[1])) {
-    console.error(`✗ non-standard Commons thumb width ${m[1]} (see https://w.wiki/GHai): ${url}`);
-    badWidth++;
+for (const img of Object.values(images)) {
+  for (const url of imageUrls(img, WIDTHS)) {
+    const m = url.match(/\/(\d+)px-/);
+    if (m && !ALLOWED_WIDTHS.has(+m[1])) {
+      console.error(`✗ non-standard Commons thumb width ${m[1]} (see https://w.wiki/GHai): ${url}`);
+      badWidth++;
+    }
   }
 }
 if (badWidth) {
   console.error(`\n${badWidth} thumbnail URL(s) use widths Commons will reject.`);
   process.exit(1);
+}
+if (args.changed && !urls.size && !missingKeys.length) {
+  console.log("No new or changed image URLs to check.");
+  process.exit(0);
 }
 
 const list = [...urls].sort();

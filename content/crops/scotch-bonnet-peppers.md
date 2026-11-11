@@ -16,7 +16,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20191214105541/https://openfarm.cc/en/crops/scotch-bonnet-peppers'
   captured: '20191214'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

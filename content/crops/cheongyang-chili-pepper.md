@@ -12,7 +12,10 @@ rescue:
   slug: cheongyang-chili-pepper
   wayback_url: 'https://web.archive.org/web/20241211002823/https://openfarm.cc/en/crops/cheongyang-chili-pepper'
   captured: '20241211'
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

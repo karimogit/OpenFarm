@@ -22,7 +22,13 @@ seed_saving:
     reduce disease problems; saving your own tubers can carry over viruses and blight.
   sources: [csu-veg-hints]
 problems: [late-blight]
+edible: true
+toxic: true
+field_sources:
+  edible: [usda-grin]
+  toxic: [usda-grin]
 sources:
+  - usda-grin
   - csu-veg-hints
   - csu-veg-planting-guide
   - rhs-potato-blight

@@ -13,7 +13,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20240911130002/https://openfarm.cc/en/crops/chinese-cabbage'
   captured: '20240911'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

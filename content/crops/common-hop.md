@@ -10,7 +10,10 @@ rescue:
   slug: common-hop
   wayback_url: 'https://web.archive.org/web/20221210064539/https://openfarm.cc/en/crops/common-hop'
   captured: '20221210'
+edible: true
+edible_parts: [stem, leaf]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

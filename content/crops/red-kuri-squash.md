@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20230325105605/https://openfarm.cc/en/crops/red-kuri-squash'
   captured: '20230325'
   taxon: Species
+edible: true
+edible_parts: [fruit]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

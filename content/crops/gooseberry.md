@@ -16,7 +16,10 @@ rescue:
   slug: gooseberry
   wayback_url: 'https://web.archive.org/web/20220625071806/https://openfarm.cc/en/crops/gooseberry'
   captured: '20220625'
+edible: true
+edible_parts: [fruit]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

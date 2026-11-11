@@ -1,0 +1,82 @@
+---
+layout: base.njk
+pagination:
+  data: db.countries
+  size: 1
+  alias: c
+permalink: "/countries/{{ c.iso2Lower }}/"
+eleventyComputed:
+  title: "{{ c.name }}"
+  description: "Climate regions, major cities and seed sources in {{ c.name }}."
+  jsonUrl: "/countries/{{ c.iso2Lower }}.json"
+---
+{% set crumbs = [{href: "/countries/", label: "Countries"}, {label: c.name, current: true}] %}{% include "crumbs.njk" %}
+<article data-pagefind-body>
+  <h1>{% set cc = c.iso2 %}{% include "flag.njk" %} {{ c.name }}</h1>
+  <p class="lead">
+    {% if c.capital %}Capital: {% if c.capitalPlace %}<a href="{{ c.capitalPlace.placeUrl | url }}">{{ c.capital }}</a>{% else %}{{ c.capital }}{% endif %}.{% endif %}
+    ISO 3166-1 alpha-2: {{ c.iso2 }}.
+  </p>
+
+  {% if c.mapView %}
+  <figure class="country-map">
+    <svg viewBox="{{ c.mapView.x }} {{ c.mapView.y }} {{ c.mapView.width }} {{ c.mapView.height }}" role="img" aria-label="Köppen–Geiger climate map inset of {{ c.name }}">
+      <image href="{{ '/assets/koppen-mercator.png' | url }}" width="{{ c.mapView.imgW }}" height="{{ c.mapView.imgH }}" preserveAspectRatio="none"/>
+    </svg>
+    <figcaption>Köppen–Geiger climate map (Beck et al. 2018, CC BY 4.0). The inset shows the principal land cluster and may omit far-flung territories.</figcaption>
+  </figure>
+  {% endif %}
+
+  <h2>Climate regions</h2>
+  {% if c.regionShares.length %}
+    {% if c.climateMethod == "area" %}
+    <p>Approximate share of this country’s land, from 0.5° grid cells assigned with Natural Earth 50m boundaries. Shares under 0.1% are omitted. Overseas holdings in the same country record are included in the percentages even if they fall outside the inset map.</p>
+    {% elif c.climateMethod == "cities" %}
+    <p>This territory is too small (or is missing from the 50m boundaries) for a reliable 0.5° area share. The figures below are the climate at a sample of {{ c.climate.sample_count }} GeoNames capital or city point{{ 's' if c.climate.sample_count != 1 else '' }}, not an area percentage.</p>
+    {% endif %}
+    <table class="zones-table">
+      <thead><tr><th>Climate region</th><th>{% if c.climateMethod == "cities" %}Share of sampled points{% else %}Approx. land share{% endif %}</th></tr></thead>
+      <tbody>
+      {% for r in c.regionShares %}
+        <tr>
+          <th><a href="{{ r.url | url }}"><span class="swatch sm" style="background:{{ r.color }}"></span> {{ r.name }}</a></th>
+          <td>{{ r.share }}%</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% if c.koppen.length %}
+    <p>Köppen–Geiger classes:
+      {% for k in c.koppen %}{{ k.code | kgLink(koppen.classes, db.kgToRegion, true) | safe }} {{ k.share }}%{% if not loop.last %} · {% endif %}{% endfor %}
+    </p>
+    {% endif %}
+  {% else %}
+    <p>No climate share is listed at 0.5° resolution: this territory has no Beck grid cell centre inside a Natural Earth 50m boundary, and no GeoNames capital or city sample landed on a classified land cell. That is a data gap, not a claim that it has no climate.</p>
+  {% endif %}
+
+  <h2>Major cities</h2>
+  {% if c.cities.length %}
+  <ul class="city-list">
+    {% for city in c.cities %}
+    <li><a href="{{ city.placeUrl | url }}">{{ city.name }}</a>{% if city.adminName %}<span class="muted">, {{ city.adminName }}</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  <p class="small muted">Cities are the most populous GeoNames <code>cities15000</code> places in {{ c.name }} (CC BY 4.0). Links use the same <code>?place=</code> slugs as the rest of the site.</p>
+  {% else %}
+  <p>No city from the GeoNames <code>cities15000</code> gazetteer is listed for this territory.</p>
+  {% endif %}
+
+  <h2>Seed sources</h2>
+  {% if c.seedSources.length %}
+  <ul>
+    {% for s in c.seedSources %}
+    <li><a href="{{ s.url }}">{{ s.name }}</a>{% if s.kind %} <span class="muted">({{ s.kind }})</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No seed source in the catalogue is listed for {{ c.name }} yet.</p>
+  {% endif %}
+
+  <p class="small muted">{{ db.climateAttribution }} Names from GeoNames (CC BY 4.0).</p>
+  <p class="meta"><a href="{{ ('/countries/' + c.iso2Lower + '.json') | url }}">JSON</a></p>
+</article>

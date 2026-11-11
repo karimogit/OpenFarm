@@ -1,0 +1,52 @@
+---
+layout: base.njk
+pagination:
+  data: db.groups
+  size: 1
+  alias: g
+permalink: "/crops/{{ g.crop }}/{{ g.slug }}/"
+eleventyComputed:
+  title: "{{ g.name }} ({{ g.cropName }})"
+  description: "{{ g.name }} – a {{ g.cropName | lower }} variety group, with the cultivars that belong to it."
+---
+{% set crop = db.cropBy[g.crop] %}
+{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + crop.slug + "/", label: crop.name}, {label: g.name, current: true}] %}{% include "crumbs.njk" %}
+<p class="your-climate-line" data-your-climate-line hidden></p>
+<div class="layout">
+  <article class="col-main" data-pagefind-body>
+    <div class="title-row"><h1>{{ g.name }} <small class="muted">{{ crop.name }} group</small></h1>
+      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}</span></div>
+    <p class="sci-line">{% if g.sciHtml %}{{ g.sciHtml | safe }}{% endif %}{% if g.synonyms %} · also called {{ g.synonyms | join(", ") }}{% endif %}</p>
+    {% if g.origin == "imported" %}<p class="sci-line">{% set editFile = g.file %}{% include "unreviewed.njk" %}</p>{% endif %}
+    {% set img = g.image %}{% set alt = g.name + " " + crop.name %}{% set inherited = g.imageInherited %}{% include "image.njk" %}
+    <div class="body">{{ g.html | safe }}</div>
+    {% if g.fruit %}<p><strong>Fruit:</strong> {{ g.fruit }}</p>{% endif %}
+    {% if g.history %}<p><strong>History:</strong> {{ g.history }}</p>{% endif %}
+
+    <h2 id="varieties">Varieties in this group <small>({{ g.members.length }})</small></h2>
+    {% if g.members.length %}
+    <ul class="variety-grid">
+      {% for v in g.members %}
+      <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>{% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
+        <span>{% if v.days_to_maturity %}{{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No individual varieties in this group have been listed yet.</p>
+    {% endif %}
+
+    <h2>Sources</h2>
+    {% set srcs = g.sources %}{% include "sources.njk" %}
+    <p class="meta">License {{ g.license }}</p>
+    {% set editFile = g.file %}{% include "edited-by.njk" %}
+    {% set editLabel = "Edit this variety group" %}{% include "edit-button.njk" %}
+  </article>
+  <aside class="col-side">
+    {% include "your-climate.njk" %}
+    <section class="side-card">
+      <h3>This group</h3>
+      <p class="small">A variety group of <a href="{{ ('/crops/' + crop.slug + '/') | url }}">{{ crop.name }}</a>. Individual cultivars are listed on their own pages at <code>/crops/{{ crop.slug }}/&lt;variety&gt;/</code>; the group appears in the breadcrumb, not in the URL.</p>
+    </section>
+    {% include "weather.njk" %}
+  </aside>
+</div>

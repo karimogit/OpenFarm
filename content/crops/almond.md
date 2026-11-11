@@ -16,7 +16,11 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20211127074054/https://openfarm.cc/en/crops/almond'
   captured: '20211127'
   taxon: Species
+edible: true
+edible_parts: [nut]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

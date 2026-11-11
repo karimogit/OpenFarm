@@ -16,7 +16,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20220118203245/https://openfarm.cc/en/crops/sesame'
   captured: '20220118'
   taxon: Species
+edible: true
+edible_parts: [oil, seed]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

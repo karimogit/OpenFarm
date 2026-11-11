@@ -4,17 +4,23 @@ pagination:
   data: db.guides
   size: 1
   alias: g
-permalink: "/guides/{{ g.crop }}/{{ g.region }}/"
+permalink: "{{ g.url }}"
 eleventyComputed:
   title: "{{ g.title }}"
   description: "How to grow {{ g.cropName | lower }} in a {{ g.regionName | lower }} climate region: calendar, spacing, varieties and sources."
 ---
 {% set crop = db.cropBy[g.crop] %}
-{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + g.crop + "/", label: g.cropName}, {href: "/regions/" + g.region + "/", label: g.regionName}, {label: g.title, current: true}] %}{% include "crumbs.njk" %}
+{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + g.crop + "/", label: g.cropName}] %}
+{% if g.variety %}
+  {% set vrec = crop.varieties | selectattr("slug", "equalto", g.variety) | first %}
+  {% if vrec %}{% set crumbs = crumbs.concat([{href: vrec.url, label: vrec.name}]) %}{% endif %}
+{% endif %}
+{% set crumbs = crumbs.concat([{href: "/regions/" + g.region + "/", label: g.regionName}, {label: g.title, current: true}]) %}{% include "crumbs.njk" %}
+
 <div class="layout">
   <article class="col-main guide" data-pagefind-body>
     <div class="title-row"><h1>{{ g.title }}</h1>
-      <span class="title-actions" data-pagefind-ignore><button type="button" class="fav" data-fav="guide:{{ g.crop }}/{{ g.region }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button>
+      <span class="title-actions" data-pagefind-ignore><button type="button" class="fav" data-fav="guide:{{ g.favId }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button>
       <button type="button" class="grow" data-grow="{{ g.crop }}">＋ I'm growing this</button></span></div>
     <p class="sci-line"><a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.cropName }}</a> · <em>{{ g.scientific_name }}</em> · {{ g.family }}</p>
     <p class="your-climate-line" data-your-climate-line hidden></p>
@@ -41,10 +47,13 @@ eleventyComputed:
     <ul>{% for p in g.problemList %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}">{{ p.name }}</a>{% if p.conditions %} – <span class="small">{{ p.conditions }}</span>{% endif %}</li>{% endfor %}</ul>
     {% endif %}
 
+    {% include "rotation.njk" %}
+
     <h2>Sources</h2>
     {% set srcs = g.sources %}{% include "sources.njk" %}
     <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
-    {% set editFile = g.file %}{% set editLabel = "Edit this guide" %}{% include "edit-button.njk" %}
+    {% set editFile = g.file %}{% include "edited-by.njk" %}
+    {% set editLabel = "Edit this guide" %}{% include "edit-button.njk" %}
   </article>
 
   <aside class="col-side">

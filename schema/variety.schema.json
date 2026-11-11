@@ -320,7 +320,9 @@
     "license": {
       "enum": [
         "CC-BY-SA-4.0",
-        "CC0-1.0"
+        "CC0-1.0",
+        "CC-BY-4.0",
+        "PD-USGov"
       ]
     },
     "authors": {
@@ -340,7 +342,7 @@
     },
     "cultivar": {
       "type": "string",
-      "description": "Cultivar epithet without quotes if it differs from the display name, e.g. 'Sun Gold' → Solanum lycopersicum 'Sun Gold'."
+      "description": "Cultivar epithet without quotes if it differs from the display name, e.g. 'Sun Gold' \u2192 Solanum lycopersicum 'Sun Gold'."
     },
     "image_note": {
       "type": "string",
@@ -398,6 +400,63 @@
           }
         }
       }
+    },
+    "kind": {
+      "enum": [
+        "variety",
+        "group"
+      ],
+      "description": "group = a named cultivar group (e.g. hardneck garlic) with its own page; default is a single variety."
+    },
+    "group": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Slug of the variety group this cultivar belongs to (group lives in the breadcrumb, not the URL)."
+    },
+    "field_sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$",
+              "description": "Key in content/sources.yaml"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "title",
+                "url"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "publisher": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "redirect_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "description": "Old slugs that should redirect to this record (kept unique within the crop)."
     }
   },
   "allOf": [

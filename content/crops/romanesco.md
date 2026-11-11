@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20250114053349/https://openfarm.cc/en/crops/romanesco'
   captured: '20250114'
   growing_degree_days_as_recorded: 120
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

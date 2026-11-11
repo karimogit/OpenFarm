@@ -1,5 +1,5 @@
 // Home page: the "your details" panel (location search, map, climate region) and the guide cards.
-import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel, resolvePlace, locationSearch, locationHref, nearestPlace } from "./common.js";
+import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel, resolvePlace, locationSearch, locationHref, nearestPlace, guideHref } from "./common.js";
 import { flagImg } from "./icons.js";
 
 const map = L.map("map", { worldCopyJump: true, zoomControl: true }).setView([30, 10], 1);
@@ -27,7 +27,7 @@ function monthRanges(ms = []) {
 }
 
 function card({ g, kind, via, calendar, shifted }, region) {
-  const href = `${BASE}guides/${g.crop}/${g.region}/`;
+  const href = guideHref(g);
   const sow = [...(calendar.sow_indoors || []), ...(calendar.sow_direct || []), ...(calendar.plant || [])];
   const when = [sow.length ? `Sow/plant ${monthRanges(sow)}` : "", calendar.harvest ? `Harvest ${monthRanges(calendar.harvest)}` : ""].filter(Boolean).join(" · ");
   const flag = kind === "similar" ? `<span class="note-flag">nearest region: ${esc(via.name.toLowerCase())}</span>`
@@ -86,7 +86,7 @@ async function choose(lat, lon, label, country, placeSlug) {
   if (near.length) h += `<h3 class="group">From the nearest region – not written for yours</h3>
     <ul class="crop-grid guide-grid">${near.map((m) => card(m, region)).join("")}</ul>`;
   const vars = INDEX.varieties.filter((v) => v.regions.includes(region.slug));
-  if (vars.length) h += `<h3 class="group">Varieties recommended for your region</h3><p>${vars.map((v) => `<a class="chip" href="${BASE}crops/${v.crop}/varieties/${v.slug}/">${esc(v.name)} <small>${esc(v.cropName)}</small></a>`).join(" ")}</p>`;
+  if (vars.length) h += `<h3 class="group">Varieties recommended for your region</h3><p>${vars.map((v) => `<a class="chip" href="${BASE}crops/${v.crop}/${v.slug}/">${esc(v.name)} <small>${esc(v.cropName)}</small></a>`).join(" ")}</p>`;
   h += `<p class="small">Know a crop that grows well here? <a href="${BASE}regions/${region.slug}/#help">Add a guide for ${esc(region.name.toLowerCase())}</a>.</p>`;
   $("#match-list").innerHTML = h;
   document.dispatchEvent(new CustomEvent("openfarm:profile"));

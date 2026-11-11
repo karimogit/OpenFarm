@@ -11,26 +11,18 @@
     "additionalProperties": false,
     "required": [
       "title",
-      "url"
+      "url",
+      "license",
+      "use"
     ],
     "properties": {
-      "title": {
-        "type": "string"
-      },
-      "publisher": {
-        "type": "string"
-      },
-      "url": {
-        "type": "string",
-        "format": "uri",
-        "pattern": "^https://"
-      },
-      "license": {
-        "type": "string"
-      },
-      "note": {
-        "type": "string"
-      }
+      "title": { "type": "string" },
+      "publisher": { "type": "string" },
+      "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+      "license": { "type": "string", "minLength": 1 },
+      "license_url": { "type": "string", "format": "uri", "pattern": "^https://" },
+      "use": { "type": "string", "enum": ["import", "citation"] },
+      "note": { "type": "string" }
     }
   }
 }

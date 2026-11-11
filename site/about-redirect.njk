@@ -1,0 +1,14 @@
+---
+layout: false
+permalink: /about/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Redirecting to About OpenFarm</title>
+<link rel="canonical" href="{{ '/contribute/' | url }}">
+<meta http-equiv="refresh" content="0;url={{ '/contribute/' | url }}">
+<p>The About page is at <a href="{{ '/contribute/' | url }}">About &amp; contribute</a>.</p>
+<script>location.replace({{ '/contribute/' | url | json | safe }});</script>
+</html>

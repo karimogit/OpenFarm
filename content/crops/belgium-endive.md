@@ -17,7 +17,11 @@ rescue:
   taxon: Species
   companions_unverified:
     - tatsoi
+edible: true
+edible_parts: [flower]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

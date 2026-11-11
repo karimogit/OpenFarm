@@ -10,7 +10,10 @@ rescue:
   slug: lemon
   wayback_url: 'https://web.archive.org/web/20160817191235/https://openfarm.cc/en/crops/lemon'
   captured: '20160817'
+edible: true
+edible_parts: [fruit]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

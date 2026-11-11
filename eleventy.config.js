@@ -12,17 +12,17 @@ const sourceOut = (s) => pick(s, ["key", "title", "publisher", "url", "license"]
 const varietyOut = (v) => ({
   ...pick(v, ["crop", "slug", "name", "synonyms", "scientific_name", "category", "fruit", "growth_habit", "days_to_maturity", "days_from",
     "cold_tolerance", "heat_tolerance", "disease_resistance", "chill_hours", "pollination_partners", "suitable_regions", "seeds",
-    "sun", "size", "origin", "license", "rescue", "cultivar", "cultivarName", "hardiness"]),
+    "sun", "size", "origin", "license", "rescue", "cultivar", "cultivarName", "hardiness", "kind", "group"]),
   url: v.url, sources: v.sources.map(sourceOut),
 });
 const guideOut = (g) => ({
-  ...pick(g, ["crop", "region", "title", "koppen", "hemisphere", "reference_location", "calendar", "days_to_maturity", "spacing",
+  ...pick(g, ["crop", "region", "variety", "title", "koppen", "hemisphere", "reference_location", "calendar", "days_to_maturity", "spacing",
     "sun", "water", "varieties", "problems", "confidence", "uncertainty", "license", "authors", "last_reviewed", "tools"]),
   url: g.url, sources: g.sources.map(sourceOut),
 });
 const cropOut = (c) => ({
   ...pick(c, ["slug", "name", "aliases", "scientific_name", "family", "type", "lifecycle", "sun", "water", "sowing_method", "size",
-    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools"]),
+    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools", "edible", "edible_parts", "toxic", "toxic_parts"]),
   url: `/crops/${c.slug}/`,
   sources: c.sources.map(sourceOut),
   varieties: c.varieties.map(varietyOut),
@@ -36,9 +36,19 @@ const regionOut = (r) => ({
   guides: r.guides.filter((x) => x.primary).map((x) => x.g.url),
   partly_covered_by: r.guides.filter((x) => !x.primary).map((x) => x.g.url),
   varieties: r.varieties.map((v) => v.url),
+  countries: (r.countries || []).map((c) => ({ iso2: c.iso2, name: c.name, url: c.url, share: c.share, method: c.method })),
 });
 const toolOut = (x) => ({ ...pick(x, ["slug", "name", "category", "image", "license"]), category_label: x.categoryLabel, url: x.url,
   sources: x.sources.map(sourceOut), crops: x.crops.map((c) => c.slug), guides: x.guides.map((g) => g.url) });
+const countryOut = (c) => ({
+  iso2: c.iso2, name: c.name, url: c.url, capital: c.capital || null,
+  climate_method: c.climateMethod || null,
+  regions: (c.regionShares || []).map((r) => ({ slug: r.slug, name: r.name, share: r.share })),
+  koppen: c.koppen || [],
+  cities: (c.cities || []).map((x) => ({ name: x.name, place: x.slug, url: x.placeUrl, population: x.pop })),
+  seed_sources: (c.seedSources || []).map((s) => pick(s, ["slug", "name", "url", "kind"])),
+});
+const countriesOut = (list) => (list || []).map(countryOut);
 const allOut = (db) => ({
   generated: new Date().toISOString(),
   license: { code: "MIT", content: "CC-BY-SA-4.0 (imported crop/variety records: CC0-1.0)", attribution: "OpenFarm contributors" },
@@ -48,6 +58,11 @@ const allOut = (db) => ({
   tools: db.tools.map(toolOut),
   seed_sources: db.seedSources.map((s) => pick(s, ["slug", "name", "url", "kind", "countries", "regions", "focus"])),
   companions: db.companions.map((c) => ({ ...pick(c, ["crops", "relation", "evidence", "reason"]), sources: (c.sources || []).map(sourceOut) })),
+  countries: (db.countries || []).map((c) => ({ iso2: c.iso2, name: c.name, url: c.url, capital: c.capital || null, climate_method: c.climateMethod || null, regions: (c.regionShares || []).map((r) => ({ slug: r.slug, share: r.share })) })),
+  rotation: {
+    groups: (db.rotationGroups || []).map((g) => ({ ...pick(g, ["slug", "name", "families", "notes"]), crops: (g.crops || []).map((c) => c.slug || c), sources: (g.sources || []).map(sourceOut) })),
+    rules: (db.rotationRules || []).map((r) => ({ ...pick(r, ["kind", "from", "to", "group", "years", "reason"]), sources: (r.sources || []).map(sourceOut) })),
+  },
 });
 
 export default function (eleventyConfig) {
@@ -72,6 +87,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ schema: "schema" });
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v).replace(/</g, "\\u003c"));
   eleventyConfig.addFilter("prettyJson", (v) => JSON.stringify(v, null, 1));
+  eleventyConfig.addFilter("countryOut", countryOut);
+  eleventyConfig.addFilter("countriesOut", countriesOut);
   eleventyConfig.addFilter("cropOut", cropOut);
   eleventyConfig.addFilter("guideOut", guideOut);
   eleventyConfig.addFilter("varietyOut", varietyOut);

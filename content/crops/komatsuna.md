@@ -10,7 +10,10 @@ rescue:
   slug: komatsuna
   wayback_url: 'https://web.archive.org/web/20190717225704/https://openfarm.cc/en/crops/komatsuna'
   captured: '20190717'
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

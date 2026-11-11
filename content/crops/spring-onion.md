@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20241210234621/https://openfarm.cc/en/crops/spring-onion'
   captured: '20241210'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

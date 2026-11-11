@@ -26,7 +26,13 @@ seed_saving:
   min_plants: 40
   cross_note: "Crosses with all Brassica oleracea crops (cabbage, kale, broccoli, cauliflower, kohlrabi, collards\u2026)."
 problems: [club-root]
+edible: true
+toxic: true
+field_sources:
+  edible: [usda-grin]
+  toxic: [usda-grin]
 sources:
+  - usda-grin
   - seed-matters-chart
   - rhs-club-root
   - openfarm-rescue

@@ -17,7 +17,9 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20240911122302/https://openfarm.cc/en/crops/shallot'
   captured: '20240911'
   taxon: Species
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

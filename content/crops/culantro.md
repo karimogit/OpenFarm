@@ -14,7 +14,9 @@ rescue:
   slug: culantro
   wayback_url: 'https://web.archive.org/web/20231201205211/https://openfarm.cc/en/crops/culantro'
   captured: '20231201'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

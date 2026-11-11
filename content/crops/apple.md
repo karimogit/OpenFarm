@@ -48,7 +48,15 @@ seed_saving:
     Buy named varieties on a known rootstock rather than growing from pips.
   sources: [rhs-apples]
 problems: [apple-scab]
+edible: true
+edible_parts: [fruit]
+toxic: true
+field_sources:
+  edible: [usda-grin]
+  edible_parts: [usda-grin]
+  toxic: [usda-grin]
 sources:
+  - usda-grin
   - rhs-apples
   - ucanr-low-chill-apples
   - ufifas-low-chill-apples

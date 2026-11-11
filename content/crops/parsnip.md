@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20211026081006/https://openfarm.cc/en/crops/parsnip'
   captured: '20211026'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

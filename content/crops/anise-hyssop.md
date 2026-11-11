@@ -10,7 +10,9 @@ rescue:
   slug: anise-hyssop
   wayback_url: 'https://web.archive.org/web/20250114053257/https://openfarm.cc/en/crops/anise-hyssop'
   captured: '20250114'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

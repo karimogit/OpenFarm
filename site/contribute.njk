@@ -16,6 +16,7 @@ permalink: /contribute/
   dry seasons, season length – not just winter cold like USDA zones. The {{ koppen.classes.length - 1 }} Köppen classes are
   grouped into {{ db.regions.length }} <a href="{{ '/regions/' | url }}">climate regions</a>, so every place on Earth gets one.
   Where a crop has no guide for your region yet, you see the guide from the most similar region, clearly labelled.</p>
+{% include "how-it-works.njk" %}
 
 <h2>Contribute</h2>
 <p>Every guide is a plain text file on GitHub, so anyone can suggest improvements and every change is tracked.
@@ -31,11 +32,29 @@ permalink: /contribute/
 <ul>
   <li><strong>Crop</strong> (<code>content/crops/&lt;crop&gt;.md</code>) – facts that are true everywhere: type, family, sun, size, how the species is pollinated and saved, perennial facts like chill hours and rootstocks.</li>
   <li><strong>Variety</strong> (<code>content/varieties/&lt;crop&gt;/&lt;variety&gt;.md</code>) – a cultivar: days to maturity, growth habit, tolerances, disease resistance, and whether its seed is open-pollinated or F1 hybrid.</li>
-  <li><strong>Guide</strong> (<code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems.</li>
+  <li><strong>Guide</strong> (file <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>, public URL <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems. Old <code>/guides/…</code> URLs redirect here.</li>
   <li><strong>Shared files</strong> – <a href="{{ '/regions/' | url }}">climate regions</a>, <a href="{{ '/problems/' | url }}">pests &amp; diseases</a>, companion pairs (with evidence level) and <a href="{{ '/crops/' | url }}#seed-sources">seed sources</a> are written once and listed on the crops page.</li>
 </ul>
-<p>Machine-readable: every crop has a JSON file (e.g. <a href="{{ '/crops/tomato.json' | url }}">/crops/tomato.json</a>), every region too, and there is a full dump at <a href="{{ '/api/all.json' | url }}">/api/all.json</a>.</p>
+<p>Machine-readable: every crop has a JSON file (e.g. <a href="{{ '/crops/tomato.json' | url }}">/crops/tomato.json</a>), every region too, and there is a full dump at <a href="{{ '/api/all.json' | url }}">/api/all.json</a>. See the <a href="{{ '/api/' | url }}">API reference</a>.</p>
 
+<h2 id="sources">Sources &amp; licences</h2>
+<p>Content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (imported CC0 records stay CC0). Code is MIT.
+  We only <em>copy</em> data from public domain, CC0, CC BY or CC BY-SA sources, with attribution.
+  University and RHS pages are usually cited, not copied: we summarise in our own words and link.
+  Wiki-derived rescue data is a scaffold, not an authority — it stays <a href="{{ '/help/#unreviewed' | url }}">Unreviewed</a> until someone checks it against a published source.
+  Edible-part fields, when present, come from a cited authority and are for cultivated crops, not for identifying wild plants or foraging.
+  Page credits come from git history (“Edited by”); the Sources list is published references only.
+  The full policy, allowlist and exclusions are in <a href="{{ site.repo }}/blob/main/SOURCES.md">SOURCES.md</a>.</p>
+
+<h2 id="roadmap">Roadmap</h2>
+<ul class="roadmap">
+  <li>Fill growing guides for climate regions that still have few or none, from credible regional sources, without inventing values.</li>
+  <li>Review imported wiki-derived crop fields (spacing, sun, sowing, prose) against published sources and promote records to <code>origin: curated</code>.</li>
+  <li>Country pages, hardiness-zone pages, and a richer rotation and neighbours view, as those features land.</li>
+  <li>Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0), and add native southern-hemisphere calendars.</li>
+  <li>Translations, frost-date and day-length hints, and a climate-change view using later Köppen maps.</li>
+  <li><strong>Offline ZIM for Kiwix.</strong> For major tagged releases, a release-triggered GitHub Action will build an offline OpenFarm ZIM: relative links, small bundled Commons images with attribution, Kiwix search instead of Pagefind, and graceful offline behaviour for location, calendar and profile. The action will run zimwriterfs and zimcheck, then attach the <code>.zim</code> to the GitHub release. A later step is to submit it to the Kiwix library.</li>
+</ul>
 
 <h2 id="credits">Data and credits</h2>
 <p>OpenFarm stands on other open work. Required attributions:</p>

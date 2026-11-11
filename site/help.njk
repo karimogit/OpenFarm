@@ -9,6 +9,7 @@ description: "How OpenFarm works: climate regions and Köppen codes, hardiness z
 <nav class="toc" aria-label="On this page"><ul class="chips">
   <li><a class="chip" href="#koppen">Climate regions &amp; Köppen codes</a></li>
   <li><a class="chip" href="#hardiness">Hardiness zones</a></li>
+  <li><a class="chip" href="#countries">Countries</a></li>
   <li><a class="chip" href="#unreviewed">Unreviewed badge</a></li>
   <li><a class="chip" href="#profile">Your profile &amp; exports</a></li>
   <li><a class="chip" href="#notifications">Reminders</a></li>
@@ -28,14 +29,18 @@ Every code on the site links to its region; hover it to see the full name.</p>
 </tbody></table>
 
 <h2 id="hardiness">Hardiness zones</h2>
+<p>Each zone from 1a to 13b has its own page, with the temperature range and the plants in this catalogue whose <em>sourced</em> range includes it: see <a href="{{ '/zones/' | url }}">Hardiness zones</a>.</p>
 <p>A plant hardiness zone (USDA-style) describes how cold winters get: it is based on the <strong>average yearly extreme minimum temperature</strong>.
 Zone 1 starts at −51.1 °C (−60 °F); each zone is 10 °F (about 5.6 °C) wide and split into a colder <em>a</em> and a warmer <em>b</em> half (for example 8b = −9.4 to −6.7 °C).</p>
 <p><strong>Your zone</strong> is worked out in your browser: OpenFarm asks the <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo historical weather API</a> (ERA5 reanalysis, about 25 km grid, CC BY 4.0) for the daily minimum temperatures of 1991–2020 at your location, takes the coldest night of each year and averages them.
 The result is cached in this browser. Limits: a 25 km grid smooths out frost pockets, valleys and city heat, and reanalysis tends to be a little milder than station records in cold spots – treat the zone as a guide, not a guarantee.</p>
 <p><strong>Plant ranges</strong> (e.g. “zones 5–9”) come from cited sources – currently the <a href="https://plants.ces.ncsu.edu/">NC State Extension Gardener Plant Toolbox</a>. Crops without a sourced range show none; we never estimate one. When your zone is outside a plant's range, its page shows a warning.</p>
 
+<h2 id="countries">Countries</h2>
+<p>Each country and territory has a page at <a href="{{ '/countries/' | url }}">/countries/</a> (for example <a href="{{ '/countries/nl/' | url }}">/countries/nl/</a>) with its flag, approximate climate-region coverage, major cities, and seed sources listed for that country. City links use the same <code>?place=</code> slugs as location search (for example <code>?place=amsterdam-nl</code>). Climate shares are approximate area-weighted fractions of the 0.5° Beck et al. (2018) Köppen grid (CC BY 4.0) assigned with Natural Earth 50m boundaries (public domain). Tiny territories use a GeoNames city sample instead of an area share; the method is spelled out on the country page. Names and cities are from GeoNames (CC BY 4.0). Region pages list the countries they cover.</p>
+
 <h2 id="unreviewed">The “Unreviewed” badge</h2>
-<p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
+<p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety, and don't treat wiki-derived spacing or companions as authoritative. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
 
 
 <h2 id="profile">Your profile and exports</h2>
@@ -57,16 +62,40 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
 <h2 id="labels">Filters and labels</h2>
 <p>Crop cards show the plant photo and names (a coloured left edge marks the category on mixed lists). The Unreviewed note appears on the crop or variety page, not on the card. Open <em>Filters &amp; labels</em> above a list to show extra labels (number of guides and varieties, annual/perennial, hardiness zones, Köppen codes) or to show only crops with a guide, reviewed crops or perennials. Your choice is remembered in this browser.</p>
 
+<h2 id="sources">Sources &amp; licences</h2>
+<p>OpenFarm content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, attributed to “OpenFarm contributors”.
+  Imported records that already say CC0 stay CC0. The site’s code is MIT.</p>
+<p><strong>Imported data</strong> (values copied or adapted into our files) may only come from a source whose own terms are public domain or CC0, CC BY, or CC BY-SA.
+  NC, ND, all-rights-reserved, unclear terms, and copyleft code (GPL, AGPL) are not imported. Each source in
+  <code>content/sources.yaml</code> has a <code>license</code> and a <code>use</code> of either <code>import</code> or <code>citation</code>.
+  The build fails if an import source is not on that allowlist.</p>
+<p><strong>Citations</strong> are different. Extension services, the RHS and similar pages are usually all-rights-reserved.
+  We summarise their advice in our own words and link to them; we do not paste their text. Citing a work does not change our licence.</p>
+<p><strong>Wiki-derived data is not an authority.</strong> Many crop pages started from the CC0 OpenFarm.cc rescue dataset.
+  That dataset’s own README warns it is a scaffold. Spacing, sun, sowing method, prose and companions from that import stay
+  <a href="#unreviewed">Unreviewed</a> until someone checks them against a published source. Do not add new companion or spacing
+  claims from wiki-derived sets.</p>
+<p><strong>Edibility</strong> (<code>edible</code> / <code>edible_parts</code>) is filled only from an authoritative, compatible source and is cited on the record.
+  If we have no such source, the fields stay blank. Sourced toxic parts are listed when we have them.
+  Edible-part info is for cultivated crops. Don't use it to identify wild plants or for foraging.</p>
+<p><strong>Contributor credits</strong> on a page come from that file’s git history (GitHub usernames, no emails, bots omitted).
+  The Sources list is published references only. A one-time credit links the rescue import to the original OpenFarm.cc dataset.</p>
+<p>The full policy, with licence links and exclusions (including Growstuff’s AGPL code versus its CC BY-SA structured data), is in
+  <a href="{{ site.repo }}/blob/main/SOURCES.md">SOURCES.md</a>.</p>
+
 <h2 id="api">JSON API</h2>
-<p>All data is available as static JSON (no key needed):</p>
+<p>All data is available as static JSON (no key needed). There is a longer reference, with example requests and reuse rules, at
+  <a href="{{ '/api/' | url }}">/api/</a>.</p>
 <ul>
   <li><a href="{{ '/api/all.json' | url }}"><code>/api/all.json</code></a> – everything (regions, crops with varieties and guides, problems, tools, seed sources, companions)</li>
   <li><a href="{{ '/api/guides.json' | url }}"><code>/api/guides.json</code></a> – compact guide index</li>
   <li><a href="{{ '/api/tools.json' | url }}"><code>/api/tools.json</code></a> – tools</li>
-  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>) and <code>/regions/&lt;region&gt;.json</code></li>
+  <li><a href="{{ '/api/countries.json' | url }}"><code>/api/countries.json</code></a> – countries</li>
+  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>), <code>/regions/&lt;region&gt;.json</code>, <code>/countries/&lt;iso2&gt;.json</code>, and <code>/zones/&lt;zone&gt;.json</code></li>
 </ul>
-<p>Content is CC BY-SA 4.0 (imported records CC0); please credit “OpenFarm contributors”.</p>
+<p>Guide URLs in the JSON are now <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code> (old <code>/guides/…</code> HTML pages redirect).
+  Content is CC BY-SA 4.0 (imported records CC0); credit “OpenFarm contributors” and keep ShareAlike for adaptations.</p>
 
 <h2 id="contribute">Contributing</h2>
-<p>Everything is plain Markdown in the <a href="{{ site.repo }}">GitHub repository</a>. Each page has one button at the bottom – <em>Edit this guide / crop / variety</em> – that opens the file on GitHub. Guides need real sources (extension services, national horticultural societies, FAO and similar). See <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> for the details.</p>
+<p>Everything is plain Markdown in the <a href="{{ site.repo }}">GitHub repository</a>. Each page has one button at the bottom – <em>Edit this guide / crop / variety</em> – that opens the file on GitHub. Guides need real sources (extension services, national horticultural societies, FAO and similar). See <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> and <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for the details.</p>
 </article>

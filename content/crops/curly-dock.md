@@ -10,7 +10,9 @@ rescue:
   slug: curly-dock
   wayback_url: 'https://web.archive.org/web/20150317112909/https://openfarm.cc/en/crops/curly-dock'
   captured: '20150317'
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

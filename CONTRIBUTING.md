@@ -10,7 +10,7 @@ climate region.
 |---|---|---|
 | Crop | `content/crops/<crop>.md` | Facts true everywhere: type, family, sun, seed saving for the species, perennial facts (chill hours, rootstocks, years to first crop), linked problems |
 | Variety | `content/varieties/<crop>/<variety>.md` | A cultivar: maturity, tolerances, disease resistance, regions it suits, and its `seeds` block (open-pollinated / F1 / clonal, comes true?) |
-| Guide | `content/guides/<crop>/<region>.md` | How to grow one crop in one climate region: calendar, spacing, varieties and problems that matter there |
+| Guide | `content/guides/<crop>/<region>.md` (public URL `/crops/<crop>/<region>/`) | How to grow one crop in one climate region: calendar, spacing, varieties and problems that matter there |
 | Climate region | `content/regions/<region>.md` | Köppen classes, colour, examples, `similar` regions used as fallback |
 | Problem | `content/problems/<problem>.md` | A pest, disease or disorder, with the crops it `affects` |
 | Seed source | `content/seed-sources/<source>.md` | A seed library, network, gene bank or company, with the `countries` it serves |
@@ -72,6 +72,32 @@ or membership page. Non-commercial seed libraries and networks are especially we
   `npm run images`.
 - **AI-assisted writing is welcome**, but a human must check every fact against the listed
   sources before the pull request is merged.
+
+## Sources and licences
+
+The full policy, with licence links, is in [SOURCES.md](SOURCES.md). In short:
+
+- **Accepted for imported (copied) data:** public domain / CC0, CC BY, and CC BY-SA, with
+  attribution. These are compatible with our content licence (CC BY-SA 4.0) and do not add
+  NC, ND or other extra restrictions.
+- **Excluded from import:** CC BY-NC, CC BY-ND, all-rights-reserved material, unclear terms,
+  seed catalogues, PFAF, and copyleft *code* (GPL, AGPL — do not copy Growstuff or similar
+  code). Growstuff *structured data* is CC BY-SA 3.0 and may be used only with attribution
+  and ShareAlike; member posts, comments and images must not be imported.
+- **Citations:** extension services, the RHS and similar pages are usually all-rights-reserved.
+  Summarise in your own words and link. Do not paste their text. Every record lists its
+  sources by key from `content/sources.yaml` (each key has a `license` and a `use` of
+  `import` or `citation`). The validator fails the build if an import source is not on the
+  allowlist.
+- **Wiki-derived data is not an authority.** The CC0 rescue import is a scaffold. Do not add
+  companions, spacing or prose from wiki-derived datasets. Keep the Unreviewed marking until
+  a published source has been checked.
+- **Edibility** must come from an authoritative, compatible source and be cited on the record.
+  Leave the fields blank if unsourced. Edible-part info is for cultivated crops — not for
+  identifying wild plants or foraging.
+- **Credits:** an “Edited by” line is generated from that file’s git history (GitHub
+  usernames only, no emails, bots omitted). The Sources list on a page is published
+  references, not git authors.
 
 ## License of contributions
 

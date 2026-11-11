@@ -1,0 +1,9 @@
+---
+pagination:
+  data: db.countries
+  size: 1
+  alias: c
+permalink: "/countries/{{ c.iso2Lower }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ c | countryOut | prettyJson | safe }}

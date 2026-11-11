@@ -17,7 +17,10 @@ rescue:
   captured: '20210511'
   companions_unverified:
     - groundnut-1
+edible: true
+edible_parts: [seed]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

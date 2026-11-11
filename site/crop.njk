@@ -22,6 +22,7 @@ eleventyComputed:
       {% if crop.origin == "imported" %} · {% set editFile = crop.file %}{% include "unreviewed.njk" %}{% endif %}</p>
     {% set img = crop.image %}{% set alt = crop.name %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ crop.html | safe }}</div>
+    {% include "forage-disclaimer.njk" %}
     {% if crop.toolList.length %}<p class="small"><strong>Useful tools:</strong> {% for x in crop.toolList %}<a class="chip" href="{{ x.url | url }}">{{ x.name }}</a> {% endfor %}</p>{% endif %}
 
     <section class="your-region card" data-your-region data-crop="{{ crop.slug }}" data-crop-name="{{ crop.name }}" data-pagefind-ignore hidden></section>
@@ -44,15 +45,43 @@ eleventyComputed:
     {% endif %}
     </div>
 
-    {% if crop.varieties.length %}
+    {% if crop.groups.length or crop.varieties.length %}
     <h2 id="varieties">Varieties <small>({{ crop.varieties.length }})</small></h2>
-    <ul class="variety-grid">
-      {% for v in crop.varieties %}
-      <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
-        {% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
-        <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
+    {% if crop.groups.length %}
+      {% for g in crop.groups %}
+      <h3><a href="{{ g.url | url }}">{{ g.name }}</a> <small>({{ g.members.length }})</small></h3>
+      {% if g.members.length %}
+      <ul class="variety-grid">
+        {% for v in g.members %}
+        <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
+          {% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
+          <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="small"><a href="{{ g.url | url }}">About this group</a></p>
+      {% endif %}
       {% endfor %}
-    </ul>
+      {% set ungrouped = crop.varieties | rejectattr("group") %}
+      {% if ungrouped.length %}
+      <h3>Other varieties</h3>
+      <ul class="variety-grid">
+        {% for v in ungrouped %}
+        <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
+          {% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
+          <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% else %}
+      <ul class="variety-grid">
+        {% for v in crop.varieties %}
+        <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
+          {% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
+          <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     {% endif %}
 
     {% if crop.problemList.length %}
@@ -60,23 +89,15 @@ eleventyComputed:
     <ul>{% for p in crop.problemList %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}">{{ p.name }}</a> <small class="muted">{{ p.kind }}</small></li>{% endfor %}</ul>
     {% endif %}
 
-    {% if crop.companions.length or (crop.rescue and crop.rescue.companions_unverified) %}
-    <h2 id="companions">Companion planting</h2>
-    {% if crop.companions.length %}
-    <ul>{% for c in crop.companions %}<li>{{ "👍 Good with" if c.relation == "good" else "👎 Keep away from" }} <a href="{{ ('/crops/' + c.other.slug + '/') | url }}">{{ c.other.name }}</a> –
-      {{ c.reason }} <span class="badge ev-{{ c.evidence }}">{{ c.evidence | label }}</span></li>{% endfor %}</ul>
-    {% endif %}
-    {% if crop.rescue and crop.rescue.companions_unverified %}
-    <p class="small">Old OpenFarm wiki listed as companions (unverified): {% for s in crop.rescue.companions_unverified %}{% if db.cropBy[s] %}<a href="{{ ('/crops/' + s + '/') | url }}">{{ db.cropBy[s].name }}</a>{% else %}{{ s }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
-    {% endif %}
-    {% endif %}
+    {% include "rotation.njk" %}
 
     <h2>Sources</h2>
     {% set srcs = crop.sources %}{% include "sources.njk" %}
     {% if crop.rescue %}<p class="small">Original OpenFarm record: <a href="{{ crop.rescue.wayback_url }}">Wayback Machine capture</a>{% if crop.rescue.captured %} ({{ crop.rescue.captured }}){% endif %}.</p>{% endif %}
     <p class="meta">{% if crop.origin == "curated" %}By {{ crop.authors | join(", ") }} · last reviewed {{ crop.last_reviewed }} · {% endif %}
       License {{ crop.license }} · <a href="{{ ('/crops/' + crop.slug + '.json') | url }}">JSON</a></p>
-    {% set editFile = crop.file %}{% set editLabel = "Edit this crop" %}{% include "edit-button.njk" %}
+    {% set editFile = crop.file %}{% set showRescueCredit = crop.origin == "imported" %}{% include "edited-by.njk" %}
+    {% set editLabel = "Edit this crop" %}{% include "edit-button.njk" %}
   </article>
 
   <aside class="col-side">
@@ -86,6 +107,9 @@ eleventyComputed:
       <h3>Quick facts</h3>
       <dl class="kv">
         <div><dt>Type</dt><dd>{{ db.typeLabels[crop.type] }}</dd></div>
+        {% if crop.edible == true %}<div><dt>Edible</dt><dd>Yes{% if crop.edible_parts and crop.edible_parts.length %} · {{ crop.edible_parts | join(", ") }}{% endif %}</dd></div>
+        {% elif crop.edible == false %}<div><dt>Edible</dt><dd>Not recorded as a food plant</dd></div>{% endif %}
+        {% if crop.toxic == true %}<div><dt>Poisonous use recorded</dt><dd>{% if crop.toxic_parts and crop.toxic_parts.length %}Named part{{ 's' if crop.toxic_parts.length != 1 else '' }}: {{ crop.toxic_parts | join(", ") }}.{% else %}A source records a poisonous use; the plant part is not specified in that record.{% endif %}</dd></div>{% endif %}
         {% if crop.sun %}<div><dt>Sun</dt><dd>{{ crop.sun | label }}</dd></div>{% endif %}
         {% if crop.water %}<div><dt>Water</dt><dd>{{ crop.water | label }}</dd></div>{% endif %}
         {% if crop.temperature and crop.temperature.frost_tender %}<div><dt>Frost</dt><dd>Frost-tender</dd></div>{% endif %}

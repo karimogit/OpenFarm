@@ -16,7 +16,9 @@ rescue:
   slug: summer-savory
   wayback_url: 'https://web.archive.org/web/20191214101846/https://openfarm.cc/en/crops/summer-savory'
   captured: '20191214'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

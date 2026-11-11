@@ -15,7 +15,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20210927095910/https://openfarm.cc/en/crops/alfalfa'
   captured: '20210927'
   taxon: Species
+edible: true
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

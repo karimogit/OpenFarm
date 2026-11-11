@@ -15,7 +15,9 @@ rescue:
   slug: sea-kale
   wayback_url: 'https://web.archive.org/web/20211127083828/https://openfarm.cc/en/crops/sea-kale'
   captured: '20211127'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

@@ -18,7 +18,10 @@ rescue:
   companions_unverified:
     - barley-1
     - flax
+edible: true
+edible_parts: [oil]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

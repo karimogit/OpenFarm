@@ -17,7 +17,10 @@ rescue:
   wayback_url: 'https://web.archive.org/web/20221208191417/https://openfarm.cc/en/crops/hops'
   captured: '20221208'
   taxon: Species
+edible: true
+edible_parts: [stem, leaf]
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

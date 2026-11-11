@@ -4,13 +4,15 @@ pagination:
   data: db.varieties
   size: 1
   alias: v
-permalink: "/crops/{{ v.crop }}/varieties/{{ v.slug }}/"
+permalink: "/crops/{{ v.crop }}/{{ v.slug }}/"
 eleventyComputed:
   title: "{{ v.name }} ({{ v.cropName }})"
   description: "{{ v.name }} – a {{ v.cropName | lower }} variety: traits, seeds and suitable climate regions."
 ---
 {% set crop = db.cropBy[v.crop] %}
-{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + crop.slug + "/", label: crop.name}, {href: "/crops/" + crop.slug + "/#varieties", label: "Varieties"}, {label: v.name, current: true}] %}{% include "crumbs.njk" %}
+{% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + crop.slug + "/", label: crop.name}] %}
+{% if v.groupRecord %}{% set crumbs = crumbs.concat([{href: v.groupRecord.url, label: v.groupRecord.name}]) %}{% endif %}
+{% set crumbs = crumbs.concat([{label: v.name, current: true}]) %}{% include "crumbs.njk" %}
 <p class="your-climate-line" data-your-climate-line hidden></p>
 <div class="layout">
 
@@ -22,8 +24,16 @@ eleventyComputed:
     {% if v.origin == "imported" %}<p class="sci-line">{% set editFile = v.file %}{% include "unreviewed.njk" %}</p>{% endif %}
     {% set img = v.image %}{% set alt = v.name + " " + crop.name %}{% set inherited = v.imageInherited %}{% include "image.njk" %}
     <div class="body">{{ v.html | safe }}</div>
+    {% include "forage-disclaimer.njk" %}
     {% if v.fruit %}<p><strong>Fruit:</strong> {{ v.fruit }}</p>{% endif %}
     {% if v.history %}<p><strong>History:</strong> {{ v.history }}</p>{% endif %}
+
+    {% if v.groupRecord %}<p><strong>Group:</strong> <a href="{{ v.groupRecord.url | url }}">{{ v.groupRecord.name }}</a></p>{% endif %}
+    {% if v.guides and v.guides.length %}
+    <h2>Variety-specific guides</h2>
+    <p>{% for g in v.guides %}<a class="chip" href="{{ g.url | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a> {% endfor %}</p>
+    {% endif %}
+
 
     <h2>Climate regions</h2>
     {% if v.suitable_regions and v.suitable_regions.length %}
@@ -59,7 +69,8 @@ eleventyComputed:
     {% set srcs = v.sources %}{% include "sources.njk" %}
     {% if v.rescue %}<p class="small">Original OpenFarm record: <a href="{{ v.rescue.wayback_url }}">Wayback Machine capture</a>.</p>{% endif %}
     <p class="meta">License {{ v.license }}</p>
-    {% set editFile = v.file %}{% set editLabel = "Edit this variety" %}{% include "edit-button.njk" %}
+    {% set editFile = v.file %}{% set showRescueCredit = v.origin == "imported" %}{% include "edited-by.njk" %}
+    {% set editLabel = "Edit this variety" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
     {% include "your-climate.njk" %}
@@ -72,7 +83,7 @@ eleventyComputed:
         {% if v.cold_tolerance %}<div><dt>Cold tolerance</dt><dd>{{ v.cold_tolerance | label }}</dd></div>{% endif %}
         {% if v.heat_tolerance %}<div><dt>Heat tolerance</dt><dd>{{ v.heat_tolerance | label }}</dd></div>{% endif %}
         {% if v.chill_hours %}<div><dt>Chill hours</dt><dd>{{ v.chill_hours | range(" h") }}</dd></div>{% endif %}
-        {% if v.pollination_partners %}<div><dt>Pollinated by</dt><dd>{% for p in v.pollination_partners %}<a href="{{ ('/crops/' + v.crop + '/varieties/' + p + '/') | url }}">{{ p | replace("-", " ") | title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>{% endif %}
+        {% if v.pollination_partners %}<div><dt>Pollinated by</dt><dd>{% for p in v.pollination_partners %}<a href="{{ ('/crops/' + v.crop + '/' + p + '/') | url }}">{{ p | replace("-", " ") | title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>{% endif %}
         {% if v.sun %}<div><dt>Sun</dt><dd>{{ v.sun | label }}</dd></div>{% endif %}
         {% if v.size and v.size.height_cm %}<div><dt>Height</dt><dd>{{ v.size.height_cm }} cm</dd></div>{% endif %}
         {% if v.size and v.size.spread_cm %}<div><dt>Spread</dt><dd>{{ v.size.spread_cm }} cm</dd></div>{% endif %}

@@ -20,7 +20,11 @@ rescue:
   companions_unverified:
     - amberique-bean
     - kale-1
+edible: true
+edible_parts: [seed]
+toxic: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

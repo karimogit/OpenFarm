@@ -3,10 +3,13 @@
 //   content/crops/<crop>.md                    general, climate-independent facts about a crop
 //   content/varieties/<crop>/<variety>.md      cultivars: traits + botanical seed facts
 //   content/guides/<crop>/<region>.md          how to grow a crop in one climate region
+//   content/guides/<crop>/<variety>/<region>.md  variety-specific regional advice (only when a source has it)
+//   content/varieties/<crop>/<slug>.md         cultivars, or cultivar groups (kind: group)
 //   content/regions/<region>.md                climate regions (groups of Köppen-Geiger classes)
 //   content/problems/<problem>.md              shared pests, diseases and disorders
 //   content/seed-sources/<source>.md           seed libraries, seed banks and seed companies
 //   content/companions.yaml                    companion-planting pairs, each with its evidence
+//   content/rotation.yaml                      crop-rotation groups and rules
 //   content/sources.yaml                       reusable citations, referenced by key (e.g. openfarm-rescue)
 import fs from "node:fs";
 import path from "node:path";
@@ -55,12 +58,32 @@ export function loadYaml(file) {
 
 export const loadCrops = () => loadFlat("crops");
 export const loadVarieties = () => loadNested("varieties");
-export const loadGuides = () => loadNested("guides");
+/** Crop-level guides in content/guides/<crop>/<region>.md; variety-specific ones in a further folder. */
+export function loadGuides() {
+  const base = path.join(CONTENT, "guides");
+  if (!fs.existsSync(base)) return [];
+  const out = [];
+  for (const crop of fs.readdirSync(base).sort()) {
+    const d = path.join(base, crop);
+    if (!fs.statSync(d).isDirectory()) continue;
+    for (const f of fs.readdirSync(d).sort()) {
+      const full = path.join(d, f);
+      if (f.endsWith(".md")) out.push({ ...readMd(full), folder: crop, slug: f.replace(/\.md$/, ""), variety: null });
+      else if (fs.statSync(full).isDirectory()) {
+        for (const g of fs.readdirSync(full).sort()) {
+          if (g.endsWith(".md")) out.push({ ...readMd(path.join(full, g)), folder: crop, slug: g.replace(/\.md$/, ""), variety: f });
+        }
+      }
+    }
+  }
+  return out;
+}
 export const loadRegions = () => loadFlat("regions").sort((a, b) => a.data.order - b.data.order);
 export const loadProblems = () => loadFlat("problems");
 export const loadSeedSources = () => loadFlat("seed-sources");
 export const loadTools = () => loadFlat("tools");
 export const loadCompanions = () => loadYaml("companions.yaml") || [];
+export const loadRotation = () => loadYaml("rotation.yaml") || { groups: [], rules: [] };
 export const loadSources = () => loadYaml("sources.yaml") || {};
 
 /** Köppen symbol -> region slug */

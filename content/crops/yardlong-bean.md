@@ -16,7 +16,9 @@ rescue:
   slug: yardlong-bean
   wayback_url: 'https://web.archive.org/web/20210422024834/https://openfarm.cc/en/crops/yardlong-bean'
   captured: '20210422'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

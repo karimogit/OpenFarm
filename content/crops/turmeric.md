@@ -10,7 +10,9 @@ rescue:
   slug: turmeric
   wayback_url: 'https://web.archive.org/web/20220809161203/https://openfarm.cc/en/crops/turmeric'
   captured: '20220809'
+edible: true
 sources:
+  - usda-grin
   - openfarm-rescue
 license: CC0-1.0
 imported: '2026-11-11'

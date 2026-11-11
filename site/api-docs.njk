@@ -1,0 +1,67 @@
+---
+layout: base.njk
+title: JSON API
+permalink: /api/
+description: Read-only JSON endpoints for OpenFarm crops, guides, regions and tools, and how to reuse them.
+---
+<article data-pagefind-body>
+<h1>JSON API</h1>
+<p class="lead">OpenFarm publishes a small, read-only JSON API as static files alongside the site. No key, no rate limit from us — please be polite if you crawl, and cache what you use.</p>
+
+<h2 id="licence">Licence and attribution</h2>
+<p>Unless a record says otherwise, API content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+  Attribute it as “OpenFarm contributors”, keep ShareAlike for adaptations, and keep any upstream credit named on the record
+  (for example CC0 rescue imports, Wikidata CC0, Beck et al. 2018 CC BY 4.0).
+  Imported records marked <code>license: CC0-1.0</code> stay CC0.
+  See <a href="{{ site.repo }}/blob/main/SOURCES.md">SOURCES.md</a> for the full policy.</p>
+
+<h2 id="endpoints">Endpoints</h2>
+<p>All paths below are under the site root (on GitHub Pages, prefix <code>/OpenFarm</code>). Examples use that prefix.</p>
+
+<h3><code>GET /api/all.json</code></h3>
+<p>A full dump: regions, crops (with varieties and guides), problems, tools, seed sources and companions. Useful for mirrors and research.</p>
+<pre><code>curl -sL https://karimogit.github.io/OpenFarm/api/all.json | head</code></pre>
+<p>The top-level object includes a <code>generated</code> timestamp (ISO 8601) and a <code>license</code> field. Crop objects include <code>slug</code>, <code>name</code>, <code>url</code>, sources, and nested lists of varieties and guide URLs.</p>
+
+<h3><code>GET /api/guides.json</code></h3>
+<p>A compact index of growing guides (crop, region, title, URL, calendar summary, confidence).</p>
+<pre><code>curl -sL https://karimogit.github.io/OpenFarm/api/guides.json</code></pre>
+
+<h3><code>GET /api/tools.json</code></h3>
+<p>All tools, with category, image licence, sources, and the crops or guides that list them.</p>
+<pre><code>curl -sL https://karimogit.github.io/OpenFarm/api/tools.json</code></pre>
+
+<h3><code>GET /crops/&lt;crop&gt;.json</code></h3>
+<p>One crop, including varieties and guides. Example: <a href="{{ '/crops/tomato.json' | url }}"><code>/crops/tomato.json</code></a>.</p>
+<pre><code>{
+  "slug": "tomato",
+  "name": "Tomato",
+  "url": "/crops/tomato/",
+  "license": "CC-BY-SA-4.0",
+  "guides": ["/crops/tomato/humid-continental/"]
+}</code></pre>
+<p class="small muted">Guide <code>url</code> values used to be <code>/guides/&lt;crop&gt;/&lt;region&gt;/</code>. They are now <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code> (and <code>/crops/&lt;crop&gt;/&lt;variety&gt;/&lt;region&gt;/</code> when a variety-specific guide exists). HTML pages at the old paths redirect; the JSON field uses the new URL.</p>
+
+<h3><code>GET /regions/&lt;region&gt;.json</code></h3>
+<p>One climate region, with its Köppen classes and the guides that cover it. Example: <a href="{{ '/regions/temperate-oceanic.json' | url }}"><code>/regions/temperate-oceanic.json</code></a>.</p>
+
+
+<h3><code>GET /api/countries.json</code></h3>
+<p>All country pages: name, ISO 3166-1 alpha-2 code, climate-region shares, major cities (<code>?place=</code> slugs) and seed sources. Example: <a href="{{ '/api/countries.json' | url }}"><code>/api/countries.json</code></a>. HTML index: <a href="{{ '/countries/' | url }}">/countries/</a>.</p>
+
+<h3><code>GET /countries/&lt;iso2&gt;.json</code></h3>
+<p>One country. Example: <a href="{{ '/countries/nl.json' | url }}"><code>/countries/nl.json</code></a>.</p>
+
+<h3><code>GET /zones/&lt;zone&gt;.json</code></h3>
+<p>One USDA-style hardiness zone (1a–13b), with temperature bounds and plants whose sourced range includes it. Example: <a href="{{ '/zones/8a.json' | url }}"><code>/zones/8a.json</code></a>. There is also an HTML index at <a href="{{ '/zones/' | url }}">/zones/</a>.</p>
+
+<h2 id="contribute">Contribute via GitHub</h2>
+<p>There is no write API. To add or change data, edit the Markdown and YAML in the
+  <a href="{{ site.repo }}">GitHub repository</a>:</p>
+<ol>
+  <li>Open the file (each page has an “Edit this …” button) or copy <a href="{{ site.repo }}/blob/main/content/TEMPLATE.md"><code>content/TEMPLATE.md</code></a> to <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>.</li>
+  <li>Fill in frontmatter and at least one real source already listed (or added) in <code>content/sources.yaml</code>.</li>
+  <li>Open a pull request. The <code>validate</code> check runs the JSON Schemas in <code>schema/</code>, the licence allowlist, and link/image checks.</li>
+</ol>
+<p>More detail: <a href="{{ '/help/#api' | url }}">Help</a>, <a href="{{ '/contribute/' | url }}">About</a>, and <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+</article>

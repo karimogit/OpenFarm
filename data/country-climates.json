@@ -1,0 +1,6200 @@
+{
+ "attribution": "Climate shares are approximate. For countries large enough to contain a 0.5\u00b0 grid cell centre, they are area-weighted fractions of Beck et al. (2018) K\u00f6ppen\u2013Geiger land cells (CC BY 4.0) assigned with Natural Earth Admin 0 1:50m boundaries (public domain). Tiny territories use a sample of GeoNames capitals and cities (CC BY 4.0) instead of an area share. Small fragments, coasts, and overseas holdings can be misclassified at this resolution. The inset map uses the principal land cluster and may omit far-flung territories.",
+ "sources": [
+  {
+   "title": "Present and future K\u00f6ppen-Geiger climate classification maps at 1-km resolution",
+   "publisher": "Beck et al. (2018), Scientific Data 5, 180214",
+   "url": "https://www.gloh2o.org/koppen/",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "title": "Natural Earth Admin 0 \u2013 Countries, 1:50m",
+   "publisher": "Natural Earth",
+   "url": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries/",
+   "license": "public-domain"
+  },
+  {
+   "title": "GeoNames gazetteer (countryInfo, cities15000)",
+   "publisher": "GeoNames",
+   "url": "https://download.geonames.org/export/dump/",
+   "license": "CC-BY-4.0"
+  }
+ ],
+ "countries": {
+  "AE": {
+   "iso2": "AE",
+   "method": "area",
+   "weight": 21.0403,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    51.75,
+    22.75,
+    55.75,
+    25.25
+   ],
+   "map_bbox": [
+    51.75,
+    22.75,
+    55.75,
+    25.25
+   ]
+  },
+  "AF": {
+   "iso2": "AF",
+   "method": "area",
+   "weight": 209.2996,
+   "regions": {
+    "cold-semi-arid": 36.6,
+    "hot-desert": 28.5,
+    "humid-continental": 18.2,
+    "subarctic": 5.8,
+    "tundra-polar": 5.4,
+    "mediterranean": 2.7,
+    "cold-desert": 1.6,
+    "hot-semi-arid": 1.2
+   },
+   "koppen": {
+    "BSk": 36.6,
+    "BWh": 28.5,
+    "Dsb": 13.4,
+    "Dsc": 5.8,
+    "ET": 5.4,
+    "Dsa": 4.8,
+    "Csa": 2.7,
+    "BWk": 1.6,
+    "BSh": 1.2
+   },
+   "bbox": [
+    60.75,
+    29.75,
+    74.25,
+    38.25
+   ],
+   "map_bbox": [
+    60.75,
+    29.75,
+    74.25,
+    38.25
+   ]
+  },
+  "AL": {
+   "iso2": "AL",
+   "method": "area",
+   "weight": 9.0442,
+   "regions": {
+    "mediterranean": 50.4,
+    "humid-continental": 41.3,
+    "humid-subtropical": 8.2
+   },
+   "koppen": {
+    "Csa": 50.4,
+    "Dfb": 32.9,
+    "Dsb": 8.4,
+    "Cfa": 8.2
+   },
+   "bbox": [
+    19.75,
+    39.75,
+    20.75,
+    42.25
+   ],
+   "map_bbox": [
+    19.75,
+    39.75,
+    20.75,
+    42.25
+   ]
+  },
+  "AM": {
+   "iso2": "AM",
+   "method": "area",
+   "weight": 9.9273,
+   "regions": {
+    "humid-continental": 61.4,
+    "cold-semi-arid": 30.8,
+    "cold-desert": 7.7
+   },
+   "koppen": {
+    "Dfb": 61.4,
+    "BSk": 30.8,
+    "BWk": 7.7
+   },
+   "bbox": [
+    43.75,
+    39.25,
+    46.25,
+    40.75
+   ],
+   "map_bbox": [
+    43.75,
+    39.25,
+    46.25,
+    40.75
+   ]
+  },
+  "AO": {
+   "iso2": "AO",
+   "method": "area",
+   "weight": 406.705,
+   "regions": {
+    "tropical-savanna": 39.8,
+    "humid-subtropical": 24.0,
+    "hot-semi-arid": 17.8,
+    "subtropical-highland": 14.9,
+    "hot-desert": 3.6
+   },
+   "koppen": {
+    "Aw": 39.8,
+    "Cwa": 24.0,
+    "BSh": 17.8,
+    "Cwb": 14.9,
+    "BWh": 3.6
+   },
+   "bbox": [
+    12.25,
+    -17.75,
+    23.75,
+    -4.75
+   ],
+   "map_bbox": [
+    12.25,
+    -17.75,
+    23.75,
+    -4.75
+   ]
+  },
+  "AQ": {
+   "iso2": "AQ",
+   "method": "area",
+   "weight": 3958.7899,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "EF": 99.7,
+    "ET": 0.3
+   },
+   "bbox": [
+    -179.75,
+    -89.75,
+    179.75,
+    -63.25
+   ],
+   "map_bbox": [
+    -179.75,
+    -89.75,
+    179.75,
+    -63.25
+   ]
+  },
+  "AR": {
+   "iso2": "AR",
+   "method": "area",
+   "weight": 903.334,
+   "regions": {
+    "humid-subtropical": 34.7,
+    "cold-desert": 32.0,
+    "cold-semi-arid": 12.4,
+    "hot-semi-arid": 9.4,
+    "tundra-polar": 3.0,
+    "mediterranean": 3.0,
+    "temperate-oceanic": 2.3,
+    "hot-desert": 1.7,
+    "subarctic": 1.0,
+    "subtropical-highland": 0.5,
+    "tropical-savanna": 0.1
+   },
+   "koppen": {
+    "BWk": 32.0,
+    "Cfa": 29.5,
+    "BSk": 12.4,
+    "BSh": 9.4,
+    "Cwa": 5.2,
+    "ET": 3.0,
+    "Csb": 3.0,
+    "Cfb": 2.3,
+    "BWh": 1.7,
+    "Dsc": 1.0,
+    "Cwb": 0.5,
+    "Aw": 0.1
+   },
+   "bbox": [
+    -73.25,
+    -54.75,
+    -53.75,
+    -22.25
+   ],
+   "map_bbox": [
+    -73.25,
+    -54.75,
+    -53.75,
+    -22.25
+   ]
+  },
+  "AT": {
+   "iso2": "AT",
+   "method": "area",
+   "weight": 26.3242,
+   "regions": {
+    "humid-continental": 71.6,
+    "subarctic": 25.8,
+    "tundra-polar": 2.6
+   },
+   "koppen": {
+    "Dfb": 71.6,
+    "Dfc": 25.8,
+    "ET": 2.6
+   },
+   "bbox": [
+    9.75,
+    46.75,
+    16.75,
+    48.75
+   ],
+   "map_bbox": [
+    9.75,
+    46.75,
+    16.75,
+    48.75
+   ]
+  },
+  "AU": {
+   "iso2": "AU",
+   "method": "area",
+   "weight": 2497.1624,
+   "regions": {
+    "hot-desert": 49.2,
+    "hot-semi-arid": 21.6,
+    "tropical-savanna": 8.9,
+    "cold-semi-arid": 5.9,
+    "humid-subtropical": 4.5,
+    "temperate-oceanic": 3.7,
+    "cold-desert": 3.3,
+    "mediterranean": 2.7,
+    "tropical-monsoon": 0.1
+   },
+   "koppen": {
+    "BWh": 49.2,
+    "BSh": 21.6,
+    "Aw": 8.9,
+    "BSk": 5.9,
+    "Cfa": 3.8,
+    "Cfb": 3.7,
+    "BWk": 3.3,
+    "Csa": 1.4,
+    "Csb": 1.4,
+    "Cwa": 0.7,
+    "Am": 0.1
+   },
+   "bbox": [
+    113.25,
+    -43.25,
+    153.25,
+    -11.25
+   ],
+   "map_bbox": [
+    113.25,
+    -43.25,
+    153.25,
+    -11.25
+   ]
+  },
+  "AX": {
+   "iso2": "AX",
+   "method": "area",
+   "weight": 0.4962,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    19.75,
+    60.25,
+    19.75,
+    60.25
+   ],
+   "map_bbox": [
+    19.75,
+    60.25,
+    19.75,
+    60.25
+   ]
+  },
+  "AZ": {
+   "iso2": "AZ",
+   "method": "area",
+   "weight": 28.2425,
+   "regions": {
+    "cold-semi-arid": 59.6,
+    "humid-continental": 18.9,
+    "humid-subtropical": 10.6,
+    "cold-desert": 5.5,
+    "mediterranean": 2.8,
+    "tundra-polar": 2.6
+   },
+   "koppen": {
+    "BSk": 59.6,
+    "Dfb": 18.9,
+    "Cfa": 10.6,
+    "BWk": 5.5,
+    "Csa": 2.8,
+    "ET": 2.6
+   },
+   "bbox": [
+    45.25,
+    38.75,
+    49.25,
+    41.75
+   ],
+   "map_bbox": [
+    45.25,
+    38.75,
+    49.25,
+    41.75
+   ]
+  },
+  "BA": {
+   "iso2": "BA",
+   "method": "area",
+   "weight": 15.7883,
+   "regions": {
+    "humid-continental": 86.2,
+    "humid-subtropical": 9.1,
+    "temperate-oceanic": 4.7
+   },
+   "koppen": {
+    "Dfb": 86.2,
+    "Cfa": 9.1,
+    "Cfb": 4.7
+   },
+   "bbox": [
+    16.25,
+    42.75,
+    19.25,
+    44.75
+   ],
+   "map_bbox": [
+    16.25,
+    42.75,
+    19.25,
+    44.75
+   ]
+  },
+  "BD": {
+   "iso2": "BD",
+   "method": "area",
+   "weight": 42.082,
+   "regions": {
+    "tropical-savanna": 50.1,
+    "tropical-monsoon": 37.0,
+    "humid-subtropical": 12.9
+   },
+   "koppen": {
+    "Aw": 50.1,
+    "Am": 37.0,
+    "Cwa": 12.9
+   },
+   "bbox": [
+    88.25,
+    21.75,
+    92.25,
+    26.25
+   ],
+   "map_bbox": [
+    88.25,
+    21.75,
+    92.25,
+    26.25
+   ]
+  },
+  "BE": {
+   "iso2": "BE",
+   "method": "area",
+   "weight": 10.7759,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    3.25,
+    49.75,
+    5.75,
+    51.25
+   ],
+   "map_bbox": [
+    3.25,
+    49.75,
+    5.75,
+    51.25
+   ]
+  },
+  "BF": {
+   "iso2": "BF",
+   "method": "area",
+   "weight": 84.9849,
+   "regions": {
+    "hot-semi-arid": 51.6,
+    "tropical-savanna": 45.0,
+    "hot-desert": 3.4
+   },
+   "koppen": {
+    "BSh": 51.6,
+    "Aw": 45.0,
+    "BWh": 3.4
+   },
+   "bbox": [
+    -5.25,
+    10.25,
+    2.25,
+    14.75
+   ],
+   "map_bbox": [
+    -5.25,
+    10.25,
+    2.25,
+    14.75
+   ]
+  },
+  "BG": {
+   "iso2": "BG",
+   "method": "area",
+   "weight": 35.9792,
+   "regions": {
+    "humid-continental": 63.1,
+    "humid-subtropical": 28.8,
+    "cold-semi-arid": 6.0,
+    "mediterranean": 2.1
+   },
+   "koppen": {
+    "Dfb": 32.8,
+    "Dfa": 30.2,
+    "Cfa": 28.8,
+    "BSk": 6.0,
+    "Csa": 2.1
+   },
+   "bbox": [
+    22.75,
+    41.25,
+    28.25,
+    43.75
+   ],
+   "map_bbox": [
+    22.75,
+    41.25,
+    28.25,
+    43.75
+   ]
+  },
+  "BI": {
+   "iso2": "BI",
+   "method": "area",
+   "weight": 9.9821,
+   "regions": {
+    "tropical-savanna": 80.0,
+    "subtropical-highland": 20.0
+   },
+   "koppen": {
+    "Aw": 80.0,
+    "Cwb": 20.0
+   },
+   "bbox": [
+    29.25,
+    -4.25,
+    30.75,
+    -2.75
+   ],
+   "map_bbox": [
+    29.25,
+    -4.25,
+    30.75,
+    -2.75
+   ]
+  },
+  "BJ": {
+   "iso2": "BJ",
+   "method": "area",
+   "weight": 38.4444,
+   "regions": {
+    "tropical-savanna": 94.9,
+    "hot-semi-arid": 5.1
+   },
+   "koppen": {
+    "Aw": 94.9,
+    "BSh": 5.1
+   },
+   "bbox": [
+    1.25,
+    6.25,
+    3.75,
+    12.25
+   ],
+   "map_bbox": [
+    1.25,
+    6.25,
+    3.75,
+    12.25
+   ]
+  },
+  "BN": {
+   "iso2": "BN",
+   "method": "area",
+   "weight": 1.9938,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    114.75,
+    4.25,
+    114.75,
+    4.75
+   ],
+   "map_bbox": [
+    114.75,
+    4.25,
+    114.75,
+    4.75
+   ]
+  },
+  "BO": {
+   "iso2": "BO",
+   "method": "area",
+   "weight": 350.0704,
+   "regions": {
+    "tropical-savanna": 42.1,
+    "tropical-monsoon": 13.8,
+    "cold-semi-arid": 10.5,
+    "subtropical-highland": 7.6,
+    "cold-desert": 7.5,
+    "tropical-rainforest": 6.3,
+    "hot-semi-arid": 5.6,
+    "humid-subtropical": 3.2,
+    "tundra-polar": 3.0,
+    "temperate-oceanic": 0.3
+   },
+   "koppen": {
+    "Aw": 42.1,
+    "Am": 13.8,
+    "BSk": 10.5,
+    "Cwb": 7.6,
+    "BWk": 7.5,
+    "Af": 6.3,
+    "BSh": 5.6,
+    "Cwa": 3.2,
+    "ET": 3.0,
+    "Cfb": 0.3
+   },
+   "bbox": [
+    -69.25,
+    -22.75,
+    -57.75,
+    -10.25
+   ],
+   "map_bbox": [
+    -69.25,
+    -22.75,
+    -57.75,
+    -10.25
+   ]
+  },
+  "BR": {
+   "iso2": "BR",
+   "method": "area",
+   "weight": 2757.8166,
+   "regions": {
+    "tropical-savanna": 45.1,
+    "tropical-monsoon": 20.8,
+    "tropical-rainforest": 19.3,
+    "humid-subtropical": 7.9,
+    "hot-semi-arid": 5.0,
+    "temperate-oceanic": 1.6,
+    "subtropical-highland": 0.3
+   },
+   "koppen": {
+    "Aw": 45.1,
+    "Am": 20.8,
+    "Af": 19.3,
+    "Cfa": 6.2,
+    "BSh": 5.0,
+    "Cwa": 1.7,
+    "Cfb": 1.6,
+    "Cwb": 0.3
+   },
+   "bbox": [
+    -73.75,
+    -33.25,
+    -35.25,
+    5.25
+   ],
+   "map_bbox": [
+    -73.75,
+    -33.25,
+    -35.25,
+    5.25
+   ]
+  },
+  "BS": {
+   "iso2": "BS",
+   "method": "area",
+   "weight": 2.7421,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -78.25,
+    22.75,
+    -74.25,
+    24.75
+   ],
+   "map_bbox": [
+    -78.25,
+    22.75,
+    -74.25,
+    24.75
+   ]
+  },
+  "BT": {
+   "iso2": "BT",
+   "method": "area",
+   "weight": 11.5329,
+   "regions": {
+    "subtropical-highland": 53.9,
+    "tundra-polar": 38.3,
+    "humid-subtropical": 7.7
+   },
+   "koppen": {
+    "Cwb": 53.9,
+    "ET": 38.3,
+    "Cwa": 7.7
+   },
+   "bbox": [
+    89.25,
+    26.75,
+    91.75,
+    28.25
+   ],
+   "map_bbox": [
+    89.25,
+    26.75,
+    91.75,
+    28.25
+   ]
+  },
+  "BW": {
+   "iso2": "BW",
+   "method": "area",
+   "weight": 190.5659,
+   "regions": {
+    "hot-semi-arid": 63.9,
+    "hot-desert": 36.1
+   },
+   "koppen": {
+    "BSh": 63.9,
+    "BWh": 36.1
+   },
+   "bbox": [
+    20.25,
+    -26.75,
+    28.75,
+    -18.25
+   ],
+   "map_bbox": [
+    20.25,
+    -26.75,
+    28.75,
+    -18.25
+   ]
+  },
+  "BY": {
+   "iso2": "BY",
+   "method": "area",
+   "weight": 67.0999,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    23.25,
+    51.75,
+    32.25,
+    55.75
+   ],
+   "map_bbox": [
+    23.25,
+    51.75,
+    32.25,
+    55.75
+   ]
+  },
+  "BZ": {
+   "iso2": "BZ",
+   "method": "area",
+   "weight": 5.7271,
+   "regions": {
+    "tropical-monsoon": 66.7,
+    "tropical-rainforest": 16.8,
+    "tropical-savanna": 16.6
+   },
+   "koppen": {
+    "Am": 66.7,
+    "Af": 16.8,
+    "Aw": 16.6
+   },
+   "bbox": [
+    -88.75,
+    16.25,
+    -88.25,
+    18.25
+   ],
+   "map_bbox": [
+    -88.75,
+    16.25,
+    -88.25,
+    18.25
+   ]
+  },
+  "CA": {
+   "iso2": "CA",
+   "method": "area",
+   "weight": 3203.7783,
+   "regions": {
+    "subarctic": 59.7,
+    "tundra-polar": 24.0,
+    "humid-continental": 14.3,
+    "cold-semi-arid": 1.4,
+    "temperate-oceanic": 0.5,
+    "subpolar-oceanic": 0.1,
+    "mediterranean": 0.1
+   },
+   "koppen": {
+    "Dfc": 52.5,
+    "ET": 23.4,
+    "Dfb": 14.1,
+    "Dsc": 6.8,
+    "BSk": 1.4,
+    "EF": 0.6,
+    "Cfb": 0.5,
+    "Dwc": 0.4,
+    "Dfa": 0.2,
+    "Cfc": 0.1,
+    "Csb": 0.1
+   },
+   "bbox": [
+    -140.75,
+    41.75,
+    -52.75,
+    82.75
+   ],
+   "map_bbox": [
+    -140.75,
+    41.75,
+    -52.75,
+    82.75
+   ]
+  },
+  "CD": {
+   "iso2": "CD",
+   "method": "area",
+   "weight": 761.761,
+   "regions": {
+    "tropical-savanna": 50.2,
+    "tropical-rainforest": 25.3,
+    "tropical-monsoon": 19.1,
+    "humid-subtropical": 2.4,
+    "subtropical-highland": 2.2,
+    "temperate-oceanic": 0.7
+   },
+   "koppen": {
+    "Aw": 50.2,
+    "Af": 25.3,
+    "Am": 19.1,
+    "Cwa": 2.4,
+    "Cwb": 2.2,
+    "Cfb": 0.7
+   },
+   "bbox": [
+    12.25,
+    -13.25,
+    30.75,
+    5.25
+   ],
+   "map_bbox": [
+    12.25,
+    -13.25,
+    30.75,
+    5.25
+   ]
+  },
+  "CF": {
+   "iso2": "CF",
+   "method": "area",
+   "weight": 201.5995,
+   "regions": {
+    "tropical-savanna": 95.1,
+    "tropical-monsoon": 2.5,
+    "hot-semi-arid": 2.4
+   },
+   "koppen": {
+    "Aw": 95.1,
+    "Am": 2.5,
+    "BSh": 2.4
+   },
+   "bbox": [
+    14.75,
+    2.75,
+    27.25,
+    10.75
+   ],
+   "map_bbox": [
+    14.75,
+    2.75,
+    27.25,
+    10.75
+   ]
+  },
+  "CG": {
+   "iso2": "CG",
+   "method": "area",
+   "weight": 109.8969,
+   "regions": {
+    "tropical-savanna": 54.5,
+    "tropical-monsoon": 29.1,
+    "tropical-rainforest": 16.4
+   },
+   "koppen": {
+    "Aw": 54.5,
+    "Am": 29.1,
+    "Af": 16.4
+   },
+   "bbox": [
+    11.25,
+    -4.75,
+    18.25,
+    3.25
+   ],
+   "map_bbox": [
+    11.25,
+    -4.75,
+    18.25,
+    3.25
+   ]
+  },
+  "CH": {
+   "iso2": "CH",
+   "method": "area",
+   "weight": 11.6415,
+   "regions": {
+    "humid-continental": 52.8,
+    "tundra-polar": 35.4,
+    "temperate-oceanic": 5.9,
+    "subarctic": 5.9
+   },
+   "koppen": {
+    "Dfb": 52.8,
+    "ET": 35.4,
+    "Cfb": 5.9,
+    "Dfc": 5.9
+   },
+   "bbox": [
+    6.25,
+    46.25,
+    10.25,
+    47.25
+   ],
+   "map_bbox": [
+    6.25,
+    46.25,
+    10.25,
+    47.25
+   ]
+  },
+  "CI": {
+   "iso2": "CI",
+   "method": "area",
+   "weight": 108.9798,
+   "regions": {
+    "tropical-savanna": 93.6,
+    "tropical-monsoon": 5.5,
+    "tropical-rainforest": 0.9
+   },
+   "koppen": {
+    "Aw": 93.6,
+    "Am": 5.5,
+    "Af": 0.9
+   },
+   "bbox": [
+    -8.25,
+    4.75,
+    -2.75,
+    10.25
+   ],
+   "map_bbox": [
+    -8.25,
+    4.75,
+    -2.75,
+    10.25
+   ]
+  },
+  "CL": {
+   "iso2": "CL",
+   "method": "area",
+   "weight": 235.1339,
+   "regions": {
+    "cold-desert": 36.4,
+    "tundra-polar": 27.3,
+    "mediterranean": 15.5,
+    "temperate-oceanic": 12.1,
+    "cold-semi-arid": 6.2,
+    "subarctic": 1.4,
+    "subpolar-oceanic": 1.2
+   },
+   "koppen": {
+    "BWk": 36.4,
+    "ET": 27.3,
+    "Csb": 13.7,
+    "Cfb": 12.1,
+    "BSk": 6.2,
+    "Csa": 1.8,
+    "Dsc": 1.4,
+    "Cfc": 1.2
+   },
+   "bbox": [
+    -75.25,
+    -55.25,
+    -67.25,
+    -17.75
+   ],
+   "map_bbox": [
+    -75.25,
+    -55.25,
+    -67.25,
+    -17.75
+   ]
+  },
+  "CM": {
+   "iso2": "CM",
+   "method": "area",
+   "weight": 149.1067,
+   "regions": {
+    "tropical-savanna": 61.9,
+    "tropical-monsoon": 31.5,
+    "hot-semi-arid": 4.6,
+    "tropical-rainforest": 1.3,
+    "hot-desert": 0.7
+   },
+   "koppen": {
+    "Aw": 61.9,
+    "Am": 31.5,
+    "BSh": 4.6,
+    "Af": 1.3,
+    "BWh": 0.7
+   },
+   "bbox": [
+    8.75,
+    2.25,
+    15.75,
+    12.75
+   ],
+   "map_bbox": [
+    8.75,
+    2.25,
+    15.75,
+    12.75
+   ]
+  },
+  "CN": {
+   "iso2": "CN",
+   "method": "area",
+   "weight": 3029.9204,
+   "regions": {
+    "humid-subtropical": 23.0,
+    "cold-desert": 21.7,
+    "humid-continental": 18.4,
+    "tundra-polar": 17.1,
+    "cold-semi-arid": 12.2,
+    "subarctic": 4.1,
+    "subtropical-highland": 3.1,
+    "tropical-savanna": 0.3
+   },
+   "koppen": {
+    "BWk": 21.7,
+    "ET": 16.9,
+    "Cfa": 13.0,
+    "BSk": 12.2,
+    "Dwa": 11.0,
+    "Cwa": 9.9,
+    "Dwb": 7.4,
+    "Dwc": 4.1,
+    "Cwb": 3.1,
+    "Aw": 0.3,
+    "EF": 0.2
+   },
+   "bbox": [
+    73.75,
+    18.75,
+    134.25,
+    53.25
+   ],
+   "map_bbox": [
+    73.75,
+    18.75,
+    134.25,
+    53.25
+   ]
+  },
+  "CO": {
+   "iso2": "CO",
+   "method": "area",
+   "weight": 373.4799,
+   "regions": {
+    "tropical-rainforest": 54.8,
+    "tropical-monsoon": 24.3,
+    "tropical-savanna": 9.5,
+    "temperate-oceanic": 6.7,
+    "tundra-polar": 1.9,
+    "mediterranean": 1.6,
+    "hot-desert": 0.8,
+    "hot-semi-arid": 0.3,
+    "subtropical-highland": 0.3
+   },
+   "koppen": {
+    "Af": 54.8,
+    "Am": 24.3,
+    "Aw": 9.5,
+    "Cfb": 6.7,
+    "ET": 1.9,
+    "Csb": 1.6,
+    "BWh": 0.8,
+    "BSh": 0.3,
+    "Cwb": 0.3
+   },
+   "bbox": [
+    -78.75,
+    -3.75,
+    -67.25,
+    12.25
+   ],
+   "map_bbox": [
+    -78.75,
+    -3.75,
+    -67.25,
+    12.25
+   ]
+  },
+  "CR": {
+   "iso2": "CR",
+   "method": "area",
+   "weight": 15.7546,
+   "regions": {
+    "tropical-rainforest": 43.7,
+    "tropical-monsoon": 37.5,
+    "tropical-savanna": 18.7
+   },
+   "koppen": {
+    "Af": 43.7,
+    "Am": 37.5,
+    "Aw": 18.7
+   },
+   "bbox": [
+    -85.75,
+    8.75,
+    -83.25,
+    10.75
+   ],
+   "map_bbox": [
+    -85.75,
+    8.75,
+    -83.25,
+    10.75
+   ]
+  },
+  "CU": {
+   "iso2": "CU",
+   "method": "area",
+   "weight": 36.2384,
+   "regions": {
+    "tropical-savanna": 87.2,
+    "tropical-monsoon": 7.6,
+    "tropical-rainforest": 5.2
+   },
+   "koppen": {
+    "Aw": 87.2,
+    "Am": 7.6,
+    "Af": 5.2
+   },
+   "bbox": [
+    -84.25,
+    20.25,
+    -74.25,
+    22.75
+   ],
+   "map_bbox": [
+    -84.25,
+    20.25,
+    -74.25,
+    22.75
+   ]
+  },
+  "CV": {
+   "iso2": "CV",
+   "method": "area",
+   "weight": 0.9648,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    -23.75,
+    15.25,
+    -23.75,
+    15.25
+   ],
+   "map_bbox": [
+    -23.75,
+    15.25,
+    -23.75,
+    15.25
+   ]
+  },
+  "CY": {
+   "iso2": "CY",
+   "method": "area",
+   "weight": 1.6433,
+   "regions": {
+    "mediterranean": 100.0
+   },
+   "koppen": {
+    "Csa": 100.0
+   },
+   "bbox": [
+    32.75,
+    34.75,
+    33.25,
+    34.75
+   ],
+   "map_bbox": [
+    32.75,
+    34.75,
+    33.25,
+    34.75
+   ]
+  },
+  "CZ": {
+   "iso2": "CZ",
+   "method": "area",
+   "weight": 24.5715,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    12.75,
+    48.75,
+    18.25,
+    50.75
+   ],
+   "map_bbox": [
+    12.75,
+    48.75,
+    18.25,
+    50.75
+   ]
+  },
+  "DE": {
+   "iso2": "DE",
+   "method": "area",
+   "weight": 118.0783,
+   "regions": {
+    "humid-continental": 61.9,
+    "temperate-oceanic": 38.1
+   },
+   "koppen": {
+    "Dfb": 61.9,
+    "Cfb": 38.1
+   },
+   "bbox": [
+    6.25,
+    47.75,
+    14.75,
+    54.75
+   ],
+   "map_bbox": [
+    6.25,
+    47.75,
+    14.75,
+    54.75
+   ]
+  },
+  "DJ": {
+   "iso2": "DJ",
+   "method": "area",
+   "weight": 6.8514,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    42.25,
+    11.25,
+    43.25,
+    12.25
+   ],
+   "map_bbox": [
+    42.25,
+    11.25,
+    43.25,
+    12.25
+   ]
+  },
+  "DK": {
+   "iso2": "DK",
+   "method": "area",
+   "weight": 15.1368,
+   "regions": {
+    "humid-continental": 55.2,
+    "temperate-oceanic": 44.8
+   },
+   "koppen": {
+    "Dfb": 55.2,
+    "Cfb": 44.8
+   },
+   "bbox": [
+    8.25,
+    54.75,
+    14.75,
+    57.25
+   ],
+   "map_bbox": [
+    8.25,
+    54.75,
+    14.75,
+    57.25
+   ]
+  },
+  "DO": {
+   "iso2": "DO",
+   "method": "area",
+   "weight": 15.1335,
+   "regions": {
+    "tropical-rainforest": 49.9,
+    "tropical-savanna": 43.8,
+    "temperate-oceanic": 6.3
+   },
+   "koppen": {
+    "Af": 49.9,
+    "Aw": 43.8,
+    "Cfb": 6.3
+   },
+   "bbox": [
+    -71.25,
+    18.25,
+    -68.75,
+    19.75
+   ],
+   "map_bbox": [
+    -71.25,
+    18.25,
+    -68.75,
+    19.75
+   ]
+  },
+  "DZ": {
+   "iso2": "DZ",
+   "method": "area",
+   "weight": 754.3427,
+   "regions": {
+    "hot-desert": 88.6,
+    "cold-desert": 4.0,
+    "cold-semi-arid": 3.9,
+    "mediterranean": 3.5
+   },
+   "koppen": {
+    "BWh": 88.6,
+    "BWk": 4.0,
+    "BSk": 3.9,
+    "Csa": 3.5
+   },
+   "bbox": [
+    -8.25,
+    19.25,
+    11.75,
+    36.75
+   ],
+   "map_bbox": [
+    -8.25,
+    19.25,
+    11.75,
+    36.75
+   ]
+  },
+  "EC": {
+   "iso2": "EC",
+   "method": "area",
+   "weight": 84.949,
+   "regions": {
+    "tropical-rainforest": 42.4,
+    "tropical-savanna": 20.0,
+    "temperate-oceanic": 14.1,
+    "tundra-polar": 9.4,
+    "tropical-monsoon": 7.1,
+    "hot-semi-arid": 5.9,
+    "hot-desert": 1.2
+   },
+   "koppen": {
+    "Af": 42.4,
+    "Aw": 20.0,
+    "Cfb": 14.1,
+    "ET": 9.4,
+    "Am": 7.1,
+    "BSh": 5.9,
+    "BWh": 1.2
+   },
+   "bbox": [
+    -91.25,
+    -4.75,
+    -75.75,
+    1.25
+   ],
+   "map_bbox": [
+    -91.25,
+    -4.75,
+    -75.75,
+    1.25
+   ]
+  },
+  "EE": {
+   "iso2": "EE",
+   "method": "area",
+   "weight": 14.0362,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    22.25,
+    57.75,
+    27.75,
+    59.25
+   ],
+   "map_bbox": [
+    22.25,
+    57.75,
+    27.75,
+    59.25
+   ]
+  },
+  "EG": {
+   "iso2": "EG",
+   "method": "area",
+   "weight": 323.606,
+   "regions": {
+    "hot-desert": 99.7,
+    "cold-desert": 0.3
+   },
+   "koppen": {
+    "BWh": 99.7,
+    "BWk": 0.3
+   },
+   "bbox": [
+    24.75,
+    22.25,
+    36.25,
+    31.25
+   ],
+   "map_bbox": [
+    24.75,
+    22.25,
+    36.25,
+    31.25
+   ]
+  },
+  "EH": {
+   "iso2": "EH",
+   "method": "area",
+   "weight": 29.0893,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    -14.25,
+    21.75,
+    -8.75,
+    27.25
+   ],
+   "map_bbox": [
+    -14.25,
+    21.75,
+    -8.75,
+    27.25
+   ]
+  },
+  "ER": {
+   "iso2": "ER",
+   "method": "area",
+   "weight": 38.581,
+   "regions": {
+    "hot-desert": 65.0,
+    "hot-semi-arid": 35.0
+   },
+   "koppen": {
+    "BWh": 65.0,
+    "BSh": 35.0
+   },
+   "bbox": [
+    36.75,
+    12.75,
+    42.75,
+    17.25
+   ],
+   "map_bbox": [
+    36.75,
+    12.75,
+    42.75,
+    17.25
+   ]
+  },
+  "ES": {
+   "iso2": "ES",
+   "method": "area",
+   "weight": 162.3313,
+   "regions": {
+    "cold-semi-arid": 48.1,
+    "mediterranean": 31.4,
+    "temperate-oceanic": 19.1,
+    "humid-subtropical": 1.4
+   },
+   "koppen": {
+    "BSk": 48.1,
+    "Csa": 21.7,
+    "Cfb": 19.1,
+    "Csb": 9.7,
+    "Cfa": 1.4
+   },
+   "bbox": [
+    -17.75,
+    28.25,
+    3.25,
+    43.25
+   ],
+   "map_bbox": [
+    -17.75,
+    28.25,
+    3.25,
+    43.25
+   ]
+  },
+  "ET": {
+   "iso2": "ET",
+   "method": "area",
+   "weight": 363.4322,
+   "regions": {
+    "tropical-savanna": 32.8,
+    "hot-desert": 24.5,
+    "hot-semi-arid": 22.6,
+    "subtropical-highland": 10.3,
+    "mediterranean": 6.8,
+    "tropical-monsoon": 1.9,
+    "temperate-oceanic": 0.8,
+    "tundra-polar": 0.3
+   },
+   "koppen": {
+    "Aw": 32.8,
+    "BWh": 24.5,
+    "BSh": 22.6,
+    "Cwb": 10.3,
+    "Csb": 6.8,
+    "Am": 1.9,
+    "Cfb": 0.8,
+    "ET": 0.3
+   },
+   "bbox": [
+    33.25,
+    3.75,
+    47.25,
+    14.25
+   ],
+   "map_bbox": [
+    33.25,
+    3.75,
+    47.25,
+    14.25
+   ]
+  },
+  "FI": {
+   "iso2": "FI",
+   "method": "area",
+   "weight": 105.942,
+   "regions": {
+    "subarctic": 98.7,
+    "humid-continental": 0.9,
+    "tundra-polar": 0.3
+   },
+   "koppen": {
+    "Dfc": 98.7,
+    "Dfb": 0.9,
+    "ET": 0.3
+   },
+   "bbox": [
+    21.25,
+    60.25,
+    31.25,
+    69.75
+   ],
+   "map_bbox": [
+    21.25,
+    60.25,
+    31.25,
+    69.75
+   ]
+  },
+  "FJ": {
+   "iso2": "FJ",
+   "method": "area",
+   "weight": 3.8224,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    177.75,
+    -17.75,
+    179.75,
+    -16.25
+   ],
+   "map_bbox": [
+    177.75,
+    -17.75,
+    179.75,
+    -16.25
+   ]
+  },
+  "FK": {
+   "iso2": "FK",
+   "method": "area",
+   "weight": 2.4764,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "ET": 100.0
+   },
+   "bbox": [
+    -59.75,
+    -51.75,
+    -58.25,
+    -51.75
+   ],
+   "map_bbox": [
+    -59.75,
+    -51.75,
+    -58.25,
+    -51.75
+   ]
+  },
+  "FO": {
+   "iso2": "FO",
+   "method": "area",
+   "weight": 0.4656,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "ET": 100.0
+   },
+   "bbox": [
+    -6.75,
+    62.25,
+    -6.75,
+    62.25
+   ],
+   "map_bbox": [
+    -6.75,
+    62.25,
+    -6.75,
+    62.25
+   ]
+  },
+  "FR": {
+   "iso2": "FR",
+   "method": "area",
+   "weight": 203.6934,
+   "regions": {
+    "temperate-oceanic": 71.8,
+    "tropical-rainforest": 10.3,
+    "mediterranean": 7.5,
+    "tropical-monsoon": 3.9,
+    "humid-continental": 3.4,
+    "subarctic": 1.7,
+    "tundra-polar": 0.7,
+    "humid-subtropical": 0.7
+   },
+   "koppen": {
+    "Cfb": 71.8,
+    "Af": 10.3,
+    "Csa": 5.4,
+    "Am": 3.9,
+    "Dfb": 3.4,
+    "Csb": 2.1,
+    "Dfc": 1.7,
+    "ET": 0.7,
+    "Cfa": 0.7
+   },
+   "bbox": [
+    -61.75,
+    -21.25,
+    55.75,
+    50.75
+   ],
+   "map_bbox": [
+    -4.25,
+    41.75,
+    9.25,
+    50.75
+   ]
+  },
+  "GA": {
+   "iso2": "GA",
+   "method": "area",
+   "weight": 83.9722,
+   "regions": {
+    "tropical-savanna": 85.7,
+    "tropical-monsoon": 14.3
+   },
+   "koppen": {
+    "Aw": 85.7,
+    "Am": 14.3
+   },
+   "bbox": [
+    9.25,
+    -3.25,
+    14.25,
+    2.25
+   ],
+   "map_bbox": [
+    9.25,
+    -3.25,
+    14.25,
+    2.25
+   ]
+  },
+  "GB": {
+   "iso2": "GB",
+   "method": "area",
+   "weight": 78.0481,
+   "regions": {
+    "temperate-oceanic": 93.8,
+    "subpolar-oceanic": 6.2
+   },
+   "koppen": {
+    "Cfb": 93.8,
+    "Cfc": 6.2
+   },
+   "bbox": [
+    -7.75,
+    50.25,
+    1.25,
+    60.25
+   ],
+   "map_bbox": [
+    -7.75,
+    50.25,
+    1.25,
+    60.25
+   ]
+  },
+  "GE": {
+   "iso2": "GE",
+   "method": "area",
+   "weight": 22.2757,
+   "regions": {
+    "humid-continental": 60.0,
+    "humid-subtropical": 20.0,
+    "cold-semi-arid": 10.1,
+    "subarctic": 6.6,
+    "tundra-polar": 3.3
+   },
+   "koppen": {
+    "Dfb": 60.0,
+    "Cfa": 20.0,
+    "BSk": 10.1,
+    "Dfc": 6.6,
+    "ET": 3.3
+   },
+   "bbox": [
+    40.75,
+    41.25,
+    46.25,
+    43.25
+   ],
+   "map_bbox": [
+    40.75,
+    41.25,
+    46.25,
+    43.25
+   ]
+  },
+  "GH": {
+   "iso2": "GH",
+   "method": "area",
+   "weight": 76.209,
+   "regions": {
+    "tropical-savanna": 92.2,
+    "tropical-monsoon": 7.8
+   },
+   "koppen": {
+    "Aw": 92.2,
+    "Am": 7.8
+   },
+   "bbox": [
+    -2.75,
+    5.25,
+    0.75,
+    10.75
+   ],
+   "map_bbox": [
+    -2.75,
+    5.25,
+    0.75,
+    10.75
+   ]
+  },
+  "GL": {
+   "iso2": "GL",
+   "method": "area",
+   "weight": 695.4003,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "EF": 72.3,
+    "ET": 27.7
+   },
+   "bbox": [
+    -72.25,
+    60.25,
+    -12.75,
+    83.25
+   ],
+   "map_bbox": [
+    -72.25,
+    60.25,
+    -12.75,
+    83.25
+   ]
+  },
+  "GM": {
+   "iso2": "GM",
+   "method": "area",
+   "weight": 3.8915,
+   "regions": {
+    "tropical-savanna": 75.0,
+    "hot-semi-arid": 25.0
+   },
+   "koppen": {
+    "Aw": 75.0,
+    "BSh": 25.0
+   },
+   "bbox": [
+    -16.75,
+    13.25,
+    -14.25,
+    13.75
+   ],
+   "map_bbox": [
+    -16.75,
+    13.25,
+    -14.25,
+    13.75
+   ]
+  },
+  "GN": {
+   "iso2": "GN",
+   "method": "area",
+   "weight": 75.7071,
+   "regions": {
+    "tropical-savanna": 75.3,
+    "tropical-monsoon": 24.7
+   },
+   "koppen": {
+    "Aw": 75.3,
+    "Am": 24.7
+   },
+   "bbox": [
+    -14.75,
+    7.75,
+    -8.25,
+    12.25
+   ],
+   "map_bbox": [
+    -14.75,
+    7.75,
+    -8.25,
+    12.25
+   ]
+  },
+  "GQ": {
+   "iso2": "GQ",
+   "method": "area",
+   "weight": 8.995,
+   "regions": {
+    "tropical-monsoon": 77.8,
+    "tropical-savanna": 22.2
+   },
+   "koppen": {
+    "Am": 77.8,
+    "Aw": 22.2
+   },
+   "bbox": [
+    8.75,
+    1.25,
+    11.25,
+    3.75
+   ],
+   "map_bbox": [
+    8.75,
+    1.25,
+    11.25,
+    3.75
+   ]
+  },
+  "GR": {
+   "iso2": "GR",
+   "method": "area",
+   "weight": 42.6277,
+   "regions": {
+    "mediterranean": 67.9,
+    "cold-semi-arid": 23.2,
+    "humid-continental": 7.1,
+    "humid-subtropical": 1.8
+   },
+   "koppen": {
+    "Csa": 67.9,
+    "BSk": 23.2,
+    "Dsb": 3.6,
+    "Dfb": 3.5,
+    "Cfa": 1.8
+   },
+   "bbox": [
+    19.75,
+    35.25,
+    26.75,
+    41.25
+   ],
+   "map_bbox": [
+    19.75,
+    35.25,
+    26.75,
+    41.25
+   ]
+  },
+  "GS": {
+   "iso2": "GS",
+   "method": "area",
+   "weight": 1.1614,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "ET": 100.0
+   },
+   "bbox": [
+    -36.75,
+    -54.75,
+    -36.25,
+    -54.25
+   ],
+   "map_bbox": [
+    -36.75,
+    -54.75,
+    -36.25,
+    -54.25
+   ]
+  },
+  "GT": {
+   "iso2": "GT",
+   "method": "area",
+   "weight": 38.4695,
+   "regions": {
+    "tropical-monsoon": 32.4,
+    "tropical-savanna": 30.0,
+    "tropical-rainforest": 17.5,
+    "subtropical-highland": 15.1,
+    "temperate-oceanic": 5.0
+   },
+   "koppen": {
+    "Am": 32.4,
+    "Aw": 30.0,
+    "Af": 17.5,
+    "Cwb": 15.1,
+    "Cfb": 5.0
+   },
+   "bbox": [
+    -91.75,
+    14.25,
+    -88.75,
+    17.75
+   ],
+   "map_bbox": [
+    -91.75,
+    14.25,
+    -88.75,
+    17.75
+   ]
+  },
+  "GW": {
+   "iso2": "GW",
+   "method": "area",
+   "weight": 10.7639,
+   "regions": {
+    "tropical-savanna": 90.9,
+    "tropical-monsoon": 9.1
+   },
+   "koppen": {
+    "Aw": 90.9,
+    "Am": 9.1
+   },
+   "bbox": [
+    -16.25,
+    11.25,
+    -13.75,
+    12.25
+   ],
+   "map_bbox": [
+    -16.25,
+    11.25,
+    -13.75,
+    12.25
+   ]
+  },
+  "GY": {
+   "iso2": "GY",
+   "method": "area",
+   "weight": 66.7316,
+   "regions": {
+    "tropical-rainforest": 59.6,
+    "tropical-monsoon": 37.4,
+    "tropical-savanna": 3.0
+   },
+   "koppen": {
+    "Af": 59.6,
+    "Am": 37.4,
+    "Aw": 3.0
+   },
+   "bbox": [
+    -60.75,
+    1.25,
+    -57.25,
+    8.25
+   ],
+   "map_bbox": [
+    -60.75,
+    1.25,
+    -57.25,
+    8.25
+   ]
+  },
+  "HN": {
+   "iso2": "HN",
+   "method": "area",
+   "weight": 35.7473,
+   "regions": {
+    "tropical-savanna": 46.0,
+    "tropical-monsoon": 32.4,
+    "tropical-rainforest": 21.6
+   },
+   "koppen": {
+    "Aw": 46.0,
+    "Am": 32.4,
+    "Af": 21.6
+   },
+   "bbox": [
+    -88.75,
+    13.25,
+    -84.25,
+    15.75
+   ],
+   "map_bbox": [
+    -88.75,
+    13.25,
+    -84.25,
+    15.75
+   ]
+  },
+  "HR": {
+   "iso2": "HR",
+   "method": "area",
+   "weight": 19.7418,
+   "regions": {
+    "humid-continental": 60.6,
+    "humid-subtropical": 28.5,
+    "mediterranean": 11.0
+   },
+   "koppen": {
+    "Dfb": 60.6,
+    "Cfa": 28.5,
+    "Csa": 11.0
+   },
+   "bbox": [
+    13.75,
+    43.25,
+    19.25,
+    46.25
+   ],
+   "map_bbox": [
+    13.75,
+    43.25,
+    19.25,
+    46.25
+   ]
+  },
+  "HT": {
+   "iso2": "HT",
+   "method": "area",
+   "weight": 12.2982,
+   "regions": {
+    "tropical-savanna": 84.6,
+    "tropical-rainforest": 15.4
+   },
+   "koppen": {
+    "Aw": 84.6,
+    "Af": 15.4
+   },
+   "bbox": [
+    -73.75,
+    18.25,
+    -71.75,
+    19.75
+   ],
+   "map_bbox": [
+    -73.75,
+    18.25,
+    -71.75,
+    19.75
+   ]
+  },
+  "HU": {
+   "iso2": "HU",
+   "method": "area",
+   "weight": 30.5762,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 88.9,
+    "Dfa": 11.1
+   },
+   "bbox": [
+    16.75,
+    46.25,
+    22.25,
+    48.25
+   ],
+   "map_bbox": [
+    16.75,
+    46.25,
+    22.25,
+    48.25
+   ]
+  },
+  "ID": {
+   "iso2": "ID",
+   "method": "area",
+   "weight": 606.5215,
+   "regions": {
+    "tropical-rainforest": 88.1,
+    "tropical-monsoon": 5.6,
+    "tropical-savanna": 4.2,
+    "temperate-oceanic": 2.1
+   },
+   "koppen": {
+    "Af": 88.1,
+    "Am": 5.6,
+    "Aw": 4.2,
+    "Cfb": 2.1
+   },
+   "bbox": [
+    95.25,
+    -10.75,
+    140.75,
+    5.25
+   ],
+   "map_bbox": [
+    95.25,
+    -10.75,
+    140.75,
+    5.25
+   ]
+  },
+  "IE": {
+   "iso2": "IE",
+   "method": "area",
+   "weight": 23.9721,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    -10.25,
+    51.75,
+    -6.25,
+    55.25
+   ],
+   "map_bbox": [
+    -10.25,
+    51.75,
+    -6.25,
+    55.25
+   ]
+  },
+  "IL": {
+   "iso2": "IL",
+   "method": "area",
+   "weight": 7.6612,
+   "regions": {
+    "hot-desert": 44.9,
+    "mediterranean": 44.0,
+    "hot-semi-arid": 11.2
+   },
+   "koppen": {
+    "BWh": 44.9,
+    "Csa": 44.0,
+    "BSh": 11.2
+   },
+   "bbox": [
+    34.75,
+    30.25,
+    35.75,
+    33.25
+   ],
+   "map_bbox": [
+    34.75,
+    30.25,
+    35.75,
+    33.25
+   ]
+  },
+  "IN": {
+   "iso2": "IN",
+   "method": "area",
+   "weight": 1022.6851,
+   "regions": {
+    "tropical-savanna": 33.1,
+    "humid-subtropical": 25.8,
+    "hot-semi-arid": 22.9,
+    "hot-desert": 7.3,
+    "tropical-monsoon": 4.8,
+    "tundra-polar": 3.0,
+    "subtropical-highland": 1.5,
+    "cold-desert": 0.5,
+    "humid-continental": 0.5,
+    "cold-semi-arid": 0.4,
+    "mediterranean": 0.2
+   },
+   "koppen": {
+    "Aw": 33.1,
+    "Cwa": 25.7,
+    "BSh": 22.9,
+    "BWh": 7.3,
+    "Am": 4.8,
+    "ET": 3.0,
+    "Cwb": 1.5,
+    "BWk": 0.5,
+    "BSk": 0.4,
+    "Dfb": 0.3,
+    "Csa": 0.2,
+    "Dwb": 0.2,
+    "Cfa": 0.1
+   },
+   "bbox": [
+    68.25,
+    8.25,
+    97.25,
+    35.25
+   ],
+   "map_bbox": [
+    68.25,
+    8.25,
+    97.25,
+    35.25
+   ]
+  },
+  "IQ": {
+   "iso2": "IQ",
+   "method": "area",
+   "weight": 142.4455,
+   "regions": {
+    "hot-desert": 76.6,
+    "hot-semi-arid": 10.3,
+    "mediterranean": 10.2,
+    "humid-continental": 2.8
+   },
+   "koppen": {
+    "BWh": 76.6,
+    "BSh": 10.3,
+    "Csa": 10.2,
+    "Dsa": 2.8
+   },
+   "bbox": [
+    39.25,
+    29.25,
+    48.25,
+    37.25
+   ],
+   "map_bbox": [
+    39.25,
+    29.25,
+    48.25,
+    37.25
+   ]
+  },
+  "IR": {
+   "iso2": "IR",
+   "method": "area",
+   "weight": 522.7268,
+   "regions": {
+    "hot-desert": 42.3,
+    "cold-semi-arid": 26.9,
+    "cold-desert": 13.1,
+    "hot-semi-arid": 7.5,
+    "humid-continental": 5.7,
+    "mediterranean": 4.4
+   },
+   "koppen": {
+    "BWh": 42.3,
+    "BSk": 26.9,
+    "BWk": 13.1,
+    "BSh": 7.5,
+    "Dsa": 5.7,
+    "Csa": 4.4
+   },
+   "bbox": [
+    44.25,
+    25.25,
+    62.75,
+    39.25
+   ],
+   "map_bbox": [
+    44.25,
+    25.25,
+    62.75,
+    39.25
+   ]
+  },
+  "IS": {
+   "iso2": "IS",
+   "method": "area",
+   "weight": 32.1009,
+   "regions": {
+    "tundra-polar": 97.2,
+    "subpolar-oceanic": 2.8
+   },
+   "koppen": {
+    "ET": 97.2,
+    "Cfc": 2.8
+   },
+   "bbox": [
+    -23.75,
+    63.75,
+    -13.75,
+    66.25
+   ],
+   "map_bbox": [
+    -23.75,
+    63.75,
+    -13.75,
+    66.25
+   ]
+  },
+  "IT": {
+   "iso2": "IT",
+   "method": "area",
+   "weight": 94.4117,
+   "regions": {
+    "mediterranean": 43.3,
+    "humid-subtropical": 28.8,
+    "humid-continental": 8.9,
+    "tundra-polar": 5.9,
+    "cold-semi-arid": 5.6,
+    "temperate-oceanic": 4.6,
+    "subarctic": 2.9
+   },
+   "koppen": {
+    "Csa": 40.2,
+    "Cfa": 28.8,
+    "Dfb": 8.9,
+    "ET": 5.9,
+    "BSk": 5.6,
+    "Cfb": 4.6,
+    "Csb": 3.1,
+    "Dfc": 2.9
+   },
+   "bbox": [
+    7.25,
+    36.75,
+    18.25,
+    46.75
+   ],
+   "map_bbox": [
+    7.25,
+    36.75,
+    18.25,
+    46.75
+   ]
+  },
+  "JM": {
+   "iso2": "JM",
+   "method": "area",
+   "weight": 3.7988,
+   "regions": {
+    "tropical-rainforest": 75.0,
+    "tropical-monsoon": 25.0
+   },
+   "koppen": {
+    "Af": 75.0,
+    "Am": 25.0
+   },
+   "bbox": [
+    -78.25,
+    18.25,
+    -76.75,
+    18.25
+   ],
+   "map_bbox": [
+    -78.25,
+    18.25,
+    -76.75,
+    18.25
+   ]
+  },
+  "JO": {
+   "iso2": "JO",
+   "method": "area",
+   "weight": 28.1756,
+   "regions": {
+    "hot-desert": 66.8,
+    "cold-semi-arid": 18.1,
+    "cold-desert": 12.1,
+    "mediterranean": 3.0
+   },
+   "koppen": {
+    "BWh": 66.8,
+    "BSk": 18.1,
+    "BWk": 12.1,
+    "Csa": 3.0
+   },
+   "bbox": [
+    35.25,
+    29.25,
+    39.25,
+    33.25
+   ],
+   "map_bbox": [
+    35.25,
+    29.25,
+    39.25,
+    33.25
+   ]
+  },
+  "JP": {
+   "iso2": "JP",
+   "method": "area",
+   "weight": 123.4654,
+   "regions": {
+    "humid-continental": 50.5,
+    "humid-subtropical": 48.9,
+    "subarctic": 0.6
+   },
+   "koppen": {
+    "Cfa": 48.9,
+    "Dfb": 26.5,
+    "Dfa": 24.0,
+    "Dfc": 0.6
+   },
+   "bbox": [
+    127.75,
+    26.25,
+    145.25,
+    45.25
+   ],
+   "map_bbox": [
+    127.75,
+    26.25,
+    145.25,
+    45.25
+   ]
+  },
+  "KE": {
+   "iso2": "KE",
+   "method": "area",
+   "weight": 192.8362,
+   "regions": {
+    "hot-desert": 39.4,
+    "hot-semi-arid": 31.6,
+    "tropical-savanna": 14.0,
+    "mediterranean": 5.7,
+    "temperate-oceanic": 5.2,
+    "tropical-rainforest": 2.1,
+    "subtropical-highland": 1.0,
+    "tropical-monsoon": 0.5,
+    "cold-semi-arid": 0.5
+   },
+   "koppen": {
+    "BWh": 39.4,
+    "BSh": 31.6,
+    "Aw": 14.0,
+    "Csb": 5.7,
+    "Cfb": 5.2,
+    "Af": 2.1,
+    "Cwb": 1.0,
+    "Am": 0.5,
+    "BSk": 0.5
+   },
+   "bbox": [
+    34.25,
+    -4.25,
+    41.25,
+    5.25
+   ],
+   "map_bbox": [
+    34.25,
+    -4.25,
+    41.25,
+    5.25
+   ]
+  },
+  "KG": {
+   "iso2": "KG",
+   "method": "area",
+   "weight": 64.424,
+   "regions": {
+    "cold-semi-arid": 36.0,
+    "tundra-polar": 32.6,
+    "subarctic": 18.6,
+    "humid-continental": 11.6,
+    "cold-desert": 1.2
+   },
+   "koppen": {
+    "BSk": 36.0,
+    "ET": 32.6,
+    "Dfc": 11.6,
+    "Dsb": 8.2,
+    "Dsc": 7.0,
+    "Dfb": 3.4,
+    "BWk": 1.2
+   },
+   "bbox": [
+    69.25,
+    39.25,
+    79.75,
+    42.75
+   ],
+   "map_bbox": [
+    69.25,
+    39.25,
+    79.75,
+    42.75
+   ]
+  },
+  "KH": {
+   "iso2": "KH",
+   "method": "area",
+   "weight": 61.4482,
+   "regions": {
+    "tropical-savanna": 82.5,
+    "tropical-monsoon": 17.5
+   },
+   "koppen": {
+    "Aw": 82.5,
+    "Am": 17.5
+   },
+   "bbox": [
+    102.75,
+    10.75,
+    107.25,
+    14.25
+   ],
+   "map_bbox": [
+    102.75,
+    10.75,
+    107.25,
+    14.25
+   ]
+  },
+  "KI": {
+   "iso2": "KI",
+   "method": "area",
+   "weight": 0.9995,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -157.25,
+    1.75,
+    -157.25,
+    1.75
+   ],
+   "map_bbox": [
+    -157.25,
+    1.75,
+    -157.25,
+    1.75
+   ]
+  },
+  "KM": {
+   "iso2": "KM",
+   "method": "area",
+   "weight": 0.979,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    43.25,
+    -11.75,
+    43.25,
+    -11.75
+   ],
+   "map_bbox": [
+    43.25,
+    -11.75,
+    43.25,
+    -11.75
+   ]
+  },
+  "KP": {
+   "iso2": "KP",
+   "method": "area",
+   "weight": 36.6336,
+   "regions": {
+    "humid-continental": 89.7,
+    "subarctic": 10.3
+   },
+   "koppen": {
+    "Dwa": 44.3,
+    "Dwb": 43.4,
+    "Dwc": 10.3,
+    "Dfb": 2.1
+   },
+   "bbox": [
+    124.75,
+    38.25,
+    130.25,
+    42.25
+   ],
+   "map_bbox": [
+    124.75,
+    38.25,
+    130.25,
+    42.25
+   ]
+  },
+  "KR": {
+   "iso2": "KR",
+   "method": "area",
+   "weight": 32.1641,
+   "regions": {
+    "humid-continental": 87.2,
+    "humid-subtropical": 12.8
+   },
+   "koppen": {
+    "Dwa": 59.8,
+    "Dfa": 25.0,
+    "Cfa": 10.2,
+    "Cwa": 2.5,
+    "Dfb": 2.4
+   },
+   "bbox": [
+    126.25,
+    33.25,
+    129.25,
+    38.25
+   ],
+   "map_bbox": [
+    126.25,
+    33.25,
+    129.25,
+    38.25
+   ]
+  },
+  "KW": {
+   "iso2": "KW",
+   "method": "area",
+   "weight": 6.9755,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    46.75,
+    28.75,
+    48.25,
+    29.75
+   ],
+   "map_bbox": [
+    46.75,
+    28.75,
+    48.25,
+    29.75
+   ]
+  },
+  "KZ": {
+   "iso2": "KZ",
+   "method": "area",
+   "weight": 878.1596,
+   "regions": {
+    "cold-semi-arid": 51.4,
+    "cold-desert": 40.8,
+    "humid-continental": 5.3,
+    "subarctic": 1.6,
+    "tundra-polar": 0.8,
+    "mediterranean": 0.1
+   },
+   "koppen": {
+    "BSk": 51.4,
+    "BWk": 40.8,
+    "Dfb": 4.3,
+    "Dfc": 1.4,
+    "Dsa": 0.9,
+    "ET": 0.8,
+    "Dfa": 0.1,
+    "Dwc": 0.1,
+    "Dsc": 0.1,
+    "Csa": 0.1
+   },
+   "bbox": [
+    46.75,
+    40.75,
+    86.75,
+    55.25
+   ],
+   "map_bbox": [
+    46.75,
+    40.75,
+    86.75,
+    55.25
+   ]
+  },
+  "LA": {
+   "iso2": "LA",
+   "method": "area",
+   "weight": 72.9739,
+   "regions": {
+    "humid-subtropical": 39.9,
+    "tropical-savanna": 37.8,
+    "tropical-monsoon": 22.3
+   },
+   "koppen": {
+    "Cwa": 39.9,
+    "Aw": 37.8,
+    "Am": 22.3
+   },
+   "bbox": [
+    100.75,
+    14.25,
+    107.25,
+    22.25
+   ],
+   "map_bbox": [
+    100.75,
+    14.25,
+    107.25,
+    22.25
+   ]
+  },
+  "LB": {
+   "iso2": "LB",
+   "method": "area",
+   "weight": 3.3209,
+   "regions": {
+    "mediterranean": 100.0
+   },
+   "koppen": {
+    "Csa": 100.0
+   },
+   "bbox": [
+    35.25,
+    33.25,
+    36.25,
+    34.25
+   ],
+   "map_bbox": [
+    35.25,
+    33.25,
+    36.25,
+    34.25
+   ]
+  },
+  "LK": {
+   "iso2": "LK",
+   "method": "area",
+   "weight": 21.8003,
+   "regions": {
+    "tropical-savanna": 63.6,
+    "tropical-rainforest": 27.3,
+    "tropical-monsoon": 9.1
+   },
+   "koppen": {
+    "Aw": 63.6,
+    "Af": 27.3,
+    "Am": 9.1
+   },
+   "bbox": [
+    80.25,
+    6.25,
+    81.75,
+    9.75
+   ],
+   "map_bbox": [
+    80.25,
+    6.25,
+    81.75,
+    9.75
+   ]
+  },
+  "LR": {
+   "iso2": "LR",
+   "method": "area",
+   "weight": 30.8009,
+   "regions": {
+    "tropical-monsoon": 67.7,
+    "tropical-rainforest": 32.3
+   },
+   "koppen": {
+    "Am": 67.7,
+    "Af": 32.3
+   },
+   "bbox": [
+    -11.25,
+    4.75,
+    -7.75,
+    8.25
+   ],
+   "map_bbox": [
+    -11.25,
+    4.75,
+    -7.75,
+    8.25
+   ]
+  },
+  "LS": {
+   "iso2": "LS",
+   "method": "area",
+   "weight": 10.4439,
+   "regions": {
+    "subtropical-highland": 83.5,
+    "temperate-oceanic": 16.5
+   },
+   "koppen": {
+    "Cwb": 83.5,
+    "Cfb": 16.5
+   },
+   "bbox": [
+    27.25,
+    -30.25,
+    29.25,
+    -28.75
+   ],
+   "map_bbox": [
+    27.25,
+    -30.25,
+    29.25,
+    -28.75
+   ]
+  },
+  "LT": {
+   "iso2": "LT",
+   "method": "area",
+   "weight": 21.5868,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    21.25,
+    54.25,
+    26.25,
+    56.25
+   ],
+   "map_bbox": [
+    21.25,
+    54.25,
+    26.25,
+    56.25
+   ]
+  },
+  "LU": {
+   "iso2": "LU",
+   "method": "area",
+   "weight": 0.6461,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    6.25,
+    49.75,
+    6.25,
+    49.75
+   ],
+   "map_bbox": [
+    6.25,
+    49.75,
+    6.25,
+    49.75
+   ]
+  },
+  "LV": {
+   "iso2": "LV",
+   "method": "area",
+   "weight": 19.1385,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    21.25,
+    55.75,
+    27.75,
+    57.75
+   ],
+   "map_bbox": [
+    21.25,
+    55.75,
+    27.75,
+    57.75
+   ]
+  },
+  "LY": {
+   "iso2": "LY",
+   "method": "area",
+   "weight": 526.473,
+   "regions": {
+    "hot-desert": 97.0,
+    "hot-semi-arid": 2.1,
+    "mediterranean": 0.5,
+    "cold-semi-arid": 0.5
+   },
+   "koppen": {
+    "BWh": 97.0,
+    "BSh": 2.1,
+    "Csa": 0.5,
+    "BSk": 0.5
+   },
+   "bbox": [
+    9.75,
+    19.75,
+    24.75,
+    32.75
+   ],
+   "map_bbox": [
+    9.75,
+    19.75,
+    24.75,
+    32.75
+   ]
+  },
+  "MA": {
+   "iso2": "MA",
+   "method": "area",
+   "weight": 189.5693,
+   "regions": {
+    "hot-desert": 52.5,
+    "mediterranean": 16.7,
+    "cold-semi-arid": 12.5,
+    "cold-desert": 10.6,
+    "hot-semi-arid": 7.2,
+    "humid-continental": 0.4
+   },
+   "koppen": {
+    "BWh": 52.5,
+    "Csa": 16.7,
+    "BSk": 12.5,
+    "BWk": 10.6,
+    "BSh": 7.2,
+    "Dsb": 0.4
+   },
+   "bbox": [
+    -16.75,
+    21.75,
+    -1.75,
+    35.75
+   ],
+   "map_bbox": [
+    -16.75,
+    21.75,
+    -1.75,
+    35.75
+   ]
+  },
+  "MD": {
+   "iso2": "MD",
+   "method": "area",
+   "weight": 10.8856,
+   "regions": {
+    "humid-continental": 93.6,
+    "cold-semi-arid": 6.4
+   },
+   "koppen": {
+    "Dfb": 93.6,
+    "BSk": 6.4
+   },
+   "bbox": [
+    27.25,
+    45.75,
+    29.75,
+    48.25
+   ],
+   "map_bbox": [
+    27.25,
+    45.75,
+    29.75,
+    48.25
+   ]
+  },
+  "ME": {
+   "iso2": "ME",
+   "method": "area",
+   "weight": 4.3999,
+   "regions": {
+    "humid-continental": 83.2,
+    "mediterranean": 16.8
+   },
+   "koppen": {
+    "Dfb": 83.2,
+    "Csa": 16.8
+   },
+   "bbox": [
+    18.75,
+    42.25,
+    19.75,
+    43.25
+   ],
+   "map_bbox": [
+    18.75,
+    42.25,
+    19.75,
+    43.25
+   ]
+  },
+  "MG": {
+   "iso2": "MG",
+   "method": "area",
+   "weight": 188.3487,
+   "regions": {
+    "tropical-savanna": 45.4,
+    "humid-subtropical": 19.4,
+    "hot-semi-arid": 11.2,
+    "tropical-rainforest": 11.0,
+    "subtropical-highland": 10.5,
+    "tropical-monsoon": 1.5,
+    "temperate-oceanic": 1.0
+   },
+   "koppen": {
+    "Aw": 45.4,
+    "Cwa": 13.4,
+    "BSh": 11.2,
+    "Af": 11.0,
+    "Cwb": 10.5,
+    "Cfa": 6.0,
+    "Am": 1.5,
+    "Cfb": 1.0
+   },
+   "bbox": [
+    43.75,
+    -25.25,
+    50.25,
+    -12.25
+   ],
+   "map_bbox": [
+    43.75,
+    -25.25,
+    50.25,
+    -12.25
+   ]
+  },
+  "MK": {
+   "iso2": "MK",
+   "method": "area",
+   "weight": 8.2181,
+   "regions": {
+    "humid-continental": 72.7,
+    "cold-semi-arid": 27.3
+   },
+   "koppen": {
+    "Dfb": 72.7,
+    "BSk": 27.3
+   },
+   "bbox": [
+    20.75,
+    41.25,
+    22.75,
+    42.25
+   ],
+   "map_bbox": [
+    20.75,
+    41.25,
+    22.75,
+    42.25
+   ]
+  },
+  "ML": {
+   "iso2": "ML",
+   "method": "area",
+   "weight": 404.9561,
+   "regions": {
+    "hot-desert": 71.9,
+    "hot-semi-arid": 16.3,
+    "tropical-savanna": 11.8
+   },
+   "koppen": {
+    "BWh": 71.9,
+    "BSh": 16.3,
+    "Aw": 11.8
+   },
+   "bbox": [
+    -11.75,
+    10.25,
+    3.75,
+    24.75
+   ],
+   "map_bbox": [
+    -11.75,
+    10.25,
+    3.75,
+    24.75
+   ]
+  },
+  "MM": {
+   "iso2": "MM",
+   "method": "area",
+   "weight": 213.1848,
+   "regions": {
+    "humid-subtropical": 41.7,
+    "tropical-savanna": 29.9,
+    "tropical-monsoon": 22.4,
+    "hot-semi-arid": 3.9,
+    "subtropical-highland": 1.7,
+    "tundra-polar": 0.4
+   },
+   "koppen": {
+    "Cwa": 41.7,
+    "Aw": 29.9,
+    "Am": 22.4,
+    "BSh": 3.9,
+    "Cwb": 1.7,
+    "ET": 0.4
+   },
+   "bbox": [
+    92.25,
+    10.75,
+    100.25,
+    28.25
+   ],
+   "map_bbox": [
+    92.25,
+    10.75,
+    100.25,
+    28.25
+   ]
+  },
+  "MN": {
+   "iso2": "MN",
+   "method": "area",
+   "weight": 506.4643,
+   "regions": {
+    "cold-desert": 39.6,
+    "cold-semi-arid": 31.6,
+    "subarctic": 23.6,
+    "tundra-polar": 3.3,
+    "humid-continental": 1.8
+   },
+   "koppen": {
+    "BWk": 39.6,
+    "BSk": 31.6,
+    "Dwc": 23.6,
+    "ET": 3.3,
+    "Dwb": 1.8
+   },
+   "bbox": [
+    88.25,
+    41.75,
+    119.75,
+    51.75
+   ],
+   "map_bbox": [
+    88.25,
+    41.75,
+    119.75,
+    51.75
+   ]
+  },
+  "MR": {
+   "iso2": "MR",
+   "method": "area",
+   "weight": 335.4398,
+   "regions": {
+    "hot-desert": 99.4,
+    "hot-semi-arid": 0.6
+   },
+   "koppen": {
+    "BWh": 99.4,
+    "BSh": 0.6
+   },
+   "bbox": [
+    -16.75,
+    15.25,
+    -5.25,
+    26.75
+   ],
+   "map_bbox": [
+    -16.75,
+    15.25,
+    -5.25,
+    26.75
+   ]
+  },
+  "MU": {
+   "iso2": "MU",
+   "method": "area",
+   "weight": 0.9382,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    57.75,
+    -20.25,
+    57.75,
+    -20.25
+   ],
+   "map_bbox": [
+    57.75,
+    -20.25,
+    57.75,
+    -20.25
+   ]
+  },
+  "MW": {
+   "iso2": "MW",
+   "method": "area",
+   "weight": 37.9328,
+   "regions": {
+    "tropical-savanna": 61.4,
+    "humid-subtropical": 30.8,
+    "subtropical-highland": 7.7
+   },
+   "koppen": {
+    "Aw": 61.4,
+    "Cwa": 30.8,
+    "Cwb": 7.7
+   },
+   "bbox": [
+    33.25,
+    -16.75,
+    35.75,
+    -9.75
+   ],
+   "map_bbox": [
+    33.25,
+    -16.75,
+    35.75,
+    -9.75
+   ]
+  },
+  "MX": {
+   "iso2": "MX",
+   "method": "area",
+   "weight": 640.2012,
+   "regions": {
+    "tropical-savanna": 22.3,
+    "hot-desert": 21.4,
+    "hot-semi-arid": 15.9,
+    "cold-semi-arid": 13.7,
+    "subtropical-highland": 10.6,
+    "humid-subtropical": 6.2,
+    "tropical-monsoon": 3.3,
+    "cold-desert": 3.2,
+    "tropical-rainforest": 2.1,
+    "mediterranean": 0.8,
+    "temperate-oceanic": 0.6
+   },
+   "koppen": {
+    "Aw": 22.3,
+    "BWh": 21.4,
+    "BSh": 15.9,
+    "BSk": 13.7,
+    "Cwb": 10.6,
+    "Cwa": 5.9,
+    "Am": 3.3,
+    "BWk": 3.2,
+    "Af": 2.1,
+    "Cfb": 0.6,
+    "Csa": 0.4,
+    "Csb": 0.4,
+    "Cfa": 0.3
+   },
+   "bbox": [
+    -116.75,
+    14.75,
+    -87.25,
+    32.25
+   ],
+   "map_bbox": [
+    -116.75,
+    14.75,
+    -87.25,
+    32.25
+   ]
+  },
+  "MY": {
+   "iso2": "MY",
+   "method": "area",
+   "weight": 107.7152,
+   "regions": {
+    "tropical-rainforest": 98.2,
+    "tropical-monsoon": 1.8
+   },
+   "koppen": {
+    "Af": 98.2,
+    "Am": 1.8
+   },
+   "bbox": [
+    100.25,
+    1.25,
+    119.25,
+    7.25
+   ],
+   "map_bbox": [
+    100.25,
+    1.25,
+    119.25,
+    7.25
+   ]
+  },
+  "MZ": {
+   "iso2": "MZ",
+   "method": "area",
+   "weight": 255.1666,
+   "regions": {
+    "tropical-savanna": 70.9,
+    "hot-semi-arid": 18.6,
+    "humid-subtropical": 10.2,
+    "tropical-monsoon": 0.4
+   },
+   "koppen": {
+    "Aw": 70.9,
+    "BSh": 18.6,
+    "Cwa": 10.2,
+    "Am": 0.4
+   },
+   "bbox": [
+    30.75,
+    -26.75,
+    40.75,
+    -10.75
+   ],
+   "map_bbox": [
+    30.75,
+    -26.75,
+    40.75,
+    -10.75
+   ]
+  },
+  "NA": {
+   "iso2": "NA",
+   "method": "area",
+   "weight": 266.2457,
+   "regions": {
+    "hot-desert": 48.9,
+    "hot-semi-arid": 38.9,
+    "cold-desert": 11.1,
+    "cold-semi-arid": 1.0
+   },
+   "koppen": {
+    "BWh": 48.9,
+    "BSh": 38.9,
+    "BWk": 11.1,
+    "BSk": 1.0
+   },
+   "bbox": [
+    11.75,
+    -28.75,
+    24.75,
+    -17.25
+   ],
+   "map_bbox": [
+    11.75,
+    -28.75,
+    24.75,
+    -17.25
+   ]
+  },
+  "NC": {
+   "iso2": "NC",
+   "method": "area",
+   "weight": 5.5854,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    164.75,
+    -22.25,
+    167.25,
+    -20.75
+   ],
+   "map_bbox": [
+    164.75,
+    -22.25,
+    167.25,
+    -20.75
+   ]
+  },
+  "NE": {
+   "iso2": "NE",
+   "method": "area",
+   "weight": 384.0883,
+   "regions": {
+    "hot-desert": 93.7,
+    "hot-semi-arid": 6.3
+   },
+   "koppen": {
+    "BWh": 93.7,
+    "BSh": 6.3
+   },
+   "bbox": [
+    0.25,
+    12.25,
+    15.75,
+    23.25
+   ],
+   "map_bbox": [
+    0.25,
+    12.25,
+    15.75,
+    23.25
+   ]
+  },
+  "NG": {
+   "iso2": "NG",
+   "method": "area",
+   "weight": 295.5504,
+   "regions": {
+    "tropical-savanna": 68.1,
+    "hot-semi-arid": 20.2,
+    "tropical-monsoon": 7.4,
+    "hot-desert": 4.3
+   },
+   "koppen": {
+    "Aw": 68.1,
+    "BSh": 20.2,
+    "Am": 7.4,
+    "BWh": 4.3
+   },
+   "bbox": [
+    2.75,
+    4.75,
+    14.25,
+    13.75
+   ],
+   "map_bbox": [
+    2.75,
+    4.75,
+    14.25,
+    13.75
+   ]
+  },
+  "NI": {
+   "iso2": "NI",
+   "method": "area",
+   "weight": 43.867,
+   "regions": {
+    "tropical-monsoon": 46.6,
+    "tropical-savanna": 40.1,
+    "tropical-rainforest": 13.3
+   },
+   "koppen": {
+    "Am": 46.6,
+    "Aw": 40.1,
+    "Af": 13.3
+   },
+   "bbox": [
+    -87.25,
+    11.25,
+    -83.25,
+    14.75
+   ],
+   "map_bbox": [
+    -87.25,
+    11.25,
+    -83.25,
+    14.75
+   ]
+  },
+  "NL": {
+   "iso2": "NL",
+   "method": "area",
+   "weight": 10.9848,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    4.25,
+    51.25,
+    6.75,
+    53.25
+   ],
+   "map_bbox": [
+    4.25,
+    51.25,
+    6.75,
+    53.25
+   ]
+  },
+  "NO": {
+   "iso2": "NO",
+   "method": "area",
+   "weight": 126.1259,
+   "regions": {
+    "subarctic": 59.1,
+    "tundra-polar": 32.1,
+    "humid-continental": 5.7,
+    "temperate-oceanic": 2.7,
+    "subpolar-oceanic": 0.4
+   },
+   "koppen": {
+    "Dfc": 59.1,
+    "ET": 30.1,
+    "Dfb": 5.7,
+    "Cfb": 2.7,
+    "EF": 2.0,
+    "Cfc": 0.4
+   },
+   "bbox": [
+    5.25,
+    58.25,
+    30.75,
+    80.25
+   ],
+   "map_bbox": [
+    5.25,
+    58.25,
+    30.75,
+    80.25
+   ]
+  },
+  "NP": {
+   "iso2": "NP",
+   "method": "area",
+   "weight": 48.4467,
+   "regions": {
+    "humid-subtropical": 56.6,
+    "subtropical-highland": 21.8,
+    "tundra-polar": 21.7
+   },
+   "koppen": {
+    "Cwa": 56.6,
+    "Cwb": 21.8,
+    "ET": 21.7
+   },
+   "bbox": [
+    80.25,
+    26.75,
+    87.75,
+    30.25
+   ],
+   "map_bbox": [
+    80.25,
+    26.75,
+    87.75,
+    30.25
+   ]
+  },
+  "NZ": {
+   "iso2": "NZ",
+   "method": "area",
+   "weight": 88.0162,
+   "regions": {
+    "temperate-oceanic": 98.4,
+    "tundra-polar": 0.8,
+    "subpolar-oceanic": 0.8
+   },
+   "koppen": {
+    "Cfb": 98.4,
+    "ET": 0.8,
+    "Cfc": 0.8
+   },
+   "bbox": [
+    -176.25,
+    -46.25,
+    178.25,
+    -35.25
+   ],
+   "map_bbox": [
+    167.25,
+    -46.25,
+    183.75,
+    -35.25
+   ]
+  },
+  "OM": {
+   "iso2": "OM",
+   "method": "area",
+   "weight": 103.7745,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    52.25,
+    16.75,
+    59.75,
+    25.75
+   ],
+   "map_bbox": [
+    52.25,
+    16.75,
+    59.75,
+    25.75
+   ]
+  },
+  "PA": {
+   "iso2": "PA",
+   "method": "area",
+   "weight": 24.7248,
+   "regions": {
+    "tropical-monsoon": 64.0,
+    "tropical-rainforest": 24.0,
+    "tropical-savanna": 12.0
+   },
+   "koppen": {
+    "Am": 64.0,
+    "Af": 24.0,
+    "Aw": 12.0
+   },
+   "bbox": [
+    -82.75,
+    7.25,
+    -77.75,
+    9.25
+   ],
+   "map_bbox": [
+    -82.75,
+    7.25,
+    -77.75,
+    9.25
+   ]
+  },
+  "PE": {
+   "iso2": "PE",
+   "method": "area",
+   "weight": 418.3745,
+   "regions": {
+    "tropical-rainforest": 44.4,
+    "tundra-polar": 21.1,
+    "tropical-monsoon": 10.6,
+    "hot-desert": 9.4,
+    "temperate-oceanic": 5.4,
+    "cold-desert": 4.1,
+    "subtropical-highland": 2.3,
+    "tropical-savanna": 1.9,
+    "cold-semi-arid": 0.5,
+    "hot-semi-arid": 0.2
+   },
+   "koppen": {
+    "Af": 44.4,
+    "ET": 21.1,
+    "Am": 10.6,
+    "BWh": 9.4,
+    "Cfb": 5.4,
+    "BWk": 4.1,
+    "Cwb": 2.3,
+    "Aw": 1.9,
+    "BSk": 0.5,
+    "BSh": 0.2
+   },
+   "bbox": [
+    -81.25,
+    -18.25,
+    -69.25,
+    -0.25
+   ],
+   "map_bbox": [
+    -81.25,
+    -18.25,
+    -69.25,
+    -0.25
+   ]
+  },
+  "PF": {
+   "iso2": "PF",
+   "method": "area",
+   "weight": 0.9524,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -149.25,
+    -17.75,
+    -149.25,
+    -17.75
+   ],
+   "map_bbox": [
+    -149.25,
+    -17.75,
+    -149.25,
+    -17.75
+   ]
+  },
+  "PG": {
+   "iso2": "PG",
+   "method": "area",
+   "weight": 145.9798,
+   "regions": {
+    "tropical-rainforest": 86.4,
+    "temperate-oceanic": 8.2,
+    "tropical-monsoon": 4.7,
+    "tropical-savanna": 0.7
+   },
+   "koppen": {
+    "Af": 86.4,
+    "Cfb": 8.2,
+    "Am": 4.7,
+    "Aw": 0.7
+   },
+   "bbox": [
+    141.25,
+    -10.25,
+    155.75,
+    -2.75
+   ],
+   "map_bbox": [
+    141.25,
+    -10.25,
+    155.75,
+    -2.75
+   ]
+  },
+  "PH": {
+   "iso2": "PH",
+   "method": "area",
+   "weight": 88.8828,
+   "regions": {
+    "tropical-rainforest": 56.4,
+    "tropical-monsoon": 33.8,
+    "tropical-savanna": 9.9
+   },
+   "koppen": {
+    "Af": 56.4,
+    "Am": 33.8,
+    "Aw": 9.9
+   },
+   "bbox": [
+    117.75,
+    5.75,
+    126.25,
+    18.25
+   ],
+   "map_bbox": [
+    117.75,
+    5.75,
+    126.25,
+    18.25
+   ]
+  },
+  "PK": {
+   "iso2": "PK",
+   "method": "area",
+   "weight": 279.1874,
+   "regions": {
+    "hot-desert": 70.0,
+    "hot-semi-arid": 7.2,
+    "tundra-polar": 6.4,
+    "cold-semi-arid": 5.6,
+    "humid-subtropical": 4.2,
+    "cold-desert": 3.4,
+    "humid-continental": 1.8,
+    "mediterranean": 1.2,
+    "subarctic": 0.3
+   },
+   "koppen": {
+    "BWh": 70.0,
+    "BSh": 7.2,
+    "ET": 6.1,
+    "BSk": 5.6,
+    "BWk": 3.4,
+    "Cwa": 3.0,
+    "Csa": 1.2,
+    "Cfa": 1.2,
+    "Dfb": 0.9,
+    "Dsb": 0.6,
+    "EF": 0.3,
+    "Dsc": 0.3,
+    "Dsa": 0.3
+   },
+   "bbox": [
+    61.75,
+    24.25,
+    76.75,
+    36.75
+   ],
+   "map_bbox": [
+    61.75,
+    24.25,
+    76.75,
+    36.75
+   ]
+  },
+  "PL": {
+   "iso2": "PL",
+   "method": "area",
+   "weight": 101.159,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    14.75,
+    49.25,
+    23.75,
+    54.75
+   ],
+   "map_bbox": [
+    14.75,
+    49.25,
+    23.75,
+    54.75
+   ]
+  },
+  "PR": {
+   "iso2": "PR",
+   "method": "area",
+   "weight": 2.8491,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -66.75,
+    18.25,
+    -65.75,
+    18.25
+   ],
+   "map_bbox": [
+    -66.75,
+    18.25,
+    -65.75,
+    18.25
+   ]
+  },
+  "PS": {
+   "iso2": "PS",
+   "method": "area",
+   "weight": 2.551,
+   "regions": {
+    "mediterranean": 66.5,
+    "hot-desert": 33.5
+   },
+   "koppen": {
+    "Csa": 66.5,
+    "BWh": 33.5
+   },
+   "bbox": [
+    34.25,
+    31.25,
+    35.25,
+    32.25
+   ],
+   "map_bbox": [
+    34.25,
+    31.25,
+    35.25,
+    32.25
+   ]
+  },
+  "PT": {
+   "iso2": "PT",
+   "method": "area",
+   "weight": 33.223,
+   "regions": {
+    "mediterranean": 97.7,
+    "temperate-oceanic": 2.3
+   },
+   "koppen": {
+    "Csa": 60.9,
+    "Csb": 36.8,
+    "Cfb": 2.3
+   },
+   "bbox": [
+    -27.25,
+    32.75,
+    -6.75,
+    41.75
+   ],
+   "map_bbox": [
+    -27.25,
+    32.75,
+    -6.75,
+    41.75
+   ]
+  },
+  "PY": {
+   "iso2": "PY",
+   "method": "area",
+   "weight": 129.4064,
+   "regions": {
+    "hot-semi-arid": 32.3,
+    "tropical-savanna": 30.7,
+    "humid-subtropical": 27.1,
+    "tropical-monsoon": 7.8,
+    "tropical-rainforest": 2.1
+   },
+   "koppen": {
+    "BSh": 32.3,
+    "Aw": 30.7,
+    "Cfa": 27.1,
+    "Am": 7.8,
+    "Af": 2.1
+   },
+   "bbox": [
+    -62.25,
+    -27.25,
+    -54.75,
+    -19.75
+   ],
+   "map_bbox": [
+    -62.25,
+    -27.25,
+    -54.75,
+    -19.75
+   ]
+  },
+  "QA": {
+   "iso2": "QA",
+   "method": "area",
+   "weight": 2.7133,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    51.25,
+    24.75,
+    51.25,
+    25.75
+   ],
+   "map_bbox": [
+    51.25,
+    24.75,
+    51.25,
+    25.75
+   ]
+  },
+  "RO": {
+   "iso2": "RO",
+   "method": "area",
+   "weight": 75.8937,
+   "regions": {
+    "humid-continental": 86.1,
+    "cold-semi-arid": 11.2,
+    "subarctic": 1.8,
+    "humid-subtropical": 0.9
+   },
+   "koppen": {
+    "Dfb": 69.1,
+    "Dfa": 16.9,
+    "BSk": 11.2,
+    "Dfc": 1.8,
+    "Cfa": 0.9
+   },
+   "bbox": [
+    21.25,
+    43.75,
+    29.25,
+    48.25
+   ],
+   "map_bbox": [
+    21.25,
+    43.75,
+    29.25,
+    48.25
+   ]
+  },
+  "RS": {
+   "iso2": "RS",
+   "method": "area",
+   "weight": 22.2148,
+   "regions": {
+    "humid-continental": 84.0,
+    "humid-subtropical": 16.0
+   },
+   "koppen": {
+    "Dfb": 71.4,
+    "Cfa": 16.0,
+    "Dfa": 12.6
+   },
+   "bbox": [
+    19.25,
+    42.75,
+    22.75,
+    45.75
+   ],
+   "map_bbox": [
+    19.25,
+    42.75,
+    22.75,
+    45.75
+   ]
+  },
+  "RU": {
+   "iso2": "RU",
+   "method": "area",
+   "weight": 5466.943,
+   "regions": {
+    "subarctic": 69.6,
+    "humid-continental": 16.7,
+    "tundra-polar": 10.7,
+    "cold-semi-arid": 2.6,
+    "cold-desert": 0.4,
+    "humid-subtropical": 0.1
+   },
+   "koppen": {
+    "Dfc": 49.4,
+    "Dfb": 13.4,
+    "Dwc": 12.3,
+    "ET": 10.3,
+    "Dfd": 3.7,
+    "Dsc": 2.6,
+    "BSk": 2.6,
+    "Dwb": 1.9,
+    "Dwd": 1.3,
+    "Dfa": 1.3,
+    "EF": 0.4,
+    "BWk": 0.4,
+    "Dsd": 0.3,
+    "Dwa": 0.2,
+    "Cfa": 0.1
+   },
+   "bbox": [
+    -179.75,
+    41.25,
+    179.75,
+    81.75
+   ],
+   "map_bbox": [
+    20.25,
+    41.25,
+    189.75,
+    81.75
+   ]
+  },
+  "RW": {
+   "iso2": "RW",
+   "method": "area",
+   "weight": 9.9937,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    29.25,
+    -2.75,
+    30.75,
+    -1.25
+   ],
+   "map_bbox": [
+    29.25,
+    -2.75,
+    30.75,
+    -1.25
+   ]
+  },
+  "SA": {
+   "iso2": "SA",
+   "method": "area",
+   "weight": 622.0384,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    34.75,
+    16.75,
+    55.25,
+    31.75
+   ],
+   "map_bbox": [
+    34.75,
+    16.75,
+    55.25,
+    31.75
+   ]
+  },
+  "SB": {
+   "iso2": "SB",
+   "method": "area",
+   "weight": 9.882,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    156.75,
+    -10.75,
+    162.25,
+    -7.25
+   ],
+   "map_bbox": [
+    156.75,
+    -10.75,
+    162.25,
+    -7.25
+   ]
+  },
+  "SD": {
+   "iso2": "SD",
+   "method": "area",
+   "weight": 603.6258,
+   "regions": {
+    "hot-desert": 74.4,
+    "hot-semi-arid": 22.5,
+    "tropical-savanna": 3.1
+   },
+   "koppen": {
+    "BWh": 74.4,
+    "BSh": 22.5,
+    "Aw": 3.1
+   },
+   "bbox": [
+    22.25,
+    8.75,
+    38.25,
+    21.75
+   ],
+   "map_bbox": [
+    22.25,
+    8.75,
+    38.25,
+    21.75
+   ]
+  },
+  "SE": {
+   "iso2": "SE",
+   "method": "area",
+   "weight": 141.6764,
+   "regions": {
+    "subarctic": 65.5,
+    "humid-continental": 31.2,
+    "tundra-polar": 3.3
+   },
+   "koppen": {
+    "Dfc": 65.5,
+    "Dfb": 31.2,
+    "ET": 3.3
+   },
+   "bbox": [
+    11.25,
+    55.75,
+    23.75,
+    68.75
+   ],
+   "map_bbox": [
+    11.25,
+    55.75,
+    23.75,
+    68.75
+   ]
+  },
+  "SI": {
+   "iso2": "SI",
+   "method": "area",
+   "weight": 6.9339,
+   "regions": {
+    "humid-continental": 89.9,
+    "humid-subtropical": 10.1
+   },
+   "koppen": {
+    "Dfb": 89.9,
+    "Cfa": 10.1
+   },
+   "bbox": [
+    13.75,
+    45.75,
+    16.25,
+    46.75
+   ],
+   "map_bbox": [
+    13.75,
+    45.75,
+    16.25,
+    46.75
+   ]
+  },
+  "SK": {
+   "iso2": "SK",
+   "method": "area",
+   "weight": 16.4702,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    17.25,
+    48.25,
+    22.25,
+    49.25
+   ],
+   "map_bbox": [
+    17.25,
+    48.25,
+    22.25,
+    49.25
+   ]
+  },
+  "SL": {
+   "iso2": "SL",
+   "method": "area",
+   "weight": 23.7292,
+   "regions": {
+    "tropical-monsoon": 95.8,
+    "tropical-savanna": 4.2
+   },
+   "koppen": {
+    "Am": 95.8,
+    "Aw": 4.2
+   },
+   "bbox": [
+    -12.75,
+    7.25,
+    -10.75,
+    9.75
+   ],
+   "map_bbox": [
+    -12.75,
+    7.25,
+    -10.75,
+    9.75
+   ]
+  },
+  "SN": {
+   "iso2": "SN",
+   "method": "area",
+   "weight": 64.9096,
+   "regions": {
+    "hot-semi-arid": 55.2,
+    "tropical-savanna": 28.5,
+    "hot-desert": 16.3
+   },
+   "koppen": {
+    "BSh": 55.2,
+    "Aw": 28.5,
+    "BWh": 16.3
+   },
+   "bbox": [
+    -17.25,
+    12.75,
+    -11.75,
+    16.25
+   ],
+   "map_bbox": [
+    -17.25,
+    12.75,
+    -11.75,
+    16.25
+   ]
+  },
+  "SO": {
+   "iso2": "SO",
+   "method": "area",
+   "weight": 153.2368,
+   "regions": {
+    "hot-desert": 70.7,
+    "hot-semi-arid": 26.7,
+    "tropical-savanna": 2.6
+   },
+   "koppen": {
+    "BWh": 70.7,
+    "BSh": 26.7,
+    "Aw": 2.6
+   },
+   "bbox": [
+    41.25,
+    -1.25,
+    50.75,
+    11.75
+   ],
+   "map_bbox": [
+    41.25,
+    -1.25,
+    50.75,
+    11.75
+   ]
+  },
+  "SR": {
+   "iso2": "SR",
+   "method": "area",
+   "weight": 48.8645,
+   "regions": {
+    "tropical-rainforest": 53.0,
+    "tropical-monsoon": 47.0
+   },
+   "koppen": {
+    "Af": 53.0,
+    "Am": 47.0
+   },
+   "bbox": [
+    -57.75,
+    2.25,
+    -54.25,
+    5.75
+   ],
+   "map_bbox": [
+    -57.75,
+    2.25,
+    -54.25,
+    5.75
+   ]
+  },
+  "SS": {
+   "iso2": "SS",
+   "method": "area",
+   "weight": 199.2705,
+   "regions": {
+    "tropical-savanna": 94.1,
+    "hot-semi-arid": 5.9
+   },
+   "koppen": {
+    "Aw": 94.1,
+    "BSh": 5.9
+   },
+   "bbox": [
+    24.25,
+    3.75,
+    34.75,
+    11.75
+   ],
+   "map_bbox": [
+    24.25,
+    3.75,
+    34.75,
+    11.75
+   ]
+  },
+  "SV": {
+   "iso2": "SV",
+   "method": "area",
+   "weight": 6.7993,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -89.75,
+    13.25,
+    -87.75,
+    14.25
+   ],
+   "map_bbox": [
+    -89.75,
+    13.25,
+    -87.75,
+    14.25
+   ]
+  },
+  "SY": {
+   "iso2": "SY",
+   "method": "area",
+   "weight": 59.7182,
+   "regions": {
+    "hot-desert": 28.9,
+    "mediterranean": 23.0,
+    "hot-semi-arid": 19.0,
+    "cold-semi-arid": 15.2,
+    "cold-desert": 13.9
+   },
+   "koppen": {
+    "BWh": 28.9,
+    "Csa": 23.0,
+    "BSh": 19.0,
+    "BSk": 15.2,
+    "BWk": 13.9
+   },
+   "bbox": [
+    36.25,
+    32.75,
+    42.25,
+    37.25
+   ],
+   "map_bbox": [
+    36.25,
+    32.75,
+    42.25,
+    37.25
+   ]
+  },
+  "SZ": {
+   "iso2": "SZ",
+   "method": "area",
+   "weight": 4.4687,
+   "regions": {
+    "humid-subtropical": 40.1,
+    "hot-semi-arid": 39.9,
+    "subtropical-highland": 20.1
+   },
+   "koppen": {
+    "Cwa": 40.1,
+    "BSh": 39.9,
+    "Cwb": 20.1
+   },
+   "bbox": [
+    31.25,
+    -27.25,
+    31.75,
+    -26.25
+   ],
+   "map_bbox": [
+    31.25,
+    -27.25,
+    31.75,
+    -26.25
+   ]
+  },
+  "TD": {
+   "iso2": "TD",
+   "method": "area",
+   "weight": 414.6327,
+   "regions": {
+    "hot-desert": 67.6,
+    "hot-semi-arid": 16.7,
+    "tropical-savanna": 15.2,
+    "cold-desert": 0.5
+   },
+   "koppen": {
+    "BWh": 67.6,
+    "BSh": 16.7,
+    "Aw": 15.2,
+    "BWk": 0.5
+   },
+   "bbox": [
+    13.75,
+    7.75,
+    23.75,
+    23.25
+   ],
+   "map_bbox": [
+    13.75,
+    7.75,
+    23.75,
+    23.25
+   ]
+  },
+  "TF": {
+   "iso2": "TF",
+   "method": "area",
+   "weight": 1.3055,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "ET": 100.0
+   },
+   "bbox": [
+    69.25,
+    -49.25,
+    70.25,
+    -49.25
+   ],
+   "map_bbox": [
+    69.25,
+    -49.25,
+    70.25,
+    -49.25
+   ]
+  },
+  "TG": {
+   "iso2": "TG",
+   "method": "area",
+   "weight": 17.796,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    0.25,
+    6.25,
+    1.25,
+    10.75
+   ],
+   "map_bbox": [
+    0.25,
+    6.25,
+    1.25,
+    10.75
+   ]
+  },
+  "TH": {
+   "iso2": "TH",
+   "method": "area",
+   "weight": 166.7096,
+   "regions": {
+    "tropical-savanna": 83.5,
+    "tropical-monsoon": 15.3,
+    "tropical-rainforest": 1.2
+   },
+   "koppen": {
+    "Aw": 83.5,
+    "Am": 15.3,
+    "Af": 1.2
+   },
+   "bbox": [
+    97.75,
+    6.25,
+    105.25,
+    20.25
+   ],
+   "map_bbox": [
+    97.75,
+    6.25,
+    105.25,
+    20.25
+   ]
+  },
+  "TJ": {
+   "iso2": "TJ",
+   "method": "area",
+   "weight": 44.6172,
+   "regions": {
+    "tundra-polar": 40.5,
+    "cold-semi-arid": 26.4,
+    "humid-continental": 14.0,
+    "subarctic": 12.2,
+    "cold-desert": 7.0
+   },
+   "koppen": {
+    "ET": 40.5,
+    "BSk": 26.4,
+    "Dsb": 12.2,
+    "Dsc": 12.2,
+    "BWk": 7.0,
+    "Dsa": 1.8
+   },
+   "bbox": [
+    67.75,
+    36.75,
+    74.75,
+    40.75
+   ],
+   "map_bbox": [
+    67.75,
+    36.75,
+    74.75,
+    40.75
+   ]
+  },
+  "TL": {
+   "iso2": "TL",
+   "method": "area",
+   "weight": 5.9274,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    124.25,
+    -9.25,
+    126.75,
+    -8.75
+   ],
+   "map_bbox": [
+    124.25,
+    -9.25,
+    126.75,
+    -8.75
+   ]
+  },
+  "TM": {
+   "iso2": "TM",
+   "method": "area",
+   "weight": 151.1802,
+   "regions": {
+    "cold-desert": 78.4,
+    "cold-semi-arid": 19.5,
+    "mediterranean": 1.6,
+    "hot-semi-arid": 0.5
+   },
+   "koppen": {
+    "BWk": 78.4,
+    "BSk": 19.5,
+    "Csa": 1.6,
+    "BSh": 0.5
+   },
+   "bbox": [
+    52.75,
+    35.75,
+    66.25,
+    42.25
+   ],
+   "map_bbox": [
+    52.75,
+    35.75,
+    66.25,
+    42.25
+   ]
+  },
+  "TN": {
+   "iso2": "TN",
+   "method": "area",
+   "weight": 50.4224,
+   "regions": {
+    "hot-desert": 69.5,
+    "cold-semi-arid": 11.2,
+    "mediterranean": 11.1,
+    "hot-semi-arid": 6.5,
+    "cold-desert": 1.6
+   },
+   "koppen": {
+    "BWh": 69.5,
+    "BSk": 11.2,
+    "Csa": 11.1,
+    "BSh": 6.5,
+    "BWk": 1.6
+   },
+   "bbox": [
+    7.75,
+    30.75,
+    11.25,
+    37.25
+   ],
+   "map_bbox": [
+    7.75,
+    30.75,
+    11.25,
+    37.25
+   ]
+  },
+  "TR": {
+   "iso2": "TR",
+   "method": "area",
+   "weight": 252.3462,
+   "regions": {
+    "humid-continental": 38.9,
+    "mediterranean": 33.3,
+    "cold-semi-arid": 24.9,
+    "temperate-oceanic": 2.4,
+    "humid-subtropical": 0.6
+   },
+   "koppen": {
+    "Csa": 31.8,
+    "BSk": 24.9,
+    "Dsb": 24.3,
+    "Dfb": 8.4,
+    "Dsa": 6.2,
+    "Cfb": 2.4,
+    "Csb": 1.5,
+    "Cfa": 0.6
+   },
+   "bbox": [
+    26.25,
+    36.25,
+    44.75,
+    41.75
+   ],
+   "map_bbox": [
+    26.25,
+    36.25,
+    44.75,
+    41.75
+   ]
+  },
+  "TT": {
+   "iso2": "TT",
+   "method": "area",
+   "weight": 1.9665,
+   "regions": {
+    "tropical-rainforest": 50.0,
+    "tropical-monsoon": 50.0
+   },
+   "koppen": {
+    "Af": 50.0,
+    "Am": 50.0
+   },
+   "bbox": [
+    -61.25,
+    10.25,
+    -61.25,
+    10.75
+   ],
+   "map_bbox": [
+    -61.25,
+    10.25,
+    -61.25,
+    10.75
+   ]
+  },
+  "TW": {
+   "iso2": "TW",
+   "method": "area",
+   "weight": 11.9121,
+   "regions": {
+    "humid-subtropical": 61.4,
+    "temperate-oceanic": 15.3,
+    "tropical-monsoon": 7.8,
+    "tropical-savanna": 7.7,
+    "subtropical-highland": 7.7
+   },
+   "koppen": {
+    "Cwa": 38.4,
+    "Cfa": 23.0,
+    "Cfb": 15.3,
+    "Am": 7.8,
+    "Aw": 7.7,
+    "Cwb": 7.7
+   },
+   "bbox": [
+    120.25,
+    22.25,
+    121.75,
+    24.75
+   ],
+   "map_bbox": [
+    120.25,
+    22.25,
+    121.75,
+    24.75
+   ]
+  },
+  "TZ": {
+   "iso2": "TZ",
+   "method": "area",
+   "weight": 303.8376,
+   "regions": {
+    "tropical-savanna": 70.2,
+    "hot-semi-arid": 16.4,
+    "subtropical-highland": 9.1,
+    "tropical-monsoon": 2.3,
+    "humid-subtropical": 1.3,
+    "mediterranean": 0.3,
+    "temperate-oceanic": 0.3
+   },
+   "koppen": {
+    "Aw": 70.2,
+    "BSh": 16.4,
+    "Cwb": 9.1,
+    "Am": 2.3,
+    "Cwa": 1.3,
+    "Csb": 0.3,
+    "Cfb": 0.3
+   },
+   "bbox": [
+    29.75,
+    -11.25,
+    39.75,
+    -1.25
+   ],
+   "map_bbox": [
+    29.75,
+    -11.25,
+    39.75,
+    -1.25
+   ]
+  },
+  "UA": {
+   "iso2": "UA",
+   "method": "area",
+   "weight": 188.9895,
+   "regions": {
+    "humid-continental": 86.6,
+    "cold-semi-arid": 12.7,
+    "subarctic": 0.7
+   },
+   "koppen": {
+    "Dfb": 71.7,
+    "Dfa": 14.9,
+    "BSk": 12.7,
+    "Dfc": 0.7
+   },
+   "bbox": [
+    22.75,
+    45.25,
+    39.75,
+    52.25
+   ],
+   "map_bbox": [
+    22.75,
+    45.25,
+    39.75,
+    52.25
+   ]
+  },
+  "UG": {
+   "iso2": "UG",
+   "method": "area",
+   "weight": 80.9548,
+   "regions": {
+    "tropical-savanna": 74.1,
+    "tropical-monsoon": 13.6,
+    "tropical-rainforest": 9.9,
+    "mediterranean": 1.2,
+    "temperate-oceanic": 1.2
+   },
+   "koppen": {
+    "Aw": 74.1,
+    "Am": 13.6,
+    "Af": 9.9,
+    "Csb": 1.2,
+    "Cfb": 1.2
+   },
+   "bbox": [
+    29.75,
+    -1.25,
+    34.75,
+    3.75
+   ],
+   "map_bbox": [
+    29.75,
+    -1.25,
+    34.75,
+    3.75
+   ]
+  },
+  "US": {
+   "iso2": "US",
+   "method": "area",
+   "weight": 3048.4577,
+   "regions": {
+    "humid-continental": 28.8,
+    "cold-semi-arid": 20.9,
+    "humid-subtropical": 19.5,
+    "subarctic": 14.8,
+    "cold-desert": 4.8,
+    "tundra-polar": 3.7,
+    "mediterranean": 3.2,
+    "hot-desert": 2.2,
+    "hot-semi-arid": 1.6,
+    "temperate-oceanic": 0.4,
+    "tropical-savanna": 0.2,
+    "tropical-monsoon": 0.1
+   },
+   "koppen": {
+    "BSk": 20.9,
+    "Cfa": 19.5,
+    "Dfa": 15.3,
+    "Dfc": 12.1,
+    "Dfb": 10.5,
+    "BWk": 4.8,
+    "ET": 3.7,
+    "Dsc": 2.5,
+    "Dsb": 2.2,
+    "BWh": 2.2,
+    "Csb": 2.0,
+    "BSh": 1.6,
+    "Csa": 1.2,
+    "Dwb": 0.5,
+    "Cfb": 0.4,
+    "Dwa": 0.3,
+    "Aw": 0.2,
+    "Dwc": 0.1,
+    "Am": 0.1
+   },
+   "bbox": [
+    -177.25,
+    19.25,
+    -67.25,
+    71.25
+   ],
+   "map_bbox": [
+    -177.25,
+    19.25,
+    -67.25,
+    71.25
+   ]
+  },
+  "UY": {
+   "iso2": "UY",
+   "method": "area",
+   "weight": 58.8088,
+   "regions": {
+    "humid-subtropical": 100.0
+   },
+   "koppen": {
+    "Cfa": 100.0
+   },
+   "bbox": [
+    -58.25,
+    -34.75,
+    -53.25,
+    -30.25
+   ],
+   "map_bbox": [
+    -58.25,
+    -34.75,
+    -53.25,
+    -30.25
+   ]
+  },
+  "UZ": {
+   "iso2": "UZ",
+   "method": "area",
+   "weight": 144.7913,
+   "regions": {
+    "cold-desert": 72.9,
+    "cold-semi-arid": 20.3,
+    "mediterranean": 3.2,
+    "humid-continental": 2.6,
+    "subarctic": 0.5,
+    "hot-desert": 0.5
+   },
+   "koppen": {
+    "BWk": 72.9,
+    "BSk": 20.3,
+    "Csa": 3.2,
+    "Dsb": 2.1,
+    "Dsa": 0.5,
+    "Dsc": 0.5,
+    "BWh": 0.5
+   },
+   "bbox": [
+    56.25,
+    37.25,
+    72.75,
+    45.25
+   ],
+   "map_bbox": [
+    56.25,
+    37.25,
+    72.75,
+    45.25
+   ]
+  },
+  "VC": {
+   "iso2": "VC",
+   "method": "area",
+   "weight": 0.9734,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -61.25,
+    13.25,
+    -61.25,
+    13.25
+   ],
+   "map_bbox": [
+    -61.25,
+    13.25,
+    -61.25,
+    13.25
+   ]
+  },
+  "VE": {
+   "iso2": "VE",
+   "method": "area",
+   "weight": 289.5131,
+   "regions": {
+    "tropical-savanna": 48.8,
+    "tropical-rainforest": 25.5,
+    "tropical-monsoon": 22.3,
+    "hot-semi-arid": 2.0,
+    "temperate-oceanic": 1.0,
+    "tundra-polar": 0.3
+   },
+   "koppen": {
+    "Aw": 48.8,
+    "Af": 25.5,
+    "Am": 22.3,
+    "BSh": 2.0,
+    "Cfb": 1.0,
+    "ET": 0.3
+   },
+   "bbox": [
+    -73.25,
+    1.25,
+    -60.25,
+    11.25
+   ],
+   "map_bbox": [
+    -73.25,
+    1.25,
+    -60.25,
+    11.25
+   ]
+  },
+  "VI": {
+   "iso2": "VI",
+   "method": "area",
+   "weight": 0.9524,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -64.75,
+    17.75,
+    -64.75,
+    17.75
+   ],
+   "map_bbox": [
+    -64.75,
+    17.75,
+    -64.75,
+    17.75
+   ]
+  },
+  "VN": {
+   "iso2": "VN",
+   "method": "area",
+   "weight": 107.8541,
+   "regions": {
+    "humid-subtropical": 43.2,
+    "tropical-savanna": 37.0,
+    "tropical-monsoon": 18.8,
+    "tropical-rainforest": 0.9
+   },
+   "koppen": {
+    "Cwa": 43.2,
+    "Aw": 37.0,
+    "Am": 18.8,
+    "Af": 0.9
+   },
+   "bbox": [
+    102.25,
+    9.25,
+    109.25,
+    23.25
+   ],
+   "map_bbox": [
+    102.25,
+    9.25,
+    109.25,
+    23.25
+   ]
+  },
+  "VU": {
+   "iso2": "VU",
+   "method": "area",
+   "weight": 2.8824,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    166.75,
+    -16.75,
+    168.25,
+    -15.25
+   ],
+   "map_bbox": [
+    166.75,
+    -16.75,
+    168.25,
+    -15.25
+   ]
+  },
+  "WS": {
+   "iso2": "WS",
+   "method": "area",
+   "weight": 0.9713,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -172.25,
+    -13.75,
+    -172.25,
+    -13.75
+   ],
+   "map_bbox": [
+    -172.25,
+    -13.75,
+    -172.25,
+    -13.75
+   ]
+  },
+  "XK": {
+   "iso2": "XK",
+   "method": "area",
+   "weight": 4.4118,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    20.25,
+    42.25,
+    21.25,
+    43.25
+   ],
+   "map_bbox": [
+    20.25,
+    42.25,
+    21.25,
+    43.25
+   ]
+  },
+  "YE": {
+   "iso2": "YE",
+   "method": "area",
+   "weight": 148.0281,
+   "regions": {
+    "hot-desert": 98.0,
+    "cold-desert": 0.7,
+    "cold-semi-arid": 0.7,
+    "hot-semi-arid": 0.7
+   },
+   "koppen": {
+    "BWh": 98.0,
+    "BWk": 0.7,
+    "BSk": 0.7,
+    "BSh": 0.7
+   },
+   "bbox": [
+    42.75,
+    12.75,
+    52.75,
+    18.75
+   ],
+   "map_bbox": [
+    42.75,
+    12.75,
+    52.75,
+    18.75
+   ]
+  },
+  "ZA": {
+   "iso2": "ZA",
+   "method": "area",
+   "weight": 390.4522,
+   "regions": {
+    "cold-semi-arid": 23.6,
+    "cold-desert": 16.6,
+    "subtropical-highland": 16.4,
+    "hot-semi-arid": 14.6,
+    "hot-desert": 13.5,
+    "humid-subtropical": 8.2,
+    "temperate-oceanic": 5.2,
+    "mediterranean": 1.7,
+    "tropical-savanna": 0.2
+   },
+   "koppen": {
+    "BSk": 23.6,
+    "BWk": 16.6,
+    "Cwb": 16.4,
+    "BSh": 14.6,
+    "BWh": 13.5,
+    "Cfb": 5.2,
+    "Cwa": 5.1,
+    "Cfa": 3.1,
+    "Csa": 0.9,
+    "Csb": 0.9,
+    "Aw": 0.2
+   },
+   "bbox": [
+    16.75,
+    -34.75,
+    32.75,
+    -22.25
+   ],
+   "map_bbox": [
+    16.75,
+    -34.75,
+    32.75,
+    -22.25
+   ]
+  },
+  "ZM": {
+   "iso2": "ZM",
+   "method": "area",
+   "weight": 241.9627,
+   "regions": {
+    "humid-subtropical": 72.6,
+    "tropical-savanna": 17.4,
+    "subtropical-highland": 6.1,
+    "hot-semi-arid": 3.9
+   },
+   "koppen": {
+    "Cwa": 72.6,
+    "Aw": 17.4,
+    "Cwb": 6.1,
+    "BSh": 3.9
+   },
+   "bbox": [
+    22.25,
+    -17.75,
+    33.25,
+    -8.25
+   ],
+   "map_bbox": [
+    22.25,
+    -17.75,
+    33.25,
+    -8.25
+   ]
+  },
+  "ZW": {
+   "iso2": "ZW",
+   "method": "area",
+   "weight": 127.5989,
+   "regions": {
+    "hot-semi-arid": 56.1,
+    "humid-subtropical": 23.9,
+    "subtropical-highland": 19.3,
+    "tropical-savanna": 0.7
+   },
+   "koppen": {
+    "BSh": 56.1,
+    "Cwa": 23.9,
+    "Cwb": 19.3,
+    "Aw": 0.7
+   },
+   "bbox": [
+    25.75,
+    -22.25,
+    32.75,
+    -15.75
+   ],
+   "map_bbox": [
+    25.75,
+    -22.25,
+    32.75,
+    -15.75
+   ]
+  },
+  "AD": {
+   "iso2": "AD",
+   "method": "cities",
+   "sample_count": 2,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    1.521,
+    42.507,
+    1.534,
+    42.508
+   ],
+   "map_bbox": [
+    0.771,
+    42.007,
+    2.284,
+    43.008
+   ]
+  },
+  "AG": {
+   "iso2": "AG",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -61.843,
+    17.121,
+    -61.843,
+    17.121
+   ],
+   "map_bbox": [
+    -62.593,
+    16.621,
+    -61.093,
+    17.621
+   ]
+  },
+  "AI": {
+   "iso2": "AI",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -63.058,
+    18.217,
+    -63.058,
+    18.217
+   ],
+   "map_bbox": [
+    -63.808,
+    17.717,
+    -62.308,
+    18.717
+   ]
+  },
+  "BB": {
+   "iso2": "BB",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -59.62,
+    13.107,
+    -59.62,
+    13.107
+   ],
+   "map_bbox": [
+    -60.37,
+    12.607,
+    -58.87,
+    13.607
+   ]
+  },
+  "BH": {
+   "iso2": "BH",
+   "method": "cities",
+   "sample_count": 8,
+   "regions": {
+    "hot-desert": 100.0
+   },
+   "koppen": {
+    "BWh": 100.0
+   },
+   "bbox": [
+    50.504,
+    26.069,
+    50.621,
+    26.257
+   ],
+   "map_bbox": [
+    49.754,
+    25.569,
+    51.371,
+    26.757
+   ]
+  },
+  "BQ": {
+   "iso2": "BQ",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "hot-semi-arid": 100.0
+   },
+   "koppen": {
+    "BSh": 100.0
+   },
+   "bbox": [
+    -68.267,
+    12.15,
+    -68.267,
+    12.15
+   ],
+   "map_bbox": [
+    -69.017,
+    11.65,
+    -67.517,
+    12.65
+   ]
+  },
+  "CW": {
+   "iso2": "CW",
+   "method": "cities",
+   "sample_count": 2,
+   "regions": {
+    "hot-semi-arid": 100.0
+   },
+   "koppen": {
+    "BSh": 100.0
+   },
+   "bbox": [
+    -68.886,
+    12.093,
+    -68.831,
+    12.122
+   ],
+   "map_bbox": [
+    -69.636,
+    11.593,
+    -68.081,
+    12.622
+   ]
+  },
+  "DM": {
+   "iso2": "DM",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -61.388,
+    15.302,
+    -61.388,
+    15.302
+   ],
+   "map_bbox": [
+    -62.138,
+    14.802,
+    -60.638,
+    15.802
+   ]
+  },
+  "FM": {
+   "iso2": "FM",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    158.161,
+    6.925,
+    158.161,
+    6.925
+   ],
+   "map_bbox": [
+    157.411,
+    6.425,
+    158.911,
+    7.425
+   ]
+  },
+  "GD": {
+   "iso2": "GD",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -61.752,
+    12.053,
+    -61.752,
+    12.053
+   ],
+   "map_bbox": [
+    -62.502,
+    11.553,
+    -61.002,
+    12.553
+   ]
+  },
+  "GF": {
+   "iso2": "GF",
+   "method": "cities",
+   "sample_count": 5,
+   "regions": {
+    "tropical-rainforest": 80.0,
+    "tropical-monsoon": 20.0
+   },
+   "koppen": {
+    "Af": 80.0,
+    "Am": 20.0
+   },
+   "bbox": [
+    -54.029,
+    4.849,
+    -52.267,
+    5.502
+   ],
+   "map_bbox": [
+    -54.779,
+    4.349,
+    -51.517,
+    6.002
+   ]
+  },
+  "GI": {
+   "iso2": "GI",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "mediterranean": 100.0
+   },
+   "koppen": {
+    "Csa": 100.0
+   },
+   "bbox": [
+    -5.353,
+    36.145,
+    -5.353,
+    36.145
+   ],
+   "map_bbox": [
+    -6.103,
+    35.645,
+    -4.603,
+    36.645
+   ]
+  },
+  "GP": {
+   "iso2": "GP",
+   "method": "cities",
+   "sample_count": 8,
+   "regions": {
+    "tropical-rainforest": 62.5,
+    "tropical-monsoon": 37.5
+   },
+   "koppen": {
+    "Af": 62.5,
+    "Am": 37.5
+   },
+   "bbox": [
+    -61.697,
+    16.045,
+    -61.347,
+    16.333
+   ],
+   "map_bbox": [
+    -62.447,
+    15.545,
+    -60.597,
+    16.833
+   ]
+  },
+  "GU": {
+   "iso2": "GU",
+   "method": "cities",
+   "sample_count": 5,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    144.749,
+    13.448,
+    144.889,
+    13.536
+   ],
+   "map_bbox": [
+    143.999,
+    12.948,
+    145.639,
+    14.036
+   ]
+  },
+  "HK": {
+   "iso2": "HK",
+   "method": "cities",
+   "sample_count": 8,
+   "regions": {
+    "humid-subtropical": 100.0
+   },
+   "koppen": {
+    "Cwa": 100.0
+   },
+   "bbox": [
+    113.972,
+    22.263,
+    114.184,
+    22.424
+   ],
+   "map_bbox": [
+    113.222,
+    21.763,
+    114.934,
+    22.924
+   ]
+  },
+  "IM": {
+   "iso2": "IM",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    -4.483,
+    54.15,
+    -4.483,
+    54.15
+   ],
+   "map_bbox": [
+    -5.233,
+    53.65,
+    -3.733,
+    54.65
+   ]
+  },
+  "JE": {
+   "iso2": "JE",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    -2.105,
+    49.188,
+    -2.105,
+    49.188
+   ],
+   "map_bbox": [
+    -2.855,
+    48.688,
+    -1.355,
+    49.688
+   ]
+  },
+  "KN": {
+   "iso2": "KN",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -62.725,
+    17.296,
+    -62.725,
+    17.296
+   ],
+   "map_bbox": [
+    -63.475,
+    16.796,
+    -61.975,
+    17.796
+   ]
+  },
+  "KY": {
+   "iso2": "KY",
+   "method": "cities",
+   "sample_count": 2,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -81.393,
+    19.287,
+    -81.374,
+    19.382
+   ],
+   "map_bbox": [
+    -82.143,
+    18.787,
+    -80.624,
+    19.882
+   ]
+  },
+  "LC": {
+   "iso2": "LC",
+   "method": "cities",
+   "sample_count": 2,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -61.006,
+    13.996,
+    -60.95,
+    14.067
+   ],
+   "map_bbox": [
+    -61.756,
+    13.496,
+    -60.2,
+    14.567
+   ]
+  },
+  "LI": {
+   "iso2": "LI",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "humid-continental": 100.0
+   },
+   "koppen": {
+    "Dfb": 100.0
+   },
+   "bbox": [
+    9.522,
+    47.142,
+    9.522,
+    47.142
+   ],
+   "map_bbox": [
+    8.772,
+    46.642,
+    10.272,
+    47.642
+   ]
+  },
+  "MC": {
+   "iso2": "MC",
+   "method": "cities",
+   "sample_count": 2,
+   "regions": {
+    "mediterranean": 100.0
+   },
+   "koppen": {
+    "Csb": 100.0
+   },
+   "bbox": [
+    7.421,
+    43.737,
+    7.427,
+    43.74
+   ],
+   "map_bbox": [
+    6.671,
+    43.237,
+    8.177,
+    44.24
+   ]
+  },
+  "MF": {
+   "iso2": "MF",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -63.083,
+    18.068,
+    -63.083,
+    18.068
+   ],
+   "map_bbox": [
+    -63.833,
+    17.568,
+    -62.333,
+    18.568
+   ]
+  },
+  "MO": {
+   "iso2": "MO",
+   "method": "cities",
+   "sample_count": 4,
+   "regions": {
+    "humid-subtropical": 100.0
+   },
+   "koppen": {
+    "Cwa": 100.0
+   },
+   "bbox": [
+    113.546,
+    22.118,
+    113.557,
+    22.201
+   ],
+   "map_bbox": [
+    112.796,
+    21.618,
+    114.307,
+    22.701
+   ]
+  },
+  "MP": {
+   "iso2": "MP",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    145.755,
+    15.212,
+    145.755,
+    15.212
+   ],
+   "map_bbox": [
+    145.005,
+    14.712,
+    146.505,
+    15.712
+   ]
+  },
+  "MQ": {
+   "iso2": "MQ",
+   "method": "cities",
+   "sample_count": 8,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -61.074,
+    14.575,
+    -60.903,
+    14.784
+   ],
+   "map_bbox": [
+    -61.824,
+    14.075,
+    -60.153,
+    15.284
+   ]
+  },
+  "MT": {
+   "iso2": "MT",
+   "method": "cities",
+   "sample_count": 4,
+   "regions": {
+    "mediterranean": 100.0
+   },
+   "koppen": {
+    "Csa": 100.0
+   },
+   "bbox": [
+    14.416,
+    35.876,
+    14.472,
+    35.951
+   ],
+   "map_bbox": [
+    13.666,
+    35.376,
+    15.222,
+    36.451
+   ]
+  },
+  "NU": {
+   "iso2": "NU",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -169.92,
+    -19.053,
+    -169.92,
+    -19.053
+   ],
+   "map_bbox": [
+    -170.67,
+    -19.553,
+    -169.17,
+    -18.553
+   ]
+  },
+  "PM": {
+   "iso2": "PM",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "subarctic": 100.0
+   },
+   "koppen": {
+    "Dfc": 100.0
+   },
+   "bbox": [
+    -56.177,
+    46.779,
+    -56.177,
+    46.779
+   ],
+   "map_bbox": [
+    -56.927,
+    46.279,
+    -55.427,
+    47.279
+   ]
+  },
+  "PW": {
+   "iso2": "PW",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    134.624,
+    7.501,
+    134.624,
+    7.501
+   ],
+   "map_bbox": [
+    133.874,
+    7.001,
+    135.374,
+    8.001
+   ]
+  },
+  "RE": {
+   "iso2": "RE",
+   "method": "cities",
+   "sample_count": 8,
+   "regions": {
+    "temperate-oceanic": 75.0,
+    "tropical-monsoon": 25.0
+   },
+   "koppen": {
+    "Cfb": 75.0,
+    "Am": 25.0
+   },
+   "bbox": [
+    55.271,
+    -21.378,
+    55.715,
+    -20.882
+   ],
+   "map_bbox": [
+    54.521,
+    -21.878,
+    56.465,
+    -20.382
+   ]
+  },
+  "SG": {
+   "iso2": "SG",
+   "method": "cities",
+   "sample_count": 8,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    103.723,
+    1.29,
+    103.95,
+    1.438
+   ],
+   "map_bbox": [
+    102.973,
+    0.79,
+    104.7,
+    1.938
+   ]
+  },
+  "SJ": {
+   "iso2": "SJ",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tundra-polar": 100.0
+   },
+   "koppen": {
+    "ET": 100.0
+   },
+   "bbox": [
+    15.647,
+    78.223,
+    15.647,
+    78.223
+   ],
+   "map_bbox": [
+    14.897,
+    77.723,
+    16.397,
+    78.723
+   ]
+  },
+  "SM": {
+   "iso2": "SM",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "temperate-oceanic": 100.0
+   },
+   "koppen": {
+    "Cfb": 100.0
+   },
+   "bbox": [
+    12.446,
+    43.937,
+    12.446,
+    43.937
+   ],
+   "map_bbox": [
+    11.696,
+    43.437,
+    13.196,
+    44.437
+   ]
+  },
+  "ST": {
+   "iso2": "ST",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    6.73,
+    0.338,
+    6.73,
+    0.338
+   ],
+   "map_bbox": [
+    5.98,
+    -0.162,
+    7.48,
+    0.838
+   ]
+  },
+  "SX": {
+   "iso2": "SX",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -63.046,
+    18.026,
+    -63.046,
+    18.026
+   ],
+   "map_bbox": [
+    -63.796,
+    17.526,
+    -62.296,
+    18.526
+   ]
+  },
+  "TC": {
+   "iso2": "TC",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "hot-semi-arid": 100.0
+   },
+   "koppen": {
+    "BSh": 100.0
+   },
+   "bbox": [
+    -72.252,
+    21.783,
+    -72.252,
+    21.783
+   ],
+   "map_bbox": [
+    -73.002,
+    21.283,
+    -71.502,
+    22.283
+   ]
+  },
+  "TO": {
+   "iso2": "TO",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-rainforest": 100.0
+   },
+   "koppen": {
+    "Af": 100.0
+   },
+   "bbox": [
+    -175.201,
+    -21.137,
+    -175.201,
+    -21.137
+   ],
+   "map_bbox": [
+    -175.951,
+    -21.637,
+    -174.451,
+    -20.637
+   ]
+  },
+  "VA": {
+   "iso2": "VA",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "mediterranean": 100.0
+   },
+   "koppen": {
+    "Csa": 100.0
+   },
+   "bbox": [
+    12.454,
+    41.903,
+    12.454,
+    41.903
+   ],
+   "map_bbox": [
+    11.704,
+    41.403,
+    13.204,
+    42.403
+   ]
+  },
+  "VG": {
+   "iso2": "VG",
+   "method": "cities",
+   "sample_count": 1,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    -64.621,
+    18.427,
+    -64.621,
+    18.427
+   ],
+   "map_bbox": [
+    -65.371,
+    17.927,
+    -63.871,
+    18.927
+   ]
+  },
+  "YT": {
+   "iso2": "YT",
+   "method": "cities",
+   "sample_count": 6,
+   "regions": {
+    "tropical-savanna": 100.0
+   },
+   "koppen": {
+    "Aw": 100.0
+   },
+   "bbox": [
+    45.204,
+    -12.786,
+    45.282,
+    -12.734
+   ],
+   "map_bbox": [
+    44.454,
+    -13.286,
+    46.032,
+    -12.234
+   ]
+  }
+ }
+}

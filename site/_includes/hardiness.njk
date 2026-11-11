@@ -1,7 +1,7 @@
 {# expects `hz` ({min, max, sources}) and `annual` (bool) #}
 {% if hz %}<section class="side-card hardiness">
   <h3>Winter hardiness</h3>
-  <p><strong>USDA zones {{ hz.min }}–{{ hz.max }}</strong>{% if annual %} <span class="small muted">(as a perennial; usually grown as an annual)</span>{% endif %}</p>
+  <p><strong>USDA zones <a href="{{ ("/zones/" + hz.min + "/") | url }}">{{ hz.min }}</a>–<a href="{{ ("/zones/" + hz.max + "/") | url }}">{{ hz.max }}</a></strong>{% if annual %} <span class="small muted">(as a perennial; usually grown as an annual)</span>{% endif %}</p>
   <div data-hardiness data-min="{{ hz.min }}" data-max="{{ hz.max }}" data-annual="{{ '1' if annual else '0' }}"><p class="small muted">Set your location on the home page to compare with your zone.</p></div>
-  <p class="credit">Source: {% for s in hz.sources %}<a href="{{ s.url }}">{{ s.publisher or s.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %} · <a href="{{ '/help/' | url }}#hardiness">how zones work</a></p>
+  <p class="credit">Source: {% for s in hz.sources %}<a href="{{ s.url }}">{{ s.publisher or s.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %} · <a href="{{ '/zones/' | url }}">zone pages</a> · <a href="{{ '/help/' | url }}#hardiness">how zones work</a></p>
 </section>{% endif %}

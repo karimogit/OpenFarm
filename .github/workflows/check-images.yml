@@ -1,0 +1,22 @@
+name: Check all image URLs
+
+# Full Commons URL check. Run by hand; it can take a long time and is rate-limited.
+# Pull requests check only new or changed image URLs (see validate.yml).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check every image URL (HEAD 200 / ranged GET)
+        run: npm run check:images
