@@ -107,7 +107,7 @@ async function initMap(figure) {
     const map = window.L.map(mount, { worldCopyJump: true, scrollWheelZoom: false, zoomControl: true });
     applyView(map, view);
     window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 10,
+      maxZoom: 12,
       attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
     attachClimateOverlay(map, BASE + "assets/koppen-mercator.png", {
@@ -121,7 +121,8 @@ async function initMap(figure) {
       }).addTo(map);
     }
     if (pin && Number.isFinite(+pin.lat) && Number.isFinite(+pin.lon)) {
-      window.L.marker([+pin.lat, +pin.lon]).addTo(map);
+      const marker = window.L.marker([+pin.lat, +pin.lon]).addTo(map);
+      if (pin.label) marker.bindTooltip(String(pin.label), { direction: "top", offset: [0, -8] });
     }
     applyView(map, view);
     const refit = () => { map.invalidateSize(); applyView(map, view); };

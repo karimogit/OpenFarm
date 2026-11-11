@@ -2,16 +2,21 @@
 import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel, resolvePlace, locationSearch, locationHref, nearestPlace, guideHref } from "./common.js";
 import { flagImg } from "./icons.js";
 import { attachClimateOverlay } from "./climate-overlay.js";
+import { CITY_ZOOM } from "./map-view.js";
 
 const map = L.map("map", { worldCopyJump: true, zoomControl: true }).setView([30, 10], 1);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12, attribution: "© OpenStreetMap contributors" }).addTo(map);
 // Climate overlay is off by default – the region name and colour are shown next to the marker instead.
 const overlay = attachClimateOverlay(map, BASE + "assets/koppen-mercator.png", { opacity: 0.6, attribution: "Köppen-Geiger: Beck et al. 2018 (CC BY 4.0)" });
 let marker = null;
+let lastView = null;
 const mobile = () => matchMedia("(max-width: 860px)").matches;
 const panel = document.getElementById("details-panel");
-function refitHomeMap() { map.invalidateSize(); }
-if (panel) panel.addEventListener("toggle", () => { if (panel.open) setTimeout(refitHomeMap, 0); });
+function refitHomeMap() {
+  map.invalidateSize();
+  if (lastView) map.setView(lastView.center, lastView.zoom);
+}
+if (panel) panel.addEventListener("toggle", () => { if (panel.open) setTimeout(refitHomeMap, 50); });
 window.addEventListener("resize", refitHomeMap);
 
 
@@ -49,7 +54,12 @@ async function choose(lat, lon, label, country, placeSlug) {
   lat = +(+lat).toFixed(4); lon = +(+lon).toFixed(4);
   $("#lat").value = lat; $("#lon").value = lon;
   if (marker) marker.setLatLng([lat, lon]); else marker = L.marker([lat, lon]).addTo(map);
-  map.setView([lat, lon], Math.max(map.getZoom(), 5));
+  // Always zoom to a city-scale view. Math.max(getZoom(), 5) left the map at
+  // zoom 5 (western Europe) when starting from the default world view, and
+  // never zoomed in when a named city was chosen.
+  lastView = { center: [lat, lon], zoom: CITY_ZOOM };
+  map.invalidateSize();
+  map.setView([lat, lon], CITY_ZOOM);
   await loadPlaces();
   const nearby = placeSlug ? null : nearestPlace(lat, lon);
   const slug = placeSlug || (nearby?.near ? nearby.place.slug : "");
@@ -109,7 +119,6 @@ $("#overlay").addEventListener("change", (e) => {
 });
 $("#coords").addEventListener("submit", (e) => { e.preventDefault(); choose($("#lat").value, $("#lon").value); });
 $("#geo").addEventListener("click", () => navigator.geolocation?.getCurrentPosition((p) => choose(p.coords.latitude, p.coords.longitude, "Your location")));
-$("#details-panel").addEventListener("toggle", () => { if ($("#details-panel").open) setTimeout(() => map.invalidateSize(), 50); });
 
 // Place search: offline GeoNames list first; Nominatim as a fallback if needed.
 $("#search").addEventListener("submit", async (e) => {

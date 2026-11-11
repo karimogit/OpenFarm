@@ -19,6 +19,7 @@ ok(!/for code in s\.countries %\}.*flag\.njk.*countries\[code\]/.test(crops.repl
 
 const place = fs.readFileSync(path.join(ROOT, "site/place.njk"), "utf8");
 ok(place.includes("country-link.njk"), "place page heading uses country-link.njk");
+ok(/<h1>\{\{\s*p\.name\s*\}\}/.test(place) && place.indexOf("{{ p.name }}") < place.indexOf('include "country-link.njk"'), "place h1 puts the city name before the country link");
 
 const site = path.join(ROOT, "_site");
 function readBuilt(...parts) {
@@ -43,7 +44,7 @@ if (fs.existsSync(site)) {
   const checks = [
     ["regions/temperate-oceanic/index.html", /class="country-link"[\s\S]*\/countries\/[a-z]{2}\//, "built temperate-oceanic region page links example countries to /countries/<iso2>/"],
     ["crops/index.html", /data-seed-sources[\s\S]*class="country-link"[\s\S]*\/countries\//, "built crops page seed sources link countries"],
-    ["places/amsterdam-nl/index.html", /<h1>[\s\S]*class="country-link"[\s\S]*\/countries\/nl\//, "built Amsterdam place heading links the Netherlands"],
+    ["places/amsterdam-nl/index.html", /<h1>\s*Amsterdam[\s\S]*class="country-link"[\s\S]*\/countries\/nl\//, "built Amsterdam place heading is City, then a link to the Netherlands"],
     ["crops/tomato/temperate-oceanic/index.html", /class="country-link"[\s\S]*\/countries\//, "built tomato temperate-oceanic guide Common-in line links countries"],
   ];
   let stale = false;
