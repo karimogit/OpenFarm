@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Crops
+permalink: /crops/
+---
+<h1>Crops</h1>
+<p>Each crop has one guide per climate group. Missing your climate? <a href="{{ '/contribute/' | url }}">Add a variant.</a></p>
+{% for c in crops %}
+<section class="card">
+  <h2><a href="{{ ('/crops/' + c.slug + '/') | url }}">{{ c.common_name }}</a> <em class="sci">{{ c.scientific_name }}</em></h2>
+  <ul class="variant-list">
+    {% for v in c.variants %}<li><a href="{{ ('/guides/' + v.crop + '/' + v.variant + '/') | url }}">{{ v.title }}</a> {% for k in v.koppen %}<span class="kg">{{ k }}</span>{% endfor %}</li>{% endfor %}
+  </ul>
+</section>
+{% endfor %}

@@ -1,0 +1,37 @@
+// Köppen-Geiger classes (Beck et al. 2018 legend numbering) with short plain-language descriptions.
+export default {
+  classes: [
+    null,
+    ["Af", "Tropical rainforest", "Hot and wet all year."],
+    ["Am", "Tropical monsoon", "Hot; a short dry season and a very wet monsoon."],
+    ["Aw", "Tropical savanna", "Hot; distinct wet and dry seasons."],
+    ["BWh", "Hot desert", "Very dry, hot."],
+    ["BWk", "Cold desert", "Very dry, cold winters."],
+    ["BSh", "Hot semi-arid steppe", "Dry, hot."],
+    ["BSk", "Cold semi-arid steppe", "Dry, cold winters."],
+    ["Csa", "Hot-summer Mediterranean", "Mild wet winters, hot dry summers."],
+    ["Csb", "Warm-summer Mediterranean", "Mild wet winters, warm dry summers."],
+    ["Csc", "Cold-summer Mediterranean", "Dry, cool summers."],
+    ["Cwa", "Monsoon-influenced humid subtropical", "Dry winters, hot wet summers."],
+    ["Cwb", "Subtropical highland", "Dry winters, mild summers (often tropical highlands)."],
+    ["Cwc", "Cold subtropical highland", "Dry winters, cool short summers."],
+    ["Cfa", "Humid subtropical", "No dry season, hot summers."],
+    ["Cfb", "Temperate oceanic", "No dry season, mild summers and winters."],
+    ["Cfc", "Subpolar oceanic", "No dry season, cool short summers."],
+    ["Dsa", "Hot-summer continental (dry summer)", "Cold winters, hot dry summers."],
+    ["Dsb", "Warm-summer continental (dry summer)", "Cold winters, warm dry summers."],
+    ["Dsc", "Subarctic (dry summer)", "Cold winters, short cool dry summers."],
+    ["Dsd", "Extremely cold subarctic (dry summer)", "Very cold winters."],
+    ["Dwa", "Hot-summer continental (dry winter)", "Cold dry winters, hot summers."],
+    ["Dwb", "Warm-summer continental (dry winter)", "Cold dry winters, warm summers."],
+    ["Dwc", "Subarctic (dry winter)", "Cold dry winters, short summers."],
+    ["Dwd", "Extremely cold subarctic (dry winter)", "Very cold dry winters."],
+    ["Dfa", "Hot-summer humid continental", "Cold winters, hot summers, no dry season."],
+    ["Dfb", "Warm-summer humid continental", "Cold winters, warm summers, no dry season."],
+    ["Dfc", "Subarctic", "Long cold winters, short cool summers."],
+    ["Dfd", "Extremely cold subarctic", "Extremely cold winters."],
+    ["ET", "Tundra", "Warmest month below 10 °C."],
+    ["EF", "Ice cap", "Permanent ice."]
+  ],
+  colors: [null,"#0000ff","#0078ff","#46aafa","#ff0000","#ff9696","#f5a500","#ffdc64","#ffff00","#c8c800","#969600","#96ff96","#64c864","#329632","#c8ff50","#64ff50","#32c800","#ff00ff","#c800c8","#963296","#966496","#aaafff","#5a78dc","#4b50b4","#320087","#00ffff","#37c8ff","#007d7d","#00465f","#b2b2b2","#666666"]
+};
