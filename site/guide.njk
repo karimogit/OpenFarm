@@ -1,0 +1,42 @@
+---
+layout: base.njk
+pagination:
+  data: guides
+  size: 1
+  alias: g
+permalink: "/guides/{{ g.crop }}/{{ g.variant }}/"
+eleventyComputed:
+  title: "{{ g.title }}"
+  description: "{{ g.common_name }} growing guide for Köppen {{ g.koppen | join(', ') }} climates."
+---
+<article class="guide">
+  <p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.common_name }}</a> /</p>
+  <h1>{{ g.title }}</h1>
+  <p class="sci-line"><em>{{ g.scientific_name }}</em> · {{ g.family }}</p>
+  <p>{% for k in g.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endfor %}
+     <span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span></p>
+  {% if g.uncertainty %}<aside class="warn"><strong>Uncertainty:</strong> {{ g.uncertainty }}</aside>{% endif %}
+
+  <h2>Calendar <small>({{ g.hemisphere }}ern hemisphere{% if g.hemisphere == "any" %} – not tied to hemisphere{% endif %}; checked against {{ g.reference_location }})</small></h2>
+  {% set cal = g.calendar %}{% include "calendar.njk" %}
+
+  <dl class="facts">
+    <div><dt>Days to maturity</dt><dd>{{ g.days_to_maturity | range(" days") }}</dd></div>
+    <div><dt>In-row spacing</dt><dd>{{ g.spacing.in_row_cm | range(" cm") }}</dd></div>
+    <div><dt>Between rows</dt><dd>{{ g.spacing.between_rows_cm | range(" cm") }}</dd></div>
+    <div><dt>Sun</dt><dd>{{ g.sun }}</dd></div>
+    <div><dt>Water</dt><dd>{{ g.water }}</dd></div>
+    {% if g.companions and (g.companions.good or g.companions.avoid) %}
+    <div><dt>Companions <small>({{ g.companions.evidence }})</small></dt><dd>{% if g.companions.good %}👍 {{ g.companions.good | join(", ") }}{% endif %}{% if g.companions.avoid %} 👎 {{ g.companions.avoid | join(", ") }}{% endif %}</dd></div>
+    {% endif %}
+  </dl>
+
+  <div class="body">{{ g.html | safe }}</div>
+
+  <h2>Sources</h2>
+  <ol class="sources">{% for s in g.sources %}<li><a href="{{ s.url }}">{{ s.title }}</a>{% if s.publisher %} – {{ s.publisher }}{% endif %}</li>{% endfor %}</ol>
+
+  <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
+    <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ g.file }}">✏️ Improve this guide on GitHub</a> ·
+    <a href="{{ site.repo }}/blob/{{ site.branch }}/{{ g.file }}">View source</a></p>
+</article>

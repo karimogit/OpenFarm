@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: Climate-aware growing guides
+---
+<section class="hero">
+  <h1>What can I grow here, and when?</h1>
+  <p class="lead">OpenFarm is an open, git-based library of growing guides organised by
+    <strong>Köppen-Geiger climate</strong> instead of only USDA zones – so it works from Ermelo to Umeå to Seville to Bangkok.
+    Every guide is a Markdown file anyone can improve with a pull request.</p>
+</section>
+
+<section id="where" class="where card">
+  <h2>1 · Pick a location</h2>
+  <form id="search" class="row" autocomplete="off">
+    <input id="q" type="search" placeholder="Search a place, e.g. Ermelo or Umeå" aria-label="Place search">
+    <button type="submit">Search</button>
+    <button type="button" id="geo" title="Use my location">📍</button>
+  </form>
+  <ul id="results" class="results" hidden></ul>
+  <form id="coords" class="row small">
+    <label>Lat <input id="lat" type="number" step="any" min="-90" max="90" required></label>
+    <label>Lon <input id="lon" type="number" step="any" min="-180" max="180" required></label>
+    <button type="submit">Go</button>
+    <label class="toggle"><input type="checkbox" id="overlay"> Show climate map</label>
+  </form>
+  <div id="map" aria-label="Map – click to choose a location"></div>
+  <p class="hint">Or click anywhere on the map. Try:
+    <a href="?lat=52.30&lon=5.62" data-demo>Ermelo (NL)</a> ·
+    <a href="?lat=63.83&lon=20.26" data-demo>Umeå (SE)</a> ·
+    <a href="?lat=37.39&lon=-5.98" data-demo>Seville (ES)</a> ·
+    <a href="?lat=13.75&lon=100.50" data-demo>Bangkok (TH)</a> ·
+    <a href="?lat=-37.81&lon=144.96" data-demo>Melbourne (AU)</a></p>
+</section>
+
+<section id="climate" class="card" hidden>
+  <h2>2 · Your climate</h2>
+  <div id="climate-box"></div>
+</section>
+
+<section id="matches" class="card" hidden>
+  <h2>3 · Guides for your climate</h2>
+  <div id="match-list"></div>
+</section>
+
+<section class="card">
+  <h2>All crops</h2>
+  <ul class="crop-grid">
+  {% for c in crops %}
+    <li><a href="{{ ('/crops/' + c.slug + '/') | url }}"><strong>{{ c.common_name }}</strong><em>{{ c.scientific_name }}</em><span>{{ c.variants.length }} climate variants</span></a></li>
+  {% endfor %}
+  </ul>
+</section>
+
+<script id="guide-data" type="application/json">{{ guides | guideIndex | json | safe }}</script>
+<script id="koppen-data" type="application/json">{{ koppen | json | safe }}</script>
+<link rel="stylesheet" href="{{ '/assets/vendor/leaflet/leaflet.css' | url }}">
+<script src="{{ '/assets/vendor/leaflet/leaflet.js' | url }}"></script>
+<script>window.OPENFARM_BASE = "{{ '/' | url }}";</script>
+<script type="module" src="{{ '/assets/js/app.js' | url }}"></script>

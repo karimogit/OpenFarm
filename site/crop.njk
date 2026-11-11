@@ -1,0 +1,20 @@
+---
+layout: base.njk
+pagination:
+  data: crops
+  size: 1
+  alias: crop
+permalink: "/crops/{{ crop.slug }}/"
+eleventyComputed:
+  title: "{{ crop.common_name }}"
+---
+<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> /</p>
+<h1>{{ crop.common_name }} <em class="sci">{{ crop.scientific_name }}</em></h1>
+<p>Family {{ crop.family }}. Pick the variant that matches your climate – or <a href="{{ '/' | url }}#where">look up your location</a>.</p>
+{% for v in crop.variants %}
+<section class="card">
+  <h2><a href="{{ ('/guides/' + v.crop + '/' + v.variant + '/') | url }}">{{ v.title }}</a></h2>
+  <p>{% for k in v.koppen %}<span class="kg">{{ k }}</span>{% endfor %} <span class="conf conf-{{ v.confidence }}">{{ v.confidence }} confidence</span> · checked against {{ v.reference_location }}</p>
+  {% set cal = v.calendar %}{% include "calendar.njk" %}
+</section>
+{% endfor %}

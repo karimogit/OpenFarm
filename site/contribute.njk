@@ -1,0 +1,16 @@
+---
+layout: base.njk
+title: Contribute
+permalink: /contribute/
+---
+<h1>Contribute a guide</h1>
+<p>Guides are plain Markdown files with YAML frontmatter in
+  <a href="{{ site.repo }}/tree/main/content/guides"><code>content/guides/&lt;crop&gt;/&lt;climate-variant&gt;.md</code></a>.
+  If you can edit a text file, you can contribute – no account on this site, no database.</p>
+<ol>
+  <li>Copy <a href="{{ site.repo }}/blob/main/content/TEMPLATE.md"><code>content/TEMPLATE.md</code></a> into the crop's folder.</li>
+  <li>Fill in the Köppen class(es), the month calendar for <em>your</em> climate, and at least one real source.</li>
+  <li>Open a pull request. CI validates the frontmatter against the <a href="{{ '/schema/guide.schema.json' | url }}">JSON Schema</a>.</li>
+</ol>
+<p>Full details are in <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
+  By contributing guide content you agree to license it under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>

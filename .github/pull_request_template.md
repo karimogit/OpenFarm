@@ -1,0 +1,4 @@
+- [ ] Every fact is backed by a source listed in `sources` (no invented citations)
+- [ ] `confidence` and `uncertainty` honestly describe how well this fits the listed climates
+- [ ] `npm run validate` passes (CI will check)
+- [ ] I agree to license guide content under CC BY-SA 4.0
