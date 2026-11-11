@@ -1,6 +1,9 @@
 ---
 slug: bitter-orange
 name: Bitter Orange
+scientific_name: "Citrus × aurantium"
+family: Rutaceae
+wikidata: Q147096
 type: fruit-tree
 origin: imported
 rescue:

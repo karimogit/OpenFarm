@@ -7,7 +7,7 @@ caused_by: Beetle – the larvae eat roots, the adults notch leaf edges
 affects: [strawberry]
 sources: [rhs-vine-weevil, rhs-strawberries]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

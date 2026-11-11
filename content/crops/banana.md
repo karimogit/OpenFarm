@@ -1,9 +1,11 @@
 ---
 slug: banana
 name: Banana
+scientific_name: "Musa"
+family: Musaceae
+wikidata: Q8666090
 type: fruit
 origin: imported
-scientific_name: Musa spp.
 sun: full
 sowing_method: Rhizome or sucker
 size:

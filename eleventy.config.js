@@ -1,3 +1,4 @@
+import { wmThumb, wmSrcset } from "./scripts/wm.js";
 // Eleventy config. Content lives in /content (CC BY-SA 4.0 / CC0 imports); site code in /site (MIT).
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const LABELS = {
@@ -11,17 +12,17 @@ const sourceOut = (s) => pick(s, ["key", "title", "publisher", "url", "license"]
 const varietyOut = (v) => ({
   ...pick(v, ["crop", "slug", "name", "synonyms", "scientific_name", "category", "fruit", "growth_habit", "days_to_maturity", "days_from",
     "cold_tolerance", "heat_tolerance", "disease_resistance", "chill_hours", "pollination_partners", "suitable_regions", "seeds",
-    "sun", "size", "origin", "license", "rescue"]),
+    "sun", "size", "origin", "license", "rescue", "cultivar", "cultivarName", "hardiness"]),
   url: v.url, sources: v.sources.map(sourceOut),
 });
 const guideOut = (g) => ({
   ...pick(g, ["crop", "region", "title", "koppen", "hemisphere", "reference_location", "calendar", "days_to_maturity", "spacing",
-    "sun", "water", "varieties", "problems", "confidence", "uncertainty", "license", "authors", "last_reviewed"]),
+    "sun", "water", "varieties", "problems", "confidence", "uncertainty", "license", "authors", "last_reviewed", "tools"]),
   url: g.url, sources: g.sources.map(sourceOut),
 });
 const cropOut = (c) => ({
   ...pick(c, ["slug", "name", "aliases", "scientific_name", "family", "type", "lifecycle", "sun", "water", "sowing_method", "size",
-    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image"]),
+    "propagation", "temperature", "days_to_first_harvest", "growth_habits", "seed_saving", "perennial", "origin", "license", "rescue", "image", "wikidata", "hardiness", "seedImage", "tools"]),
   url: `/crops/${c.slug}/`,
   sources: c.sources.map(sourceOut),
   varieties: c.varieties.map(varietyOut),
@@ -36,17 +37,32 @@ const regionOut = (r) => ({
   partly_covered_by: r.guides.filter((x) => !x.primary).map((x) => x.g.url),
   varieties: r.varieties.map((v) => v.url),
 });
+const toolOut = (x) => ({ ...pick(x, ["slug", "name", "category", "image", "license"]), url: x.url,
+  sources: x.sources.map(sourceOut), crops: x.crops.map((c) => c.slug), guides: x.guides.map((g) => g.url) });
 const allOut = (db) => ({
   generated: new Date().toISOString(),
   license: { code: "MIT", content: "CC-BY-SA-4.0 (imported crop/variety records: CC0-1.0)", attribution: "OpenFarm contributors" },
   regions: db.regions.map(regionOut),
   crops: db.crops.map(cropOut),
   problems: db.problems.map((p) => ({ ...pick(p, ["slug", "name", "scientific_name", "kind", "caused_by", "affects", "conditions"]), sources: p.sources.map(sourceOut) })),
+  tools: db.tools.map(toolOut),
   seed_sources: db.seedSources.map((s) => pick(s, ["slug", "name", "url", "kind", "countries", "regions", "focus"])),
   companions: db.companions.map((c) => ({ ...pick(c, ["crops", "relation", "evidence", "reason"]), sources: (c.sources || []).map(sourceOut) })),
 });
 
 export default function (eleventyConfig) {
+  // External links (sources, seed companies, Commons, GitHub, …) open in a new tab and say so;
+  // internal navigation stays in the same tab.
+  eleventyConfig.addTransform("external-links", function (html) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return html;
+    return html.replace(/<a\s([^>]*?href="https?:\/\/[^"]+"[^>]*)>([\s\S]*?)<\/a>/g, (m, attrs, inner) => {
+      if (/\starget=/.test(attrs)) return m;
+      return `<a ${attrs} target="_blank" rel="noopener noreferrer">${inner}<span class="ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a>`;
+    });
+  });
+  eleventyConfig.addFilter("wmThumb", wmThumb);
+  eleventyConfig.addFilter("toolsOut", (tools) => ({ license: "CC-BY-SA-4.0", tools: tools.map(toolOut) }));
+  eleventyConfig.addFilter("wmSrcset", wmSrcset);
   eleventyConfig.addFilter("regionOut", regionOut);
   eleventyConfig.addFilter("allOut", allOut);
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });
@@ -64,6 +80,13 @@ export default function (eleventyConfig) {
     if (r === undefined || r === null || r === "") return "—";
     if (!Array.isArray(r)) return `${r}${unit}`;
     return r[0] === r[1] ? `${r[0]}${unit}` : `${r[0]}–${r[1]}${unit}`;
+  });
+  // A Köppen code as a link to its climate region (or a help anchor), with the full class name as tooltip.
+  eleventyConfig.addFilter("kgLink", function (code, classes, kgToRegion, toHelp = false) {
+    const name = (classes.find((c) => c && c[0] === code) || [code, code])[1];
+    const href = !toHelp && kgToRegion[code] ? `regions/${kgToRegion[code]}/` : `help/#koppen`;
+    const prefix = process.env.PATH_PREFIX || "/OpenFarm/";
+    return `<a class="kg" href="${prefix}${href}" title="Köppen ${code}: ${name}">${code}<span class="visually-hidden"> (Köppen: ${name})</span></a>`;
   });
   eleventyConfig.addFilter("kgName", (classes, code) => (classes.find((c) => c && c[0] === code) || [code, code])[1]);
   eleventyConfig.addFilter("where", (arr, key, val) => (arr || []).filter((x) => x && x[key] === val));

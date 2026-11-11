@@ -1,9 +1,11 @@
 ---
 slug: runner-bean
 name: Runner Bean
+scientific_name: "Phaseolus coccineus"
+family: Fabaceae
+wikidata: Q159753
 type: legume
 origin: imported
-scientific_name: Phaseolus coccineus
 sun: full
 sowing_method: Direct seed outdoors once soil temperatures are above 10°C
 size:

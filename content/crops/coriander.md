@@ -1,9 +1,11 @@
 ---
 slug: coriander
 name: Coriander
+scientific_name: "Coriandrum sativum"
+family: Apiaceae
+wikidata: Q41611
 type: herb
 origin: imported
-scientific_name: Coriandrum sativum
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off'
 size:

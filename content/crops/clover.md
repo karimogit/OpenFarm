@@ -1,9 +1,11 @@
 ---
 slug: clover
 name: Clover
+scientific_name: "Trifolium"
+family: Fabaceae
+wikidata: Q101538
 type: cover-crop
 origin: imported
-scientific_name: Trifolium
 sun: full
 sowing_method: Direct seed using a broadcast method
 rescue:

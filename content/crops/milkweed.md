@@ -1,9 +1,11 @@
 ---
 slug: milkweed
 name: Milkweed
+scientific_name: "Asclepias"
+family: Apocynaceae
+wikidata: Q162153
 type: flower
 origin: imported
-scientific_name: Asclepias
 sun: full
 sowing_method: 'Direct seed. If planting indoors, use peat pots and harden off before transplanting seedlings outside.'
 size:

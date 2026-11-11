@@ -1,9 +1,11 @@
 ---
 slug: tangerine
 name: Tangerine
+scientific_name: "Citrus ×tangerina"
+family: Rutaceae
+wikidata: Q516494
 type: fruit-tree
 origin: imported
-scientific_name: Citrus tangerina
 sun: full
 sowing_method: Transplant grafted sapling
 size:

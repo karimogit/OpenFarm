@@ -13,11 +13,12 @@ eleventyComputed:
 <p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.cropName }}</a> / <a href="{{ ('/regions/' + g.region + '/') | url }}">{{ g.regionName }}</a> /</p>
 <div class="layout">
   <article class="col-main guide" data-pagefind-body>
-    <h1>{{ g.title }}</h1>
+    <div class="title-row"><h1>{{ g.title }}</h1>
+      <span class="title-actions" data-pagefind-ignore><button type="button" class="fav" data-fav="guide:{{ g.crop }}/{{ g.region }}" data-label aria-pressed="false">♡</button>
+      <button type="button" class="grow" data-grow="{{ g.crop }}">＋ I'm growing this</button></span></div>
     <p class="sci-line"><a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.cropName }}</a> · <em>{{ g.scientific_name }}</em> · {{ g.family }}</p>
     <p><a class="chip" href="{{ ('/regions/' + g.region + '/') | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a>
-      {% for k in g.koppen %}<span class="kg" title="{{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endfor %}
-      <span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span></p>
+      {% for k in g.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %}</p>
     {% if g.alsoRegions.length %}<p class="small">Also used for: {% for r in g.alsoRegions %}<a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %} (the listed Köppen classes reach into these regions).</p>{% endif %}
     {% if g.uncertainty %}<aside class="warn"><strong>Uncertainty:</strong> {{ g.uncertainty }}</aside>{% endif %}
 
@@ -30,16 +31,20 @@ eleventyComputed:
     <h2>Suggested varieties</h2>
     <ul class="variety-grid">{% for v in g.varietyList %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong><span>{{ v.category }}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>{% endfor %}</ul>
     {% endif %}
+    {% if g.toolList.length %}
+    <h2>Tools</h2>
+    <p>{% for x in g.toolList %}<a class="chip" href="{{ x.url | url }}">{{ x.name }}</a> {% endfor %}</p>
+    {% endif %}
     {% if g.problemList.length %}
     <h2>Watch out for</h2>
     <ul>{% for p in g.problemList %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}">{{ p.name }}</a>{% if p.conditions %} – <span class="small">{{ p.conditions }}</span>{% endif %}</li>{% endfor %}</ul>
     {% endif %}
 
     <h2>Sources</h2>
+    <p class="small"><span class="conf conf-{{ g.confidence }}">{{ g.confidence }} confidence</span> <a href="{{ '/help/' | url }}#confidence">what this means</a></p>
     {% set srcs = g.sources %}{% include "sources.njk" %}
-    <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-      <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ g.file }}">✏️ Improve this guide on GitHub</a> ·
-      <a href="{{ site.repo }}/blob/{{ site.branch }}/{{ g.file }}">View source</a></p>
+    <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
+    {% set editFile = g.file %}{% set editLabel = "Edit this guide" %}{% include "edit-button.njk" %}
   </article>
 
   <aside class="col-side">
@@ -60,10 +65,10 @@ eleventyComputed:
       </dl>
     </section>
     {% include "weather.njk" %}
-    {% if crop.seed_saving %}
+    {% if crop.seed_saving or crop.seedImage %}
     <section class="side-card">
       <h3>Seeds</h3>
-      {% set ss = crop.seed_saving %}{% set vs = false %}{% include "seeds.njk" %}
+      {% set ss = crop.seed_saving %}{% set vs = false %}{% set simg = crop.seedImage %}{% include "seeds.njk" %}
       {% if g.seed_saving_note %}<p class="small"><strong>In this region:</strong> {{ g.seed_saving_note }}</p>{% endif %}
     </section>
     {% endif %}

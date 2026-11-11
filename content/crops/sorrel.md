@@ -1,9 +1,11 @@
 ---
 slug: sorrel
 name: Sorrel
+scientific_name: "Rumex acetosa"
+family: Polygonaceae
+wikidata: Q26297
 type: herb
 origin: imported
-scientific_name: Rumex acetosa
 sun: full
 sowing_method: Direct seed outdoors or root division
 size:

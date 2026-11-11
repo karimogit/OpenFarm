@@ -1,9 +1,11 @@
 ---
 slug: hops
 name: Hops
+scientific_name: "Humulus lupulus"
+family: Cannabaceae
+wikidata: Q104212
 type: other
 origin: imported
-scientific_name: Humulus lupulus
 sun: full
 sowing_method: Transplant seedlings or rhizomes/rootstock
 size:

@@ -1,9 +1,10 @@
+import { wmThumb, wmSrcset } from "../../scripts/wm.js";
 // Builds one cross-linked view of all content for the templates.
 import fs from "node:fs";
 import path from "node:path";
 import markdownIt from "markdown-it";
 import {
-  ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadSeedSources,
+  ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadTools, loadSeedSources,
   loadCompanions, loadSources, resolveSources, koppenToRegion,
 } from "../../scripts/content.js";
 
@@ -16,9 +17,11 @@ const TYPE_LABELS = {
 export default function () {
   const registry = loadSources();
   const images = JSON.parse(fs.readFileSync(path.join(ROOT, "data/images.json"), "utf8"));
+  const seedFile = path.join(ROOT, "data/seed-images.json");
+  const seedImages = fs.existsSync(seedFile) ? JSON.parse(fs.readFileSync(seedFile, "utf8")) : {};
   const regionsRaw = loadRegions();
   const kg2region = koppenToRegion(regionsRaw);
-  const regions = regionsRaw.map((r) => ({ ...r.data, html: md.render(r.body), file: r.file, guides: [], varieties: [] }));
+  const regions = regionsRaw.map((r) => ({ ...r.data, html: md.render(r.body), file: r.file, image: images[`region:${r.data.slug}`] || null, guides: [], varieties: [] }));
   const regionBy = Object.fromEntries(regions.map((r) => [r.slug, r]));
 
   const problems = loadProblems().map((p) => ({ ...p.data, html: md.render(p.body), file: p.file, sources: resolveSources(p.data.sources, registry) }));
@@ -27,8 +30,9 @@ export default function () {
   const crops = loadCrops().map((c) => {
     const d = c.data;
     return {
-      ...d, file: c.file, html: md.render(c.body), image: images[`crop:${d.slug}`] || null,
+      ...d, file: c.file, html: md.render(c.body), seedImage: seedImages[`crop:${d.slug}`] || null, image: images[`crop:${d.slug}`] ? { ...images[`crop:${d.slug}`], note: d.image_note || null } : null,
       sources: resolveSources(d.sources, registry),
+      hardiness: d.hardiness ? { ...d.hardiness, sources: resolveSources(d.hardiness.sources, registry) } : null,
       seed_saving: d.seed_saving ? { ...d.seed_saving, sources: resolveSources(d.seed_saving.sources, registry) } : null,
       perennial: d.perennial ? { ...d.perennial, sources: resolveSources(d.perennial.sources, registry) } : null,
       varieties: [], guides: [], companions: [], problemList: [],
@@ -36,12 +40,18 @@ export default function () {
   }).sort((a, b) => a.name.localeCompare(b.name));
   const cropBy = Object.fromEntries(crops.map((c) => [c.slug, c]));
 
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  // "Watermelon Radish" (crop Radish) → "Watermelon"; an explicit `cultivar` field wins.
+  const cultivarOf = (d, crop) => d.cultivar || d.name.replace(new RegExp(`\\s+${esc(crop.name)}e?s?$`, "i"), "").trim() || d.name;
   const varieties = loadVarieties().map((v) => {
     const d = v.data; const crop = cropBy[d.crop];
     const own = images[`variety:${d.crop}/${d.slug}`];
     return {
       ...d, file: v.file, html: md.render(v.body), cropName: crop.name,
-      image: own || crop.image, imageInherited: !own && !!crop.image,
+      // Cultivar epithet for the 'Cultivar' form, e.g. Solanum lycopersicum 'Sungold' (ICNCP style).
+      cultivar: cultivarOf(d, crop),
+      cultivarName: crop.scientific_name ? `${crop.scientific_name} '${cultivarOf(d, crop)}'` : null,
+      image: own ? { ...own, note: d.image_note || null } : crop.image, imageInherited: !own && !!crop.image,
       sources: resolveSources(d.sources, registry),
       url: `/crops/${d.crop}/varieties/${d.slug}/`,
     };
@@ -77,6 +87,14 @@ export default function () {
     cropBy[b]?.companions.push({ ...c, other: cropBy[a] });
   }
 
+  const tools = loadTools().map((x) => ({ ...x.data, file: x.file, html: md.render(x.body), url: `/tools/${x.data.slug}/`,
+    sources: resolveSources(x.data.sources, registry), image: images[`tool:${x.data.slug}`] || null, crops: [], guides: [] }));
+  const toolBy = Object.fromEntries(tools.map((x) => [x.slug, x]));
+  for (const c of crops) { c.toolList = (c.tools || []).map((s) => toolBy[s]).filter(Boolean); for (const x of c.toolList) x.crops.push(c); }
+  for (const g of guides) {
+    g.toolList = [...new Set([...(g.tools || []), ...(cropBy[g.crop].tools || [])])].map((s) => toolBy[s]).filter(Boolean);
+    for (const x of g.toolList) x.guides.push(g);
+  }
   const seedSources = loadSeedSources().map((s) => ({ ...s.data, html: md.render(s.body) }));
   const types = Object.entries(TYPE_LABELS).map(([slug, label]) => ({ slug, label, crops: crops.filter((c) => c.type === slug) })).filter((t) => t.crops.length);
 
@@ -86,8 +104,17 @@ export default function () {
     guides: guides.map((g) => ({
       crop: g.crop, name: g.cropName, region: g.region, title: g.title, koppen: g.koppen, hemisphere: g.hemisphere,
       calendar: g.calendar, confidence: g.confidence, type: cropBy[g.crop].type,
+      sci: cropBy[g.crop].scientific_name || null,
+      img: cropBy[g.crop].image ? { src: wmThumb(cropBy[g.crop].image, 250), srcset: wmSrcset(cropBy[g.crop].image, 250), w: cropBy[g.crop].image.orig_width || null, h: cropBy[g.crop].image.orig_height || null } : null,
     })),
     varieties: varieties.filter((v) => v.suitable_regions?.length).map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cropName: v.cropName, regions: v.suitable_regions })),
+  };
+
+  // Small catalogue for the profile page (names + card images), so favourites can be listed offline.
+  const catalog = {
+    crops: crops.map((c) => ({ slug: c.slug, name: c.name, sci: c.scientific_name || null,
+      img: c.image ? { src: wmThumb(c.image, 250), srcset: wmSrcset(c.image, 250), w: c.image.orig_width || null, h: c.image.orig_height || null } : null })),
+    varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName })),
   };
 
   const stats = {
@@ -97,5 +124,5 @@ export default function () {
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
     images: crops.filter((c) => c.image).length,
   };
-  return { crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, types, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, types, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

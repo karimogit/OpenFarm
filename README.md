@@ -1,5 +1,7 @@
 # 🌱 OpenFarm
 
+*Grow food that fits your climate.*
+
 **OpenFarm helps anyone, anywhere grow food. It's an open, community-built library of growing
 guides matched to your climate region. Find your location, get advice that fits your conditions,
 and share what you know.**
@@ -12,9 +14,9 @@ that together cover every place on Earth → you get the guides written for your
 a month-by-month calendar, a 7-day forecast with frost risk and soil temperature, varieties that
 suit your region and seed sources near you. No accounts, no backend, no tracking.
 
-| | | |
-|---|---|---|
-| ![Home – Ermelo](docs/screenshots/v2-home-ermelo.png) | ![Crop page – no guide for your region yet](docs/screenshots/v2-crop-strawberry-bangkok.png) | ![Mobile](docs/screenshots/v2-mobile-umea.png) |
+| | | | |
+|---|---|---|---|
+| ![Home – Utrecht](docs/screenshots/v2-home-utrecht.png) | ![Guide – carrot in the hot desert](docs/screenshots/v2-guide-hot-desert.png) | ![Crop page with hardiness check](docs/screenshots/v2-crop-apple.png) | ![Mobile](docs/screenshots/v2-mobile-home.png) |
 
 ## Why
 
@@ -45,7 +47,7 @@ scripts/fetch_images.js                       Finds freely licensed Commons phot
 site/                                         Eleventy templates, CSS and small vanilla-JS modules (MIT)
 ```
 
-**Today:** 270 crops (7 curated, 263 imported), 73 varieties, 28 sourced guides and 15 climate
+**Today:** 271 crops (8 curated, 263 imported), 73 varieties, 194 sourced guides, 10 tools and 15 climate
 regions covering all 31 Köppen-Geiger classes. 65 crops are fruit, fruit trees, berries or nuts.
 Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
 University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, Jordbruksverket and
@@ -79,6 +81,45 @@ region** (each region lists its `similar` regions in order), clearly labelled
 | `/crops/<crop>/varieties/<variety>/` | (inside the crop JSON) |
 | `/regions/<region>/` | `/regions/<region>.json` |
 | `/problems/<problem>/`, `/seeds/`, `/search/` | `/api/all.json` (everything), `/api/guides.json` |
+
+## Confidence
+
+Every guide has a `confidence` of `high`, `medium` or `low`, shown on the guide page next to its sources:
+
+- **high** – at least two sources from *different publishers* agree, at least one written for a place inside the guide's Köppen classes (the `reference_location`), and `last_reviewed` is within the last three years.
+- **medium** – at least one regional source (extension service, national horticultural society, government or research body writing for a place in this climate), but not enough for high.
+- **low** – timing adapted from a source for a different or broader climate, or a single general (non-regional) source.
+
+`npm run validate` enforces the mechanical part: `high` fails with fewer than two distinct publishers or a review older than three years. Whether a source is regional is checked in review. Confidence is not shown on cards or overviews.
+
+## Hardiness zones
+
+USDA-style zones (average yearly extreme minimum temperature; zone 1 starts at −60 °F, 10 °F per zone, a/b halves).
+The visitor's zone is computed in the browser from the [Open-Meteo historical weather API](https://open-meteo.com/en/docs/historical-weather-api)
+(ERA5 reanalysis, ~25 km, CC BY 4.0): the coldest daily minimum of each year 1991–2020, averaged, cached in localStorage.
+Limits: the coarse grid smooths frost pockets, valleys and urban heat, and reanalysis is often slightly milder than station data in cold spots.
+Crop ranges (`hardiness: {min, max, sources}`) come only from cited sources (currently NC State Extension's Plant Toolbox,
+filled by `scripts/fetch_hardiness.py`, which only accepts a page whose heading names the same species). No zones are estimated.
+
+## Your profile, reminders and privacy
+
+Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (favourites and growing list with notes), **.ics** (sow/plant/harvest reminders) and **Markdown** (a readable garden notebook). See also the in-site [Help](https://karimogit.github.io/OpenFarm/help/) page.
+
+
+- **Local profile, no account.** Your location, favourites (♡ on crops, varieties and guides) and "What I'm
+  growing" list (with sow dates and notes) are stored only in your browser's `localStorage`
+  (key `openfarm.profile`, versioned JSON). Nothing is sent to a server. The profile page can export it as a JSON
+  file, import it again (the shape is validated) and clear it.
+- **Reminders (🔔).** Worked out in the browser from your growing list, your climate region's calendar and the
+  Open-Meteo forecast: "Sow tomatoes indoors this month", "Frost forecast Thursday", "Dry week ahead – water …".
+  You can opt in to browser notifications with a click (never asked on page load).
+- **Limits.** OpenFarm is a static site with no push server, so reminders and notifications only appear while
+  the site is open or when you come back to it. For reminders while the site is closed, use **Export to calendar
+  (.ics)** on the profile page: it creates yearly all-day events for each sowing, planting, pruning and harvest
+  window, with a 09:00 alert, which your phone or computer calendar shows on its own.
+- **Third parties contacted by your browser:** OpenStreetMap tiles and Nominatim (map and place search – only when
+  you search; the header only looks up places when you choose "Find place"), Open-Meteo (forecast for your saved
+  coordinates) and Wikimedia (photos).
 
 ## Data model rationale
 
@@ -142,7 +183,7 @@ this restart:
   with full history, attribution and easy forking. Anyone can mirror or reuse the
   whole dataset with `git clone`.
 - **Climate-based.** Guides are keyed to Köppen-Geiger classes and hemisphere, not
-  just USDA zones, so the same crop gets different calendars in Ermelo, Umeå, Seville
+  just USDA zones, so the same crop gets different calendars in Utrecht, Umeå, Seville
   and Bangkok.
 - **Sourced and honest.** Every guide links real sources and states its confidence,
   so readers can tell well-tested advice from a first draft.
@@ -171,7 +212,9 @@ We'd rather cooperate than compete:
 - [x] All 31 Köppen classes in 15 climate regions, with nearest-region fallback
 - [x] Crop → variety → guide data model; seeds, problems, companions and seed sources as shared files
 - [x] 263 crops imported from the CC0 rescue dataset; Commons photos; Pagefind search; Open-Meteo weather
-- [ ] Guides for the 7 regions that have none yet (tropical rainforest and monsoon, deserts, subpolar oceanic, subtropical highland, tundra)
+- [x] 166 regional guides from extension planting calendars (Arizona, Clemson, UF/IFAS, Iowa State, Colorado State, Alaska Fairbanks)
+- [x] Hardiness zones (Open-Meteo ERA5), tools, help page, profile export (JSON, CSV, .ics, Markdown)
+- [ ] Guides for the regions that still have none (tropical rainforest, cold desert, hot semi-arid, subpolar oceanic, subtropical highland, tundra)
 - [ ] Review imported crops one by one and promote them to `origin: curated`
 - [ ] Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0)
 - [ ] Native southern-hemisphere variants (instead of the shifted calendar)

@@ -1,6 +1,9 @@
 ---
 slug: trifoliate-orange
 name: Trifoliate Orange
+scientific_name: "Citrus trifoliata"
+family: Rutaceae
+wikidata: Q15390761
 type: fruit-tree
 origin: imported
 rescue:

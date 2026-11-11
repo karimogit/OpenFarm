@@ -16,13 +16,14 @@ spacing:
   between_rows_cm: [45, 45]
 sun: full
 water: moderate
-confidence: high
+confidence: medium
+uncertainty: "Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to high."
 sources:
   - title: "French beans: grow your own"
     publisher: Royal Horticultural Society (RHS)
     url: https://www.rhs.org.uk/vegetables/french-beans/grow-your-own
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

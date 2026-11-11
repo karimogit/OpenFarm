@@ -1,9 +1,11 @@
 ---
 slug: sesame
 name: Sesame
+scientific_name: "Sesamum indicum"
+family: Pedaliaceae
+wikidata: Q2763698
 type: grain
 origin: imported
-scientific_name: Sesamum indicum
 sun: full
 sowing_method: Direct seed outdoors after soil temperatures are above 21.1° C
 size:

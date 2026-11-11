@@ -1,9 +1,11 @@
 ---
 slug: blackberry
 name: Blackberry
+scientific_name: "Rubus fruticosus"
+family: Rosaceae
+wikidata: Q13541716
 type: berry
 origin: imported
-scientific_name: Rubus fruticosus
 sun: full
 sowing_method: Transplant canes into soil or pot
 size:

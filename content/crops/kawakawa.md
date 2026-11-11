@@ -1,9 +1,11 @@
 ---
 slug: kawakawa
 name: Kawakawa
+scientific_name: "Piper excelsum"
+family: Piperaceae
+wikidata: Q21306444
 type: herb
 origin: imported
-scientific_name: Piper excelsum
 rescue:
   slug: kawakawa
   wayback_url: 'https://web.archive.org/web/20250218020619/https://openfarm.cc/en/crops/kawakawa'

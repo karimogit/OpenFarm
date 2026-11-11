@@ -1,9 +1,11 @@
 ---
 slug: african-marigold
 name: African Marigold
+scientific_name: "Tagetes erecta"
+family: Asteraceae
+wikidata: Q759876
 type: flower
 origin: imported
-scientific_name: Tagetes erecta
 sun: full
 sowing_method: 'Direct seed outdoors after last frost, thin'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: amberique-bean
 name: Amberique-Bean
+scientific_name: "Strophostyles helvola"
+family: Fabaceae
+wikidata: Q7624811
 type: legume
 origin: imported
-scientific_name: Strophostyles helvola
 rescue:
   slug: amberique-bean
   wayback_url: 'https://web.archive.org/web/20220809173137/https://openfarm.cc/en/crops/amberique-bean'

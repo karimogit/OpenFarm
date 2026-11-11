@@ -1,9 +1,11 @@
 ---
 slug: oat
 name: Oat
+scientific_name: "Avena sativa"
+family: Poaceae
+wikidata: Q12104
 type: grain
 origin: imported
-scientific_name: Avena sativa
 sun: full
 sowing_method: Direct seed/broadcast
 size:

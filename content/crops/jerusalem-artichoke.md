@@ -1,9 +1,11 @@
 ---
 slug: jerusalem-artichoke
 name: Jerusalem Artichoke
+scientific_name: "Helianthus tuberosus"
+family: Asteraceae
+wikidata: Q146190
 type: vegetable
 origin: imported
-scientific_name: Helianthus tuberosus
 sun: full
 sowing_method: Direct seed tubers outdoors
 size:

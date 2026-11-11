@@ -1,9 +1,11 @@
 ---
 slug: durian
 name: Durian
+scientific_name: "Durio zibethinus"
+family: Malvaceae
+wikidata: Q1135236
 type: fruit-tree
 origin: imported
-scientific_name: Durio zibethinus
 sun: full
 sowing_method: Transplant wedge or bud-grafted sapling
 size:

@@ -1,9 +1,11 @@
 ---
 slug: coffee
 name: Coffee
+scientific_name: "Coffea"
+family: Rubiaceae
+wikidata: Q156354
 type: other
 origin: imported
-scientific_name: Coffea
 sun: partial
 sowing_method: Direct seed or seedling
 size:

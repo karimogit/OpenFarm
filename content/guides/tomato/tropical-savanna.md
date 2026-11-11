@@ -27,7 +27,7 @@ sources:
     publisher: University of Florida IFAS Extension
     url: https://ask.ifas.ufl.edu/publication/VH021.pdf
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

@@ -1,9 +1,11 @@
 ---
 slug: sea-kale
 name: Sea Kale
+scientific_name: "Crambe maritima"
+family: Brassicaceae
+wikidata: Q165299
 type: vegetable
 origin: imported
-scientific_name: Crambe maritima
 sun: full
 size:
   spread_cm: 76

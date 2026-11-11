@@ -1,9 +1,11 @@
 ---
 slug: yellow-strawberry-guava
 name: Yellow Strawberry Guava
+scientific_name: "Psidium littorale"
+family: Myrtaceae
+wikidata: Q2272410
 type: fruit-tree
 origin: imported
-scientific_name: Psidium cattleyanum var. littorale / Psidium littorale / Psidium cattleianum var. lucidum
 sun: full
 sowing_method: Direct seed indoors
 size:

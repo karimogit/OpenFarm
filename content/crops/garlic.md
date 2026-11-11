@@ -1,8 +1,9 @@
 ---
 slug: garlic
 name: Garlic
-scientific_name: Allium sativum
+scientific_name: "Allium sativum"
 family: Amaryllidaceae
+wikidata: Q23400
 type: vegetable
 lifecycle: perennial-grown-as-annual
 origin: curated
@@ -21,8 +22,9 @@ sources:
   - csu-garlic-western-co
   - openfarm-rescue
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [dibber, trowel]
 ---
 
 Garlic forms a bulb made of cloves. It is usually planted in autumn so the cloves root before the

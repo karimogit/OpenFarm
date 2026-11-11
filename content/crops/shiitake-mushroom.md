@@ -1,9 +1,11 @@
 ---
 slug: shiitake-mushroom
 name: Shiitake Mushroom
+scientific_name: "Lentinula edodes"
+family: Omphalotaceae
+wikidata: Q320999
 type: fungus
 origin: imported
-scientific_name: Lentinula edodes
 sun: partial
 sowing_method: Inoculate logs with spawn
 rescue:

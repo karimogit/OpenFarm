@@ -1,9 +1,11 @@
 ---
 slug: artichoke
 name: Artichoke
+scientific_name: "Cynara cardunculus var. scolymus"
+family: Asteraceae
+wikidata: Q23043615
 type: vegetable
 origin: imported
-scientific_name: Cynara cardunculus var. scolymus
 sun: full
 sowing_method: 'Direct seed indoors. In warmer zones, propagate "pups."'
 size:

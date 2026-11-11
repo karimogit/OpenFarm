@@ -1,9 +1,11 @@
 ---
 slug: rapini
 name: Rapini
+scientific_name: "Brassica rapa"
+family: Brassicaceae
+wikidata: Q3384
 type: vegetable
 origin: imported
-scientific_name: Brassica rapa subsp.rapa
 sun: full
 sowing_method: 'Direct seed outdoors, thin seedlings to 15cm'
 size:
@@ -25,5 +27,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: biennial
+  isolation_m: [800, 800]
+  min_plants: 40
+  viability_years: 5
+  cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
+  sources:
+    - seed-matters-chart
 ---
 Rapini, or Broccoli Rabe, is a cool-weather leafy green vegetable in the Brassica family. The leaves, buds, and stems are edible and the plant is harvested before the buds, which resemble small, loose broccoli heads, open into yellow flowers. Rapini has a bitter, sharp, slightly nutty taste and is usually cooked.

@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Tools
+permalink: /tools/
+---
+<h1>Tools</h1>
+<p>A small set of hand tools that guides refer to: what each is for, how to use it and how to look after it. No shop links or product reviews – any well-made tool will do.</p>
+<ul class="crop-grid">
+{% for t in db.tools %}
+  <li class="card"><a href="{{ t.url | url }}">
+    <span class="thumb">{% if t.image %}<img src="{{ t.image | wmThumb(250) }}" srcset="{{ t.image | wmSrcset(250) }}" alt="" loading="lazy">{% endif %}</span>
+    <span class="name">{{ t.name }}</span><span class="sci1 muted">{{ t.category | capitalize }}</span>
+  </a></li>
+{% endfor %}
+</ul>

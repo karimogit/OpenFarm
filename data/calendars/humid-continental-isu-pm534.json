@@ -1,0 +1,28 @@
+{
+ "source": "isu-planting-harvesting-times",
+ "location": "Central Iowa (Des Moines)",
+ "note": "Planting directions from Iowa State University Extension 'Planting and harvesting times for garden vegetables' (PM 534, central Iowa; southern Iowa ~1 week earlier, northern ~1 week later).",
+ "rows": {
+  "Radish": "several plantings 7–10 days apart in spring; fall plantings mid-August to mid-September",
+  "Lettuce": "sow in early spring; fall plantings in August",
+  "Onions": "dry onions: sow seeds early to mid April; sets and plants early April to May 1",
+  "Peas": "sow in early spring as soon as the soil can be worked; fall planting about August 1–10",
+  "Spinach": "sow in April; fall crop about August 10",
+  "Cabbages": "transplants early April to May 1; direct seed in summer for a fall crop",
+  "Broccoli and cauliflower": "transplants early to mid-April",
+  "Collards and kale": "seed with lettuce and other early spring crops; direct-seed early July for a fall crop",
+  "Carrots": "sow early April to August 1",
+  "Beets and Swiss chard": "sow early April to August 1",
+  "Potatoes": "plant early to mid-April",
+  "Turnips": "sow in April and again in August or early September",
+  "Snap beans": "any time after May 5; last practical date August 1",
+  "Sweet corn": "when soil reaches 60°F; last practical date for an early variety July 1",
+  "Tomatoes": "seedlings mid-May; last practical date June 20",
+  "Peppers and eggplants": "seedlings mid-May; last practical date June 20",
+  "Summer squashes": "seed mid-May; last practical date July 20",
+  "Cucumbers": "seed mid-May; last practical date July 20",
+  "Muskmelons": "seed mid-May; last practical date June 20",
+  "Winter squashes and pumpkins": "seed mid-May",
+  "Watermelons": "seed mid-May; last practical date June 20"
+ }
+}

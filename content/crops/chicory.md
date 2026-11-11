@@ -1,9 +1,11 @@
 ---
 slug: chicory
 name: Chicory
+scientific_name: "Cichorium intybus"
+family: Asteraceae
+wikidata: Q2544599
 type: vegetable
 origin: imported
-scientific_name: Cichorium intybus
 size:
   height_cm: 100
 rescue:

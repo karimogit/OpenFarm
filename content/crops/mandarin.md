@@ -1,9 +1,11 @@
 ---
 slug: mandarin
 name: Mandarin
+scientific_name: "Citrus reticulata"
+family: Rutaceae
+wikidata: Q125337
 type: fruit-tree
 origin: imported
-scientific_name: Citrus reticulata
 sun: full
 sowing_method: Transplant grafted sapling or direct seed indoors
 size:

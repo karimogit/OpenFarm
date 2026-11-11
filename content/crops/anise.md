@@ -1,9 +1,11 @@
 ---
 slug: anise
 name: Anise
+scientific_name: "Pimpinella anisum"
+family: Apiaceae
+wikidata: Q28692
 type: herb
 origin: imported
-scientific_name: Pimpinella anisum
 sun: full
 sowing_method: Direct seed outdoors and thin seedlings to 15cm. Does not transplant well due to taproot.
 size:

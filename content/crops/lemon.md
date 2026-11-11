@@ -1,9 +1,11 @@
 ---
 slug: lemon
 name: You Can Grow Anything
+scientific_name: "Citrus × limon"
+family: Rutaceae
+wikidata: Q500
 type: fruit-tree
 origin: imported
-scientific_name: Citrus × limon
 rescue:
   slug: lemon
   wayback_url: 'https://web.archive.org/web/20160817191235/https://openfarm.cc/en/crops/lemon'

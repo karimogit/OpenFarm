@@ -1,9 +1,11 @@
 ---
 slug: fennel
 name: Fennel
+scientific_name: "Foeniculum vulgare"
+family: Apiaceae
+wikidata: Q43511
 type: herb
 origin: imported
-scientific_name: Foeniculum vulgare
 sun: full
 sowing_method: 'Direct seed outdoors, or sow indoors and harden off before transplanting outside'
 size:
@@ -22,5 +24,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "4a"
+  max: "9b"
+  sources:
+    - title: "Foeniculum vulgare Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/foeniculum-vulgare/
 ---
 Fennel is a flowering plant species with yellow flowers and feathery leaves. It is grown primarily for its bulbous white base and green leaf stalks, which have a mild, fresh licorice flavor. It's base and stalks are delicious roasted, grilled, or eaten fresh. Do not let fennel go to seed: it can become invasive.

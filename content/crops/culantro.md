@@ -1,9 +1,11 @@
 ---
 slug: culantro
 name: Culantro
+scientific_name: "Eryngium foetidum"
+family: Apiaceae
+wikidata: Q1146782
 type: herb
 origin: imported
-scientific_name: Eryngium foetidum
 sun: partial
 sowing_method: Sprinkle seed on soil surface
 size:

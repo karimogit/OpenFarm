@@ -13,9 +13,11 @@ eleventyComputed:
 <p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> / <a href="{{ ('/crops/' + crop.slug + '/') | url }}">{{ crop.name }}</a> / <a href="{{ ('/crops/' + crop.slug + '/') | url }}#varieties">Varieties</a> /</p>
 <div class="layout">
   <article class="col-main" data-pagefind-body>
-    <h1>{{ v.name }} <small class="muted">{{ crop.name }}</small></h1>
-    <p class="sci-line"><em>{{ v.scientific_name or crop.scientific_name }}</em>{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
-    {% if v.origin == "imported" %}<aside class="warn" data-pagefind-ignore><strong>Imported, unreviewed data.</strong> {{ v.note }}</aside>{% endif %}
+    <div class="title-row"><h1>{{ v.name }} <small class="muted">{{ crop.name }}</small></h1>
+      <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="variety:{{ crop.slug }}/{{ v.slug }}" data-label aria-pressed="false">♡</button>
+      <button type="button" class="grow" data-grow="{{ crop.slug }}/{{ v.slug }}">＋ I'm growing this</button></span></div>
+    <p class="sci-line">{% if v.scientific_name %}<em>{{ v.scientific_name }}</em>{% elif crop.scientific_name %}<em>{{ crop.scientific_name }}</em> '{{ v.cultivar }}'{% endif %}{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
+    {% if v.origin == "imported" %}<p class="sci-line">{% set editFile = v.file %}{% include "unreviewed.njk" %}</p>{% endif %}
     {% set img = v.image %}{% set alt = v.name + " " + crop.name %}{% set inherited = v.imageInherited %}{% include "image.njk" %}
     <div class="body">{{ v.html | safe }}</div>
     {% if v.fruit %}<p><strong>Fruit:</strong> {{ v.fruit }}</p>{% endif %}
@@ -26,7 +28,24 @@ eleventyComputed:
       <p>{% for r in v.suitable_regions %}{% set reg = db.regionBy[r] %}<a class="chip" href="{{ ('/regions/' + r + '/') | url }}"><span class="swatch sm" style="background:{{ reg.color }}"></span>{{ reg.name }}</a> {% endfor %}</p>
       {% if v.regions_note %}<p class="small">{{ v.regions_note }}</p>{% endif %}
     {% else %}
-      <p class="muted">No sourced climate-region recommendation yet.</p>
+      <div class="no-guide">
+        {% if crop.guides.length %}
+        <p>No source names climate regions for this variety itself yet. These {{ crop.name | lower }} guides cover the crop in general:</p>
+        <p>{% for g in crop.guides %}<a class="chip" href="{{ g.url | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a> {% endfor %}</p>
+        {% else %}
+        <p>There is no {{ crop.name | lower }} guide for any climate region yet, so here are the general facts for the crop:</p>
+        {% endif %}
+        <dl class="kv compact">
+          {% if v.days_to_maturity %}<div><dt>Days to maturity</dt><dd>{{ v.days_to_maturity | range(" days") }}</dd></div>{% elif crop.days_to_first_harvest %}<div><dt>To first harvest</dt><dd>{{ crop.days_to_first_harvest | range(" days") }}</dd></div>{% endif %}
+          {% if crop.sowing_method %}<div class="wide"><dt>Sowing</dt><dd>{{ crop.sowing_method }}</dd></div>{% endif %}
+          {% if crop.size and crop.size.spread_cm %}<div><dt>Spacing (spread)</dt><dd>{{ crop.size.spread_cm }} cm</dd></div>{% endif %}
+          {% if crop.size and crop.size.row_spacing_cm %}<div><dt>Row spacing</dt><dd>{{ crop.size.row_spacing_cm }} cm</dd></div>{% endif %}
+          {% if crop.temperature and crop.temperature.frost_tender %}<div><dt>Frost</dt><dd>Frost-tender</dd></div>{% endif %}
+          {% if crop.sun %}<div><dt>Sun</dt><dd>{{ crop.sun | label }}</dd></div>{% endif %}
+        </dl>
+        <p class="small" data-your-region-variety data-crop="{{ crop.slug }}"></p>
+        <p class="small">Grow it somewhere? <a href="{{ '/contribute/' | url }}#guides">Write a {{ crop.name | lower }} guide for your climate region</a> – with sources, so others can trust it.</p>
+      </div>
     {% endif %}
     {% set used = crop.guides | whereIn("varieties", v.slug) %}
     {% if used.length %}<p>Suggested in: {% for g in used %}<a href="{{ g.url | url }}">{{ g.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
@@ -37,9 +56,11 @@ eleventyComputed:
     <h2>Sources</h2>
     {% set srcs = v.sources %}{% include "sources.njk" %}
     {% if v.rescue %}<p class="small">Original OpenFarm record: <a href="{{ v.rescue.wayback_url }}">Wayback Machine capture</a>.</p>{% endif %}
-    <p class="meta">License {{ v.license }} · <a href="{{ site.repo }}/edit/{{ site.branch }}/{{ v.file }}">✏️ Improve on GitHub</a></p>
+    <p class="meta">License {{ v.license }}</p>
+    {% set editFile = v.file %}{% set editLabel = "Edit this variety" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
+    {% set hz = v.hardiness or crop.hardiness %}{% set annual = crop.lifecycle == "annual" %}{% include "hardiness.njk" %}
     <section class="side-card">
       <h3>Traits</h3>
       <dl class="kv">
@@ -59,7 +80,7 @@ eleventyComputed:
     </section>
     <section class="side-card">
       <h3>Seeds</h3>
-      {% set ss = crop.seed_saving %}{% set vs = v.seeds %}{% include "seeds.njk" %}
+      {% set ss = crop.seed_saving %}{% set vs = v.seeds %}{% set simg = crop.seedImage %}{% include "seeds.njk" %}
       {% if not v.seeds %}<p class="small muted">Variety seed type not recorded; values shown are for the crop.</p>{% endif %}
     </section>
     {% include "weather.njk" %}

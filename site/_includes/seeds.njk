@@ -1,14 +1,24 @@
-{# expects `ss` (crop-level seed_saving) and optional `vs` (variety seeds) #}
+{# expects `ss` (crop-level seed_saving), optional `vs` (variety seeds) and optional `simg` (seed photo) #}
+{% if simg %}<figure class="seed-photo"><span class="thumb"><img src="{{ simg | wmThumb(330) }}" srcset="{{ simg | wmSrcset(330) }}" alt="Seeds" loading="lazy" style="max-width:{{ simg.orig_width or 330 }}px;max-height:{{ simg.orig_height or 330 }}px"></span>
+  <figcaption class="credit">Seeds · {{ simg.author | truncate(40) }} · {% if simg.license_url %}<a href="{{ simg.license_url }}">{{ simg.license }}</a>{% else %}{{ simg.license }}{% endif %} · <a href="{{ simg.source }}">Commons</a></figcaption></figure>{% endif %}
 <dl class="kv">
   {% if vs %}<div><dt>Seed type</dt><dd>{{ vs.type | label }}{% if vs.heirloom %} (heirloom){% endif %}</dd></div>
-  {% if vs.true_to_type is defined %}<div><dt>Saved seed comes true</dt><dd>{{ "Yes" if vs.true_to_type else "No" }}</dd></div>{% endif %}{% endif %}
+  {% if vs.true_to_type is defined %}<div><dt>Saved seed comes true</dt><dd>{% if vs.true_to_type %}Yes{% elif vs.type == "F1-hybrid" %}No – F1 hybrid{% else %}No{% endif %}</dd></div>{% endif %}{% endif %}
   {% set diff = (vs.saving_difficulty if vs and vs.saving_difficulty) or (ss.difficulty if ss) %}
   {% if diff %}<div><dt>Seed saving</dt><dd>{{ diff | label }}</dd></div>{% endif %}
   {% if ss and ss.pollination %}<div><dt>Pollination</dt><dd>{{ ss.pollination | label }}</dd></div>{% endif %}
+  {% if ss and ss.cycle %}<div><dt>Sets seed</dt><dd>{% if ss.cycle == "annual" %}in year 1 (annual){% elif ss.cycle == "biennial" %}in year 2 (biennial){% else %}perennial{% endif %}</dd></div>{% endif %}
   {% set iso = (vs.isolation_m if vs and vs.isolation_m) or (ss.isolation_m if ss) %}
   {% if iso %}<div><dt>Isolation distance</dt><dd>{{ iso | range(" m") }}</dd></div>{% endif %}
+  {% if ss and ss.min_plants %}<div><dt>Save from at least</dt><dd>{{ ss.min_plants }} plants</dd></div>{% endif %}
   {% set via = (vs.viability_years if vs and vs.viability_years) or (ss.viability_years if ss) %}
   {% if via %}<div><dt>Seed stays viable</dt><dd>{{ via | range(" years") }}</dd></div>{% endif %}
+  {% if ss and ss.processing %}<div><dt>Processing</dt><dd>{% if ss.processing == "wet-ferment" %}wet, fermented{% elif ss.processing == "wet-wash" %}wet, washed{% elif ss.processing == "scrape-dry" %}scrape and dry{% else %}dry, threshed{% endif %}</dd></div>{% endif %}
 </dl>
 {% if vs and vs.notes %}<p class="small">{{ vs.notes }}</p>{% endif %}
+{% if ss and ss.cross_note %}<p class="small"><strong>Crossing:</strong> {{ ss.cross_note }}</p>{% endif %}
+{% if ss and ss.harvest %}<p class="small"><strong>Harvest seed:</strong> {{ ss.harvest }}</p>{% endif %}
+{% if ss and ss.processing_note %}<p class="small"><strong>Clean and dry:</strong> {{ ss.processing_note }}</p>{% endif %}
+{% if ss and ss.storage %}<p class="small"><strong>Store:</strong> {{ ss.storage }}</p>{% endif %}
 {% if ss and ss.notes %}<p class="small">{{ ss.notes }}</p>{% endif %}
+{% if ss and ss.sources and ss.sources.length %}<p class="credit">Seed facts: {% for s in ss.sources %}<a href="{{ s.url }}">{{ s.publisher or s.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}

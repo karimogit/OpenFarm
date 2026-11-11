@@ -1,6 +1,9 @@
 ---
 slug: sudachi
 name: Sudachi
+scientific_name: "Citrus sudachi"
+family: Rutaceae
+wikidata: Q3234251
 type: fruit-tree
 origin: imported
 rescue:

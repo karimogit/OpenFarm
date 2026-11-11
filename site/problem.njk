@@ -17,5 +17,5 @@ eleventyComputed:
   <div class="body">{{ p.html | safe }}</div>
   <h2>Sources</h2>
   {% set srcs = p.sources %}{% include "sources.njk" %}
-  <p class="meta"><a href="{{ site.repo }}/edit/{{ site.branch }}/{{ p.file }}">✏️ Improve on GitHub</a></p>
+  {% set editFile = p.file %}{% set editLabel = "Edit this page" %}{% include "edit-button.njk" %}
 </article>

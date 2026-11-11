@@ -1,9 +1,11 @@
 ---
 slug: fenugreek
 name: Fenugreek
+scientific_name: "Trigonella foenum-graecum"
+family: Fabaceae
+wikidata: Q133205
 type: spice
 origin: imported
-scientific_name: Trigonella foenum-graecum
 sun: full
 sowing_method: 'Direct seed outdoors at 5cm, thin to 15cm'
 size:

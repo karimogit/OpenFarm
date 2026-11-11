@@ -1,9 +1,11 @@
 ---
 slug: black-cherry
 name: Black Cherry
+scientific_name: "Prunus serotina"
+family: Rosaceae
+wikidata: Q158987
 type: fruit-tree
 origin: imported
-scientific_name: Prunus serotina
 rescue:
   slug: black-cherry
   wayback_url: 'https://web.archive.org/web/20230928044623/https://openfarm.cc/en/crops/black-cherry'

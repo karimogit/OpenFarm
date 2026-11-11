@@ -1,8 +1,9 @@
 ---
 slug: bush-bean
 name: Bush bean (dwarf French bean)
-scientific_name: Phaseolus vulgaris
+scientific_name: "Phaseolus vulgaris"
 family: Fabaceae
+wikidata: Q42339
 type: legume
 lifecycle: annual
 origin: curated
@@ -22,13 +23,19 @@ seed_saving:
     Beans are largely self-pollinating; keep different varieties about 3–6 m (10–20 ft) apart.
     Leave pods on the plant until they are dry and papery, then shell and store the seed cool,
     dark and dry.
-  sources: [seed-matters-chart, wvu-seed-saving]
+  sources: [seed-matters-chart, wvu-seed-saving, osu-seed-saving-chart, umn-saving-seeds]
+  cycle: annual
+  min_plants: 10
+  harvest: "Leave the pods on the plant until they are dry and the seeds rattle."
+  processing: dry-thresh
+  processing_note: "Shell the seeds and spread them out to dry. UMN: dry pods indoors for at least two weeks before shelling."
 sources:
   - seed-matters-chart
   - wvu-seed-saving
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [hoe]
 ---
 
 Bush beans are compact forms of the common bean grown for their young pods (green, yellow "wax"

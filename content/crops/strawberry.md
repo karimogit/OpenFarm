@@ -1,8 +1,9 @@
 ---
 slug: strawberry
 name: Strawberry
-scientific_name: Fragaria × ananassa
+scientific_name: "Fragaria × ananassa"
 family: Rosaceae
+wikidata: Q13158
 type: berry
 lifecycle: perennial
 origin: curated
@@ -33,8 +34,9 @@ sources:
   - umn-strawberries
   - openfarm-rescue
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [trowel, watering-can]
 ---
 
 Garden strawberries are low perennial plants grown for their fruit. They grow in beds, borders,

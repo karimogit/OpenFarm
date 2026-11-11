@@ -18,7 +18,7 @@ seeds:
   notes: Propagate from runners.
 sources: [umn-strawberries, rhs-strawberries]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

@@ -1,7 +1,7 @@
 ---
 slug: de-bolster
 name: De Bolster
-url: https://www.debolster.nl/
+url: https://www.bolster.nl/
 kind: seed-company
 countries: [NL]
 focus: Organic vegetable, herb and flower seed

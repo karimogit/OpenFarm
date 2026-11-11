@@ -2,6 +2,7 @@
 crop: apple
 slug: granny-smith
 name: Granny Smith Apple
+commons_file: "Granny Smith apples 2017 A.jpg"
 origin: imported
 wikipedia: Granny Smith
 scientific_name: Malus domestica × M. sylvestris

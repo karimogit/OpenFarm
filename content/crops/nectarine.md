@@ -1,9 +1,11 @@
 ---
 slug: nectarine
 name: Nectarine
+scientific_name: "Prunus persica var. nucipersica"
+family: Rosaceae
+wikidata: Q3408651
 type: fruit-tree
 origin: imported
-scientific_name: Prunus persica var. nucipersica
 sun: full
 sowing_method: Transplant bare-root plant
 size:

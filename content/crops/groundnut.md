@@ -1,9 +1,11 @@
 ---
 slug: groundnut
 name: Groundnut
+scientific_name: "Apios americana"
+family: Fabaceae
+wikidata: Q568933
 type: legume
 origin: imported
-scientific_name: Apios americana
 rescue:
   slug: groundnut
   wayback_url: 'https://web.archive.org/web/20200922052019/https://openfarm.cc/en/crops/groundnut'

@@ -1,9 +1,11 @@
 ---
 slug: buckwheat
 name: Buckwheat
+scientific_name: "Fagopyrum esculentum"
+family: Polygonaceae
+wikidata: Q132734
 type: grain
 origin: imported
-scientific_name: Fagopyrum esculentum
 sun: full
 sowing_method: 'Direct seed (broadcast or drill), thin seedlings to 10cm apart'
 size:

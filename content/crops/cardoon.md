@@ -1,6 +1,9 @@
 ---
 slug: cardoon
 name: Cardoon
+scientific_name: "Cynara cardunculus"
+family: Asteraceae
+wikidata: Q7186137
 type: vegetable
 origin: imported
 sun: full

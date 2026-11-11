@@ -1,9 +1,11 @@
 ---
 slug: midgen-berry
 name: Midgen Berry
+scientific_name: "Austromyrtus dulcis"
+family: Myrtaceae
+wikidata: Q4056140
 type: berry
 origin: imported
-scientific_name: Austromyrtus dulcis
 sun: full
 sowing_method: 'Direct seed fresh cleaned seed indoors, cuttings'
 size:

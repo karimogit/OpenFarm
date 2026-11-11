@@ -1,9 +1,11 @@
 ---
 slug: wattle
 name: Wattle
+scientific_name: "Acacia"
+family: Fabaceae
+wikidata: Q81666
 type: other
 origin: imported
-scientific_name: Acacia
 sun: full
 sowing_method: 'Transplant sapling, direct seed'
 size:

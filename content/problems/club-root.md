@@ -8,7 +8,7 @@ affects: [kale, cabbage, cauliflower, broccoli, turnip, radish, kohlrabi, collar
 conditions: Moist, warm soil – most new infections from mid-summer to late autumn.
 sources: [rhs-club-root]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

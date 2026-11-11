@@ -1,9 +1,11 @@
 ---
 slug: peanut
 name: Peanut
+scientific_name: "Arachis hypogaea"
+family: Fabaceae
+wikidata: Q37383
 type: legume
 origin: imported
-scientific_name: Arachis hypogaea
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden seedlings off and transplant once soil is 15-21°C'
 size:

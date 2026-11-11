@@ -1,9 +1,11 @@
 ---
 slug: cowpea
 name: Cowpea
+scientific_name: "Vigna unguiculata"
+family: Fabaceae
+wikidata: Q498940
 type: legume
 origin: imported
-scientific_name: Vigna unguiculata
 sun: full
 sowing_method: 'Direct seed outdoors, thin to 10cm'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: star-fruit
 name: Star Fruit
+scientific_name: "Averrhoa carambola"
+family: Oxalidaceae
+wikidata: Q159447
 type: fruit-tree
 origin: imported
-scientific_name: Averrhoa carambola
 sun: full
 sowing_method: Transplant grafted sapling
 size:

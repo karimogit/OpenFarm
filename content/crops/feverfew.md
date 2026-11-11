@@ -1,9 +1,11 @@
 ---
 slug: feverfew
 name: Feverfew
+scientific_name: "Chrysanthemum parthenium"
+family: Asteraceae
+wikidata: Q87647158
 type: herb
 origin: imported
-scientific_name: Chrysanthemum parthenium
 rescue:
   slug: feverfew
   wayback_url: 'https://web.archive.org/web/20240519132726/https://openfarm.cc/en/crops/feverfew'

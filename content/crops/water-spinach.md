@@ -1,9 +1,11 @@
 ---
 slug: water-spinach
 name: Water Spinach
+scientific_name: "Ipomoea aquatica"
+family: Convolvulaceae
+wikidata: Q272754
 type: vegetable
 origin: imported
-scientific_name: Ipomoea aquatica
 sun: partial
 sowing_method: Pot or Ground
 size:

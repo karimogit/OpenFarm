@@ -1,9 +1,11 @@
 ---
 slug: sweet-potato
 name: Sweet Potato
+scientific_name: "Ipomoea batatas"
+family: Convolvulaceae
+wikidata: Q37937
 type: vegetable
 origin: imported
-scientific_name: Ipomoea batatas
 sun: full
 sowing_method: Slips
 size:

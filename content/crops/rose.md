@@ -1,9 +1,11 @@
 ---
 slug: rose
 name: Rose
+scientific_name: "Rosa"
+family: Rosaceae
+wikidata: Q34687
 type: flower
 origin: imported
-scientific_name: Rosa
 sun: full
 sowing_method: Cuttings
 rescue:

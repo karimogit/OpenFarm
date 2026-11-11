@@ -1,9 +1,11 @@
 ---
 slug: feijoa
 name: Feijoa
+scientific_name: "Acca sellowiana"
+family: Myrtaceae
+wikidata: Q499671
 type: fruit-tree
 origin: imported
-scientific_name: Acca sellowiana / Feijoa sellowiana
 sun: full
 sowing_method: Transplant grafted sapling
 size:

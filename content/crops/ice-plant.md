@@ -1,9 +1,11 @@
 ---
 slug: ice-plant
 name: Ice Plant
+scientific_name: "Carpobrotus"
+family: Aizoaceae
+wikidata: Q134968
 type: vegetable
 origin: imported
-scientific_name: Carpobrotus
 sun: full
 sowing_method: 'Stem cuttings, seeds'
 size:

@@ -1,8 +1,9 @@
 ---
 slug: potato
 name: Potato
-scientific_name: Solanum tuberosum
+scientific_name: "Solanum tuberosum"
 family: Solanaceae
+wikidata: Q10998
 type: vegetable
 lifecycle: annual
 origin: curated
@@ -27,8 +28,9 @@ sources:
   - rhs-potato-blight
   - openfarm-rescue
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+tools: [spade, hoe]
 ---
 
 Potatoes are cool-season tuber crops in the nightshade family, originally from South America.

@@ -1,9 +1,11 @@
 ---
 slug: walnut
 name: Walnut
+scientific_name: "Juglans"
+family: Juglandaceae
+wikidata: Q2453469
 type: nut
 origin: imported
-scientific_name: Juglans
 sun: full
 sowing_method: Transplant grafted sapling or direct seed outdoors
 size:

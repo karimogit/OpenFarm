@@ -1,9 +1,11 @@
 ---
 slug: luffa
 name: Luffa
+scientific_name: "Luffa"
+family: Cucurbitaceae
+wikidata: Q232909
 type: vegetable
 origin: imported
-scientific_name: Luffa
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:

@@ -6,7 +6,7 @@ caused_by: Local calcium shortage in the fruit, almost always due to irregular w
 affects: [tomato, eggplant, bell-pepper, chili-pepper]
 sources: [rhs-blossom-end-rot]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

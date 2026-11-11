@@ -1,6 +1,7 @@
 ---
 slug: blood-orange
 name: Blood Orange
+commons_file: "Blood orange on white.jpg"
 type: fruit-tree
 origin: imported
 rescue:

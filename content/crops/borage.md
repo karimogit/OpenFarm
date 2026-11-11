@@ -1,9 +1,11 @@
 ---
 slug: borage
 name: Borage
+scientific_name: "Borago officinalis"
+family: Boraginaceae
+wikidata: Q147075
 type: herb
 origin: imported
-scientific_name: Borago officinalis
 sun: partial
 sowing_method: 'Direct seed outdoors, thin to 45cm apart when seedlings are 4cm tall'
 size:
@@ -24,5 +26,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "2a"
+  max: "11b"
+  sources:
+    - title: "Borago officinalis Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/borago-officinalis/
 ---
 Borage, or Starflower, is an annual flowering herb with blue, pink, or white flowers and bristly stems and leaves. It is a popular companion plant, particularly for tomatoes, as it is thought to confuse mother moths of tomato hornworms looking for a place to lay their eggs. It also attracts many pollinators. It's edible leaves can be used as a fresh vegetable or dried herb. When fresh, it has a cucumber-like taste and is used in salads, lemonade, or as a garnish. It's flowers have a sweet honey-like taste and can be used to decorate desserts or cocktails or candied. It is also cultivated for the borage seed oil extracted from it's seeds.

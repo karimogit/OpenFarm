@@ -6,6 +6,7 @@ color: "#46aafa"
 order: 3
 similar: [tropical-monsoon, hot-semi-arid, humid-subtropical]
 examples: Bangkok, Darwin, Brasília, Lagos (edge), Bamako
+commons_file: "Feed The Future Zambia (5842686896).jpg"
 ---
 
 Hot all year with distinct wet and dry seasons. The calendar is set by the rains rather than by frost: cool-season crops go in as the rains end, and irrigation decides what grows in the dry season.

@@ -1,9 +1,11 @@
 ---
 slug: beach-pea
 name: Beach Pea
+scientific_name: "Lathyrus japonicus"
+family: Fabaceae
+wikidata: Q21125
 type: legume
 origin: imported
-scientific_name: Lathyrus japonicus
 rescue:
   slug: beach-pea
   wayback_url: 'https://web.archive.org/web/20250318004151/https://openfarm.cc/en/crops/beach-pea'

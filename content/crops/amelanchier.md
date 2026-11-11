@@ -1,9 +1,11 @@
 ---
 slug: amelanchier
 name: Amelanchier
+scientific_name: "Amelanchier"
+family: Rosaceae
+wikidata: Q156957
 type: berry
 origin: imported
-scientific_name: Amelanchier
 rescue:
   slug: amelanchier
   wayback_url: 'https://web.archive.org/web/20200810153420/https://openfarm.cc/en/crops/amelanchier'

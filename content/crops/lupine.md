@@ -1,9 +1,11 @@
 ---
 slug: lupine
 name: Lupine
+scientific_name: "Lupinus"
+family: Fabaceae
+wikidata: Q156811
 type: cover-crop
 origin: imported
-scientific_name: Lupinus
 sun: full
 sowing_method: Direct seed
 size:

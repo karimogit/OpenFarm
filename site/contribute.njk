@@ -5,7 +5,10 @@ permalink: /contribute/
 ---
 <article data-pagefind-body>
 <h1>About OpenFarm</h1>
-<p class="lead">{{ site.tagline }}</p>
+<p class="lead"><strong>{{ site.short }}</strong></p>
+<p>{{ site.tagline }}</p>
+<p>OpenFarm is built in the spirit of the original <a href="https://github.com/openfarmcc">OpenFarm</a> (openfarm.cc), the free and open
+  database of crowd-sourced growing guides started by Rory Aronson.</p>
 
 <h2>How it works</h2>
 <p>Pick a place and OpenFarm looks up its climate in your browser – no account, no tracking. Under the hood it uses the
@@ -16,7 +19,7 @@ permalink: /contribute/
 
 <h2>Contribute</h2>
 <p>Every guide is a plain text file on GitHub, so anyone can suggest improvements and every change is tracked.
-  If you can edit a text file, you can contribute – use the "✏️ Improve on GitHub" link on any page.</p>
+  If you can edit a text file, you can contribute – use the "✏️ Edit this …" button at the bottom of any page.</p>
 <ol>
   <li>Find your climate region and the crop you know how to grow.</li>
   <li>Copy <a href="{{ site.repo }}/blob/main/content/TEMPLATE.md"><code>content/TEMPLATE.md</code></a> to <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>.</li>
@@ -35,8 +38,7 @@ permalink: /contribute/
 
 <h2>Licenses and credits</h2>
 <p>Code is MIT. Guide content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> – © {{ site.attribution }}.
-  {{ db.stats.imported }} crop records were imported from the CC0 <a href="https://github.com/thefullnacho/openfarm-crops-rescue">openfarm-crops-rescue</a>
-  dataset (recovered from the original OpenFarm.cc) and are marked as imported and unreviewed until someone checks them.
+  Crops marked "Unreviewed" have not been checked against sources yet – reviewing one is a great first contribution.
   Photos come from Wikimedia Commons with their author and license shown. Full details are in
   <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
 </article>

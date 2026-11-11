@@ -1,9 +1,11 @@
 ---
 slug: rhubarb
 name: Rhubarb
+scientific_name: "Rheum rhabarbarum"
+family: Polygonaceae
+wikidata: Q7535
 type: vegetable
 origin: imported
-scientific_name: Rheum rhabarbarum
 sun: full
 sowing_method: Transplant crowns or direct seed indoors
 size:

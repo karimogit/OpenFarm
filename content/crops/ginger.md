@@ -1,9 +1,11 @@
 ---
 slug: ginger
 name: Ginger
+scientific_name: "Zingiber officinale"
+family: Zingiberaceae
+wikidata: Q35625
 type: spice
 origin: imported
-scientific_name: Zingiber officinale
 sun: partial
 sowing_method: Direct seed roots outdoors
 size:

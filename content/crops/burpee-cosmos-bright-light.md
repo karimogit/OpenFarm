@@ -1,9 +1,11 @@
 ---
 slug: burpee-cosmos-bright-light
 name: Burpee Cosmos Bright Light
+scientific_name: "Cosmos bipinnatus"
+family: Asteraceae
+wikidata: Q575748
 type: flower
 origin: imported
-scientific_name: Cosmos bipinnatus
 sun: full
 sowing_method: >-
   Direct seed outdoors after soil is above 16°C. If planting indoors, harden off before transplanting

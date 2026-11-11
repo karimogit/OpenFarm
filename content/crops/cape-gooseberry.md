@@ -1,9 +1,11 @@
 ---
 slug: cape-gooseberry
 name: Cape Gooseberry
+scientific_name: "Physalis peruviana"
+family: Solanaceae
+wikidata: Q165227
 type: fruit
 origin: imported
-scientific_name: Physalis peruviana
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off.'
 size:

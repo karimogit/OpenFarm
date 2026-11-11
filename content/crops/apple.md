@@ -1,8 +1,9 @@
 ---
 slug: apple
 name: Apple
-scientific_name: Malus domestica
+scientific_name: "Malus domestica"
 family: Rosaceae
+wikidata: Q18674606
 type: fruit-tree
 lifecycle: perennial
 origin: curated
@@ -53,8 +54,16 @@ sources:
   - ufifas-low-chill-apples
   - openfarm-rescue
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
+hardiness:
+  min: "4a"
+  max: "9b"
+  sources:
+    - title: "Malus domestica Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/malus-domestica/
+tools: [pruning-shears, spade]
 ---
 
 Apples are deciduous fruit trees in the rose family and one of the easiest tree fruits to grow.

@@ -1,9 +1,11 @@
 ---
 slug: goumi-berry
 name: Goumi Berry
+scientific_name: "Elaeagnus multiflora"
+family: Elaeagnaceae
+wikidata: Q2139163
 type: berry
 origin: imported
-scientific_name: Elaeagnus multiflora
 sun: full
 sowing_method: 'Cuttings, direct seed indoors, or transplant young shrub.'
 size:

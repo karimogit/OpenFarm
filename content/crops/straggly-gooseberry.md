@@ -1,9 +1,11 @@
 ---
 slug: straggly-gooseberry
 name: Straggly Gooseberry
+scientific_name: "Ribes divaricatum"
+family: Grossulariaceae
+wikidata: Q2029489
 type: berry
 origin: imported
-scientific_name: Ribes divaricatum
 rescue:
   slug: straggly-gooseberry
   wayback_url: 'https://web.archive.org/web/20220625072348/https://openfarm.cc/en/crops/straggly-gooseberry'

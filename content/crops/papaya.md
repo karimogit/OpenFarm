@@ -1,9 +1,11 @@
 ---
 slug: papaya
 name: Papaya
+scientific_name: "Carica papaya"
+family: Caricaceae
+wikidata: Q34887
 type: fruit-tree
 origin: imported
-scientific_name: Carica papaya
 sun: full
 sowing_method: Transplant young hermaphrodite tree or direct seed indoors
 size:

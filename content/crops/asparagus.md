@@ -1,9 +1,11 @@
 ---
 slug: asparagus
 name: Asparagus
+scientific_name: "Asparagus officinalis"
+family: Asparagaceae
+wikidata: Q28367
 type: vegetable
 origin: imported
-scientific_name: Asparagus officinalis
 sun: full
 sowing_method: 'Transplant crowns outside, or start seeds indoors'
 size:

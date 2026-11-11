@@ -1,9 +1,11 @@
 ---
 slug: chickpea
 name: Chickpea
+scientific_name: "Cicer arietinum"
+family: Fabaceae
+wikidata: Q81375
 type: legume
 origin: imported
-scientific_name: Cicer arietinum
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: salsify
 name: Salsify
+scientific_name: "Tragopogon porrifolius"
+family: Asteraceae
+wikidata: Q941639
 type: vegetable
 origin: imported
-scientific_name: Tragopogon porrifolius
 sun: partial
 sowing_method: 'Direct seed outdoors, thin to 7cm'
 size:

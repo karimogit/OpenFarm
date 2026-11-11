@@ -1,9 +1,11 @@
 ---
 slug: bay-laurel
 name: Bay Laurel
+scientific_name: "Laurus nobilis"
+family: Lauraceae
+wikidata: Q26006
 type: herb
 origin: imported
-scientific_name: Laurus nobilis
 sun: full
 sowing_method: Young tree or cutting
 size:
@@ -19,5 +21,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "8b"
+  max: "10b"
+  sources:
+    - title: "Laurus nobilis Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/laurus-nobilis/
 ---
 Bay Laurel is an aromatic evergreen tree or large shrub native to the Mediterranean. It can be grown in soil or in containers. It has glossy dark green leaves, yellow flowers, and dark purplish-black fruits. The plant's leaves are used as seasoning in cooking and are best harvested in the morning when the fragrance oils are strongest. Bay Laurel can also be grown as an ornamental or topiary. Plant trees in an area where they are protected from wind to prevent cold winter winds from damaging foliage.

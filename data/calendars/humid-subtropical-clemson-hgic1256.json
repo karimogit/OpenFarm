@@ -1,0 +1,306 @@
+{
+ "source": "clemson-planning-a-garden",
+ "location": "South Carolina Coastal Plain (Charleston)",
+ "note": "Transcribed from HGIC 1256 Table 1 (planting date ranges) and Table 2 (approximate days to harvest). Names ending in ' 1' are planted as transplants; ' 2' = plant in succession.",
+ "rows": {
+  "Asparagus": {
+   "coastal_spring": "Feb 1 to Mar 15",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "Mar 1 to Apr 15",
+   "piedmont_fall": "Not recommended"
+  },
+  "Beans, Snap": {
+   "coastal_spring": "Apr 1 to Jun 1",
+   "coastal_fall": "Aug 1 to Sept 1",
+   "piedmont_spring": "Apr 15 to Jul 1",
+   "piedmont_fall": "Jul 20 to Aug 1"
+  },
+  "Beans, Pole": {
+   "coastal_spring": "Apr 1 to Jun 1",
+   "coastal_fall": "Aug 1 to Sept 1",
+   "piedmont_spring": "Apr 15 to Jul 1",
+   "piedmont_fall": "Jul 20 to Aug 1"
+  },
+  "Beans, Half-Runner": {
+   "coastal_spring": "Apr 1 to Jun 1",
+   "coastal_fall": "Aug 1 to Sept 1",
+   "piedmont_spring": "Apr 15 to Jul 1",
+   "piedmont_fall": "Jul 20 to Aug 1"
+  },
+  "Beans, Lima": {
+   "coastal_spring": "Apr 15 to Jun1",
+   "coastal_fall": "Jul 15 to Aug 1",
+   "piedmont_spring": "May 1 to Jun 15",
+   "piedmont_fall": "Jul 1 to Jul 15"
+  },
+  "Beans, Pole Lima": {
+   "coastal_spring": "Apr 15 to Jun1",
+   "coastal_fall": "Jul 15 to Aug 1",
+   "piedmont_spring": "May 1 to June 15",
+   "piedmont_fall": "Jul 1 to Jul 15"
+  },
+  "Beans, Edible Soy": {
+   "coastal_spring": "Apr 15 to Jun1",
+   "coastal_fall": "Jul 15 to Aug 1",
+   "piedmont_spring": "May 1 to June 15",
+   "piedmont_fall": "Jul 1 to Jul 15"
+  },
+  "Beets": {
+   "coastal_spring": "Feb 15 to Mar 31",
+   "coastal_fall": "Aug 15 to Sept 30",
+   "piedmont_spring": "Mar 15 to May 31",
+   "piedmont_fall": "Jul 15 to Aug 31"
+  },
+  "Broccoli 1": {
+   "coastal_spring": "Mar 1 to Apr 10",
+   "coastal_fall": "Sept 1 to Sept 30",
+   "piedmont_spring": "Mar 20 to Apr 30",
+   "piedmont_fall": "Aug 15 to Sept 15"
+  },
+  "Brussels Sprouts": {
+   "coastal_spring": "Not recommended",
+   "coastal_fall": "Sept 15 to Oct 15",
+   "piedmont_spring": "Not recommended",
+   "piedmont_fall": "Aug 15 to Sept 15"
+  },
+  "Cabbage 1": {
+   "coastal_spring": "Feb 1 to Mar 31",
+   "coastal_fall": "Aug 15 to Sept 30",
+   "piedmont_spring": "Mar 15 to Apr 30",
+   "piedmont_fall": "Jul 15 to Aug 31"
+  },
+  "Cantaloupe": {
+   "coastal_spring": "Mar 15 to May 15",
+   "coastal_fall": "Jul 1 to Jul 30",
+   "piedmont_spring": "Apr 15 to Jun 5",
+   "piedmont_fall": "Not recommended"
+  },
+  "Carrots": {
+   "coastal_spring": "Feb 1 to Mar 15",
+   "coastal_fall": "Sept 1 to Sept 15",
+   "piedmont_spring": "Feb 15 to Mar 31",
+   "piedmont_fall": "Aug 1 to Sep 15"
+  },
+  "Cauliflower 1": {
+   "coastal_spring": "Mar 1 to Apr 10",
+   "coastal_fall": "Aug 15 to Aug 30",
+   "piedmont_spring": "Mar 20 to Apr 30",
+   "piedmont_fall": "Jul 15 to Aug 31"
+  },
+  "Collards": {
+   "coastal_spring": "Feb 1 to Jun 15",
+   "coastal_fall": "Aug 1 to Oct 30",
+   "piedmont_spring": "Mar 15 to Jun 30",
+   "piedmont_fall": "Aug 1 to Sept 30"
+  },
+  "Cucumber": {
+   "coastal_spring": "Mar 15 to May 15",
+   "coastal_fall": "Aug 1 to Aug 30",
+   "piedmont_spring": "Apr 15 to Jun 5",
+   "piedmont_fall": "Aug 1 to Sept 30"
+  },
+  "Eggplant 1": {
+   "coastal_spring": "Apr 1 to Apr 30",
+   "coastal_fall": "Aug 1 to Aug 31",
+   "piedmont_spring": "May 1 to Jun 30",
+   "piedmont_fall": "Not recommended"
+  },
+  "Garlic": {
+   "coastal_spring": "Not recommended",
+   "coastal_fall": "Oct 1 to Nov 30",
+   "piedmont_spring": "Not recommended",
+   "piedmont_fall": "Aug 15 to Oct 15"
+  },
+  "Honeydew": {
+   "coastal_spring": "Mar 15 to May 15",
+   "coastal_fall": "Jul 1 to Jul 30",
+   "piedmont_spring": "Apr 15 to Jun 5",
+   "piedmont_fall": "Not recommended"
+  },
+  "Kale": {
+   "coastal_spring": "Feb 1 to Jun 15",
+   "coastal_fall": "Aug 1 to Oct 30",
+   "piedmont_spring": "Mar 15 to Jun 30",
+   "piedmont_fall": "Aug 1 to Sept 30"
+  },
+  "Leeks": {
+   "coastal_spring": "Feb 1 to Jun 15",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "Mar 15 to Jun 30",
+   "piedmont_fall": "Not recommended"
+  },
+  "Lettuce 2": {
+   "coastal_spring": "Feb 1 to Apr 15",
+   "coastal_fall": "Sept 5 to Nov 1",
+   "piedmont_spring": "Mar 1 to May 15",
+   "piedmont_fall": "Not recommended"
+  },
+  "Mustard 2": {
+   "coastal_spring": "Feb 1 to Jun 15",
+   "coastal_fall": "Aug 1 to Oct 15",
+   "piedmont_spring": "March 15-Jul 30",
+   "piedmont_fall": "Aug 1 to Sept 15"
+  },
+  "Onion, sets": {
+   "coastal_spring": "Feb 1 to Mar 15",
+   "coastal_fall": "Sept 15 to Nov 15",
+   "piedmont_spring": "Feb 15 to Mar 30",
+   "piedmont_fall": "Sept 15 to Oct 15"
+  },
+  "Onion, plants": {
+   "coastal_spring": "Not recommended",
+   "coastal_fall": "Oct 1 to Nov 15",
+   "piedmont_spring": "Not recommended",
+   "piedmont_fall": "Sept 15 to Oct 15"
+  },
+  "Onion, seeds": {
+   "coastal_spring": "Not recommended",
+   "coastal_fall": "Sept 15 to Oct 30",
+   "piedmont_spring": "Not recommended",
+   "piedmont_fall": "Not recommended"
+  },
+  "Okra": {
+   "coastal_spring": "May 1 to Jun 30",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "May 15 to July 15",
+   "piedmont_fall": "Not recommended"
+  },
+  "Peanuts": {
+   "coastal_spring": "Apr 1 to May 31",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "May 1 to Jun 30",
+   "piedmont_fall": "Not recommended"
+  },
+  "Peas, Garden": {
+   "coastal_spring": "Feb 1 to Mar 15",
+   "coastal_fall": "Aug 15 to Nov 30",
+   "piedmont_spring": "Mar 1 to Apr 5",
+   "piedmont_fall": "Aug 15 to Oct 30"
+  },
+  "Peas, Southern": {
+   "coastal_spring": "Apr 1 to Jun 15",
+   "coastal_fall": "Jul 15 to Aug 1",
+   "piedmont_spring": "Apr 15 to Jul 15",
+   "piedmont_fall": "Not recommended"
+  },
+  "Pepper 1": {
+   "coastal_spring": "Apr 1 to May 15",
+   "coastal_fall": "July 10 to Aug 10",
+   "piedmont_spring": "May 1 to Jun 30",
+   "piedmont_fall": "Not recommended"
+  },
+  "Potatoes, Irish": {
+   "coastal_spring": "Feb 1 to Mar 31",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "Mar 15 to Apr 30",
+   "piedmont_fall": "Not recommended"
+  },
+  "Potatoes, Sweet": {
+   "coastal_spring": "Apr 15 to Jun 15",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "May 1 to Jun 15",
+   "piedmont_fall": "Not recommended"
+  },
+  "Pumpkins": {
+   "coastal_spring": "Not recommended",
+   "coastal_fall": "Jun 1 -to Jun 30",
+   "piedmont_spring": "Not recommended",
+   "piedmont_fall": "Jun 15 to Jul 15"
+  },
+  "Radish 2": {
+   "coastal_spring": "Feb 1 to Jun 15",
+   "coastal_fall": "Aug 1 to Sept 30",
+   "piedmont_spring": "Mar 15 to Jun 30",
+   "piedmont_fall": "Aug 1 to Sept 15"
+  },
+  "Rutabaga": {
+   "coastal_spring": "Feb 1 to Mar 31",
+   "coastal_fall": "Aug 15 to Oct 15",
+   "piedmont_spring": "Mar 15 to Apr 30",
+   "piedmont_fall": "Jul 15 to Sept 30"
+  },
+  "Spinach 2": {
+   "coastal_spring": "Feb 1 to Apr 1",
+   "coastal_fall": "Aug 15 to Oct 15",
+   "piedmont_spring": "Mar 15 to Apr 15",
+   "piedmont_fall": "Aug 1 to Sept 30"
+  },
+  "Sweet Corn 2": {
+   "coastal_spring": "Mar 1 to Apr 15",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "Mar 30 to May 31",
+   "piedmont_fall": "Not recommended"
+  },
+  "Squash, Summer": {
+   "coastal_spring": "Mar 15 to Jul 31",
+   "coastal_fall": "Aug 1 to Aug 31",
+   "piedmont_spring": "Apr 15 to Jul 31",
+   "piedmont_fall": "Jul 15 to Aug 15"
+  },
+  "Squash, Winter": {
+   "coastal_spring": "Mar 20 to May 1",
+   "coastal_fall": "Aug 1 to Aug 31",
+   "piedmont_spring": "Apr 15 to Jun 15",
+   "piedmont_fall": "Not recommended"
+  },
+  "Tomato 1": {
+   "coastal_spring": "Mar 1 to Apr 30",
+   "coastal_fall": "July 1 to Jul 31",
+   "piedmont_spring": "May 1 to Jun 30",
+   "piedmont_fall": "Not recommended"
+  },
+  "Turnips 2": {
+   "coastal_spring": "Feb 1 to Apr 1",
+   "coastal_fall": "Aug 1 to Sept 30",
+   "piedmont_spring": "March 15-Apr 30",
+   "piedmont_fall": "Aug 1 to Sept 15"
+  },
+  "Watermelon 1": {
+   "coastal_spring": "Apr 1 to Apr 30",
+   "coastal_fall": "Not recommended",
+   "piedmont_spring": "Apr 15 to June 15",
+   "piedmont_fall": "Not recommended"
+  }
+ },
+ "days": {
+  "Asparagus": "2 years",
+  "Beans, Snap": "50-60",
+  "Beans, Pole": "60-70",
+  "Beans, Half Runner": "55-65",
+  "Beans, Lima": "65-75",
+  "Beans, Pole Lima": "70-75",
+  "Beans, Edible Soy": "60-70",
+  "Beets": "50-60",
+  "Broccoli": "60-70",
+  "Brussels Sprouts": "90-100",
+  "Cabbage": "60-80",
+  "Cantaloupe": "75-85",
+  "Carrots": "60-70",
+  "Cauliflower": "60-70",
+  "Collards": "60-70",
+  "Cucumbers": "50-60",
+  "Eggplant": "70-80",
+  "Kale": "50-55",
+  "Lettuce, Leaf": "40-70",
+  "Lettuce, Head": "30-50",
+  "Lettuce, Mustard": "40-60",
+  "Onions, Green": "35-45",
+  "Onions, Bulb": "100-120",
+  "Okra": "60-70",
+  "Peanuts": "100-120",
+  "Peas, Garden": "65-80",
+  "Peas, Southern": "75-85",
+  "Pepper": "60-70",
+  "Potatoes, Irish": "90-110",
+  "Potatoes, Sweet": "120",
+  "Radish": "25-30",
+  "Rutabaga": "100-110",
+  "Spinach": "50-60",
+  "Sweet Corn": "80-95",
+  "Squash, Summer": "50-60",
+  "Squash, Winter": "90-120",
+  "Tomato": "70-80",
+  "Turnips": "60-70",
+  "Watermelon": "80-100"
+ }
+}

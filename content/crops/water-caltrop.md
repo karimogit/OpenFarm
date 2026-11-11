@@ -1,9 +1,11 @@
 ---
 slug: water-caltrop
 name: Water Caltrop
+scientific_name: "Trapa natans"
+family: Trapaceae
+wikidata: Q161110
 type: vegetable
 origin: imported
-scientific_name: Trapa natans / Trapa bicornis / Trapa rossica
 sun: full
 sowing_method: Transplant or direct seed
 size:

@@ -1,9 +1,11 @@
 ---
 slug: radicchio
 name: Radicchio
+scientific_name: "Cichorium intybus"
+family: Asteraceae
+wikidata: Q2544599
 type: vegetable
 origin: imported
-scientific_name: Cichorium intybus
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off'
 size:

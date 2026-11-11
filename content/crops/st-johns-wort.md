@@ -1,9 +1,11 @@
 ---
 slug: st-johns-wort
 name: St. John'S Wort
+scientific_name: "Hypericum perforatum"
+family: Hypericaceae
+wikidata: Q158289
 type: herb
 origin: imported
-scientific_name: Hypericum perforatum
 sun: full
 sowing_method: >-
   Direct seed, very lightly covering seeds. If planting indoors, harden off before transplanting seedlings
@@ -28,5 +30,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "3a"
+  max: "8b"
+  sources:
+    - title: "Hypericum perforatum Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/hypericum-perforatum/
 ---
 St. John's Wort is a perennial, herbaceous to woody flowering plant native to Europe and Asia that is used as a medicinal herb to treat depression, inflammation, and wounds. Plants have erect stems with narrow, oblong leaves and yellow, star-shaped flowers. St. John's Wort will bloom the second year after planting, but can easily become invasive because it spreads through underground rhizomes and seeds. A single plant can produce 100,000 seeds that can remain viable for 10 years. Remove berries before they ripen to prevent seeds from forming. St. John's Wort should not be taken by pregnant women.

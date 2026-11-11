@@ -1,9 +1,11 @@
 ---
 slug: grapefruit
 name: Grapefruit
+scientific_name: "Citrus paradisi"
+family: Rutaceae
+wikidata: Q41350
 type: fruit-tree
 origin: imported
-scientific_name: Citrus × paradisi
 sun: full
 sowing_method: Transplant grafted sapling
 size:

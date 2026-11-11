@@ -1,9 +1,11 @@
 ---
 slug: purslane
 name: Purslane
+scientific_name: "Portulaca oleracea"
+family: Portulacaceae
+wikidata: Q158015
 type: vegetable
 origin: imported
-scientific_name: Portulaca oleracea
 sun: full
 sowing_method: Direct seed cuttings or seeds outdoors on surface of soil after last frost
 size:

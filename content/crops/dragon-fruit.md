@@ -1,9 +1,11 @@
 ---
 slug: dragon-fruit
 name: Dragon Fruit
+scientific_name: "Hylocereus undatus"
+family: Cactaceae
+wikidata: Q131730
 type: fruit
 origin: imported
-scientific_name: Hylocereus undatus
 sun: full
 size:
   spread_cm: 1

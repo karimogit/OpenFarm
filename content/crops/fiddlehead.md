@@ -1,9 +1,11 @@
 ---
 slug: fiddlehead
 name: Fiddlehead
+scientific_name: "Pteridium aquilinum"
+family: Dennstaedtiaceae
+wikidata: Q213548
 type: vegetable
 origin: imported
-scientific_name: Pteridium aquilinum
 sun: full
 sowing_method: Transplant crowns
 size:

@@ -1,9 +1,11 @@
 ---
 slug: apricot
 name: Apricot
+scientific_name: "Prunus armeniaca"
+family: Rosaceae
+wikidata: Q37453
 type: fruit-tree
 origin: imported
-scientific_name: Prunus armeniaca
 sun: full
 sowing_method: Transplant bare-root plant
 size:

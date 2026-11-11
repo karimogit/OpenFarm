@@ -1,9 +1,11 @@
 ---
 slug: sunflower
 name: Sunflower
+scientific_name: "Helianthus annuus"
+family: Asteraceae
+wikidata: Q171497
 type: flower
 origin: imported
-scientific_name: Helianthus annuus
 sun: full
 sowing_method: 'Direct seed outdoors after last frost in groups of 2-3, thin to 1 plant when true leaves appear'
 size:

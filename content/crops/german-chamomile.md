@@ -1,9 +1,11 @@
 ---
 slug: german-chamomile
 name: German Chamomile
+scientific_name: "Matricaria chamomilla"
+family: Asteraceae
+wikidata: Q28437
 type: herb
 origin: imported
-scientific_name: 'Matricaria chamomilla, Matricaria recutita'
 sun: full
 sowing_method: 'Direct seed, do not cover. Seeds need light to germinate.'
 size:

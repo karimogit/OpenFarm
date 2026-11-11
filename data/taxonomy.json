@@ -1,0 +1,1587 @@
+{
+ "source": "Wikidata (CC0), https://www.wikidata.org",
+ "crops": {
+  "acorn-squash": {
+   "scientific_name": "Cucurbita pepo",
+   "wikidata": "Q7229863",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "adjuma-pepper": {
+   "scientific_name": "Capsicum chinense",
+   "wikidata": "Q311071",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "african-marigold": {
+   "scientific_name": "Tagetes erecta",
+   "wikidata": "Q759876",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "alfalfa": {
+   "scientific_name": "Medicago sativa",
+   "wikidata": "Q156106",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "allspice": {
+   "scientific_name": "Pimenta dioica",
+   "wikidata": "Q158468",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Myrtaceae"
+  },
+  "almond": {
+   "scientific_name": "Prunus dulcis",
+   "wikidata": "Q39918",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "amaranth": {
+   "scientific_name": "Amaranthus",
+   "wikidata": "Q156344",
+   "how": "Wikipedia article 'Amaranth'",
+   "family": "Amaranthaceae"
+  },
+  "amberique-bean": {
+   "scientific_name": "Strophostyles helvola",
+   "wikidata": "Q7624811",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "amelanchier": {
+   "scientific_name": "Amelanchier",
+   "wikidata": "Q156957",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "anaheim-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "anise-hyssop": {
+   "scientific_name": "Agastache foeniculum",
+   "wikidata": "Q1264088",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "anise": {
+   "scientific_name": "Pimpinella anisum",
+   "wikidata": "Q28692",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "apple-mint": {
+   "scientific_name": "Mentha suaveolens",
+   "wikidata": "Q158892",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "apple": {
+   "scientific_name": "Malus domestica",
+   "wikidata": "Q18674606",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "apricot": {
+   "scientific_name": "Prunus armeniaca",
+   "wikidata": "Q37453",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "artichoke": {
+   "scientific_name": "Cynara cardunculus var. scolymus",
+   "wikidata": "Q23043615",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "arugula": {
+   "scientific_name": "Eruca sativa",
+   "wikidata": "Q25694275",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "asparagus": {
+   "scientific_name": "Asparagus officinalis",
+   "wikidata": "Q28367",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asparagaceae"
+  },
+  "banana-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "banana": {
+   "scientific_name": "Musa",
+   "wikidata": "Q8666090",
+   "how": "Wikipedia article 'Musa (plant)'",
+   "family": "Musaceae"
+  },
+  "basil": {
+   "scientific_name": "Ocimum basilicum",
+   "wikidata": "Q38859",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "bay-laurel": {
+   "scientific_name": "Laurus nobilis",
+   "wikidata": "Q26006",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lauraceae"
+  },
+  "beach-pea": {
+   "scientific_name": "Lathyrus japonicus",
+   "wikidata": "Q21125",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "beet": {
+   "scientific_name": "Beta vulgaris",
+   "wikidata": "Q165191",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaranthaceae"
+  },
+  "belgium-endive": {
+   "scientific_name": "Cichorium intybus",
+   "wikidata": "Q2544599",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "bell-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "bhut-jolokia-chilli-pepper": {
+   "scientific_name": "Capsicum chinense",
+   "wikidata": "Q311071",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "bitter-orange": {
+   "scientific_name": "Citrus × aurantium",
+   "wikidata": "Q147096",
+   "how": "Wikipedia article 'Bitter orange'",
+   "family": "Rutaceae"
+  },
+  "black-cherry": {
+   "scientific_name": "Prunus serotina",
+   "wikidata": "Q158987",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "black-currant": {
+   "scientific_name": "Ribes nigrum",
+   "wikidata": "Q146604",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Grossulariaceae"
+  },
+  "black-eyed-pea": {
+   "scientific_name": "Vigna unguiculata subsp. unguiculata",
+   "wikidata": "Q3246973",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "black-walnut": {
+   "scientific_name": "Juglans nigra",
+   "wikidata": "Q852572",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Juglandaceae"
+  },
+  "blackberry": {
+   "scientific_name": "Rubus fruticosus",
+   "wikidata": "Q13541716",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "blueberry": {
+   "scientific_name": "Vaccinium sect. Cyanococcus",
+   "wikidata": "Q13178",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Ericaceae"
+  },
+  "bok-choy": {
+   "scientific_name": "Brassica rapa subsp. chinensis",
+   "wikidata": "Q165178",
+   "how": "Wikidata taxon for 'Brassica rapa subsp. chinensis' (recorded: 'Brassica rapa subsp. Chinensis')",
+   "family": "Brassicaceae"
+  },
+  "bonnie-bell-sweet-pepper-sfg": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "borage": {
+   "scientific_name": "Borago officinalis",
+   "wikidata": "Q147075",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Boraginaceae"
+  },
+  "broccoli": {
+   "scientific_name": "Brassica oleracea",
+   "wikidata": "Q146212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "buckwheat": {
+   "scientific_name": "Fagopyrum esculentum",
+   "wikidata": "Q132734",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Polygonaceae"
+  },
+  "burpee-cosmos-bright-light": {
+   "scientific_name": "Cosmos bipinnatus",
+   "wikidata": "Q575748",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "bush-bean": {
+   "scientific_name": "Phaseolus vulgaris",
+   "wikidata": "Q42339",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "butternut-squash": {
+   "scientific_name": "Cucurbita moschata",
+   "wikidata": "Q160571",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "cabbage": {
+   "scientific_name": "Brassica oleracea",
+   "wikidata": "Q146212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "cantaloupe": {
+   "scientific_name": "Cucumis melo",
+   "wikidata": "Q81602",
+   "how": "Wikidata taxon for 'Cucumis melo' (recorded: 'Cucumis melo var. cantalupo')",
+   "family": "Cucurbitaceae"
+  },
+  "cape-gooseberry": {
+   "scientific_name": "Physalis peruviana",
+   "wikidata": "Q165227",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "capsicum": {
+   "scientific_name": "Capsicum",
+   "wikidata": "Q201959",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "cardoon": {
+   "scientific_name": "Cynara cardunculus",
+   "wikidata": "Q7186137",
+   "how": "Wikipedia article 'Cardoon'",
+   "family": "Asteraceae"
+  },
+  "carrot": {
+   "scientific_name": "Daucus carota",
+   "wikidata": "Q30056",
+   "how": "Wikipedia article 'Daucus carota'",
+   "family": "Apiaceae"
+  },
+  "cassava": {
+   "scientific_name": "Manihot esculenta",
+   "wikidata": "Q83124",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Euphorbiaceae"
+  },
+  "cauliflower": {
+   "scientific_name": "Brassica oleracea",
+   "wikidata": "Q146212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "cayenne-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "celeriac": {
+   "scientific_name": "Apium graveolens var. rapaceum",
+   "wikidata": "Q575174",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "celery": {
+   "scientific_name": "Apium graveolens",
+   "wikidata": "Q28298",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "celtuce": {
+   "scientific_name": "Lactuca sativa",
+   "wikidata": "Q83193",
+   "how": "Wikidata taxon for 'Lactuca sativa' (recorded: 'Lactuca sativa var asparagina')",
+   "family": "Asteraceae"
+  },
+  "chayote": {
+   "scientific_name": "Sechium edule",
+   "wikidata": "Q319611",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "cheongyang-chili-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "cherry": {
+   "scientific_name": "Prunus avium",
+   "wikidata": "Q165137",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "chervil": {
+   "scientific_name": "Anthriscus cerefolium",
+   "wikidata": "Q218462",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "chestnut": {
+   "scientific_name": "Castanea",
+   "wikidata": "Q129324",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fagaceae"
+  },
+  "chickpea": {
+   "scientific_name": "Cicer arietinum",
+   "wikidata": "Q81375",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "chicory": {
+   "scientific_name": "Cichorium intybus",
+   "wikidata": "Q2544599",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "chili-pepper": {
+   "scientific_name": "Capsicum",
+   "wikidata": "Q201959",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "chinese-cabbage": {
+   "scientific_name": "Brassica rapa",
+   "wikidata": "Q3384",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "chives": {
+   "scientific_name": "Allium schoenoprasum",
+   "wikidata": "Q51148",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "choy-sum": {
+   "scientific_name": "Brassica rapa var. parachinensis",
+   "wikidata": "Q4846242",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "clover": {
+   "scientific_name": "Trifolium",
+   "wikidata": "Q101538",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "coffee": {
+   "scientific_name": "Coffea",
+   "wikidata": "Q156354",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rubiaceae"
+  },
+  "collard-greens": {
+   "scientific_name": "Brassica oleracea",
+   "wikidata": "Q146212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "common-hop": {
+   "scientific_name": "Humulus lupulus",
+   "wikidata": "Q104212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cannabaceae"
+  },
+  "coriander": {
+   "scientific_name": "Coriandrum sativum",
+   "wikidata": "Q41611",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "corn": {
+   "scientific_name": "Zea mays",
+   "wikidata": "Q11575",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Poaceae"
+  },
+  "cowpea": {
+   "scientific_name": "Vigna unguiculata",
+   "wikidata": "Q498940",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "cucumber-straight-eight": {
+   "scientific_name": "Cucumis sativus",
+   "wikidata": "Q23425",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "culantro": {
+   "scientific_name": "Eryngium foetidum",
+   "wikidata": "Q1146782",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "cumin": {
+   "scientific_name": "Cuminum cyminum",
+   "wikidata": "Q132624",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "curly-dock": {
+   "scientific_name": "Rumex crispus",
+   "wikidata": "Q157643",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Polygonaceae"
+  },
+  "daikon": {
+   "scientific_name": "Raphanus sativus var. longipinnatus",
+   "wikidata": "Q7403208",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "dandelion": {
+   "scientific_name": "Taraxacum officinale",
+   "wikidata": "Q131219",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "datil-pepper": {
+   "scientific_name": "Capsicum chinense",
+   "wikidata": "Q311071",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "delicata-squash": {
+   "scientific_name": "Cucurbita pepo var. pepo",
+   "wikidata": "Q67186644",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "dill": {
+   "scientific_name": "Anethum graveolens",
+   "wikidata": "Q26686",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "dragon-fruit": {
+   "scientific_name": "Hylocereus undatus",
+   "wikidata": "Q131730",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cactaceae"
+  },
+  "durian": {
+   "scientific_name": "Durio zibethinus",
+   "wikidata": "Q1135236",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Malvaceae"
+  },
+  "eggplant": {
+   "scientific_name": "Solanum melongena",
+   "wikidata": "Q7540",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "elderberry": {
+   "scientific_name": "Sambucus",
+   "wikidata": "Q131448",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Viburnaceae"
+  },
+  "elephant-garlic": {
+   "scientific_name": "Allium ampeloprasum var. ampeloprasum",
+   "wikidata": "Q4392799",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "endive": {
+   "scientific_name": "Cichorium endivia var. crispum",
+   "wikidata": "Q2963415",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "english-walnut": {
+   "scientific_name": "Juglans regia",
+   "wikidata": "Q46871",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Juglandaceae"
+  },
+  "fatalii-pepper": {
+   "scientific_name": "Capsicum chinense",
+   "wikidata": "Q311071",
+   "how": "Wikidata taxon for 'Capsicum chinense' (recorded: 'Capsicum chinense 'Fatalii')",
+   "family": "Solanaceae"
+  },
+  "fava-bean": {
+   "scientific_name": "Vicia faba",
+   "wikidata": "Q131342",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "feijoa": {
+   "scientific_name": "Acca sellowiana",
+   "wikidata": "Q499671",
+   "how": "Wikidata taxon for 'Acca sellowiana' (recorded: 'Acca sellowiana / Feijoa sellowiana')",
+   "family": "Myrtaceae"
+  },
+  "fennel": {
+   "scientific_name": "Foeniculum vulgare",
+   "wikidata": "Q43511",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "fenugreek": {
+   "scientific_name": "Trigonella foenum-graecum",
+   "wikidata": "Q133205",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "ferry-morse-lavender-munstead": {
+   "scientific_name": "Lavandula angustifolia",
+   "wikidata": "Q42081",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "feverfew": {
+   "scientific_name": "Chrysanthemum parthenium",
+   "wikidata": "Q87647158",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "fiddlehead": {
+   "scientific_name": "Pteridium aquilinum",
+   "wikidata": "Q213548",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Dennstaedtiaceae"
+  },
+  "galangal": {
+   "scientific_name": "Alpinia galanga",
+   "wikidata": "Q402971",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Zingiberaceae"
+  },
+  "garlic-chives": {
+   "scientific_name": "Allium tuberosum",
+   "wikidata": "Q42285",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "garlic": {
+   "scientific_name": "Allium sativum",
+   "wikidata": "Q23400",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "german-chamomile": {
+   "scientific_name": "Matricaria chamomilla",
+   "wikidata": "Q28437",
+   "how": "Wikipedia article 'Matricaria chamomilla'",
+   "family": "Asteraceae"
+  },
+  "ginger": {
+   "scientific_name": "Zingiber officinale",
+   "wikidata": "Q35625",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Zingiberaceae"
+  },
+  "goji-berry": {
+   "scientific_name": "Lycium barbarum",
+   "wikidata": "Q196332",
+   "how": "Wikidata taxon for 'Lycium barbarum' (recorded: 'Lycium barbarum / Lycium chinense')",
+   "family": "Solanaceae"
+  },
+  "gooseberry": {
+   "scientific_name": "Ribes uva-crispa",
+   "wikidata": "Q41503",
+   "how": "Wikidata taxon for 'Ribes uva-crispa' (recorded: 'Ribes uva-crispa / Ribes grossularia')",
+   "family": "Grossulariaceae"
+  },
+  "goumi-berry": {
+   "scientific_name": "Elaeagnus multiflora",
+   "wikidata": "Q2139163",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Elaeagnaceae"
+  },
+  "grapefruit": {
+   "scientific_name": "Citrus paradisi",
+   "wikidata": "Q41350",
+   "how": "Wikipedia article 'Grapefruit'",
+   "family": "Rutaceae"
+  },
+  "grapes": {
+   "scientific_name": "Vitis",
+   "wikidata": "Q191019",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Vitaceae"
+  },
+  "green-bean": {
+   "scientific_name": "Phaseolus vulgaris",
+   "wikidata": "Q42339",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "green-onion": {
+   "scientific_name": "Allium fistulosum",
+   "wikidata": "Q27938",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "green-serrano-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "green-tabasco-pepper": {
+   "scientific_name": "Capsicum frutescens",
+   "wikidata": "Q311426",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "groundnut": {
+   "scientific_name": "Apios americana",
+   "wikidata": "Q568933",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "guava": {
+   "scientific_name": "Psidium guajava",
+   "wikidata": "Q166843",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Myrtaceae"
+  },
+  "habanero-pepper": {
+   "scientific_name": "Capsicum chinense",
+   "wikidata": "Q311071",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "hairy-vetch": {
+   "scientific_name": "Vicia hirsuta",
+   "wikidata": "Q159732",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "hardy-kiwifruit": {
+   "scientific_name": "Actinidia arguta",
+   "wikidata": "Q848074",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Actinidiaceae"
+  },
+  "hazelnut": {
+   "scientific_name": "Corylus",
+   "wikidata": "Q145889",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Betulaceae"
+  },
+  "hemp": {
+   "scientific_name": "Cannabis sativa",
+   "wikidata": "Q26726",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cannabaceae"
+  },
+  "hibiscus": {
+   "scientific_name": "Hibiscus",
+   "wikidata": "Q157124",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Malvaceae"
+  },
+  "honeydew-melon": {
+   "scientific_name": "Cucumis melo",
+   "wikidata": "Q81602",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "honeysuckle": {
+   "scientific_name": "Lonicera",
+   "wikidata": "Q156047",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Caprifoliaceae"
+  },
+  "hops": {
+   "scientific_name": "Humulus lupulus",
+   "wikidata": "Q104212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cannabaceae"
+  },
+  "horseradish": {
+   "scientific_name": "Armoracia rusticana",
+   "wikidata": "Q26545",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "ice-cream-bean": {
+   "scientific_name": "Inga edulis",
+   "wikidata": "Q138183",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "ice-plant": {
+   "scientific_name": "Carpobrotus",
+   "wikidata": "Q134968",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Aizoaceae"
+  },
+  "jalapeno-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "jerusalem-artichoke": {
+   "scientific_name": "Helianthus tuberosus",
+   "wikidata": "Q146190",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "kai-lan": {
+   "scientific_name": "Brassica oleracea var. alboglabra",
+   "wikidata": "Q1677369",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "kale": {
+   "scientific_name": "Brassica oleracea",
+   "wikidata": "Q146212",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "kawakawa": {
+   "scientific_name": "Piper excelsum",
+   "wikidata": "Q21306444",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Piperaceae"
+  },
+  "kiwifruit": {
+   "scientific_name": "Actinidia deliciosa",
+   "wikidata": "Q343300",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Actinidiaceae"
+  },
+  "kohlrabi": {
+   "scientific_name": "Brassica oleracea var. gongylodes",
+   "wikidata": "Q147202",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "komatsuna": {
+   "scientific_name": "Brassica rapa",
+   "wikidata": "Q3384",
+   "how": "Wikidata taxon for 'Brassica rapa' (recorded: 'Brassica rapa (pervidis / komatsuna)')",
+   "family": "Brassicaceae"
+  },
+  "lambs-lettuce": {
+   "scientific_name": "Valerianella locusta",
+   "wikidata": "Q158954",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Caprifoliaceae"
+  },
+  "leek": {
+   "scientific_name": "Allium porrum",
+   "wikidata": "Q21870138",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "lemon-balm": {
+   "scientific_name": "Melissa officinalis",
+   "wikidata": "Q148396",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "lemon": {
+   "scientific_name": "Citrus × limon",
+   "wikidata": "Q500",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rutaceae"
+  },
+  "lemongrass": {
+   "scientific_name": "Cymbopogon citratus",
+   "wikidata": "Q33913",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Poaceae"
+  },
+  "lettuce": {
+   "scientific_name": "Lactuca sativa",
+   "wikidata": "Q83193",
+   "how": "Wikipedia article 'Lettuce'",
+   "family": "Asteraceae"
+  },
+  "licorice": {
+   "scientific_name": "Glycyrrhiza glabra",
+   "wikidata": "Q257106",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "looseleaf-lettuce": {
+   "scientific_name": "Lactuca sativa",
+   "wikidata": "Q83193",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "loquat": {
+   "scientific_name": "Eriobotrya japonica",
+   "wikidata": "Q41505",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "lovage": {
+   "scientific_name": "Levisticum officinale",
+   "wikidata": "Q27615",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "lowbush-blueberry": {
+   "scientific_name": "Vaccinium angustifolium",
+   "wikidata": "Q512441",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Ericaceae"
+  },
+  "luffa": {
+   "scientific_name": "Luffa",
+   "wikidata": "Q232909",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "lupine": {
+   "scientific_name": "Lupinus",
+   "wikidata": "Q156811",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "mandarin": {
+   "scientific_name": "Citrus reticulata",
+   "wikidata": "Q125337",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rutaceae"
+  },
+  "mapacho": {
+   "scientific_name": "Nicotiana rustica",
+   "wikidata": "Q602633",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "marjoram": {
+   "scientific_name": "Origanum majorana",
+   "wikidata": "Q22694",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "medusa-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "melon": {
+   "scientific_name": "Cucumis melo",
+   "wikidata": "Q81602",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "mexican-tarragon": {
+   "scientific_name": "Tagetes lucida",
+   "wikidata": "Q2714702",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "midgen-berry": {
+   "scientific_name": "Austromyrtus dulcis",
+   "wikidata": "Q4056140",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Myrtaceae"
+  },
+  "milkweed": {
+   "scientific_name": "Asclepias",
+   "wikidata": "Q162153",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apocynaceae"
+  },
+  "miners-lettuce": {
+   "scientific_name": "Claytonia perfoliata",
+   "wikidata": "Q1376670",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Montiaceae"
+  },
+  "mint": {
+   "scientific_name": "Mentha spicata",
+   "wikidata": "Q160114",
+   "how": "Wikidata taxon for 'Mentha spicata' (recorded: 'Mentha spicata / Mentha viridis')",
+   "family": "Lamiaceae"
+  },
+  "mitsuba": {
+   "scientific_name": "Cryptotaenia japonica",
+   "wikidata": "Q1352532",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "mizuna": {
+   "scientific_name": "Brassica rapa",
+   "wikidata": "Q3384",
+   "how": "Wikidata taxon for 'Brassica rapa' (recorded: 'Brassica rapa 'nipposinica')",
+   "family": "Brassicaceae"
+  },
+  "morning-glory": {
+   "scientific_name": "Convolvulaceae",
+   "wikidata": "Q145777",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Convolvulaceae"
+  },
+  "mulberry": {
+   "scientific_name": "Morus",
+   "wikidata": "Q44789",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Moraceae"
+  },
+  "myoga-ginger": {
+   "scientific_name": "Zingiber mioga",
+   "wikidata": "Q1196818",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Zingiberaceae"
+  },
+  "napa-cabbage": {
+   "scientific_name": "Brassica rapa subsp. pekinensis",
+   "wikidata": "Q13360268",
+   "how": "Wikidata taxon for 'Brassica rapa subsp. pekinensis' (recorded: 'Brassica rapa subsp. Pekinensis')",
+   "family": "Brassicaceae"
+  },
+  "nectarine": {
+   "scientific_name": "Prunus persica var. nucipersica",
+   "wikidata": "Q3408651",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "oak": {
+   "scientific_name": "Quercus",
+   "wikidata": "Q12004",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fagaceae"
+  },
+  "oat": {
+   "scientific_name": "Avena sativa",
+   "wikidata": "Q12104",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Poaceae"
+  },
+  "okra": {
+   "scientific_name": "Abelmoschus esculentus",
+   "wikidata": "Q80531",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Malvaceae"
+  },
+  "olive": {
+   "scientific_name": "Olea europaea",
+   "wikidata": "Q37083",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Oleaceae"
+  },
+  "onion": {
+   "scientific_name": "Allium cepa",
+   "wikidata": "Q23485",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "orange": {
+   "scientific_name": "Citrus ×sinensis",
+   "wikidata": "Q3355098",
+   "how": "Wikipedia article 'Citrus × sinensis'",
+   "family": "Rutaceae"
+  },
+  "papaya": {
+   "scientific_name": "Carica papaya",
+   "wikidata": "Q34887",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Caricaceae"
+  },
+  "parsley": {
+   "scientific_name": "Petroselinum crispum",
+   "wikidata": "Q25284",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "parsnip": {
+   "scientific_name": "Pastinaca sativa",
+   "wikidata": "Q188614",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Apiaceae"
+  },
+  "passion-fruit": {
+   "scientific_name": "Passiflora edulis",
+   "wikidata": "Q156790",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Passifloraceae"
+  },
+  "pattypan-squash": {
+   "scientific_name": "Cucurbita pepo",
+   "wikidata": "Q7229863",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "pawpaw": {
+   "scientific_name": "Asimina triloba",
+   "wikidata": "Q948827",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Annonaceae"
+  },
+  "pea": {
+   "scientific_name": "Pisum sativum",
+   "wikidata": "Q25237",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "peanut": {
+   "scientific_name": "Arachis hypogaea",
+   "wikidata": "Q37383",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "pear": {
+   "scientific_name": "Pyrus",
+   "wikidata": "Q434",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "persimmon": {
+   "scientific_name": "Diospyros kaki",
+   "wikidata": "Q158482",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Ebenaceae"
+  },
+  "peter-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "Wikidata taxon for 'Capsicum annuum' (recorded: 'Capsicum annuum 'annuum')",
+   "family": "Solanaceae"
+  },
+  "phacelia": {
+   "scientific_name": "Phacelia tanacetifolia",
+   "wikidata": "Q158942",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Boraginaceae"
+  },
+  "pineapple-sage": {
+   "scientific_name": "Salvia elegans",
+   "wikidata": "Q1521008",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "pineapple": {
+   "scientific_name": "Ananas comosus",
+   "wikidata": "Q1493",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Bromeliaceae"
+  },
+  "pistachio": {
+   "scientific_name": "Pistacia vera",
+   "wikidata": "Q36071",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Anacardiaceae"
+  },
+  "plum": {
+   "scientific_name": "Prunus",
+   "wikidata": "Q190545",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "pomegranate": {
+   "scientific_name": "Punica granatum",
+   "wikidata": "Q13188",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lythraceae"
+  },
+  "portobello": {
+   "scientific_name": "Agaricus bisporus",
+   "wikidata": "Q227690",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Agaricaceae"
+  },
+  "potato": {
+   "scientific_name": "Solanum tuberosum",
+   "wikidata": "Q10998",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "pumpkin": {
+   "scientific_name": "Cucurbita pepo",
+   "wikidata": "Q7229863",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "purple-amaranth": {
+   "scientific_name": "Amaranthus cruentus",
+   "wikidata": "Q159191",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaranthaceae"
+  },
+  "purple-pod-bean": {
+   "scientific_name": "Phaseolus vulgaris",
+   "wikidata": "Q42339",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "purslane": {
+   "scientific_name": "Portulaca oleracea",
+   "wikidata": "Q158015",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Portulacaceae"
+  },
+  "quince": {
+   "scientific_name": "Cydonia oblonga",
+   "wikidata": "Q43300",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "quinoa": {
+   "scientific_name": "Chenopodium quinoa",
+   "wikidata": "Q139925",
+   "how": "Wikidata taxon for 'Chenopodium quinoa' (recorded: 'Chenopodium quinoa subsp. quinoa')",
+   "family": "Amaranthaceae"
+  },
+  "radicchio": {
+   "scientific_name": "Cichorium intybus",
+   "wikidata": "Q2544599",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "radish": {
+   "scientific_name": "Raphanus sativus",
+   "wikidata": "Q7224565",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "rapini": {
+   "scientific_name": "Brassica rapa",
+   "wikidata": "Q3384",
+   "how": "Wikidata taxon for 'Brassica rapa' (recorded: 'Brassica rapa subsp.rapa')",
+   "family": "Brassicaceae"
+  },
+  "red-currant": {
+   "scientific_name": "Ribes rubrum",
+   "wikidata": "Q146661",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Grossulariaceae"
+  },
+  "red-kuri-squash": {
+   "scientific_name": "Cucurbita maxima",
+   "wikidata": "Q161180",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "rhubarb": {
+   "scientific_name": "Rheum rhabarbarum",
+   "wikidata": "Q7535",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Polygonaceae"
+  },
+  "rice-bean": {
+   "scientific_name": "Vigna umbellata",
+   "wikidata": "Q1368391",
+   "how": "Wikidata taxon for 'Vigna umbellata' (recorded: 'Vigna umbellata (prev. Phaseolus calcaratus)')",
+   "family": "Fabaceae"
+  },
+  "romaine-lettuce": {
+   "scientific_name": "Lactuca sativa",
+   "wikidata": "Q83193",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "romanesco": {
+   "scientific_name": "Brassica oleracea",
+   "wikidata": "Q146212",
+   "how": "Wikidata taxon for 'Brassica oleracea' (recorded: 'Brassica oleracea convar. botrytis var. botrytis')",
+   "family": "Brassicaceae"
+  },
+  "rose-geranium": {
+   "scientific_name": "Pelargonium graveolens",
+   "wikidata": "Q164306",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Geraniaceae"
+  },
+  "rose": {
+   "scientific_name": "Rosa",
+   "wikidata": "Q34687",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "rosemary": {
+   "scientific_name": "Rosmarinus officinalis",
+   "wikidata": "Q122679",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "runner-bean": {
+   "scientific_name": "Phaseolus coccineus",
+   "wikidata": "Q159753",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "safflower": {
+   "scientific_name": "Carthamus tinctorius",
+   "wikidata": "Q156625",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "saffron": {
+   "scientific_name": "Crocus sativus",
+   "wikidata": "Q15041677",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Iridaceae"
+  },
+  "sage": {
+   "scientific_name": "Salvia officinalis",
+   "wikidata": "Q1111359",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "salad-burnet": {
+   "scientific_name": "Sanguisorba minor",
+   "wikidata": "Q163799",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "salsify": {
+   "scientific_name": "Tragopogon porrifolius",
+   "wikidata": "Q941639",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "scotch-bonnet-peppers": {
+   "scientific_name": "Capsicum chinense",
+   "wikidata": "Q311071",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "sea-kale": {
+   "scientific_name": "Crambe maritima",
+   "wikidata": "Q165299",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "serrano-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "sesame": {
+   "scientific_name": "Sesamum indicum",
+   "wikidata": "Q2763698",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Pedaliaceae"
+  },
+  "shallot": {
+   "scientific_name": "Allium cepa var. aggregatum",
+   "wikidata": "Q25120843",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "shiitake-mushroom": {
+   "scientific_name": "Lentinula edodes",
+   "wikidata": "Q320999",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Omphalotaceae"
+  },
+  "shishito-pepper": {
+   "scientific_name": "Capsicum annuum",
+   "wikidata": "Q1380",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "snap-pea": {
+   "scientific_name": "Pisum sativum",
+   "wikidata": "Q25237",
+   "how": "Wikidata taxon for 'Pisum sativum' (recorded: 'Pisum sativum var. macrocarpon')",
+   "family": "Fabaceae"
+  },
+  "snow-pea": {
+   "scientific_name": "Pisum sativum",
+   "wikidata": "Q25237",
+   "how": "Wikidata taxon for 'Pisum sativum' (recorded: 'Pisum sativum var. saccharatum')",
+   "family": "Fabaceae"
+  },
+  "sorrel": {
+   "scientific_name": "Rumex acetosa",
+   "wikidata": "Q26297",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Polygonaceae"
+  },
+  "soybean": {
+   "scientific_name": "Glycine max",
+   "wikidata": "Q11006",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "spaghetti-squash": {
+   "scientific_name": "Cucurbita pepo",
+   "wikidata": "Q7229863",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "spinach": {
+   "scientific_name": "Spinacia oleracea",
+   "wikidata": "Q81464",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaranthaceae"
+  },
+  "spring-onion": {
+   "scientific_name": "Allium cepa",
+   "wikidata": "Q23485",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaryllidaceae"
+  },
+  "squash": {
+   "scientific_name": "Cucurbita",
+   "wikidata": "Q5339301",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  },
+  "st-johns-wort": {
+   "scientific_name": "Hypericum perforatum",
+   "wikidata": "Q158289",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Hypericaceae"
+  },
+  "star-fruit": {
+   "scientific_name": "Averrhoa carambola",
+   "wikidata": "Q159447",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Oxalidaceae"
+  },
+  "stevia": {
+   "scientific_name": "Stevia rebaudiana",
+   "wikidata": "Q7213452",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "straggly-gooseberry": {
+   "scientific_name": "Ribes divaricatum",
+   "wikidata": "Q2029489",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Grossulariaceae"
+  },
+  "strawberry-guava": {
+   "scientific_name": "Psidium cattleyanum",
+   "wikidata": "Q17813563",
+   "how": "Wikidata taxon for 'Psidium cattleyanum' (recorded: 'Psidium cattleianum / Psidium cattleyanum')",
+   "family": "Myrtaceae"
+  },
+  "strawberry": {
+   "scientific_name": "Fragaria × ananassa",
+   "wikidata": "Q13158",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Rosaceae"
+  },
+  "sudachi": {
+   "scientific_name": "Citrus sudachi",
+   "wikidata": "Q3234251",
+   "how": "Wikipedia article 'Sudachi'",
+   "family": "Rutaceae"
+  },
+  "sugar-maple": {
+   "scientific_name": "Acer saccharum",
+   "wikidata": "Q214733",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Sapindaceae"
+  },
+  "summer-savory": {
+   "scientific_name": "Satureja hortensis",
+   "wikidata": "Q157283",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "sunflower": {
+   "scientific_name": "Helianthus annuus",
+   "wikidata": "Q171497",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Asteraceae"
+  },
+  "sweet-potato": {
+   "scientific_name": "Ipomoea batatas",
+   "wikidata": "Q37937",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Convolvulaceae"
+  },
+  "swiss-chard": {
+   "scientific_name": "Beta vulgaris",
+   "wikidata": "Q165191",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Amaranthaceae"
+  },
+  "tangerine": {
+   "scientific_name": "Citrus ×tangerina",
+   "wikidata": "Q516494",
+   "how": "Wikipedia article 'Tangerine'",
+   "family": "Rutaceae"
+  },
+  "tarragon": {
+   "scientific_name": "Artemisia dracunculus",
+   "wikidata": "Q155814",
+   "how": "Wikidata taxon for 'Artemisia dracunculus' (recorded: 'Artemisia dracunculus var. sativa')",
+   "family": "Asteraceae"
+  },
+  "tatsoi": {
+   "scientific_name": "Brassica rapa var. narinosa",
+   "wikidata": "Q50889546",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "tea": {
+   "scientific_name": "Camellia sinensis",
+   "wikidata": "Q101815",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Theaceae"
+  },
+  "thyme": {
+   "scientific_name": "Thymus vulgaris",
+   "wikidata": "Q148668",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Lamiaceae"
+  },
+  "tomatillo": {
+   "scientific_name": "Physalis philadelphica",
+   "wikidata": "Q622525",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "tomato": {
+   "scientific_name": "Solanum lycopersicum",
+   "wikidata": "Q23501",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Solanaceae"
+  },
+  "trifoliate-orange": {
+   "scientific_name": "Citrus trifoliata",
+   "wikidata": "Q15390761",
+   "how": "Wikipedia article 'Trifoliate orange'",
+   "family": "Rutaceae"
+  },
+  "turmeric": {
+   "scientific_name": "Curcuma longa",
+   "wikidata": "Q42562",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Zingiberaceae"
+  },
+  "turnip": {
+   "scientific_name": "Brassica rapa",
+   "wikidata": "Q3384",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "urad-bean": {
+   "scientific_name": "Vigna mungo",
+   "wikidata": "Q369447",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "walnut": {
+   "scientific_name": "Juglans",
+   "wikidata": "Q2453469",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Juglandaceae"
+  },
+  "water-caltrop": {
+   "scientific_name": "Trapa natans",
+   "wikidata": "Q161110",
+   "how": "Wikidata taxon for 'Trapa natans' (recorded: 'Trapa natans / Trapa bicornis / Trapa rossica')",
+   "family": "Trapaceae"
+  },
+  "water-chestnut": {
+   "scientific_name": "Eleocharis dulcis",
+   "wikidata": "Q932664",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cyperaceae"
+  },
+  "water-spinach": {
+   "scientific_name": "Ipomoea aquatica",
+   "wikidata": "Q272754",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Convolvulaceae"
+  },
+  "watercress": {
+   "scientific_name": "Nasturtium officinale",
+   "wikidata": "Q150452",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Brassicaceae"
+  },
+  "wattle": {
+   "scientific_name": "Acacia",
+   "wikidata": "Q81666",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "wax-bean": {
+   "scientific_name": "Phaseolus vulgaris",
+   "wikidata": "Q42339",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "white-currant": {
+   "scientific_name": "Ribes rubrum",
+   "wikidata": "Q146661",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Grossulariaceae"
+  },
+  "wine-cap-mushroom": {
+   "scientific_name": "Stropharia rugosoannulata",
+   "wikidata": "Q1236980",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Strophariaceae"
+  },
+  "yam": {
+   "scientific_name": "Dioscorea",
+   "wikidata": "Q71549",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Dioscoreaceae"
+  },
+  "yardlong-bean": {
+   "scientific_name": "Vigna unguiculata subsp. sesquipedalis",
+   "wikidata": "Q1323455",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Fabaceae"
+  },
+  "yellow-strawberry-guava": {
+   "scientific_name": "Psidium littorale",
+   "wikidata": "Q2272410",
+   "how": "Wikidata taxon for 'Psidium littorale' (recorded: 'Psidium cattleyanum var. littorale / Psidium littorale / Psidium cattleianum var. lucidum')",
+   "family": "Myrtaceae"
+  },
+  "zucchini": {
+   "scientific_name": "Cucurbita pepo",
+   "wikidata": "Q7229863",
+   "how": "recorded name matches a Wikidata taxon",
+   "family": "Cucurbitaceae"
+  }
+ },
+ "unresolved": [
+  "black-olive-chilli",
+  "blood-orange",
+  "chocolate-mint",
+  "dekopon",
+  "kalette",
+  "kamokamo",
+  "peperoncini",
+  "plantain"
+ ]
+}

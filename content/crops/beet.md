@@ -1,9 +1,11 @@
 ---
 slug: beet
 name: Beet
+scientific_name: "Beta vulgaris"
+family: Amaranthaceae
+wikidata: Q165191
 type: vegetable
 origin: imported
-scientific_name: Beta vulgaris
 sun: full
 sowing_method: Direct seed into soil. Thin to 7cm apart when seedlings are 5cm tall.
 size:
@@ -25,5 +27,15 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: wind
+  cycle: biennial
+  isolation_m: [1610, 1610]
+  min_plants: 30
+  viability_years: 6
+  cross_note: "Beet and chard are the same species and cross with each other."
+  sources:
+    - seed-matters-chart
+tools: [hoe]
 ---
 Typically grown for its round or cylindrical taproot, the leaves of the beet are also edible. Leaves resemble Swiss chard on a smaller scale and are good sautéed. The taproot, or beet, ranges in color from deep red to gold, orange, or white and red striped. The beet has a delicious, earthy flavor with a touch of sweetness to it when roasted.

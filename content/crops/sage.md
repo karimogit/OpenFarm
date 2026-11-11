@@ -1,9 +1,11 @@
 ---
 slug: sage
 name: Sage
+scientific_name: "Salvia officinalis"
+family: Lamiaceae
+wikidata: Q1111359
 type: herb
 origin: imported
-scientific_name: Salvia officinalis
 sun: full
 sowing_method: 'Direct seed indoors, harden seedlings off before transplanting outside.'
 size:
@@ -27,5 +29,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "4a"
+  max: "8b"
+  sources:
+    - title: "Salvia officinalis Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/salvia-officinalis/
 ---
 Sage is an evergreen shrub with woody stems, soft green-gray leaves, and blue to purplish flowers. It is in the Mint family (Lamiaceae), and is perennial in Zones 4-8. It can be used fresh or dried, and has culinary and medicinal uses.

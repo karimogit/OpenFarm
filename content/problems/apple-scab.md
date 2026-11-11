@@ -8,7 +8,7 @@ affects: [apple]
 conditions: Spreads by airborne and rain-splashed spores from mid-spring; overwinters on fallen leaves and infected twigs.
 sources: [rhs-apple-scab]
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

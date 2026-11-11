@@ -30,7 +30,7 @@ sources:
     publisher: UC Master Gardeners of Sacramento County
     url: https://ucanr.edu/site/uc-master-gardeners-sacramento-county/monthly-vegetable-gardening-tips
 license: CC-BY-SA-4.0
-authors: [Karim Osman]
+authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
 ---
 

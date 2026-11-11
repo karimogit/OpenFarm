@@ -1,9 +1,11 @@
 ---
 slug: sugar-maple
 name: Sugar Maple
+scientific_name: "Acer saccharum"
+family: Sapindaceae
+wikidata: Q214733
 type: other
 origin: imported
-scientific_name: Acer saccharum
 rescue:
   slug: sugar-maple
   wayback_url: 'https://web.archive.org/web/20241105222721/https://openfarm.cc/en/crops/sugar-maple'

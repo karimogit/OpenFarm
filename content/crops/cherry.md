@@ -1,9 +1,11 @@
 ---
 slug: cherry
 name: Cherry
+scientific_name: "Prunus avium"
+family: Rosaceae
+wikidata: Q165137
 type: fruit-tree
 origin: imported
-scientific_name: Prunus avium
 sun: full
 size:
   height_cm: 1500

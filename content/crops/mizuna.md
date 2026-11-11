@@ -1,9 +1,11 @@
 ---
 slug: mizuna
 name: Mizuna
+scientific_name: "Brassica rapa"
+family: Brassicaceae
+wikidata: Q3384
 type: vegetable
 origin: imported
-scientific_name: Brassica rapa 'nipposinica'
 sun: full
 sowing_method: Direct seed outdoors
 size:
@@ -24,5 +26,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: biennial
+  isolation_m: [800, 800]
+  min_plants: 40
+  viability_years: 5
+  cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
+  sources:
+    - seed-matters-chart
 ---
 Mizuna is a cool weather salad green in the Brassica family. It has a mild, slightly peppery taste and heavily serrated, feathery leaves. Leaves can be harvested at their baby or adult sizes, between 7 and 15cm. Be sure to harvest before the plant flowers. Leaves can be eaten raw in salads and on sandwiches, sautéed, or stir-fried.

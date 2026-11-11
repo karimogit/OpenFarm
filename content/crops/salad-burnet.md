@@ -1,9 +1,11 @@
 ---
 slug: salad-burnet
 name: Salad Burnet
+scientific_name: "Sanguisorba minor"
+family: Rosaceae
+wikidata: Q163799
 type: herb
 origin: imported
-scientific_name: Sanguisorba minor
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:
@@ -22,5 +24,12 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+hardiness:
+  min: "4a"
+  max: "8b"
+  sources:
+    - title: "Sanguisorba minor Play pronunciation \u2013 Plant Toolbox"
+      publisher: NC State Extension
+      url: https://plants.ces.ncsu.edu/plants/sanguisorba-minor/
 ---
 Salad Burnet is an herbaceous plant in the Rosaceae (Rose) family that is used in salads, dressings, beverages, and added to sandwiches. The plant has an upright stem, deeply toothed leaves, and thimble-shaped crimson flowers. Leaves have a light, nutty cucumber flavor. The youngest leaves are used, since older leaves can be more bitter. Remove flowers and cut plants back regularly to keep a steady supply of fresh young leaves. Salad Burnet is a perennial in USDA Hardiness zones 4-8, and can be grown as a cool-season annual outside of those zones. It is drought-tolerant and can be grown in containers.

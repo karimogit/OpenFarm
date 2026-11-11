@@ -1,9 +1,11 @@
 ---
 slug: safflower
 name: Safflower
+scientific_name: "Carthamus tinctorius"
+family: Asteraceae
+wikidata: Q156625
 type: grain
 origin: imported
-scientific_name: Carthamus tinctorius
 sun: full
 sowing_method: Direct seed outdoors once soil temperature is above 10°C
 size:
