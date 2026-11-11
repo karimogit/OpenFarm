@@ -8,6 +8,10 @@ import {
   ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadTools, loadSeedSources,
   loadCompanions, loadRotation, loadSources, resolveSources, koppenToRegion,
 } from "../../scripts/content.js";
+import {
+  mapViewFromBbox, mapBoundsFromBbox, loadOutlines, loadKoppenLookup, svgPathForOutline,
+  shiftCalendar, selectPlacePageCities, PLACE_PAGE_NOTE,
+} from "../../scripts/geo_pages.js";
 
 const md = markdownIt({ html: false, linkify: true, typographer: true });
 const TYPE_LABELS = {
@@ -273,32 +277,28 @@ export default function () {
   for (const c of cityHits) (citiesByCc[c.cc] ||= []).push(c);
   for (const list of Object.values(citiesByCc)) list.sort((a, b) => b.pop - a.pop);
 
-  const MAP_W = 1440, MAP_H = 1440, MERC_MAX = 85.05112878;
-  const mercX = (lon) => ((lon + 180) / 360) * MAP_W;
-  const mercY = (lat) => {
-    const r = (Math.max(-MERC_MAX, Math.min(MERC_MAX, lat)) * Math.PI) / 180;
-    return (1 - Math.log(Math.tan(Math.PI / 4 + r / 2)) / Math.PI) / 2 * MAP_H;
-  };
-  const mapView = (bbox) => {
-    if (!bbox) return null;
-    let [w, s, e, n] = bbox;
-    if (e > 180) e = 180;
-    if (w < -180) w = -180;
-    if (e < w) { // dateline: show the larger side
-      if (180 - w >= e - (-180)) e = 180;
-      else w = -180;
+  const outlinesPack = loadOutlines();
+  const koppenLookup = loadKoppenLookup();
+
+  const growsWellFor = (regionShares) => {
+    const groups = [];
+    for (const r of regionShares) {
+      const items = [];
+      for (const crop of crops) {
+        const g = (crop.guides || []).find((x) => x.region === r.slug && !x.variety && (x.sources || []).length);
+        if (!g) continue;
+        items.push({
+          slug: crop.slug, name: crop.name, scientific_name: crop.scientific_name || null, type: crop.type,
+          image: crop.image, guideUrl: g.url, calendar: g.calendar || null, hemisphere: g.hemisphere || null,
+          hardiness: crop.hardiness ? { min: crop.hardiness.min, max: crop.hardiness.max } : null,
+        });
+      }
+      items.sort((a, b) => a.name.localeCompare(b.name));
+      if (items.length) groups.push({ slug: r.slug, name: r.name, color: r.color, share: r.share, url: r.url, crops: items });
     }
-    const padLon = Math.max(1.2, (e - w) * 0.18 || 1.2);
-    const padLat = Math.max(0.8, (n - s) * 0.18 || 0.8);
-    w -= padLon; e += padLon; s -= padLat; n += padLat;
-    const x1 = mercX(w), x2 = mercX(e), y1 = mercY(n), y2 = mercY(s);
-    const x = Math.max(0, Math.min(x1, x2));
-    const y = Math.max(0, Math.min(y1, y2));
-    const width = Math.min(MAP_W, Math.max(x1, x2)) - x;
-    const height = Math.min(MAP_H, Math.max(y1, y2)) - y;
-    if (!(width > 2 && height > 2)) return null;
-    return { x: +x.toFixed(2), y: +y.toFixed(2), width: +width.toFixed(2), height: +height.toFixed(2), imgW: MAP_W, imgH: MAP_H };
+    return groups;
   };
+
 
   const countries = Object.entries(countryNames).map(([iso2, name]) => {
     const meta = placesPack.countries?.[iso2] || [];
@@ -332,11 +332,18 @@ export default function () {
       climateMethod: climate?.method || null,
       regionShares,
       koppen: climate ? Object.entries(climate.koppen).map(([code, share]) => ({ code, share })) : [],
-      mapView: mapView(climate?.map_bbox || climate?.bbox || (clat != null && clon != null ? [clon - 1, clat - 0.7, clon + 1, clat + 0.7] : null)),
+      mapView: mapViewFromBbox(climate?.map_bbox || climate?.bbox || (clat != null && clon != null ? [clon - 1, clat - 0.7, clon + 1, clat + 0.7] : null)),
+      mapBounds: mapBoundsFromBbox(climate?.map_bbox || climate?.bbox || (clat != null && clon != null ? [clon - 1, clat - 0.7, clon + 1, clat + 0.7] : null)),
+      outline: outlinesPack.countries[iso2] || null,
+      outlineAttribution: outlinesPack.attribution || null,
       cities: cityList,
       seedSources: seedSources.filter((s) => (s.countries || []).includes(iso2)),
     };
   }).sort((a, b) => a.name.localeCompare(b.name));
+  for (const c of countries) {
+    c.svgPath = svgPathForOutline(c.outline, c.mapView);
+    c.growsWell = growsWellFor(c.regionShares);
+  }
   const countryBy = Object.fromEntries(countries.map((c) => [c.iso2, c]));
   for (const r of regions) {
     r.countries = countries
@@ -347,7 +354,68 @@ export default function () {
       })
       .sort((a, b) => b.share - a.share || a.name.localeCompare(b.name));
   }
+
+  // City pages: capitals + the most populous cities already listed on each country page (up to 12).
+  const placePageCities = selectPlacePageCities(cityHits, placesPack);
+  const placePageSlugs = new Set(placePageCities.map((c) => c.slug));
+  const places = placePageCities.map((c) => {
+    const country = countryBy[c.cc] || null;
+    const kg = (c.lat != null && c.lon != null) ? koppenLookup(c.lat, c.lon) : null;
+    const region = kg?.symbol ? regionBy[kg2region[kg.symbol]] : null;
+    const regionShares = region ? [{ slug: region.slug, name: region.name, color: region.color, share: null, url: `/regions/${region.slug}/` }] : [];
+    const growsWell = growsWellFor(regionShares);
+    const south = c.lat < 0, tropical = !!(kg?.symbol && kg.symbol[0] === "A");
+    const calendarRows = [];
+    let calendarShifted = false;
+    for (const group of growsWell) {
+      for (const item of group.crops) {
+        let cal = item.calendar, shifted = false;
+        if (cal && south && item.hemisphere === "north" && !tropical) {
+          cal = shiftCalendar(cal, 6);
+          shifted = true;
+          calendarShifted = true;
+        }
+        if (cal && (cal.sow_indoors || cal.sow_direct || cal.plant || cal.harvest || cal.prune)) {
+          calendarRows.push({ slug: item.slug, name: item.name, type: item.type, guideUrl: item.guideUrl, calendar: cal, shifted });
+        }
+      }
+    }
+    const bbox = [c.lon - 1.0, c.lat - 0.7, c.lon + 1.0, c.lat + 0.7];
+    return {
+      slug: c.slug, name: c.name, ascii: c.ascii, cc: c.cc, admin: c.admin,
+      adminName: placesPack.admin1[`${c.cc}.${c.admin}`] || null,
+      lat: c.lat, lon: c.lon, population: c.pop || 0,
+      url: `/places/${c.slug}/`,
+      queryUrl: `/?place=${encodeURIComponent(c.slug)}`,
+      countryName: country?.name || c.cc, countryUrl: country ? country.url : `/countries/${String(c.cc || "").toLowerCase()}/`,
+      isCapital: !!(country && country.capitalPlace && country.capitalPlace.slug === c.slug),
+      kg: kg && kg.symbol ? { symbol: kg.symbol, nearest: !!kg.nearest, code: kg.code } : null,
+      region: region ? { slug: region.slug, name: region.name, color: region.color, url: `/regions/${region.slug}/` } : null,
+      growsWell,
+      calendarRows,
+      calendarShifted,
+      mapView: mapViewFromBbox(bbox),
+      mapBounds: mapBoundsFromBbox(bbox),
+      outline: country?.outline || null,
+      svgPath: svgPathForOutline(country?.outline || null, mapViewFromBbox(bbox)),
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name) || a.cc.localeCompare(b.cc));
+  const placeBySlug = Object.fromEntries(places.map((p) => [p.slug, p]));
+  // Country city lists (and capital) point at the standing place page when one exists.
+  for (const c of countries) {
+    for (const city of c.cities) {
+      city.placeUrl = placePageSlugs.has(city.slug) ? `/places/${city.slug}/` : `/?place=${encodeURIComponent(city.slug)}`;
+      city.hasPlacePage = placePageSlugs.has(city.slug);
+    }
+    if (c.capitalPlace) {
+      c.capitalPlace.placeUrl = placePageSlugs.has(c.capitalPlace.slug) ? `/places/${c.capitalPlace.slug}/` : `/?place=${encodeURIComponent(c.capitalPlace.slug)}`;
+      c.capitalPlace.hasPlacePage = placePageSlugs.has(c.capitalPlace.slug);
+    }
+  }
+
   clientIndex.countries = Object.fromEntries(countries.map((c) => [c.iso2, { name: c.name, url: c.url }]));
+  clientIndex.placePages = Object.fromEntries(places.map((p) => [p.slug, p.url]));
+
 
   const stats = {
     crops: crops.length, imported: crops.filter((c) => c.origin === "imported").length, curated: crops.filter((c) => c.origin === "curated").length,
@@ -356,11 +424,12 @@ export default function () {
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
     flowers: crops.filter((c) => c.type === "flower").length,
     edible: crops.filter((c) => c.edible === true).length,
+    places: places.length,
     companions: companions.length,
     rotationGroups: rotationGroups.length,
     rotationRules: rotationRules.length,
     images: crops.filter((c) => c.image).length,
     countries: countries.length,
   };
-  return { catalog, crops, cropBy, varieties, groups, allVarietyRecords, varietyRedirects, guideRedirects, guides, regions, regionBy, problems, problemBy, companions, rotationGroups, rotationRules, seedSources, tools, toolBy, toolCategories, types, zones: zoneHalf, countries, countryBy, climateAttribution: climatePack.attribution, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, groups, allVarietyRecords, varietyRedirects, guideRedirects, guides, regions, regionBy, problems, problemBy, companions, rotationGroups, rotationRules, seedSources, tools, toolBy, toolCategories, types, zones: zoneHalf, countries, countryBy, places, placeBySlug, placePageNote: PLACE_PAGE_NOTE, outlineAttribution: outlinesPack.attribution, climateAttribution: climatePack.attribution, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

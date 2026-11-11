@@ -51,6 +51,10 @@ description: Read-only JSON endpoints for OpenFarm crops, guides, regions and to
 
 <h3><code>GET /countries/&lt;iso2&gt;.json</code></h3>
 <p>One country. Example: <a href="{{ '/countries/nl.json' | url }}"><code>/countries/nl.json</code></a>.</p>
+<h3><code>GET /api/places.json</code></h3>
+<p>Standing city pages (capitals plus up to 12 major cities per country): slug, name, coordinates and country. Example: <a href="{{ '/api/places.json' | url }}"><code>/api/places.json</code></a>. HTML index: <a href="{{ '/places/' | url }}">/places/</a>.</p>
+<h3><code>GET /places/&lt;slug&gt;.json</code></h3>
+<p>One city, including its climate-region lookup and the data-only “Grows well here” list. Example: <a href="{{ '/places/amsterdam-nl.json' | url }}"><code>/places/amsterdam-nl.json</code></a>.</p>
 
 <h3><code>GET /zones/&lt;zone&gt;.json</code></h3>
 <p>One USDA-style hardiness zone (1a–13b), with temperature bounds and plants whose sourced range includes it. Example: <a href="{{ '/zones/8a.json' | url }}"><code>/zones/8a.json</code></a>. There is also an HTML index at <a href="{{ '/zones/' | url }}">/zones/</a>.</p>

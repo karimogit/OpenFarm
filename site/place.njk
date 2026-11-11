@@ -1,0 +1,83 @@
+---
+layout: base.njk
+pageScripts: [country-map.js]
+pagination:
+  data: db.places
+  size: 1
+  alias: p
+permalink: "/places/{{ p.slug }}/"
+eleventyComputed:
+  title: "{{ p.name }}"
+  description: "Climate region, derived hardiness zone, and sourced growing guides for {{ p.name }}{% if p.countryName %}, {{ p.countryName }}{% endif %}."
+  jsonUrl: "/places/{{ p.slug }}.json"
+---
+{% set crumbs = [{href: "/countries/", label: "Countries"}, {href: p.countryUrl, label: p.countryName}, {label: p.name, current: true}] %}{% include "crumbs.njk" %}
+<article data-pagefind-body>
+  <h1>{% set cc = p.cc %}{% include "flag.njk" %} {{ p.name }}</h1>
+  <p class="lead">
+    {% if p.adminName %}{{ p.adminName }}, {% endif %}<a href="{{ p.countryUrl | url }}">{{ p.countryName }}</a>.
+    {% if p.isCapital %}Capital.{% endif %}
+    GeoNames <code>cities15000</code> (CC BY 4.0).
+    A <code>?place={{ p.slug }}</code> link <a href="{{ p.queryUrl | url }}">also works</a> on the home map.
+  </p>
+
+  {% set mapView = p.mapView %}
+  {% set mapBounds = p.mapBounds %}
+  {% set outline = p.outline %}
+  {% set svgPath = p.svgPath %}
+  {% set pin = { lat: p.lat, lon: p.lon, label: p.name } %}
+  {% set legendRegions = p.region and [p.region] %}
+  {% set mapLabel = "Map of " + p.name + " with Köppen climate overlay" %}
+  {% set caption %}Köppen–Geiger climate map (Beck et al. 2018, CC BY 4.0) with a pin at {{ p.name }}. Country outline, when shown, is simplified from Natural Earth Admin 0 1:50m (public domain).{% endset %}
+  {% include "climate-map.njk" %}
+
+  <h2>Climate</h2>
+  {% if p.region %}
+  <p class="kg-big"><span class="swatch" style="background:{{ p.region.color }}"></span> <a href="{{ p.region.url | url }}">{{ p.region.name }}</a>
+    {% if p.kg %}· Köppen <a class="kg" href="{{ '/help/#koppen' | url }}">{{ p.kg.symbol }}</a>{% endif %}
+  </p>
+  <p class="small muted">Climate region is looked up on the 0.5° Beck et al. (2018) Köppen–Geiger grid (CC BY 4.0) at this city’s GeoNames coordinates{% if p.kg and p.kg.nearest %} (the point itself is not a classified land cell; the nearest land cell was used){% endif %}.</p>
+  {% else %}
+  <p>No classified land cell was found on the 0.5° Beck et al. (2018) grid near this point. That is a data gap, not a claim that the place has no climate.</p>
+  {% endif %}
+
+  <div data-place-hardiness data-lat="{{ p.lat }}" data-lon="{{ p.lon }}">
+    <p class="small muted">Derived hardiness zone: working it out from Open-Meteo ERA5 (1991–2020)…</p>
+  </div>
+  <noscript>
+    <p class="small muted">The derived hardiness zone is the average of each year’s coldest night, 1991–2020, from Open-Meteo ERA5 reanalysis (CC BY 4.0), labelled with official USDA 5 °F half-zone bounds. It is computed in the browser from that existing method and needs JavaScript. It is not an official USDA zone map for this city.</p>
+  </noscript>
+
+  {% set growsWell = p.growsWell %}
+  {% set intro = "These crops have a sourced growing guide for this city’s climate region. This is not a list of traditional or typical crops. Country-level hardiness is not used here; when a derived zone for this city is available, crops with a recorded hardiness range are marked if that range does not include the zone. Crops without a recorded range are listed from the climate-region guide alone." %}
+  {% include "grows-well.njk" %}
+
+  <h2>Sowing and harvest calendar</h2>
+  {% if p.calendarRows.length %}
+    {% if p.calendarShifted %}
+    <p>Months come from each crop’s sourced regional guide. This city is in the southern hemisphere, so calendars written for the northern hemisphere are shifted by six months. That shift is unverified.</p>
+    {% else %}
+    <p>Months come from each crop’s sourced regional guide for this climate region. They are not a local trial calendar.</p>
+    {% endif %}
+    <div class="place-cal" role="table" aria-label="Sowing and harvest calendar for {{ p.name }}">
+      <div class="cal-row cal-head" role="row">
+        <span class="cal-label" role="columnheader">Crop</span>
+        {% for m in range(1, 13) %}<span role="columnheader">{{ m | monthName }}</span>{% endfor %}
+      </div>
+      {% for row in p.calendarRows %}
+      <div class="cal-row" role="row">
+        <span class="cal-label" role="rowheader"><a href="{{ row.guideUrl | url }}">{{ row.name }}</a>{% if row.shifted %} <span class="muted">(+6 mo.)</span>{% endif %}</span>
+        {% for m in range(1, 13) %}
+        <span class="{% if row.calendar.sow_indoors and m in row.calendar.sow_indoors %}on sow_indoors {% endif %}{% if row.calendar.sow_direct and m in row.calendar.sow_direct %}on sow_direct {% endif %}{% if row.calendar.plant and m in row.calendar.plant %}on plant {% endif %}{% if row.calendar.harvest and m in row.calendar.harvest %}on harvest {% endif %}{% if row.calendar.prune and m in row.calendar.prune %}on prune {% endif %}" role="cell" title="{{ row.name }} – {{ m | monthName }}"></span>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    <p class="cal-legend"><i class="on sow_indoors"></i>sow indoors <i class="on sow_direct"></i>sow outside <i class="on plant"></i>plant out <i class="on harvest"></i>harvest</p>
+  {% else %}
+    <p>No sourced regional guide with a sowing or harvest calendar matches this city’s climate region yet.</p>
+  {% endif %}
+
+  <p class="small muted">{{ db.placePageNote }} Names and coordinates from GeoNames (CC BY 4.0).</p>
+  <p class="meta"><a href="{{ ('/places/' + p.slug + '.json') | url }}">JSON</a></p>
+</article>

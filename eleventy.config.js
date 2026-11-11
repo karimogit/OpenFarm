@@ -49,6 +49,20 @@ const countryOut = (c) => ({
   seed_sources: (c.seedSources || []).map((s) => pick(s, ["slug", "name", "url", "kind"])),
 });
 const countriesOut = (list) => (list || []).map(countryOut);
+const placeOut = (p) => ({
+  slug: p.slug, name: p.name, url: p.url, query: p.queryUrl,
+  country: { iso2: p.cc, name: p.countryName, url: p.countryUrl },
+  admin: p.adminName || null, lat: p.lat, lon: p.lon, population: p.population || 0,
+  climate: (p.kg && p.region) ? { koppen: p.kg.symbol, nearest: !!p.kg.nearest, region: p.region.slug, region_name: p.region.name } : null,
+  grows_well: (p.growsWell || []).flatMap((g) => g.crops.map((c) => ({ crop: c.slug, name: c.name, region: g.slug, guide: c.guideUrl, hardiness: c.hardiness || null }))),
+  calendar_shifted: !!p.calendarShifted,
+});
+const placesOut = (list) => ({
+  license: "CC-BY-SA-4.0",
+  attribution: "City names and coordinates: GeoNames (CC BY 4.0). Climate region: Beck et al. 2018 0.5° Köppen–Geiger grid (CC BY 4.0). Standing pages cover capitals plus up to 12 major cities per country.",
+  count: (list || []).length,
+  places: (list || []).map((p) => ({ slug: p.slug, name: p.name, url: p.url, cc: p.cc, country: p.countryName, lat: p.lat, lon: p.lon })),
+});
 const allOut = (db) => ({
   generated: new Date().toISOString(),
   license: { code: "MIT", content: "CC-BY-SA-4.0 (imported crop/variety records: CC0-1.0)", attribution: "OpenFarm contributors" },
@@ -59,6 +73,7 @@ const allOut = (db) => ({
   seed_sources: db.seedSources.map((s) => pick(s, ["slug", "name", "url", "kind", "countries", "regions", "focus"])),
   companions: db.companions.map((c) => ({ ...pick(c, ["crops", "relation", "evidence", "reason"]), sources: (c.sources || []).map(sourceOut) })),
   countries: (db.countries || []).map((c) => ({ iso2: c.iso2, name: c.name, url: c.url, capital: c.capital || null, climate_method: c.climateMethod || null, regions: (c.regionShares || []).map((r) => ({ slug: r.slug, share: r.share })) })),
+  places: (db.places || []).map((p) => ({ slug: p.slug, name: p.name, url: p.url, cc: p.cc, country: p.countryName })),
   rotation: {
     groups: (db.rotationGroups || []).map((g) => ({ ...pick(g, ["slug", "name", "families", "notes"]), crops: (g.crops || []).map((c) => c.slug || c), sources: (g.sources || []).map(sourceOut) })),
     rules: (db.rotationRules || []).map((r) => ({ ...pick(r, ["kind", "from", "to", "group", "years", "reason"]), sources: (r.sources || []).map(sourceOut) })),
@@ -88,6 +103,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v).replace(/</g, "\\u003c"));
   eleventyConfig.addFilter("prettyJson", (v) => JSON.stringify(v, null, 1));
   eleventyConfig.addFilter("countryOut", countryOut);
+  eleventyConfig.addFilter("placeOut", placeOut);
+  eleventyConfig.addFilter("placesOut", placesOut);
   eleventyConfig.addFilter("countriesOut", countriesOut);
   eleventyConfig.addFilter("cropOut", cropOut);
   eleventyConfig.addFilter("guideOut", guideOut);

@@ -70,7 +70,7 @@ dataset licence on its page, so it is not imported.
 
 Wikimedia Commons photos are used only when the file itself is CC0, public domain, CC BY
 or CC BY-SA. Author and licence appear on the picture. Climate regions use Beck et al.
-(2018), CC BY 4.0. Country climate shares assign those 0.5° cells with Natural Earth Admin 0 1:50m boundaries (public domain); tiny territories fall back to a GeoNames city sample. Offline place search and country names use GeoNames (`countryInfo`, `cities15000`, `admin1CodesASCII`), CC BY 4.0. Weather
+(2018), CC BY 4.0. Country climate shares assign those 0.5° cells with Natural Earth Admin 0 1:50m boundaries (public domain); tiny territories fall back to a GeoNames city sample. Country-page map outlines are a simplified display extract of those same public-domain boundaries (derived file `data/country-outlines.json`; the shapefile is not committed). Offline place search and country names use GeoNames (`countryInfo`, `cities15000`, `admin1CodesASCII`), CC BY 4.0. Weather
 is Open-Meteo, CC BY 4.0, fetched in the browser.
 
 ## Contributor credits

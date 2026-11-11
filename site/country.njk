@@ -1,5 +1,6 @@
 ---
 layout: base.njk
+pageScripts: [country-map.js]
 pagination:
   data: db.countries
   size: 1
@@ -18,13 +19,16 @@ eleventyComputed:
     ISO 3166-1 alpha-2: {{ c.iso2 }}.
   </p>
 
-  {% if c.mapView %}
-  <figure class="country-map">
-    <svg viewBox="{{ c.mapView.x }} {{ c.mapView.y }} {{ c.mapView.width }} {{ c.mapView.height }}" role="img" aria-label="Köppen–Geiger climate map inset of {{ c.name }}">
-      <image href="{{ '/assets/koppen-mercator.png' | url }}" width="{{ c.mapView.imgW }}" height="{{ c.mapView.imgH }}" preserveAspectRatio="none"/>
-    </svg>
-    <figcaption>Köppen–Geiger climate map (Beck et al. 2018, CC BY 4.0). The inset shows the principal land cluster and may omit far-flung territories.</figcaption>
-  </figure>
+  {% if c.mapView or c.mapBounds %}
+    {% set mapView = c.mapView %}
+    {% set mapBounds = c.mapBounds %}
+    {% set outline = c.outline %}
+    {% set svgPath = c.svgPath %}
+    {% set pin = null %}
+    {% set legendRegions = c.regionShares %}
+    {% set mapLabel = "Köppen–Geiger climate map of " + c.name %}
+    {% set caption %}Köppen–Geiger climate map (Beck et al. 2018, CC BY 4.0) with a simplified country outline from Natural Earth Admin 0 1:50m (public domain). The view is fitted to the principal land cluster and may omit far-flung territories. The inset without JavaScript is a static SVG of the same view.{% endset %}
+    {% include "climate-map.njk" %}
   {% endif %}
 
   <h2>Climate regions</h2>
@@ -54,6 +58,11 @@ eleventyComputed:
     <p>No climate share is listed at 0.5° resolution: this territory has no Beck grid cell centre inside a Natural Earth 50m boundary, and no GeoNames capital or city sample landed on a classified land cell. That is a data gap, not a claim that it has no climate.</p>
   {% endif %}
 
+  {% set growsWell = c.growsWell %}
+  {% set placeName = c.name %}
+  {% set intro = "These crops have a sourced growing guide for a climate region listed for " + c.name + ". This is not a list of traditional or typical crops. Country-level hardiness zones are not in the dataset, so this list does not filter by zone. Crops with a recorded hardiness range still show that range on the card." %}
+  {% include "grows-well.njk" %}
+
   <h2>Major cities</h2>
   {% if c.cities.length %}
   <ul class="city-list">
@@ -61,7 +70,7 @@ eleventyComputed:
     <li><a href="{{ city.placeUrl | url }}">{{ city.name }}</a>{% if city.adminName %}<span class="muted">, {{ city.adminName }}</span>{% endif %}</li>
     {% endfor %}
   </ul>
-  <p class="small muted">Cities are the most populous GeoNames <code>cities15000</code> places in {{ c.name }} (CC BY 4.0). Links use the same <code>?place=</code> slugs as the rest of the site.</p>
+  <p class="small muted">Cities are the most populous GeoNames <code>cities15000</code> places in {{ c.name }} (CC BY 4.0). Links go to a city page at <code>/places/&lt;slug&gt;/</code> when one exists; the same slug also works as <code>?place=</code> on the home map.</p>
   {% else %}
   <p>No city from the GeoNames <code>cities15000</code> gazetteer is listed for this territory.</p>
   {% endif %}
@@ -77,6 +86,6 @@ eleventyComputed:
   <p>No seed source in the catalogue is listed for {{ c.name }} yet.</p>
   {% endif %}
 
-  <p class="small muted">{{ db.climateAttribution }} Names from GeoNames (CC BY 4.0).</p>
+  <p class="small muted">{{ db.climateAttribution }} {% if db.outlineAttribution %}{{ db.outlineAttribution }} {% endif %}Names from GeoNames (CC BY 4.0).</p>
   <p class="meta"><a href="{{ ('/countries/' + c.iso2Lower + '.json') | url }}">JSON</a></p>
 </article>

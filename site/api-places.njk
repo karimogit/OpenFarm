@@ -1,0 +1,5 @@
+---
+permalink: /api/places.json
+eleventyExcludeFromCollections: true
+---
+{{ db.places | placesOut | prettyJson | safe }}

@@ -4,7 +4,13 @@
 import { icon, flagImg } from "./icons.js";
 export const BASE = window.OPENFARM_BASE || "/";
 export const REPO = window.OPENFARM_REPO || "https://github.com/karimogit/OpenFarm";
-export const INDEX = JSON.parse(document.getElementById("of-index").textContent);
+function readIndex() {
+  if (window.OPENFARM_INDEX) return window.OPENFARM_INDEX;
+  const el = document.getElementById("of-index");
+  if (el) return JSON.parse(el.textContent);
+  throw new Error("OpenFarm index not loaded");
+}
+export const INDEX = readIndex();
 export const KG = JSON.parse(document.getElementById("of-koppen").textContent);
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const $ = (s, el = document) => el.querySelector(s);
@@ -567,8 +573,10 @@ renderAll(getLocation());
     if (localHits.length) {
       h += localHits.map((it) => {
         const label = placeLabel(it);
+        const page = it.slug && INDEX.placePages?.[it.slug];
+        const pageHref = page ? `${BASE}${String(page).replace(/^\//, "")}` : "";
         return opt(`${flagImg(it.cc, BASE, placesData?.countries?.[it.cc]?.[0] || it.cc)} ${esc(label)}`,
-          `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(label)}" data-cc="${esc(it.cc || "")}"${it.slug ? ` data-place="${esc(it.slug)}"` : ""}`);
+          `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(label)}" data-cc="${esc(it.cc || "")}"${it.slug ? ` data-place="${esc(it.slug)}"` : ""}${pageHref ? ` data-href="${esc(pageHref)}"` : ""}`);
       }).join("");
       h += `<div class="sg-note">Places: GeoNames, CC BY 4.0</div>`;
     } else if (q.length >= 2) {
@@ -608,7 +616,15 @@ renderAll(getLocation());
   async function pick(el) {
     if (!el) return;
     if (el.dataset.places) return findPlaces();
-    if (el.dataset.href) { location.href = el.dataset.href; return; }
+    if (el.dataset.href) {
+      if (el.dataset.lat) {
+        setLocation({
+          lat: +(+el.dataset.lat).toFixed(4), lon: +(+el.dataset.lon).toFixed(4),
+          label: el.dataset.label, country: el.dataset.cc || null,
+        });
+      }
+      location.href = el.dataset.href; return;
+    }
     if (el.dataset.lat) {
       const lat = +el.dataset.lat, lon = +el.dataset.lon, kg = await lookup(lat, lon);
       setLocation({ lat: +lat.toFixed(4), lon: +lon.toFixed(4), label: el.dataset.label, symbol: kg?.symbol || null, region: kg?.region?.slug || null, country: el.dataset.cc || null });

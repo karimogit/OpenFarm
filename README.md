@@ -56,9 +56,9 @@ Public URLs (the site is served under `/OpenFarm/` on GitHub Pages):
 - Crop: `/crops/<crop>/` · variety: `/crops/<crop>/<variety>/` · variety group: `/crops/<crop>/<group>/`
 - Growing guide: `/crops/<crop>/<region>/` (variety-specific: `/crops/<crop>/<variety>/<region>/`). Old `/guides/…` URLs redirect.
 - Tools: `/tools/<tool>/` and category pages `/tools/<category>/`
-- Climate region: `/regions/<region>/` · country: `/countries/<iso2>/` · hardiness zone: `/zones/<zone>/` (1a–13b)
-- Readable location links: `?place=<city-slug>-<iso2>` (for example `?place=amsterdam-nl`); the climate sidebar links the country page when a country code is known
-- JSON API: `/api/` (docs), `/api/all.json`, `/api/guides.json`, `/api/tools.json`, `/api/countries.json`, `/crops/<crop>.json`, `/regions/<region>.json`, `/countries/<iso2>.json`, `/zones/<zone>.json`
+- Climate region: `/regions/<region>/` · country: `/countries/<iso2>/` · city: `/places/<slug>/` (for example `/places/amsterdam-nl/`) · hardiness zone: `/zones/<zone>/` (1a–13b)
+- Readable location links: `?place=<city-slug>-<iso2>` (for example `?place=amsterdam-nl`) still work; the same slugs are used for city pages when one exists. The climate sidebar links the country page when a country code is known
+- JSON API: `/api/` (docs), `/api/all.json`, `/api/guides.json`, `/api/tools.json`, `/api/countries.json`, `/api/places.json`, `/crops/<crop>.json`, `/regions/<region>.json`, `/countries/<iso2>.json`, `/places/<slug>.json`, `/zones/<zone>.json`
 
 
 **Today:** 271 crops (8 curated, 263 imported; 208 with a sourced GRIN edible use), 80 varieties and
@@ -99,6 +99,7 @@ region** (each region lists its `similar` regions in order), clearly labelled
 | `/crops/<crop>/<region>/` (legacy `/guides/…` redirects) | (inside the crop JSON; also `/api/guides.json`) |
 | `/regions/<region>/` | `/regions/<region>.json` |
 | `/countries/<iso2>/` | `/countries/<iso2>.json`, index `/api/countries.json` |
+| `/places/<slug>/` | `/places/<slug>.json`, index `/api/places.json` |
 | `/zones/<zone>/` | `/zones/<zone>.json` |
 | `/problems/<problem>/`, `/tools/<tool>/`, `/crops/#seed-sources`, `/search/` | `/api/all.json`, `/api/guides.json`, `/api/tools.json` |
 
@@ -177,7 +178,19 @@ Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (fav
 - **Countries.** `/countries/<iso2>/` pages use GeoNames names and cities (CC BY 4.0) and
   approximate climate-region shares from the Beck et al. 2018 0.5° grid (CC BY 4.0) assigned with
   Natural Earth 50m boundaries (public domain). Tiny territories use a city sample instead of an
-  area share.
+  area share. The page opens with an interactive Leaflet map (Köppen overlay, simplified Natural
+  Earth outline, legend with region links, view fitted to the principal land cluster) and a static
+  SVG fallback. A data-only “Grows well here” list shows crops that have a sourced guide for one
+  of the country’s listed climate regions; it is not a list of traditional crops, and it does not
+  invent country hardiness zones.
+- **Places.** `/places/<slug>/` pages (for example `/places/amsterdam-nl/`) use the same slugs as
+  `?place=` links. Standing pages cover each territory’s capital (when it is in GeoNames
+  cities15000) and the up to 12 most populous cities already listed on the country page; other
+  GeoNames cities still work with `?place=` and search. A city page has a map pin, the Köppen
+  region at that point (Beck et al. 2018, CC BY 4.0), a hardiness zone *derived* from Open-Meteo
+  ERA5 1991–2020 (CC BY 4.0; official USDA 5 °F half-zone bounds; not an official USDA map), a
+  country link, the same data-only “Grows well here” rule, and a sowing/harvest calendar taken
+  from sourced regional guides.
 
 ### Guide format
 

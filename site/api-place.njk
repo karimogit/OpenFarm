@@ -1,0 +1,9 @@
+---
+pagination:
+  data: db.places
+  size: 1
+  alias: p
+permalink: "/places/{{ p.slug }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ p | placeOut | prettyJson | safe }}
