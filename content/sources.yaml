@@ -346,3 +346,18 @@ ctahr-carrot:
   license: all-rights-reserved
   use: citation
   note: "January 1997. Checked 11 November 2026."
+
+rhs-potatoes:
+  title: "How to grow potatoes"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/potatoes/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
+unr-veg-garden:
+  title: Getting Started with a Vegetable Garden (Fact Sheet 10-15)
+  publisher: University of Nevada, Reno Extension
+  url: https://extension.unr.edu/publication.aspx?PubID=3168
+  license: all-rights-reserved
+  use: citation
+  note: "Kratsch, H., Allen, L., Hanson Mazet, W., 2010. Average planting dates for the Reno, Nevada area. Checked 11 November 2026."
