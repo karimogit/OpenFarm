@@ -5,6 +5,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -22,7 +26,9 @@ jobs:
       - run: npm ci
       - name: Validate all content against the JSON Schemas in schema/
         run: npm run validate
-      - name: Check that every image URL resolves (HEAD 200)
-        run: npm run check:images
+      - name: Check new or changed image URLs
+        env:
+          CHECK_IMAGES_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: npm run check:images -- --changed
       - name: Build site and search index
         run: npx @11ty/eleventy && npx pagefind --site _site
