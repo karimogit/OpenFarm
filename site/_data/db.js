@@ -10,7 +10,7 @@ import {
 } from "../../scripts/content.js";
 import {
   mapViewFromBbox, mapBoundsFromBbox, loadOutlines, loadKoppenLookup, svgPathForOutline,
-  shiftCalendar, selectPlacePageCities, PLACE_PAGE_NOTE,
+  shiftCalendar, selectPlacePageCities, PLACE_PAGE_NOTE, citySourceBbox, CITY_BBOX_PAD, CITY_ZOOM,
 } from "../../scripts/geo_pages.js";
 
 const md = markdownIt({ html: false, linkify: true, typographer: true });
@@ -393,7 +393,8 @@ export default function () {
         }
       }
     }
-    const bbox = [c.lon - 1.0, c.lat - 0.7, c.lon + 1.0, c.lat + 0.7];
+    const bbox = citySourceBbox(c.lat, c.lon);
+    const mapView = mapViewFromBbox(bbox, CITY_BBOX_PAD);
     return {
       slug: c.slug, name: c.name, ascii: c.ascii, cc: c.cc, admin: c.admin,
       adminName: placesPack.admin1[`${c.cc}.${c.admin}`] || null,
@@ -407,10 +408,11 @@ export default function () {
       growsWell,
       calendarRows,
       calendarShifted,
-      mapView: mapViewFromBbox(bbox),
-      mapBounds: mapBoundsFromBbox(bbox),
+      mapZoom: CITY_ZOOM,
+      mapView,
+      mapBounds: mapBoundsFromBbox(bbox, CITY_BBOX_PAD),
       outline: country?.outline || null,
-      svgPath: svgPathForOutline(country?.outline || null, mapViewFromBbox(bbox)),
+      svgPath: svgPathForOutline(country?.outline || null, mapView),
     };
   }).sort((a, b) => a.name.localeCompare(b.name) || a.cc.localeCompare(b.cc));
   const placeBySlug = Object.fromEntries(places.map((p) => [p.slug, p]));

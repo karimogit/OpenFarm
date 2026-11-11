@@ -7,13 +7,13 @@ pagination:
   alias: p
 permalink: "/places/{{ p.slug }}/"
 eleventyComputed:
-  title: "{{ p.name }}"
+  title: "{{ p.name }}{% if p.countryName %}, {{ p.countryName }}{% endif %}"
   description: "Climate region, derived hardiness zone, and sourced growing guides for {{ p.name }}{% if p.countryName %}, {{ p.countryName }}{% endif %}."
   jsonUrl: "/places/{{ p.slug }}.json"
 ---
 {% set crumbs = [{href: "/countries/", label: "Countries"}, {href: p.countryUrl, label: p.countryName}, {label: p.name, current: true}] %}{% include "crumbs.njk" %}
 <article data-pagefind-body>
-  <h1>{% set cc = p.cc %}{% include "country-link.njk" %} {{ p.name }}</h1>
+  <h1>{{ p.name }}{% if p.cc %}, {% set cc = p.cc %}{% include "country-link.njk" %}{% endif %}</h1>
   <p class="lead">
     {% if p.adminName %}{{ p.adminName }}, {% endif %}<a href="{{ p.countryUrl | url }}">{{ p.countryName }}</a>.
     {% if p.isCapital %}Capital.{% endif %}
@@ -25,7 +25,7 @@ eleventyComputed:
   {% set mapBounds = p.mapBounds %}
   {% set outline = p.outline %}
   {% set svgPath = p.svgPath %}
-  {% set pin = { lat: p.lat, lon: p.lon, label: p.name } %}
+  {% set pin = { lat: p.lat, lon: p.lon, label: p.name, zoom: p.mapZoom or 10 } %}
   {% set legendRegions = p.region and [p.region] %}
   {% set mapLabel = "Map of " + p.name + " with Köppen climate overlay" %}
   {% set caption %}Köppen–Geiger climate map (Beck et al. 2018, CC BY 4.0) with a pin at {{ p.name }}. Country outline, when shown, is simplified from Natural Earth Admin 0 1:50m (public domain).{% endset %}

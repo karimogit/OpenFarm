@@ -2,6 +2,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ROOT } from "./content.js";
+import { CITY_ZOOM } from "../site/assets/js/map-view.js";
+export { CITY_ZOOM };
 
 const MAP_W = 1440, MAP_H = 1440, MERC_MAX = 85.05112878;
 
@@ -11,8 +13,18 @@ export const mercY = (lat) => {
   return (1 - Math.log(Math.tan(Math.PI / 4 + r / 2)) / Math.PI) / 2 * MAP_H;
 };
 
+/** Modest padding for a city inset. Country maps keep the larger default pads. */
+export const CITY_BBOX_PAD = { minPadLon: 0.15, minPadLat: 0.1, frac: 0.12 };
+
+/** Unpadded [west,south,east,north] box around a city (~30 km). */
+export function citySourceBbox(lat, lon) {
+  if (!Number.isFinite(+lat) || !Number.isFinite(+lon)) return null;
+  const dLon = 0.4, dLat = 0.28;
+  return [+lon - dLon, +lat - dLat, +lon + dLon, +lat + dLat];
+}
+
 /** Pad and resolve a [west,south,east,north] bbox the same way country insets do. */
-export function paddedBbox(bbox) {
+export function paddedBbox(bbox, opts = {}) {
   if (!bbox) return null;
   let [w, s, e, n] = bbox;
   if (e > 180) e = 180;
@@ -21,14 +33,17 @@ export function paddedBbox(bbox) {
     if (180 - w >= e - (-180)) e = 180;
     else w = -180;
   }
-  const padLon = Math.max(1.2, (e - w) * 0.18 || 1.2);
-  const padLat = Math.max(0.8, (n - s) * 0.18 || 0.8);
+  const frac = opts.frac ?? 0.18;
+  const minPadLon = opts.minPadLon ?? 1.2;
+  const minPadLat = opts.minPadLat ?? 0.8;
+  const padLon = Math.max(minPadLon, (e - w) * frac || minPadLon);
+  const padLat = Math.max(minPadLat, (n - s) * frac || minPadLat);
   w -= padLon; e += padLon; s -= padLat; n += padLat;
   return [w, s, e, n];
 }
 
-export function mapViewFromBbox(bbox) {
-  const pad = paddedBbox(bbox);
+export function mapViewFromBbox(bbox, opts) {
+  const pad = paddedBbox(bbox, opts);
   if (!pad) return null;
   const [w, s, e, n] = pad;
   const x1 = mercX(w), x2 = mercX(e), y1 = mercY(n), y2 = mercY(s);
@@ -40,8 +55,8 @@ export function mapViewFromBbox(bbox) {
   return { x: +x.toFixed(2), y: +y.toFixed(2), width: +width.toFixed(2), height: +height.toFixed(2), imgW: MAP_W, imgH: MAP_H };
 }
 
-export function mapBoundsFromBbox(bbox) {
-  const pad = paddedBbox(bbox);
+export function mapBoundsFromBbox(bbox, opts) {
+  const pad = paddedBbox(bbox, opts);
   if (!pad) return null;
   const [w, s, e, n] = pad;
   return { west: +w.toFixed(4), south: +s.toFixed(4), east: +e.toFixed(4), north: +n.toFixed(4) };
