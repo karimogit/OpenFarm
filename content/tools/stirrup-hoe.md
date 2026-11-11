@@ -1,6 +1,7 @@
 ---
 slug: stirrup-hoe
 name: "Stirrup hoe"
+commons_file: "Two hoes.JPG"
 category: weeding
 sources:
   - title: "Hoe (Wikipedia)"

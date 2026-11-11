@@ -2,7 +2,7 @@
 slug: shovel
 name: "Shovel"
 category: digging
-commons_file: "Shovel.jpg"
+commons_file: Schep.jpg
 sources:
   - title: "Shovel (Wikipedia)"
     publisher: Wikipedia

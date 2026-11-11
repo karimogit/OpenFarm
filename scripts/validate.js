@@ -9,6 +9,7 @@ import {
   ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadSeedSources, loadTools,
   loadCompanions, loadRotation, loadSources, koppenToRegion,
 } from "./content.js";
+import { looksLikeIllustration } from "./image_kind.js";
 
 const ajv = new Ajv({ allErrors: true, strict: false });
 addFormats(ajv);
@@ -236,6 +237,13 @@ for (const t of tools) {
 // Every commons_file must have a fetched entry in data/images.json (catches typoed Commons names).
 const imagesPath = path.join(ROOT, "data/images.json");
 const images = fs.existsSync(imagesPath) ? JSON.parse(fs.readFileSync(imagesPath, "utf8")) : {};
+for (const [key, rec] of Object.entries(images)) {
+  if (!key.startsWith("crop:") && !key.startsWith("variety:") && !key.startsWith("group:")) continue;
+  if (!rec) continue;
+  if (looksLikeIllustration({ file: rec.file, author: rec.author, src: rec.src })) {
+    fail("data/images.json", `${key} looks like an illustration or herbarium scan (${rec.file}) — replace with a photograph or drop the image`);
+  }
+}
 for (const r of regions) {
   if (r.data.commons_file && !images[`region:${r.data.slug}`]) {
     fail(r.file, `commons_file "${r.data.commons_file}" has no data/images.json entry – confirm the file exists on Wikimedia Commons and run npm run images`);

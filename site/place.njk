@@ -13,7 +13,7 @@ eleventyComputed:
 ---
 {% set crumbs = [{href: "/countries/", label: "Countries"}, {href: p.countryUrl, label: p.countryName}, {label: p.name, current: true}] %}{% include "crumbs.njk" %}
 <article data-pagefind-body>
-  <h1>{% set cc = p.cc %}{% include "flag.njk" %} {{ p.name }}</h1>
+  <h1>{% set cc = p.cc %}{% include "country-link.njk" %} {{ p.name }}</h1>
   <p class="lead">
     {% if p.adminName %}{{ p.adminName }}, {% endif %}<a href="{{ p.countryUrl | url }}">{{ p.countryName }}</a>.
     {% if p.isCapital %}Capital.{% endif %}

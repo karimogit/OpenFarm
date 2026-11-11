@@ -1,13 +1,19 @@
 // Home page: the "your details" panel (location search, map, climate region) and the guide cards.
 import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel, resolvePlace, locationSearch, locationHref, nearestPlace, guideHref } from "./common.js";
 import { flagImg } from "./icons.js";
+import { attachClimateOverlay } from "./climate-overlay.js";
 
 const map = L.map("map", { worldCopyJump: true, zoomControl: true }).setView([30, 10], 1);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12, attribution: "© OpenStreetMap contributors" }).addTo(map);
 // Climate overlay is off by default – the region name and colour are shown next to the marker instead.
-const overlay = L.imageOverlay(BASE + "assets/koppen-mercator.png", [[-85.0511, -180], [85.0511, 180]], { opacity: 0.6, attribution: "Köppen-Geiger: Beck et al. 2018 (CC BY 4.0)" });
+const overlay = attachClimateOverlay(map, BASE + "assets/koppen-mercator.png", { opacity: 0.6, attribution: "Köppen-Geiger: Beck et al. 2018 (CC BY 4.0)" });
 let marker = null;
 const mobile = () => matchMedia("(max-width: 860px)").matches;
+const panel = document.getElementById("details-panel");
+function refitHomeMap() { map.invalidateSize(); }
+if (panel) panel.addEventListener("toggle", () => { if (panel.open) setTimeout(refitHomeMap, 0); });
+window.addEventListener("resize", refitHomeMap);
+
 
 async function countryOf(lat, lon) {
   try {

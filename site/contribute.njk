@@ -30,12 +30,15 @@ permalink: /contribute/
 
 <h2>The data model</h2>
 <ul>
-  <li><strong>Crop</strong> (<code>content/crops/&lt;crop&gt;.md</code>) – facts that are true everywhere: type, family, sun, size, how the species is pollinated and saved, perennial facts like chill hours and rootstocks.</li>
-  <li><strong>Variety</strong> (<code>content/varieties/&lt;crop&gt;/&lt;variety&gt;.md</code>) – a cultivar: days to maturity, growth habit, tolerances, disease resistance, and whether its seed is open-pollinated or F1 hybrid.</li>
-  <li><strong>Guide</strong> (file <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>, public URL <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems. Old <code>/guides/…</code> URLs redirect here.</li>
-  <li><strong>Shared files</strong> – <a href="{{ '/regions/' | url }}">climate regions</a>, <a href="{{ '/problems/' | url }}">pests &amp; diseases</a>, companion pairs (with evidence level) and <a href="{{ '/crops/' | url }}#seed-sources">seed sources</a> are written once and listed on the crops page.</li>
+  <li><strong>Crop</strong> (<code>content/crops/&lt;crop&gt;.md</code>, URL <code>/crops/&lt;crop&gt;/</code>) – the centre of the model: facts that are true everywhere (type, family, sun, size, seed-saving, perennial facts such as chill hours and rootstocks).</li>
+  <li><strong>Variety groups and cultivars</strong> (<code>content/varieties/&lt;crop&gt;/&lt;slug&gt;.md</code>) – horticultural groups and named cultivars of a crop, with sourced names and traits.</li>
+  <li><strong>Guide</strong> (file <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>, URL <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems. Old <code>/guides/…</code> URLs redirect here.</li>
+  <li><strong>Climate regions</strong> – 15 regions grouping Köppen–Geiger classes (Beck et al. 2018). A place looks up its class in the browser and maps to one region.</li>
+  <li><strong>Countries</strong> (<code>/countries/&lt;iso2&gt;/</code>) and <strong>cities / places</strong> (<code>/places/&lt;slug&gt;/</code>, or <code>?place=</code> on the home map) – climate share, maps, and “grows well here” lists derived only from sourced guides.</li>
+  <li><strong>Hardiness zones</strong> – derived for a place from Open-Meteo ERA5 1991–2020 and labelled with official USDA 5 °F bounds; not an official USDA map.</li>
+  <li><strong>Shared files</strong> – <a href="{{ '/problems/' | url }}">pests &amp; diseases</a>, <a href="{{ '/tools/' | url }}">tools</a>, companion pairs (with evidence level), rotation notes, and <a href="{{ '/crops/' | url }}#seed-sources">seed sources</a> are written once and reused when a source supports them.</li>
+  <li><strong>Sources and API</strong> – every record names its sources and licence. Machine-readable JSON is published for each crop, region, country, place and zone, plus a dump at <a href="{{ '/api/all.json' | url }}">/api/all.json</a>. See the <a href="{{ '/api/' | url }}">API reference</a>.</li>
 </ul>
-<p>Machine-readable: every crop has a JSON file (e.g. <a href="{{ '/crops/tomato.json' | url }}">/crops/tomato.json</a>), every region too, and there is a full dump at <a href="{{ '/api/all.json' | url }}">/api/all.json</a>. See the <a href="{{ '/api/' | url }}">API reference</a>.</p>
 
 <h2 id="sources">Sources &amp; licences</h2>
 <p>Content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (imported CC0 records stay CC0). Code is MIT.
@@ -50,7 +53,7 @@ permalink: /contribute/
 <ul class="roadmap">
   <li>Fill growing guides for climate regions that still have few or none, from credible regional sources, without inventing values.</li>
   <li>Review imported wiki-derived crop fields (spacing, sun, sowing, prose) against published sources and promote records to <code>origin: curated</code>.</li>
-  <li>Country pages, hardiness-zone pages, and a richer rotation and neighbours view, as those features land.</li>
+  <li>A richer rotation and neighbours view, as those features land.</li>
   <li>Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0), and add native southern-hemisphere calendars.</li>
   <li>Translations, frost-date and day-length hints, and a climate-change view using later Köppen maps.</li>
   <li><strong>Offline ZIM for Kiwix.</strong> For major tagged releases, a release-triggered GitHub Action will build an offline OpenFarm ZIM: relative links, small bundled Commons images with attribution, Kiwix search instead of Pagefind, and graceful offline behaviour for location, calendar and profile. The action will run zimwriterfs and zimcheck, then attach the <code>.zim</code> to the GitHub release. A later step is to submit it to the Kiwix library.</li>

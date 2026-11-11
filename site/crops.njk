@@ -26,7 +26,7 @@ permalink: /crops/
   {% for s in db.seedSources %}
     <li class="card" data-countries="{{ s.countries | join(',') }}" data-regions="{{ (s.regions or []) | join(',') }}">
       <h3><a href="{{ s.url | cleanUrl }}">{{ s.name }}</a></h3>
-      <p class="small muted">{{ s.kind | label }} · {% for code in s.countries %}{% set cc = code %}{% include "flag.njk" %}{{ countries[code] or code }}{% if not loop.last %}, {% endif %}{% endfor %}{% if s.focus %} · {{ s.focus }}{% endif %}</p>
+      <p class="small muted">{{ s.kind | label }} · {% for code in s.countries %}{% set cc = code %}{% include "country-link.njk" %}{% if not loop.last %}, {% endif %}{% endfor %}{% if s.focus %} · {{ s.focus }}{% endif %}</p>
     </li>
   {% endfor %}
   </ul>
