@@ -5,7 +5,11 @@ koppen: [Af]
 color: "#0000ff"
 order: 1
 similar: [tropical-monsoon, tropical-savanna]
-examples: Singapore, Kuala Lumpur, Belém, Kisangani
+examples:
+  - {name: Singapore, country: SG}
+  - {name: Kuala Lumpur, country: MY}
+  - {name: "Belém", country: BR}
+  - {name: Kisangani, country: CD}
 commons_file: "Fazenda Olhos D'Água, Piraí do Norte, 2023.jpg"
 ---
 

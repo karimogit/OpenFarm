@@ -12,7 +12,8 @@
     "dev": "eleventy --serve",
     "test": "npm run validate",
     "import:rescue": "node scripts/import_rescue.js",
-    "images": "node scripts/fetch_images.js"
+    "images": "node scripts/fetch_images.js",
+    "places": "node scripts/build_places.js"
   },
   "engines": {
     "node": ">=20"

@@ -1,7 +1,7 @@
 ---
 crop: sunflower
 region: hot-desert
-title: "Sunflower in the low desert (Phoenix, Arizona)"
+title: Sunflower in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

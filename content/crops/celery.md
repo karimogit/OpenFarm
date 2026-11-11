@@ -35,5 +35,6 @@ seed_saving:
   cross_note: "Difficult to overwinter."
   sources:
     - seed-matters-chart
+tools: [seed-trays, transplanter, row-cover]
 ---
 The celery plant has long fibrous stalks that taper into leaves. The stalks and leaves can both be eaten. Celery seed is also used as a spice. Celery seed extracts are used in medicines.

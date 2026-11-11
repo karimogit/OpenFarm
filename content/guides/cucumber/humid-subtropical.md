@@ -1,7 +1,7 @@
 ---
 crop: cucumber
 region: humid-subtropical
-title: "Cucumber in the South Carolina coast"
+title: Cucumber in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

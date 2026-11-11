@@ -1,7 +1,7 @@
 ---
 crop: broccoli
 region: cold-semi-arid
-title: "Broccoli in the Colorado Front Range"
+title: Broccoli in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

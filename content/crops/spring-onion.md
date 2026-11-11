@@ -33,5 +33,6 @@ seed_saving:
   cross_note: "Very short seed life."
   sources:
     - seed-matters-chart
+tools: [dibber, garden-line, hand-fork]
 ---
 Spring onions resemble scallions in appearance and flavor, but they are actually very young storage onions. Yellow, red, or white storage onions are pulled out of the ground before the standard harvest date, when their skins are still thin and they are mild in flavor. Their bulbs and greens can be eaten fresh or cooked.

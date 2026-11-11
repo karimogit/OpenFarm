@@ -1,7 +1,7 @@
 ---
 crop: capsicum
 region: tropical-monsoon
-title: "Capsicum in South Florida"
+title: Capsicum in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

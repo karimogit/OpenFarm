@@ -1,6 +1,7 @@
 // Shared browser code for every page: location memory, Köppen → climate region lookup,
 // guide matching, the Open-Meteo weather widget, the "your region" box and seed-source sorting.
 // No backend: the climate grid is a ~25 kB static file and everything else is static JSON.
+import { icon, flagImg } from "./icons.js";
 export const BASE = window.OPENFARM_BASE || "/";
 export const REPO = window.OPENFARM_REPO || "https://github.com/karimogit/OpenFarm";
 export const INDEX = JSON.parse(document.getElementById("of-index").textContent);
@@ -46,12 +47,18 @@ export async function lookup(lat, lon) {
 // Versioned so later releases can migrate old data. v1 shape:
 // { version: 1, location: {lat, lon, label, symbol, region, country} | null,
 //   favourites: { crops: ["tomato"], varieties: ["tomato/sungold"], guides: ["tomato/temperate-oceanic"] },
-//   growing: [{ id, crop, variety?, sown?: "YYYY-MM-DD", notes? }], updated: ISO date }
+//   growing: [{ id, crop, variety?, sown?, planted?, bed?, quantity?, status?, notes? }], updated: ISO date }
+// status is planned | sown | growing | harvested. Older records without status are treated as sown if they
+// have a sow date, otherwise planned. Changes are written to localStorage immediately (text fields debounced).
 export const PROFILE_VERSION = 1;
 const PKEY = "openfarm.profile", OLD_LOCATION_KEY = "openfarm.location";
 const SLUG = /^[a-z0-9][a-z0-9-]*$/, PAIR = /^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/, DATE = /^\d{4}-\d{2}-\d{2}$/;
 export const emptyProfile = () => ({ version: PROFILE_VERSION, location: null, favourites: { crops: [], varieties: [], guides: [] }, growing: [], updated: null });
 const newId = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+export const GROW_STATUSES = ["planned", "sown", "growing", "harvested"];
+export const GROW_STATUS_LABEL = { planned: "Planned", sown: "Sown", growing: "Growing", harvested: "Harvested" };
+/** Infer a status for records saved before the field existed. Never invents other values. */
+export const growStatus = (g) => (g && GROW_STATUSES.includes(g.status) ? g.status : (g?.sown ? "sown" : "planned"));
 
 /** Validates and normalises a profile object (e.g. from an imported file). Returns { ok, profile, errors }. */
 export function validateProfile(p) {
@@ -79,8 +86,21 @@ export function validateProfile(p) {
     if (!x || typeof x !== "object" || typeof x.crop !== "string" || !SLUG.test(x.crop)) return errors.push(`growing[${i}] needs a crop id.`);
     if (x.variety != null && (typeof x.variety !== "string" || !SLUG.test(x.variety))) return errors.push(`growing[${i}].variety is not a valid id.`);
     if (x.sown != null && x.sown !== "" && (typeof x.sown !== "string" || !DATE.test(x.sown))) return errors.push(`growing[${i}].sown must be YYYY-MM-DD.`);
+    if (x.planted != null && x.planted !== "" && (typeof x.planted !== "string" || !DATE.test(x.planted))) return errors.push(`growing[${i}].planted must be YYYY-MM-DD.`);
     if (x.notes != null && (typeof x.notes !== "string" || x.notes.length > 5000)) return errors.push(`growing[${i}].notes must be text (max 5000 characters).`);
-    out.growing.push({ id: typeof x.id === "string" && x.id.length < 40 ? x.id : newId(), crop: x.crop, variety: x.variety || null, sown: x.sown || "", notes: x.notes || "" });
+    if (x.bed != null && (typeof x.bed !== "string" || x.bed.length > 200)) return errors.push(`growing[${i}].bed must be text (max 200 characters).`);
+    let qty = "";
+    if (x.quantity != null && x.quantity !== "") {
+      if (typeof x.quantity === "number" && Number.isFinite(x.quantity)) qty = String(x.quantity);
+      else if (typeof x.quantity === "string" && x.quantity.length <= 80) qty = x.quantity;
+      else return errors.push(`growing[${i}].quantity must be short text or a number.`);
+    }
+    if (x.status != null && x.status !== "" && !GROW_STATUSES.includes(x.status)) return errors.push(`growing[${i}].status must be planned, sown, growing or harvested.`);
+    out.growing.push({
+      id: typeof x.id === "string" && x.id.length < 40 ? x.id : newId(), crop: x.crop, variety: x.variety || null,
+      sown: x.sown || "", planted: x.planted || "", bed: typeof x.bed === "string" ? x.bed : "", quantity: qty,
+      status: GROW_STATUSES.includes(x.status) ? x.status : (x.sown ? "sown" : "planned"), notes: x.notes || "",
+    });
   });
   out.updated = typeof p.updated === "string" ? p.updated : null;
   return { ok: errors.length === 0, profile: out, errors };
@@ -95,16 +115,36 @@ export function loadProfile() {
   }
   return validateProfile(raw).profile || emptyProfile();
 }
-export function saveProfile(p, { silent = false } = {}) {
+let savedHide = 0;
+/** Subtle confirmation for local saves (aria-live polite). Not shown when another tab applies a change. */
+export function flashSaved(msg = "Saved") {
+  const el = document.getElementById("save-status");
+  if (!el) return;
+  el.hidden = false;
+  el.textContent = msg;
+  el.classList.add("is-on");
+  clearTimeout(savedHide);
+  savedHide = setTimeout(() => { el.classList.remove("is-on"); el.textContent = ""; el.hidden = true; }, 1800);
+}
+export function debounce(fn, ms = 400) {
+  let t = 0, pending = false;
+  const d = (...args) => { pending = true; clearTimeout(t); t = setTimeout(() => { pending = false; fn(...args); }, ms); };
+  d.flush = (...args) => { clearTimeout(t); if (pending) { pending = false; fn(...args); } };
+  d.cancel = () => { clearTimeout(t); pending = false; };
+  return d;
+}
+export function saveProfile(p, { silent = false, announce = true } = {}) {
   p.version = PROFILE_VERSION; p.updated = new Date().toISOString();
   try { localStorage.setItem(PKEY, JSON.stringify(p)); localStorage.removeItem(OLD_LOCATION_KEY); } catch {}
   if (!silent) document.dispatchEvent(new CustomEvent("openfarm:profile", { detail: p }));
+  if (announce) flashSaved("Saved");
   return p;
 }
 export function clearProfile() {
   try { localStorage.removeItem(PKEY); localStorage.removeItem(OLD_LOCATION_KEY); localStorage.removeItem("openfarm.reminders"); sessionStorage.clear(); } catch {}
   document.dispatchEvent(new CustomEvent("openfarm:profile", { detail: emptyProfile() }));
   document.dispatchEvent(new CustomEvent("openfarm:location", { detail: null }));
+  flashSaved("Cleared");
 }
 export function downloadText(text, type, name) {
   const blob = new Blob([text], { type });
@@ -119,12 +159,12 @@ export function exportProfile() {
 // CSV: one row per favourite or growing-list entry, for spreadsheets.
 export function profileCSV(p = loadProfile()) {
   const q = (s) => `"${String(s ?? "").replace(/"/g, '""')}"`;
-  const rows = [["list", "kind", "crop", "variety", "region", "sown", "notes", "url"]];
-  for (const g of p.growing) rows.push(["growing", g.variety ? "variety" : "crop", g.crop, g.variety || "", "", g.sown || "", g.notes || "",
+  const rows = [["list", "kind", "crop", "variety", "region", "status", "sown", "planted", "bed", "quantity", "notes", "url"]];
+  for (const g of p.growing) rows.push(["growing", g.variety ? "variety" : "crop", g.crop, g.variety || "", "", growStatus(g), g.sown || "", g.planted || "", g.bed || "", g.quantity || "", g.notes || "",
     location.origin + BASE + (g.variety ? `crops/${g.crop}/varieties/${g.variety}/` : `crops/${g.crop}/`)]);
-  for (const c of p.favourites.crops) rows.push(["favourite", "crop", c, "", "", "", "", location.origin + BASE + `crops/${c}/`]);
-  for (const v of p.favourites.varieties) { const [c, s] = v.split("/"); rows.push(["favourite", "variety", c, s, "", "", "", location.origin + BASE + `crops/${c}/varieties/${s}/`]); }
-  for (const g of p.favourites.guides) { const [c, r] = g.split("/"); rows.push(["favourite", "guide", c, "", r, "", "", location.origin + BASE + `guides/${c}/${r}/`]); }
+  for (const c of p.favourites.crops) rows.push(["favourite", "crop", c, "", "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/`]);
+  for (const v of p.favourites.varieties) { const [c, s] = v.split("/"); rows.push(["favourite", "variety", c, s, "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/varieties/${s}/`]); }
+  for (const g of p.favourites.guides) { const [c, r] = g.split("/"); rows.push(["favourite", "guide", c, "", r, "", "", "", "", "", "", location.origin + BASE + `guides/${c}/${r}/`]); }
   return rows.map((r) => r.map(q).join(",")).join("\r\n") + "\r\n";
 }
 export const exportCSV = () => downloadText("\ufeff" + profileCSV(), "text/csv;charset=utf-8", `openfarm-garden-${today()}.csv`);
@@ -136,7 +176,14 @@ export function profileMarkdown(p = loadProfile()) {
   if (p.location) { const r = REGION_BY[p.location.region]; L.push(`**Location:** ${p.location.label?.split(",")[0] || `${p.location.lat}, ${p.location.lon}`}${r ? ` · ${r.name} (Köppen ${p.location.symbol})` : ""}`, ``); }
   L.push(`## What I'm growing`, ``);
   if (!p.growing.length) L.push(`_Nothing yet._`);
-  for (const g of p.growing) L.push(`- **${name(g.crop)}**${g.variety ? ` – ${g.variety.replace(/-/g, " ")}` : ""}${g.sown ? ` · sown ${g.sown}` : ""}${g.notes ? `\n  ${g.notes.replace(/\n/g, "\n  ")}` : ""}`);
+  for (const g of p.growing) {
+    const bits = [GROW_STATUS_LABEL[growStatus(g)]];
+    if (g.sown) bits.push(`sown ${g.sown}`);
+    if (g.planted) bits.push(`planted ${g.planted}`);
+    if (g.bed) bits.push(g.bed);
+    if (g.quantity) bits.push(g.quantity);
+    L.push(`- **${name(g.crop)}**${g.variety ? ` – ${g.variety.replace(/-/g, " ")}` : ""} · ${bits.join(" · ")}${g.notes ? `\n  ${g.notes.replace(/\n/g, "\n  ")}` : ""}`);
+  }
   const mine = myCropGuides(p);
   if (mine.length) {
     L.push(``, `## Calendar for my region`, ``);
@@ -161,8 +208,10 @@ export function toggleFav(kind, id) {
 }
 export function addGrowing(crop, variety = null) {
   const p = loadProfile();
-  p.growing.push({ id: newId(), crop, variety, sown: "", notes: "" });
+  const item = { id: newId(), crop, variety, sown: "", planted: "", bed: "", quantity: "", status: "planned", notes: "" };
+  p.growing.push(item);
   saveProfile(p);
+  return item;
 }
 export const isGrowing = (crop, variety = null, p = loadProfile()) => p.growing.some((g) => g.crop === crop && (!variety || g.variety === variety));
 
@@ -171,6 +220,17 @@ export function setLocation(loc) {
   const p = loadProfile(); p.location = loc; saveProfile(p, { silent: true });
   document.dispatchEvent(new CustomEvent("openfarm:location", { detail: loc }));
 }
+
+// Other open tabs pick up profile (and reminder) changes via the storage event. This tab does not
+// receive that event for its own writes, so local saves still dispatch openfarm:* directly.
+window.addEventListener("storage", (e) => {
+  if (e.key === PKEY || e.key === OLD_LOCATION_KEY || (e.key == null && e.newValue == null)) {
+    const p = loadProfile();
+    document.dispatchEvent(new CustomEvent("openfarm:profile", { detail: p, bubbles: false }));
+    document.dispatchEvent(new CustomEvent("openfarm:location", { detail: p.location }));
+  }
+  if (e.key === "openfarm.reminders") document.dispatchEvent(new CustomEvent("openfarm:profile"));
+});
 
 // ---- matching: guide for this exact class → same region → most similar region ----
 const shift = (months, n) => months.map((m) => ((m - 1 + n) % 12) + 1);
@@ -203,6 +263,39 @@ export function matchGuides(symbol, lat, onlyCrop = null) {
   return out.sort((a, b) => rank[a.kind] - rank[b.kind] || a.g.name.localeCompare(b.g.name));
 }
 
+/** Next calendar task for a growing-list card, from the matched regional guide only. */
+export function nextGrowTask(g, loc = getLocation(), now = new Date()) {
+  const status = growStatus(g);
+  if (status === "harvested") return "Harvested";
+  const month = now.getMonth() + 1;
+  const m = loc?.symbol ? matchGuides(loc.symbol, loc.lat, g.crop)[0] : null;
+  const cal = m?.calendar || m?.g?.calendar || {};
+  const upcoming = (key) => {
+    const months = cal[key] || [];
+    if (!months.length) return null;
+    for (let i = 0; i < 12; i++) {
+      const mo = ((month - 1 + i) % 12) + 1;
+      if (months.includes(mo)) return { key, mo, thisMonth: i === 0 };
+    }
+    return null;
+  };
+  const labelOf = (key) => key === "sow_indoors" ? "Sow indoors" : key === "sow_direct" ? "Sow outside" : key === "plant" ? "Plant out" : key === "harvest" ? "Harvest" : "Prune";
+  const fmt = (s) => s.thisMonth ? `${labelOf(s.key)} this month` : `${labelOf(s.key)} in ${MONTHS[s.mo - 1]}`;
+  if (status === "planned") {
+    const s = upcoming("sow_indoors") || upcoming("sow_direct") || upcoming("plant");
+    return s ? fmt(s) : GROW_STATUS_LABEL.planned;
+  }
+  if (status === "sown") {
+    const s = upcoming("plant");
+    return s ? fmt(s) : GROW_STATUS_LABEL.sown;
+  }
+  const h = upcoming("harvest");
+  if (h) return fmt(h);
+  const pr = upcoming("prune");
+  if (pr?.thisMonth) return fmt(pr);
+  return GROW_STATUS_LABEL.growing;
+}
+
 export function addGuideUrl(crop, region) {
   const value = `---\ncrop: ${crop}\nregion: ${region}\ntitle: \nkoppen: []\nhemisphere: north\nreference_location: \ncalendar:\n  harvest: []\nsun: full\nwater: moderate\nconfidence: medium\nuncertainty: \nsources:\n  - title: \n    url: https://\nlicense: CC-BY-SA-4.0\nauthors: []\nlast_reviewed: ${new Date().toISOString().slice(0, 10)}\n---\n\n## Summary\n\n`;
   return `${REPO}/new/main/content/guides/${crop}?filename=${region}.md&value=${encodeURIComponent(value)}`;
@@ -217,7 +310,7 @@ export function calendarHTML(cal) {
 
 export const thumbHTML = (img, cls = "thumb") => img
   ? `<span class="${cls}"><img src="${img.src}"${img.srcset ? ` srcset="${img.srcset}"` : ""} alt="" loading="lazy" style="max-width:${img.w || 250}px;max-height:${img.h || 250}px"></span>`
-  : `<span class="${cls} none">🌱</span>`;
+  : `<span class="${cls} none">${icon("sprout")}</span>`;
 
 export const swatch = (r) => `<span class="swatch sm" style="background:${r.color}"></span>`;
 const place = (loc) => esc((loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`);
@@ -228,7 +321,7 @@ function renderHere(loc) {
   if (!loc) { a.hidden = true; return; }
   const r = REGION_BY[loc.region];
   a.hidden = false;
-  a.innerHTML = `📍 ${place(loc)}${r ? ` · ${swatch(r)}${esc(r.name)}` : ""}`;
+  a.innerHTML = `${place(loc)}${r ? ` · ${swatch(r)}${esc(r.name)}` : ""}`;
   a.title = "Your saved location – click for your climate region";
   if (r) a.href = `${BASE}regions/${r.slug}/`;
 }
@@ -282,7 +375,7 @@ function renderYourRegion(loc) {
   const crop = box.dataset.crop, name = box.dataset.cropName || crop;
   box.hidden = false;
   if (!loc || !loc.symbol) {
-    box.innerHTML = `<p class="small">📍 <a href="${BASE}#where">Pick your location</a> to see which guide fits your climate region.</p>`;
+    box.innerHTML = `<p class="small"><a href="${BASE}#where">Set your location</a> to see which guide fits your climate region and your hardiness zone.</p>`;
     return;
   }
   const region = regionOf(loc.symbol);
@@ -294,11 +387,11 @@ function renderYourRegion(loc) {
   } else {
     h += `<p>No guide for <strong>${esc(region.name.toLowerCase())}</strong> yet – meanwhile:</p><ul class="small">`;
     if (m) h += `<li>Nearest region with a guide: <a href="${BASE}guides/${m.g.crop}/${m.g.region}/"><strong>${esc(m.g.title)}</strong></a>
-      <span class="flag">${esc(m.via.name.toLowerCase())} – not written for yours, check the timing</span></li>`;
+      <span class="note-flag">${esc(m.via.name.toLowerCase())} – not written for yours, check the timing</span></li>`;
     h += `<li>The general facts – sowing, spacing, temperatures and days to harvest – are under <a href="#facts">Quick facts</a> and apply everywhere.</li>`;
     h += `<li><a href="${addGuideUrl(crop, region.slug)}" target="_blank" rel="noopener noreferrer">No guide for ${esc(region.name)} yet – write one<span class="visually-hidden"> (opens in new tab)</span></a></li></ul>`;
   }
-  if (m?.shifted) h += `<p class="flag">Southern hemisphere: the guide's months are for the north – shift by about six months (unverified).</p>`;
+  if (m?.shifted) h += `<p class="note-flag">Southern hemisphere: the guide's months are for the north – shift by about six months (unverified).</p>`;
   if (vars.length) h += `<p class="small">Varieties recommended for your region: ${vars.map((v) => `<a href="${BASE}crops/${v.crop}/varieties/${v.slug}/">${esc(v.name)}</a>`).join(", ")}</p>`;
   box.innerHTML = h;
 }
@@ -315,13 +408,55 @@ function renderYourRegion(loc) {
 
 // ---- seed sources: put the ones serving your country first ----
 function renderSeedSources(loc) {
-  const cc = loc?.country?.toUpperCase();
-  document.querySelectorAll("[data-seed-sources] ul, .seed-cards").forEach((ul) => {
+  const cc = loc?.country?.toUpperCase() || "";
+  const region = loc?.region || "";
+  const filtering = !!(cc || region);
+  document.querySelectorAll("[data-seed-sources]").forEach((box) => {
+    const ul = box.querySelector("ul") || (box.matches("ul") ? box : box.querySelector(".seed-cards"));
+    if (!ul) return;
+    const showAll = box.dataset.seedShowAll === "1";
     const items = [...ul.children];
-    for (const li of items) li.classList.toggle("near", !!(cc && li.dataset.countries?.split(",").includes(cc)));
+    let matched = 0;
+    for (const li of items) {
+      const countries = (li.dataset.countries || "").split(",").filter(Boolean);
+      const regions = (li.dataset.regions || "").split(",").filter(Boolean);
+      const near = (cc && countries.includes(cc)) || (region && regions.includes(region));
+      li.classList.toggle("near", !!near);
+      if (near) matched++;
+      li.hidden = filtering && !showAll && !near;
+    }
     items.sort((a, b) => b.classList.contains("near") - a.classList.contains("near")).forEach((li) => ul.append(li));
+    // If nothing matches this country/region, show everyone rather than an empty list.
+    if (filtering && !showAll && !matched) items.forEach((li) => { li.hidden = false; });
+    const status = box.querySelector("[data-seed-filter-status]");
+    const btn = box.querySelector("[data-seed-show-all]");
+    if (status) {
+      if (filtering && matched && !showAll) {
+        status.hidden = false;
+        status.textContent = `Showing seed sources for your country or climate region (${matched} of ${items.length}).`;
+      } else if (filtering && !matched) {
+        status.hidden = false;
+        status.textContent = "No listed sources match your country or climate region yet — showing all.";
+      } else {
+        status.hidden = true;
+      }
+    }
+    if (btn) {
+      if (filtering && matched && matched < items.length) {
+        btn.hidden = false;
+        btn.textContent = showAll ? "Show matching only" : "Show all";
+      } else btn.hidden = true;
+    }
   });
 }
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-seed-show-all]");
+  if (!btn) return;
+  const box = btn.closest("[data-seed-sources]");
+  if (!box) return;
+  box.dataset.seedShowAll = box.dataset.seedShowAll === "1" ? "0" : "1";
+  renderSeedSources(getLocation());
+});
 
 // ---- favourite (♥) and "I'm growing this" buttons, profile counts ----
 function renderProfileBits() {
@@ -331,12 +466,12 @@ function renderProfileBits() {
     b.setAttribute("aria-pressed", on); b.classList.toggle("on", on);
     b.title = on ? "Remove from favourites" : "Add to favourites";
     b.setAttribute("aria-label", b.title);
-    b.innerHTML = `${on ? "♥" : "♡"}${b.dataset.label !== undefined ? ` <span>${on ? "Favourite" : "Favourite"}</span>` : ""}`;
+    b.innerHTML = `${icon("heart", { filled: on, className: "icon" })}${b.dataset.label !== undefined ? ` <span>Favourite</span>` : ""}`;
   });
   document.querySelectorAll("[data-grow]").forEach((b) => {
     const [crop, variety] = b.dataset.grow.split("/"); const on = isGrowing(crop, variety || null, p);
     b.classList.toggle("on", on);
-    b.innerHTML = on ? `🌱 <span>In my garden</span>` : `＋ <span>I'm growing this</span>`;
+    b.innerHTML = on ? `${icon("sprout")} <span>In my garden</span>` : `${icon("plus")} <span>I'm growing this</span>`;
   });
   const n = p.favourites.crops.length + p.favourites.varieties.length + p.favourites.guides.length;
   document.querySelectorAll("[data-profile-counts]").forEach((el) => {
@@ -359,13 +494,11 @@ document.addEventListener("click", (e) => {
 document.addEventListener("openfarm:profile", renderProfileBits);
 renderProfileBits();
 
-function renderAll(loc) { renderWeather(loc); renderYourRegion(loc); renderSeedSources(loc); }
+function renderAll(loc) { renderWeather(loc); renderYourRegion(loc); renderSeedSources(loc); renderYourClimate(loc); }
 document.addEventListener("openfarm:location", (e) => renderAll(e.detail));
 renderAll(getLocation());
 
-// ---- header search: Pagefind results (crops, varieties, guides, regions) first, then a small "Places" group ----
-// Nominatim's usage policy forbids client-side autocomplete, so places are only looked up when the user asks
-// (the "Find place …" option, or Enter on it): one request, max 3 results, with OSM attribution.
+// ---- header search: Pagefind results first, then offline GeoNames places (Nominatim as fallback) ----
 (function headerSearch() {
   const form = $(".top-search"), input = form?.querySelector("input");
   if (!input) return;
@@ -374,7 +507,7 @@ renderAll(getLocation());
   form.append(box);
   input.setAttribute("role", "combobox"); input.setAttribute("aria-autocomplete", "list");
   input.setAttribute("aria-controls", "suggest"); input.setAttribute("aria-expanded", "false");
-  let pf = null, timer = null, seq = 0, active = -1, places = null;
+  let pf = null, timer = null, seq = 0, active = -1, extra = null;
 
   async function pagefind() {
     if (!pf) { pf = await import(`${BASE}pagefind/pagefind.js`); await pf.options?.({ baseUrl: BASE }); pf.init?.(); }
@@ -388,37 +521,51 @@ renderAll(getLocation());
     input.setAttribute("aria-activedescendant", o[active].id); o[active].scrollIntoView({ block: "nearest" });
   }
   function close() { box.hidden = true; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); active = -1; }
-  function render(q, pages) {
+  function render(q, pages, localHits) {
     let i = 0;
     const opt = (html, attrs) => `<div role="option" id="sg-${i++}" class="sg-opt" ${attrs}>${html}</div>`;
     let h = "";
     if (pages.length) h += `<div class="sg-group" role="presentation">Plants, guides &amp; regions</div>` +
       pages.map((p) => opt(`<strong>${esc(p.meta?.title || p.url)}</strong><span>${p.excerpt || ""}</span>`, `data-href="${esc(p.url)}"`)).join("");
     h += `<div class="sg-group" role="presentation">Places</div>`;
-    if (places && places.q === q) {
-      h += places.items.length ? places.items.map((it) => opt(`📍 ${esc(it.display_name)}`, `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(it.display_name)}" data-cc="${esc(it.address?.country_code?.toUpperCase() || "")}"`)).join("")
-        : `<div class="sg-note">No places found.</div>`;
-      h += `<div class="sg-note">Places: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, Nominatim</div>`;
-    } else h += opt(`📍 Find place “${esc(q)}”…`, `data-places="1"`);
-    h += opt(`🔎 All results for “${esc(q)}”`, `data-href="${BASE}search/?q=${encodeURIComponent(q)}"`);
+    if (localHits.length) {
+      h += localHits.map((it) => {
+        const label = placeLabel(it);
+        return opt(`${flagImg(it.cc, BASE, placesData?.countries?.[it.cc]?.[0] || it.cc)} ${esc(label)}`,
+          `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(label)}" data-cc="${esc(it.cc || "")}"`);
+      }).join("");
+      h += `<div class="sg-note">Places: GeoNames, CC BY 4.0</div>`;
+    } else if (q.length >= 2) {
+      h += `<div class="sg-note">No matching cities in the offline list.</div>`;
+    }
+    if (extra && extra.q === q) {
+      h += extra.items.length ? extra.items.map((it) => opt(`${flagImg(it.address?.country_code, BASE)} ${esc(it.display_name)}`,
+        `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(it.display_name)}" data-cc="${esc(it.address?.country_code?.toUpperCase() || "")}"`)).join("")
+        : `<div class="sg-note">No extra places found.</div>`;
+      h += `<div class="sg-note">Extra places: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, Nominatim</div>`;
+    } else if (q.length >= 3) {
+      h += opt(`Find more places for “${esc(q)}” on OpenStreetMap…`, `data-places="1"`);
+    }
+    h += opt(`All results for “${esc(q)}”`, `data-href="${BASE}search/?q=${encodeURIComponent(q)}"`);
     box.innerHTML = h; box.hidden = false; input.setAttribute("aria-expanded", "true"); active = -1;
   }
   async function update() {
     const q = input.value.trim(), my = ++seq;
     if (q.length < 2) { close(); return; }
-    let pages = [];
+    let pages = [], localHits = [];
+    try { await loadPlaces(); localHits = searchPlaces(q, 8); } catch {}
     try {
       const s = await (await pagefind()).search(q);
       pages = await Promise.all(s.results.slice(0, 5).map((r) => r.data()));
     } catch {}
-    if (my === seq) render(q, pages);
+    if (my === seq) render(q, pages, localHits);
   }
   async function findPlaces() {
     const q = input.value.trim(); if (q.length < 3) return;
-    places = { q, items: [] };
+    extra = { q, items: [] };
     try {
       const r = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=3&q=${encodeURIComponent(q)}`, { headers: { "Accept-Language": navigator.language || "en" } });
-      places.items = (await r.json()).slice(0, 3);
+      extra.items = (await r.json()).slice(0, 3);
     } catch {}
     await update(); setActive(opts().findIndex((o) => o.dataset.lat));
   }
@@ -464,11 +611,14 @@ export async function computeReminders() {
   const p = loadProfile(), out = [], now = new Date(), month = now.getMonth() + 1, ym = now.toISOString().slice(0, 7);
   for (const { crop, growing, m } of myCropGuides(p)) {
     const name = lc(m.g.name), url = `${BASE}guides/${m.g.crop}/${m.g.region}/`;
+    const items = p.growing.filter((g) => g.crop === crop);
+    const allHarvested = items.length > 0 && items.every((g) => growStatus(g) === "harvested");
+    if (allHarvested) continue;
     for (const [k, tmpl] of Object.entries(ACTIONS)) {
       const months = m.calendar[k] || [];
       if (months.includes(month)) {
         const ending = !months.includes((month % 12) + 1);
-        out.push({ id: `${ym}:${k}:${crop}`, icon: k === "harvest" ? "🧺" : k === "prune" ? "✂️" : "🌱", url,
+        out.push({ id: `${ym}:${k}:${crop}`, icon: k === "harvest" ? "wheat" : k === "prune" ? "scissors" : "sprout", url,
           text: `${tmpl.replace("%s", name)} – ${ending ? "last month of the window" : "this month"}${growing ? "" : " (favourite)"}` });
       }
     }
@@ -480,11 +630,11 @@ export async function computeReminders() {
       const wd = (t) => new Date(t + "T12:00").toLocaleDateString("en", { weekday: "long" });
       const frost = days.filter((x) => x.min <= 0), rain = days.reduce((a, x) => a + x.rain, 0);
       const grown = p.growing.map((g) => lc(CROP_NAME(g.crop)));
-      if (frost.length) out.push({ id: `${frost[0].t}:frost`, icon: "❄️", url: `${BASE}profile/`,
+      if (frost.length) out.push({ id: `${frost[0].t}:frost`, icon: "snowflake", url: `${BASE}profile/`,
         text: `Frost forecast ${wd(frost[0].t)} (${Math.round(frost[0].min)} °C) – protect seedlings and tender plants` });
-      if (rain < 5 && Math.max(...days.map((x) => x.max)) >= 18) out.push({ id: `${days[0].t}:dry`, icon: "💧", url: `${BASE}profile/`,
+      if (rain < 5 && Math.max(...days.map((x) => x.max)) >= 18) out.push({ id: `${days[0].t}:dry`, icon: "droplet", url: `${BASE}profile/`,
         text: `Dry week ahead (${rain.toFixed(1)} mm rain forecast)${grown.length ? ` – water ${[...new Set(grown)].slice(0, 3).join(", ")}` : " – water new sowings"}` });
-      if (rain >= 50) out.push({ id: `${days[0].t}:wet`, icon: "🌧️", url: `${BASE}profile/`, text: `Very wet week ahead (${Math.round(rain)} mm) – check drainage and watch for slugs and blight` });
+      if (rain >= 50) out.push({ id: `${days[0].t}:wet`, icon: "cloud-rain", url: `${BASE}profile/`, text: `Very wet week ahead (${Math.round(rain)} mm) – check drainage and watch for slugs and blight` });
     } catch {}
   }
   return out;
@@ -648,10 +798,154 @@ export const hardinessLine = (h) => h
     const cb = e.target.closest("[data-ui]"); if (!cb) return;
     ui[cb.dataset.ui] = cb.checked; try { localStorage.setItem(KEY, JSON.stringify(ui)); } catch {}
     apply();
+    flashSaved("Saved");
   });
   document.addEventListener("click", (e) => {
     if (!e.target.closest("[data-ui-reset]")) return;
     ui = {}; try { localStorage.removeItem(KEY); } catch {} apply();
+    flashSaved("Saved");
+  });
+  window.addEventListener("storage", (e) => {
+    if (e.key !== KEY && e.key !== null) return;
+    try { ui = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { ui = {}; }
+    apply();
   });
   apply();
 })();
+
+// ---- Your climate sidebar + inline line (discoverable on first visit) ----
+async function renderYourClimate(loc) {
+  const boxes = document.querySelectorAll("[data-your-climate-body]");
+  const lines = document.querySelectorAll("[data-your-climate-line]");
+  const setLine = (html, show) => lines.forEach((el) => { el.hidden = !show; if (show) el.innerHTML = html; });
+  if (!loc || !loc.symbol) {
+    const prompt = `<p>Set your location to see your climate region and hardiness zone.</p>
+      <p><a class="button small" href="${BASE}#where">Set location</a></p>`;
+    boxes.forEach((b) => { b.innerHTML = prompt; });
+    setLine(`Set your location to see your climate region and hardiness zone. <a href="${BASE}#where">Set location</a>`, true);
+    return;
+  }
+  const region = regionOf(loc.symbol) || REGION_BY[loc.region];
+  const placeName = (loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`;
+  const regionHTML = region
+    ? `${swatch(region)}<a href="${BASE}regions/${region.slug}/"><strong>${esc(region.name)}</strong></a>`
+    : esc(loc.symbol || "Unknown");
+  const head = `<p class="kg-big">${regionHTML}</p>
+    <p class="small">${esc(placeName)}${loc.symbol ? ` · Köppen <a class="kg" href="${BASE}help/#koppen">${esc(loc.symbol)}</a>` : ""} · <a href="${BASE}#where">Change</a></p>
+    <div data-hz-live><p class="small muted">Hardiness zone: working it out…</p></div>`;
+  boxes.forEach((b) => { b.innerHTML = head; });
+  const lineBase = `Your climate: ${region ? esc(region.name) : esc(loc.symbol)}`;
+  setLine(lineBase + " · Hardiness zone: working it out…", true);
+  try {
+    const h = await hardinessZone(loc.lat, loc.lon);
+    const hz = h ? `Hardiness zone ${esc(h.zone)}` : "";
+    document.querySelectorAll("[data-hz-live]").forEach((el) => {
+      el.innerHTML = h ? hardinessLine(h) : `<p class="small muted">Hardiness zone unavailable right now.</p>`;
+    });
+    setLine(hz ? `${lineBase} · ${hz}` : lineBase, true);
+  } catch {
+    document.querySelectorAll("[data-hz-live]").forEach((el) => { el.innerHTML = `<p class="small muted">Hardiness zone unavailable right now.</p>`; });
+    setLine(lineBase, true);
+  }
+}
+
+// ---- Main-nav dropdowns (Crops, Region): hover+click desktop, disclosure on mobile, keyboard, Escape ----
+(function navDrops() {
+  const drops = [...document.querySelectorAll("[data-nav-drop]")];
+  if (!drops.length) return;
+  const mobile = () => matchMedia("(max-width: 860px)").matches;
+  const menuOf = (drop) => drop.querySelector(".nav-menu");
+  const btnOf = (drop) => drop.querySelector(".nav-drop-btn");
+  const itemsOf = (drop) => [...(menuOf(drop)?.querySelectorAll("[role=menuitem]") || [])];
+  const close = (drop) => {
+    const menu = menuOf(drop), btn = btnOf(drop);
+    if (!menu || !btn) return;
+    menu.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+    drop.classList.remove("is-open");
+  };
+  const closeAll = (except) => drops.forEach((d) => { if (d !== except) close(d); });
+  const open = (drop, focus = false) => {
+    closeAll(drop);
+    const menu = menuOf(drop), btn = btnOf(drop);
+    if (!menu || !btn) return;
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+    drop.classList.add("is-open");
+    if (focus) itemsOf(drop)[0]?.focus();
+  };
+  const toggle = (drop) => (menuOf(drop)?.hidden === false ? close(drop) : open(drop, true));
+  for (const drop of drops) {
+    const btn = btnOf(drop);
+    drop.addEventListener("mouseenter", () => { if (!mobile()) open(drop); });
+    drop.addEventListener("mouseleave", () => { if (!mobile()) close(drop); });
+    btn?.addEventListener("click", (e) => { e.preventDefault(); toggle(drop); });
+    btn?.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") { e.preventDefault(); open(drop, true); }
+    });
+    menuOf(drop)?.addEventListener("keydown", (e) => {
+      const items = itemsOf(drop);
+      const i = items.indexOf(document.activeElement);
+      if (e.key === "Escape") { e.preventDefault(); close(drop); btn?.focus(); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length]?.focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length]?.focus(); }
+      else if (e.key === "Home") { e.preventDefault(); items[0]?.focus(); }
+      else if (e.key === "End") { e.preventDefault(); items.at(-1)?.focus(); }
+      else if (e.key === "Tab") close(drop);
+    });
+  }
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-nav-drop]")) closeAll();
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
+})();
+
+// ---- Offline gazetteer (GeoNames cities15000, CC BY 4.0), lazy-loaded ----
+let placesData = null, placesLoading = null;
+const normPlace = (s) => String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+export async function loadPlaces() {
+  if (placesData) return placesData;
+  if (!placesLoading) {
+    placesLoading = fetch(BASE + "assets/places.json")
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((d) => { placesData = d; return d; })
+      .catch(() => { placesData = { countries: {}, admin1: {}, cities: [] }; return placesData; });
+  }
+  return placesLoading;
+}
+export function searchPlaces(q, limit = 8) {
+  if (!placesData) return [];
+  const nq = normPlace(q);
+  if (nq.length < 2) return [];
+  const hits = [];
+  for (const [cc, row] of Object.entries(placesData.countries || {})) {
+    const [name, capital, lat, lon] = row;
+    const nn = normPlace(name), ncc = normPlace(cc);
+    let score = 0;
+    if (nn === nq || ncc === nq) score = 100;
+    else if (nn.startsWith(nq)) score = 85;
+    else if (nn.includes(nq)) score = 50;
+    if (score && lat != null && lon != null) hits.push({ type: "country", name, cc, lat, lon, label: name, pop: row[4] || 0, score: score + 8 });
+  }
+  for (const c of placesData.cities || []) {
+    const [name, ascii, cc, admin, lat, lon, pop] = c;
+    let score = 0;
+    for (const nm of [name, ascii].filter(Boolean)) {
+      const nn = normPlace(nm);
+      if (nn === nq) score = Math.max(score, 100);
+      else if (nn.startsWith(nq)) score = Math.max(score, 80);
+      else if (nn.split(/[-'\s]/).some((w) => w.startsWith(nq))) score = Math.max(score, 65);
+      else if (nn.includes(nq)) score = Math.max(score, 40);
+    }
+    if (score) hits.push({ type: "city", name, ascii, cc, admin, lat, lon, pop, score: score + Math.log10((pop || 0) + 1) });
+  }
+  hits.sort((a, b) => b.score - a.score || (b.pop || 0) - (a.pop || 0));
+  return hits.slice(0, limit);
+}
+export function placeLabel(hit) {
+  if (!hit) return "";
+  if (hit.type === "country") return hit.name;
+  const country = placesData?.countries?.[hit.cc]?.[0] || hit.cc;
+  const admin = hit.admin && placesData?.admin1?.[`${hit.cc}.${hit.admin}`];
+  return [hit.name, admin, country].filter(Boolean).join(", ");
+}

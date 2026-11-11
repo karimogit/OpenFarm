@@ -1,7 +1,7 @@
 ---
 crop: collard-greens
 region: humid-continental
-title: "Collard Greens in central Iowa"
+title: Collard Greens in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

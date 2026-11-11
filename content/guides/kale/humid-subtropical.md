@@ -1,7 +1,7 @@
 ---
 crop: kale
 region: humid-subtropical
-title: "Kale in the South Carolina coast"
+title: Kale in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

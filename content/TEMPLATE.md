@@ -6,7 +6,7 @@
 # content/crops/<crop>.md, not here. A guide only holds what changes with the climate.
 crop: example-crop
 region: temperate-oceanic
-title: Example crop in mild oceanic climates (Netherlands, UK)
+title: Example crop in temperate oceanic climates
 koppen: [Cfb]                  # the Köppen-Geiger classes this calendar was written for (normally a subset of the region's)
 hemisphere: north              # north | south | any (any = tied to wet/dry season, not to months)
 reference_location: Where you checked the calendar, e.g. "Netherlands / UK lowlands"

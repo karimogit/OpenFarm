@@ -10,6 +10,11 @@ sources:
   - wisc-tool-maintenance
   - isu-tools-winter
 license: CC-BY-SA-4.0
+general: true
+tasks:
+  - weeding
+  - drawing seed drills
+  - hilling potatoes and leeks
 ---
 ## What it's for
 

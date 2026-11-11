@@ -1,7 +1,7 @@
 ---
 crop: beet
 region: humid-continental
-title: "Beet in central Iowa"
+title: Beet in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

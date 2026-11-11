@@ -1,7 +1,7 @@
 ---
 crop: cantaloupe
 region: humid-subtropical
-title: "Cantaloupe in the South Carolina coast"
+title: Cantaloupe in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

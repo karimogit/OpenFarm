@@ -1,7 +1,7 @@
 ---
 crop: spinach
 region: subarctic
-title: "Spinach in Interior Alaska"
+title: Spinach in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

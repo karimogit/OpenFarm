@@ -28,7 +28,7 @@ Small, plain and fast: system fonts, one stylesheet (`site/assets/css/style.css`
 - **Current section:** the template sets `aria-current="page"` on the link for the current section. CSS styles that
   attribute (not a class) with `--nav-active`, bold text and a white bottom bar, so screen readers and sighted users
   get the same signal. Sections: home → *Find guides*; `/crops/`, `/guides/`, `/problems/` → *Crops*;
-  `/regions/` → *Climate regions*; `/seeds/`; `/profile/`; `/contribute/` → *About*.
+  `/regions/` → *Region*; `/profile/` → *My Profile*; `/contribute/` → *About*. Seed sources live at `/crops/#seed-sources` (with `/seeds/` redirecting there).
 
 ## Cards and images
 

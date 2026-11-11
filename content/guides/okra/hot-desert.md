@@ -1,7 +1,7 @@
 ---
 crop: okra
 region: hot-desert
-title: "Okra in the low desert (Phoenix, Arizona)"
+title: Okra in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

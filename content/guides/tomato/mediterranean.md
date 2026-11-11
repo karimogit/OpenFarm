@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: mediterranean
-title: Tomatoes in hot-summer Mediterranean climates (Spain, Italy, California valleys)
+title: Tomato in Mediterranean climates
 koppen: [Csa, Csb]
 hemisphere: north
 reference_location: California interior valleys (Sacramento); comparable to inland Iberia and Italy

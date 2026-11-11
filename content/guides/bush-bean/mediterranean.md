@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: mediterranean
-title: Bush beans in Mediterranean climates (spring and late-summer sowings)
+title: Bush bean in Mediterranean climates
 koppen: [Csa, Csb]
 hemisphere: north
 reference_location: California interior valleys (Sacramento)

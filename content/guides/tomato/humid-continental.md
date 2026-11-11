@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: humid-continental
-title: Tomatoes in cold-winter continental and boreal climates (Sweden, Finland, Minnesota)
+title: Tomato in humid continental climates
 koppen: [Dfb, Dfc, Dfa]
 hemisphere: north
 reference_location: Southern and central Sweden; Minnesota, USA

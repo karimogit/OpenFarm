@@ -34,6 +34,6 @@ seed_saving:
   cross_note: "Very short seed life."
   sources:
     - seed-matters-chart
-tools: [hoe, dibber]
+tools: [hoe, dibber, wheel-hoe, trowel, bulb-planter, garden-line, hand-fork]
 ---
 .

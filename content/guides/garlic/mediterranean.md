@@ -1,7 +1,7 @@
 ---
 crop: garlic
 region: mediterranean
-title: Garlic in Mediterranean climates (Spain, Italy, California)
+title: Garlic in Mediterranean climates
 koppen: [Csa, Csb]
 hemisphere: north
 reference_location: California interior valleys and coast

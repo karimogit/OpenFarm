@@ -72,10 +72,33 @@
         "type": "string",
         "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
       },
-      "description": "Most similar regions first – used when a crop has no guide for this region."
+      "description": "Most similar regions first \u2013 used when a crop has no guide for this region."
     },
     "examples": {
-      "type": "string"
+      "type": "array",
+      "description": "Example places in this region (shown as 'Common in:' on guides; flags use the country code).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "country": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "description": "ISO 3166-1 alpha-2"
+          },
+          "note": {
+            "type": "string",
+            "description": "Short qualifier, e.g. edge or a K\u00f6ppen subclass"
+          }
+        }
+      }
     },
     "commons_file": {
       "type": "string",

@@ -1,7 +1,7 @@
 ---
 crop: leek
 region: subarctic
-title: "Leek in Interior Alaska"
+title: Leek in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

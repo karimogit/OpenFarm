@@ -1,7 +1,7 @@
 ---
 crop: turnip
 region: humid-subtropical
-title: "Turnip in the South Carolina coast"
+title: Turnip in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

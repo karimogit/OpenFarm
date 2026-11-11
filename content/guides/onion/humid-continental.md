@@ -1,7 +1,7 @@
 ---
 crop: onion
 region: humid-continental
-title: "Onion in central Iowa"
+title: Onion in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

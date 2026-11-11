@@ -1,7 +1,7 @@
 ---
 crop: pumpkin
 region: humid-continental
-title: "Pumpkin in central Iowa"
+title: Pumpkin in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

@@ -1,7 +1,7 @@
 ---
 crop: cabbage
 region: humid-subtropical
-title: "Cabbage in the South Carolina coast"
+title: Cabbage in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

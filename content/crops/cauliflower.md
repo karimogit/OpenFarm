@@ -35,5 +35,6 @@ seed_saving:
   cross_note: "Crosses with all Brassica oleracea crops (cabbage, kale, broccoli, cauliflower, kohlrabi, collards\u2026)."
   sources:
     - seed-matters-chart
+tools: [seed-trays, transplanter, row-cover]
 ---
 Cauliflower is a vegetable in the Brassicaceae family. The solid, firm head resembles that of broccoli and is usually white, but can also be yellow, purple, or green in color. Like broccoli, it sits atop a stalk. The head is wrapped in thick leaves that begin to open when the plant is ready for harvest. All cauliflower does best in cool weather.

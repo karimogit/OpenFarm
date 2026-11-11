@@ -46,6 +46,6 @@ seed_saving:
     - seed-matters-chart
     - osu-seed-saving-chart
     - umn-saving-seeds
-tools: [hoe]
+tools: [hoe, wheel-hoe, trellis, garden-line, soil-thermometer]
 ---
 

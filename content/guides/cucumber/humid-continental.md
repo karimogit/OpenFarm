@@ -1,7 +1,7 @@
 ---
 crop: cucumber
 region: humid-continental
-title: "Cucumber in central Iowa"
+title: Cucumber in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

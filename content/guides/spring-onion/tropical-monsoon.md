@@ -1,7 +1,7 @@
 ---
 crop: spring-onion
 region: tropical-monsoon
-title: "Spring Onion in South Florida"
+title: Spring Onion in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

@@ -36,5 +36,7 @@ seed_saving:
   cross_note: "Separate male and female plants."
   sources:
     - seed-matters-chart
+tools: [garden-line, row-cover, cloche]
+
 ---
 Spinach is an annual plant whose deep green leaves are eaten as a vegetable. It grows best in cooler weather. It can be eaten raw or cooked.

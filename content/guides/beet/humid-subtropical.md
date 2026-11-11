@@ -1,7 +1,7 @@
 ---
 crop: beet
 region: humid-subtropical
-title: "Beet in the South Carolina coast"
+title: Beet in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

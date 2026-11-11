@@ -1,7 +1,7 @@
 ---
 crop: carrot
 region: tropical-monsoon
-title: "Carrot in South Florida"
+title: Carrot in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

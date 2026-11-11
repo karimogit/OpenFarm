@@ -1,7 +1,7 @@
 ---
 crop: spinach
 region: humid-subtropical
-title: "Spinach in the South Carolina coast"
+title: Spinach in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

@@ -1,7 +1,7 @@
 ---
 crop: black-eyed-pea
 region: tropical-monsoon
-title: "Black-Eyed Pea in South Florida"
+title: Black-Eyed Pea in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

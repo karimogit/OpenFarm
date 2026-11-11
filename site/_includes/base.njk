@@ -5,63 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if title %}{{ title }} · {% endif %}{{ site.name }}</title>
   <meta name="description" content="{{ description or site.short }}">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="icon" href="{{ '/assets/favicon.svg' | url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
   {% if jsonUrl %}<link rel="alternate" type="application/json" href="{{ jsonUrl | url }}">{% endif %}
 </head>
-<body>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
   <header class="top">
-    <a class="brand" href="{{ '/' | url }}">🌱 <strong>OpenFarm</strong></a>
+    <a class="brand" href="{{ '/' | url }}">{% set icon = "sprout" %}{% include "icon.njk" %} <strong>OpenFarm</strong></a>
     <form class="top-search" action="{{ '/search/' | url }}" role="search">
       <input type="search" name="q" placeholder="Search crops, guides, regions…" aria-label="Search OpenFarm">
     </form>
     {%- set u = page.url or "" -%}
-    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("seeds" if u.indexOf("/seeds/") == 0 else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else ""))))))) %}
+    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if u.indexOf("/regions/") == 0 else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
     <nav class="main-nav" aria-label="Main">
       <a href="{{ '/' | url }}#where"{% if sect == "home" %} aria-current="page"{% endif %}>Find guides</a>
-      <a href="{{ '/crops/' | url }}"{% if sect == "crops" %} aria-current="page"{% endif %}>Crops</a>
-      <a href="{{ '/regions/' | url }}"{% if sect == "regions" %} aria-current="page"{% endif %}>Climate regions</a>
-      <a href="{{ '/seeds/' | url }}"{% if sect == "seeds" %} aria-current="page"{% endif %}>Seeds</a>
+
+      <div class="nav-drop" data-nav-drop>
+        <a class="nav-drop-label" href="{{ '/crops/' | url }}"{% if sect == "crops" %} aria-current="page"{% endif %}>Crops</a>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true" aria-controls="nav-crops" aria-label="Open crops menu">{% set icon = "chevron-down" %}{% include "icon.njk" %}</button>
+        <ul id="nav-crops" class="nav-menu" role="menu" hidden>
+          <li role="none"><a role="menuitem" href="{{ '/crops/' | url }}"{% if u == "/crops/" %} aria-current="page"{% endif %}>All crops</a></li>
+          {% for t in db.types %}
+          <li role="none"><a role="menuitem" href="{{ ('/crops/type/' + t.slug + '/') | url }}"{% if u == "/crops/type/" + t.slug + "/" %} aria-current="page"{% endif %}>{{ t.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="nav-drop" data-nav-drop>
+        <a class="nav-drop-label" href="{{ '/regions/' | url }}"{% if sect == "regions" %} aria-current="page"{% endif %}>Region</a>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true" aria-controls="nav-regions" aria-label="Open regions menu">{% set icon = "chevron-down" %}{% include "icon.njk" %}</button>
+        <ul id="nav-regions" class="nav-menu" role="menu" hidden>
+          <li role="none"><a role="menuitem" href="{{ '/regions/' | url }}"{% if u == "/regions/" %} aria-current="page"{% endif %}>All regions</a></li>
+          {% for r in db.regions %}
+          <li role="none"><a role="menuitem" href="{{ ('/regions/' + r.slug + '/') | url }}"{% if u == "/regions/" + r.slug + "/" %} aria-current="page"{% endif %}><span class="swatch sm" style="background:{{ r.color }}"></span>{{ r.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
       <a href="{{ '/tools/' | url }}"{% if sect == "tools" %} aria-current="page"{% endif %}>Tools</a>
       <a href="{{ '/help/' | url }}"{% if sect == "help" %} aria-current="page"{% endif %}>Help</a>
       <a href="{{ '/contribute/' | url }}"{% if sect == "about" %} aria-current="page"{% endif %}>About</a>
     </nav>
     <div class="top-icons">
       <button type="button" class="icon-btn bell" data-bell aria-haspopup="dialog" aria-expanded="false" aria-controls="bell-panel" title="Reminders">
-        <span aria-hidden="true">🔔</span><span class="visually-hidden">Reminders</span><span class="count" data-bell-count hidden></span></button>
+        {% set icon = "bell" %}{% include "icon.njk" %}<span class="visually-hidden">Reminders</span><span class="count" data-bell-count hidden></span></button>
       <div id="bell-panel" class="bell-panel" role="dialog" aria-label="Reminders" hidden></div>
-      <a class="icon-btn profile-icon" href="{{ '/profile/' | url }}"{% if sect == "profile" %} aria-current="page"{% endif %} title="My profile">
-        <span aria-hidden="true">👤</span><span class="visually-hidden">My profile</span><span class="dot" data-profile-dot hidden></span></a>
+      <a class="icon-btn profile-icon" href="{{ '/profile/' | url }}"{% if sect == "profile" %} aria-current="page"{% endif %} title="My Profile">
+        {% set icon = "user" %}{% include "icon.njk" %}<span class="visually-hidden">My Profile</span><span class="dot" data-profile-dot hidden></span></a>
     </div>
   </header>
   <main>
     {{ content | safe }}
   </main>
+  <div id="save-status" class="save-status" role="status" aria-live="polite" aria-atomic="true" hidden></div>
   <footer class="foot">
-    <div class="foot-cols">
-      <div>
-        <p><strong>🌱 OpenFarm</strong> – © {{ site.attribution }}. Built in the spirit of the original <a href="https://github.com/openfarmcc">OpenFarm</a>, with thanks to everyone who contributed to it.</p>
-        <p>Code: <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · Guide content: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-          <a href="{{ site.repo }}">Source on GitHub</a></p>
-        <p><a href="{{ '/help/' | url }}">Help</a> · <a href="{{ '/contribute/' | url }}">About &amp; contribute</a> · <a href="{{ '/help/' | url }}#api">JSON API</a></p>
-        <p class="small">Always check local advice – climates vary at small scales.</p>
-      </div>
-      <div>
-        <p><strong>Data &amp; credits</strong></p>
-        <ul class="credits">
-          <li>Climate regions: Köppen-Geiger map by <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a>, CC BY 4.0</li>
-          <li>Photos: <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> – author and license shown on each picture</li>
-          <li>Scientific names and families: <a href="https://www.wikidata.org/">Wikidata</a>, CC0</li>
-          <li>Maps &amp; place search: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="https://nominatim.org/">Nominatim</a></li>
-          <li>Weather: <a href="https://open-meteo.com/">Open-Meteo.com</a>, CC BY 4.0</li>
-          <li>Map library: <a href="https://leafletjs.com/">Leaflet</a> · Search: <a href="https://pagefind.app/">Pagefind</a></li>
-        </ul>
-      </div>
-    </div>
+    <p><a href="{{ '/contribute/' | url }}">About</a> · <a href="{{ '/help/' | url }}">Help</a> · <a href="{{ '/crops/' | url }}#seed-sources">Seed sources</a> · <a href="{{ site.repo }}">GitHub</a>
+      · © {{ site.attribution }} · <a href="{{ site.repo }}/blob/main/LICENSE">MIT</a> · content <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
   </footer>
   <script id="of-index" type="application/json">{{ db.clientIndex | json | safe }}</script>
   <script id="of-koppen" type="application/json">{{ koppen | json | safe }}</script>
   <script>window.OPENFARM_BASE = "{{ '/' | url }}"; window.OPENFARM_REPO = "{{ site.repo }}";</script>
+  <script type="module" src="{{ '/assets/js/icons.js' | url }}"></script>
   <script type="module" src="{{ '/assets/js/common.js' | url }}"></script>
   {% for s in pageScripts %}<script type="module" src="{{ ('/assets/js/' + s) | url }}"></script>{% endfor %}
 </body>

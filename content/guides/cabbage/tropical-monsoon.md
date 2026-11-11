@@ -1,7 +1,7 @@
 ---
 crop: cabbage
 region: tropical-monsoon
-title: "Cabbage in South Florida"
+title: Cabbage in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

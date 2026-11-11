@@ -1,7 +1,7 @@
 ---
 crop: corn
 region: cold-semi-arid
-title: "Corn in the Colorado Front Range"
+title: Corn in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

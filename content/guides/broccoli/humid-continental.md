@@ -1,7 +1,7 @@
 ---
 crop: broccoli
 region: humid-continental
-title: "Broccoli in central Iowa"
+title: Broccoli in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

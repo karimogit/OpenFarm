@@ -1,7 +1,7 @@
 ---
 crop: apple
 region: temperate-oceanic
-title: Apples in mild oceanic climates (UK, Netherlands, Belgium)
+title: Apple in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: United Kingdom

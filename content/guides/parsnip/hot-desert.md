@@ -1,7 +1,7 @@
 ---
 crop: parsnip
 region: hot-desert
-title: "Parsnip in the low desert (Phoenix, Arizona)"
+title: Parsnip in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

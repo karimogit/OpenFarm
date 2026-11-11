@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: humid-subtropical
-title: Tomatoes in humid subtropical climates (US Southeast, spring and autumn crops)
+title: Tomato in humid subtropical climates
 koppen: [Cfa, Cwa]
 hemisphere: north
 reference_location: South Carolina, USA (Coastal Plain and Piedmont)

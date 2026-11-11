@@ -1,7 +1,7 @@
 ---
 crop: okra
 region: tropical-monsoon
-title: "Okra in South Florida"
+title: Okra in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

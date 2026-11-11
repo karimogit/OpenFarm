@@ -1,7 +1,7 @@
 ---
 crop: pumpkin
 region: subarctic
-title: "Pumpkin in Interior Alaska"
+title: Pumpkin in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

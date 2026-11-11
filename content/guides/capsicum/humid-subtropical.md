@@ -1,7 +1,7 @@
 ---
 crop: capsicum
 region: humid-subtropical
-title: "Capsicum in the South Carolina coast"
+title: Capsicum in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

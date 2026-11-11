@@ -33,5 +33,6 @@ seed_saving:
   cross_note: "Can cross with wild radish."
   sources:
     - seed-matters-chart
+tools: [broadfork, hoe, garden-line, stirrup-hoe]
 ---
 Radishes are fast-growing cool season root vegetables in the Brassica family. Their taproots come in variety of shapes, sizes, and colors and have a sharp, spicy taste. They are usually eaten raw and added to salads. Radishes need cool weather and moist soil - they do not do well in hot, dry environments. More growing information is available in individual species entries.

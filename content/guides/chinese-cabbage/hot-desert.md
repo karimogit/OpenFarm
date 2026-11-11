@@ -1,7 +1,7 @@
 ---
 crop: chinese-cabbage
 region: hot-desert
-title: "Chinese Cabbage in the low desert (Phoenix, Arizona)"
+title: Chinese Cabbage in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

@@ -10,6 +10,11 @@ sources:
   - wisc-tool-maintenance
   - isu-tools-winter
 license: CC-BY-SA-4.0
+general: true
+tasks:
+  - digging planting holes
+  - cutting bed edges
+  - lifting soil
 ---
 ## What it's for
 

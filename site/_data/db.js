@@ -21,7 +21,17 @@ export default function () {
   const seedImages = fs.existsSync(seedFile) ? JSON.parse(fs.readFileSync(seedFile, "utf8")) : {};
   const regionsRaw = loadRegions();
   const kg2region = koppenToRegion(regionsRaw);
-  const regions = regionsRaw.map((r) => ({ ...r.data, html: md.render(r.body), file: r.file, image: images[`region:${r.data.slug}`] || null, guides: [], varieties: [] }));
+  const examplePlacesOf = (ex) => Array.isArray(ex) ? ex : [];
+  const examplesTextOf = (ex) => Array.isArray(ex)
+    ? ex.map((p) => p.note ? `${p.name} (${p.note})` : p.name).join(", ")
+    : (ex || "");
+  const regions = regionsRaw.map((r) => ({
+    ...r.data,
+    html: md.render(r.body), file: r.file, image: images[`region:${r.data.slug}`] || null,
+    examplePlaces: examplePlacesOf(r.data.examples),
+    examples: examplesTextOf(r.data.examples),
+    guides: [], varieties: [],
+  }));
   const regionBy = Object.fromEntries(regions.map((r) => [r.slug, r]));
 
   const problems = loadProblems().map((p) => ({ ...p.data, html: md.render(p.body), file: p.file, sources: resolveSources(p.data.sources, registry) }));
@@ -66,6 +76,7 @@ export default function () {
     return {
       ...d, file: g.file, html: md.render(g.body), cropName: crop.name, scientific_name: crop.scientific_name, family: crop.family,
       regionName: region.name, regionColor: region.color, url: `/guides/${d.crop}/${d.region}/`,
+      examplePlaces: region.examplePlaces, examplesText: region.examples,
       sources: resolveSources(d.sources, registry),
       varietyList: (d.varieties || []).map((s) => varieties.find((v) => v.crop === d.crop && v.slug === s)),
       problemList: (d.problems || []).map((s) => problemBy[s]),
@@ -91,9 +102,11 @@ export default function () {
     sources: resolveSources(x.data.sources, registry), image: images[`tool:${x.data.slug}`] || null, crops: [], guides: [] }));
   const toolBy = Object.fromEntries(tools.map((x) => [x.slug, x]));
   for (const c of crops) { c.toolList = (c.tools || []).map((s) => toolBy[s]).filter(Boolean); for (const x of c.toolList) x.crops.push(c); }
+  for (const t of tools) t.directGuides = [];
   for (const g of guides) {
     g.toolList = [...new Set([...(g.tools || []), ...(cropBy[g.crop].tools || [])])].map((s) => toolBy[s]).filter(Boolean);
     for (const x of g.toolList) x.guides.push(g);
+    for (const s of g.tools || []) toolBy[s]?.directGuides.push(g);
   }
   const seedSources = loadSeedSources().map((s) => ({ ...s.data, html: md.render(s.body) }));
   const types = Object.entries(TYPE_LABELS).map(([slug, label]) => ({ slug, label, crops: crops.filter((c) => c.type === slug) })).filter((t) => t.crops.length);

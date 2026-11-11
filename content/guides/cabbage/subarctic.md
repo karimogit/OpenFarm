@@ -1,7 +1,7 @@
 ---
 crop: cabbage
 region: subarctic
-title: "Cabbage in Interior Alaska"
+title: Cabbage in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

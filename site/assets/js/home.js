@@ -1,5 +1,6 @@
 // Home page: the "your details" panel (location search, map, climate region) and the guide cards.
-import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine } from "./common.js";
+import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel } from "./common.js";
+import { flagImg } from "./icons.js";
 
 const map = L.map("map", { worldCopyJump: true, zoomControl: true }).setView([30, 10], 1);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12, attribution: "© OpenStreetMap contributors" }).addTo(map);
@@ -29,8 +30,8 @@ function card({ g, kind, via, calendar, shifted }, region) {
   const href = `${BASE}guides/${g.crop}/${g.region}/`;
   const sow = [...(calendar.sow_indoors || []), ...(calendar.sow_direct || []), ...(calendar.plant || [])];
   const when = [sow.length ? `Sow/plant ${monthRanges(sow)}` : "", calendar.harvest ? `Harvest ${monthRanges(calendar.harvest)}` : ""].filter(Boolean).join(" · ");
-  const flag = kind === "similar" ? `<span class="flag">nearest region: ${esc(via.name.toLowerCase())}</span>`
-    : shifted ? `<span class="flag">months shifted +6 – unverified</span>` : "";
+  const flag = kind === "similar" ? `<span class="note-flag">nearest region: ${esc(via.name.toLowerCase())}</span>`
+    : shifted ? `<span class="note-flag">months shifted +6 – unverified</span>` : "";
   return `<li><a href="${href}">${thumbHTML(g.img)}
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em>
       <span class="gtitle">${esc(when)}</span>
@@ -45,10 +46,11 @@ async function choose(lat, lon, label, country) {
   map.setView([lat, lon], Math.max(map.getZoom(), 5));
   history.replaceState(null, "", `?lat=${lat}&lon=${lon}`);
   const kg = await lookup(lat, lon);
-  $("#climate").hidden = false;
+  if ($("#climate")) $("#climate").hidden = false;
   if (!kg) {
     marker.unbindTooltip();
-    $("#climate-box").innerHTML = `<p>No land climate found near ${lat}, ${lon}. Try a point on land.</p>`;
+    if ($("#climate-box")) $("#climate-box").hidden = false;
+  $("#climate-box").innerHTML = `<p>No land climate found near ${lat}, ${lon}. Try a point on land.</p>`;
     $("#match-list").innerHTML = ""; return;
   }
   const region = kg.region;
@@ -56,6 +58,7 @@ async function choose(lat, lon, label, country) {
     { permanent: true, direction: "top", offset: [-14, -14], className: "region-tip" }).openTooltip();
   const place = (label || "").split(",")[0];
 
+  if ($("#climate-box")) $("#climate-box").hidden = false;
   $("#climate-box").innerHTML = `
     <p class="kg-big"><span class="swatch" style="background:${region.color}"></span>
       <a href="${BASE}regions/${region.slug}/"><strong>${esc(region.name)}</strong></a></p>
@@ -64,7 +67,7 @@ async function choose(lat, lon, label, country) {
     <p class="hint">${lat}, ${lon}${kg.nearest ? " · nearest land cell used" : ""}. 0.5° grid (~50 km) – mountains and coasts can differ.</p>`;
   hardinessZone(lat, lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = h ? hardinessLine(h) : ""; })
     .catch(() => { const b = $("#hz-box"); if (b) b.innerHTML = `<p class="small muted">Hardiness zone unavailable right now.</p>`; });
-  $("#details-summary").innerHTML = `<span>📍 ${esc(place || `${lat}, ${lon}`)} · ${swatch(region)}${esc(region.name)}</span><span class="chg">change</span>`;
+  $("#details-summary").innerHTML = `<span>${esc(place || `${lat}, ${lon}`)} · ${swatch(region)}${esc(region.name)}</span><span class="chg">change</span>`;
   if (mobile()) $("#details-panel").open = false;
 
   const loc = { lat, lon, label: label || "", symbol: kg.symbol, region: region.slug, country: country || null };
@@ -87,24 +90,31 @@ async function choose(lat, lon, label, country) {
 
 map.on("click", (e) => choose(e.latlng.lat, L.Util.wrapNum(e.latlng.lng, [-180, 180], true)));
 $("#overlay").checked = false;
-$("#overlay").addEventListener("change", (e) => (e.target.checked ? overlay.addTo(map) : overlay.remove()));
+const overlayLabel = $("#overlay-label");
+const setOverlayLabel = (on) => { if (overlayLabel) overlayLabel.textContent = on ? "Hide climate map" : "Show climate map"; };
+setOverlayLabel(false);
+$("#overlay").addEventListener("change", (e) => {
+  if (e.target.checked) overlay.addTo(map); else overlay.remove();
+  setOverlayLabel(e.target.checked);
+});
 $("#coords").addEventListener("submit", (e) => { e.preventDefault(); choose($("#lat").value, $("#lon").value); });
 $("#geo").addEventListener("click", () => navigator.geolocation?.getCurrentPosition((p) => choose(p.coords.latitude, p.coords.longitude, "Your location")));
 $("#details-panel").addEventListener("toggle", () => { if ($("#details-panel").open) setTimeout(() => map.invalidateSize(), 50); });
 
-// Place search via OpenStreetMap Nominatim (public, rate-limited – one request per submit).
+// Place search: offline GeoNames list first; Nominatim as a fallback if needed.
 $("#search").addEventListener("submit", async (e) => {
   e.preventDefault();
   const q = $("#q").value.trim(); if (!q) return;
   const ul = $("#results"); ul.hidden = false; ul.innerHTML = "<li>Searching…</li>";
   try {
-    const r = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=5&q=${encodeURIComponent(q)}`, { headers: { "Accept-Language": navigator.language || "en" } });
-    const items = await r.json();
-    ul.innerHTML = items.length ? "" : "<li>No places found – try coordinates below the map.</li>";
-    for (const it of items) {
+    await loadPlaces();
+    const hits = searchPlaces(q, 8);
+    ul.innerHTML = hits.length ? "" : "<li>No matching cities in the offline list – try a bigger city, or coordinates below the map.</li>";
+    for (const it of hits) {
+      const label = placeLabel(it);
       const li = document.createElement("li"); const b = document.createElement("button");
-      b.type = "button"; b.textContent = it.display_name;
-      b.onclick = () => { ul.hidden = true; choose(it.lat, it.lon, it.display_name, it.address?.country_code?.toUpperCase()); };
+      b.type = "button"; b.innerHTML = `${flagImg(it.cc, BASE)} ${esc(label)}`;
+      b.onclick = () => { ul.hidden = true; choose(it.lat, it.lon, label, it.cc); };
       li.append(b); ul.append(li);
     }
   } catch { ul.innerHTML = "<li>Search unavailable – enter coordinates below the map.</li>"; }

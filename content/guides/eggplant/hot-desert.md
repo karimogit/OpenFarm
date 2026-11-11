@@ -1,7 +1,7 @@
 ---
 crop: eggplant
 region: hot-desert
-title: "Eggplant in the low desert (Phoenix, Arizona)"
+title: Eggplant in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

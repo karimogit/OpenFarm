@@ -1,7 +1,7 @@
 ---
 crop: radish
 region: hot-desert
-title: "Radish in the low desert (Phoenix, Arizona)"
+title: Radish in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

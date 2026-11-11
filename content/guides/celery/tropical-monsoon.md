@@ -1,7 +1,7 @@
 ---
 crop: celery
 region: tropical-monsoon
-title: "Celery in South Florida"
+title: Celery in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

@@ -29,5 +29,7 @@ seed_saving:
   cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
   sources:
     - seed-matters-chart
+tools: [transplanter, row-cover]
+
 ---
 Chinese Cabbage is a species in the Brassicaceae family with two distinct subgroups: 1) the Pekinensis group, or Napa Cabbage and 2) the Chinensis group, or Bok choy. Both groups are cultivars or subspecies of the turnip and are related to cabbage, broccoli, and cauliflower. Both groups are cool weather crops - more information for each is available in their individual entries.

@@ -1,7 +1,7 @@
 ---
 crop: onion
 region: hot-desert
-title: "Onion in the low desert (Phoenix, Arizona)"
+title: Onion in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

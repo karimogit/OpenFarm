@@ -35,5 +35,6 @@ seed_saving:
   cross_note: "Crosses with all Brassica oleracea crops (cabbage, kale, broccoli, cauliflower, kohlrabi, collards\u2026)."
   sources:
     - seed-matters-chart
+tools: [seed-trays, transplanter, row-cover]
 ---
 Broccoli has large flower heads known as "crowns" that are green to blue-green in color, grouped tightly together atop a thick stem, and surrounded by leaves. Broccoli resembles cauliflower, a different cultivar in its species. It thrives in cool weather.

@@ -1,7 +1,7 @@
 ---
 crop: broccoli
 region: tropical-monsoon
-title: "Broccoli in South Florida"
+title: Broccoli in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

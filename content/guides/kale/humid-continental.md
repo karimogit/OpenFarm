@@ -1,7 +1,7 @@
 ---
 crop: kale
 region: humid-continental
-title: Kale in cold-winter climates (Sweden, Finland, Minnesota)
+title: Kale in humid continental climates
 koppen: [Dfb, Dfc, Dfa]
 hemisphere: north
 reference_location: Minnesota, USA; southern and central Sweden

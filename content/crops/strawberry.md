@@ -36,7 +36,7 @@ sources:
 license: CC-BY-SA-4.0
 authors: [OpenFarm contributors]
 last_reviewed: 2026-11-11
-tools: [trowel, watering-can]
+tools: [trowel, watering-can, hori-hori, hand-fork, row-cover, trug]
 ---
 
 Garden strawberries are low perennial plants grown for their fruit. They grow in beds, borders,

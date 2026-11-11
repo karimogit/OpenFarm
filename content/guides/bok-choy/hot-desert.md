@@ -1,7 +1,7 @@
 ---
 crop: bok-choy
 region: hot-desert
-title: "Bok Choy in the low desert (Phoenix, Arizona)"
+title: Bok Choy in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

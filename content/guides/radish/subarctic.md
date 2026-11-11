@@ -1,7 +1,7 @@
 ---
 crop: radish
 region: subarctic
-title: "Radish in Interior Alaska"
+title: Radish in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

@@ -1,7 +1,7 @@
 ---
 crop: squash
 region: tropical-monsoon
-title: "Squash in South Florida"
+title: Squash in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

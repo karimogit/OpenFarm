@@ -1,7 +1,7 @@
 ---
 crop: strawberry
 region: humid-continental
-title: Strawberries in cold-winter continental climates (Minnesota, Sweden, Finland)
+title: Strawberry in humid continental climates
 koppen: [Dfa, Dfb, Dwa, Dwb]
 hemisphere: north
 reference_location: Minnesota, USA

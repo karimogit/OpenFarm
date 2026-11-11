@@ -1,7 +1,7 @@
 ---
 crop: lettuce
 region: humid-subtropical
-title: "Lettuce in the South Carolina coast"
+title: Lettuce in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

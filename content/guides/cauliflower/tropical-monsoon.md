@@ -1,7 +1,7 @@
 ---
 crop: cauliflower
 region: tropical-monsoon
-title: "Cauliflower in South Florida"
+title: Cauliflower in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

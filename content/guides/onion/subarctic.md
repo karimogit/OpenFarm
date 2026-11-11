@@ -1,7 +1,7 @@
 ---
 crop: onion
 region: subarctic
-title: "Onion in Interior Alaska"
+title: Onion in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

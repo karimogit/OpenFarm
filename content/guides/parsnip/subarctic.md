@@ -1,7 +1,7 @@
 ---
 crop: parsnip
 region: subarctic
-title: "Parsnip in Interior Alaska"
+title: Parsnip in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

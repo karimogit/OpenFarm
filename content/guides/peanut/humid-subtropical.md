@@ -1,7 +1,7 @@
 ---
 crop: peanut
 region: humid-subtropical
-title: "Peanut in the South Carolina coast"
+title: Peanut in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

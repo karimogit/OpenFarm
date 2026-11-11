@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: subarctic
-title: "Bush bean (dwarf French bean) in Interior Alaska"
+title: Bush bean in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

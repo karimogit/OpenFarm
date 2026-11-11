@@ -36,5 +36,7 @@ seed_saving:
   cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
   sources:
     - seed-matters-chart
+tools: [transplanter, row-cover]
+
 ---
 A type of Chinese cabbage that does not form a head. It has smooth, dark or light green leaf blades and crisp white stalks that form a cluster similar to mustard greens or celery. It is often harvested while still small and tender, when it is around 10cm high. Winter hardy. Row spacing depends on desired harvest size.

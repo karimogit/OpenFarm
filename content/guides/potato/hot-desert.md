@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: hot-desert
-title: "Potato in the low desert (Phoenix, Arizona)"
+title: Potato in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

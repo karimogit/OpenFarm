@@ -1,7 +1,7 @@
 ---
 crop: turnip
 region: subarctic
-title: "Turnip in Interior Alaska"
+title: Turnip in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

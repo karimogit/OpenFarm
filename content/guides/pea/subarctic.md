@@ -1,7 +1,7 @@
 ---
 crop: pea
 region: subarctic
-title: "Pea in Interior Alaska"
+title: Pea in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

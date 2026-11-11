@@ -34,5 +34,6 @@ seed_saving:
   cross_note: "Can cross with wild radish."
   sources:
     - seed-matters-chart
+tools: [broadfork, garden-line, garden-fork]
 ---
 Daikons are a mild-flavored, large, long, white radish. They are native to Southeast and continental East Asia and do best in cool weather. They are grown for culinary and tillage purposes. Daikons are much larger than their cousin, the Icicle Radish: they can grow to 50cm long and 10cm in diameter. Smaller daikon are less fibrous and preferred for soups and stews, but larger daikon can be eaten raw, grated into salads, and pickled. Daikon can also be grown for their sprouts, which grow rapidly and add a nice, bitter crunch to salads and sandwiches. Daikon are a valuable tillage radish and winter cover crop because the roots leave behind large cavities in the soil when they decay. As they grow, the roots aerate the soil and break up the hardpan, making it easier for water and nutrients to move through the soil. Subsequent root crops (like potatoes) can penetrate the soil better, grow larger, and produce higher yields. Daikon's large tap roots also soak up micro- and macro-nutrients, which become available to subsequent crops after the daikon decay.

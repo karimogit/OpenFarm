@@ -9,6 +9,10 @@ sources:
     url: https://en.wikipedia.org/wiki/Trowel
   - isu-tools-winter
 license: CC-BY-SA-4.0
+general: true
+tasks:
+  - planting seedlings, bulbs and small plants
+  - potting up
 ---
 ## What it's for
 

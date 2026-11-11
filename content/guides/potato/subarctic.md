@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: subarctic
-title: Potatoes in subarctic climates with short summers (Norrland, northern Finland)
+title: Potato in subarctic climates
 koppen: [Dfc, Dfd, Dsc]
 hemisphere: north
 reference_location: Northern Sweden (Norrland)

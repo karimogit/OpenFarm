@@ -1,7 +1,7 @@
 ---
 crop: carrot
 region: humid-continental
-title: "Carrot in central Iowa"
+title: Carrot in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

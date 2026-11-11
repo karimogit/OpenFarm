@@ -33,5 +33,7 @@ seed_saving:
   sources:
     - seed-matters-chart
     - osu-seed-saving-chart
+tools: [garden-line, trug]
+
 ---
 Pumpkins are squash cultivars that are round to oval in shape with thick, slightly ribbed skin that varies from deep yellow to orange in color. Their flesh ranges from yellow to gold and has large seeds. Like other members of the Cucurbitaceae family, they grow on sprawling vines. Different varieties of pumpkins are grown for food or decoration.

@@ -1,7 +1,7 @@
 ---
 crop: eggplant
 region: tropical-monsoon
-title: "Eggplant in South Florida"
+title: Eggplant in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

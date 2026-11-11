@@ -5,7 +5,10 @@ koppen: [BWk]
 color: "#ff9696"
 order: 5
 similar: [cold-semi-arid, humid-continental, mediterranean]
-examples: Kashgar, Leh, parts of Patagonia
+examples:
+  - {name: Kashgar, country: CN}
+  - {name: Leh, country: IN}
+  - {name: parts of Patagonia, country: AR}
 commons_file: "Fields of Markah (49007788682).jpg"
 ---
 

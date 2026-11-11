@@ -1,0 +1,6 @@
+{# Expects `crumbs`: [{href, label, current}]. Current page may omit href. #}
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>{% for item in crumbs %}
+    <li>{% if item.current or not item.href %}<span aria-current="page">{{ item.label }}</span>{% else %}<a href="{{ item.href | url }}">{{ item.label }}</a>{% endif %}</li>
+  {% endfor %}</ol>
+</nav>

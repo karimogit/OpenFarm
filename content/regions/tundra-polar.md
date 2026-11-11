@@ -5,7 +5,10 @@ koppen: [ET, EF]
 color: "#b2b2b2"
 order: 15
 similar: [subarctic, subpolar-oceanic]
-examples: Nuuk, Barrow (Utqiaġvik), high mountains
+examples:
+  - {name: Nuuk, country: GL}
+  - {name: "Utqiaġvik", country: US}
+  - {name: high mountains}
 commons_file: "Tunulliarfik-qassiarsuk.jpg"
 ---
 

@@ -1,26 +1,63 @@
 ---
 layout: base.njk
-title: My profile
+title: My Profile
 permalink: /profile/
 pageScripts: [profile.js]
 ---
 <div data-pagefind-ignore>
-<h1>♥ My garden</h1>
-<p class="privacy-note">🔒 <strong>Stored only in this browser.</strong> No account, no server – nothing on this page is sent anywhere.
-  Use Export to keep a copy or move it to another device.</p>
+<h1>My Profile</h1>
 
 <div class="layout">
   <div class="col-main">
     <section class="card" id="growing">
-      <h2>What I'm growing</h2>
+      <div class="section-head">
+        <h2>What I'm growing</h2>
+        <button type="button" id="add-growing-btn" class="button">{% set icon = "plus" %}{% include "icon.njk" %} Add</button>
+      </div>
       <div id="growing-list"></div>
-      <form id="add-growing" class="row">
-        <label class="visually-hidden" for="add-crop">Crop</label>
-        <input id="add-crop" list="crop-options" placeholder="Add a crop, e.g. Tomato" autocomplete="off">
-        <datalist id="crop-options">{% for c in db.catalog.crops %}<option value="{{ c.name }}">{% endfor %}</datalist>
-        <button type="submit">Add</button>
-      </form>
     </section>
+
+    <dialog id="grow-search" class="dialog" aria-labelledby="grow-search-title">
+      <div class="dialog-head">
+        <h2 id="grow-search-title">Add a crop or variety</h2>
+        <button type="button" class="icon-btn" data-dialog-close aria-label="Close">{% set icon = "x" %}{% include "icon.njk" %}</button>
+      </div>
+      <label class="visually-hidden" for="grow-search-q">Search crops and varieties</label>
+      <input id="grow-search-q" type="search" placeholder="Search crops and varieties" autocomplete="off">
+      <ul id="grow-search-results" role="listbox" aria-label="Matching crops and varieties"></ul>
+    </dialog>
+
+    <dialog id="grow-edit" class="dialog" aria-labelledby="grow-edit-title">
+      <div class="dialog-head">
+        <h2 id="grow-edit-title">Edit</h2>
+        <button type="button" class="icon-btn" data-dialog-close aria-label="Close">{% set icon = "x" %}{% include "icon.njk" %}</button>
+      </div>
+      <form id="grow-edit-form" class="grow-form">
+        <p class="grow-edit-lead" id="grow-edit-lead"></p>
+        <label>Variety
+          <select name="variety" id="grow-variety"><option value="">–</option></select>
+        </label>
+        <div class="grow-dates">
+          <label>Sow date <input type="date" name="sown" id="grow-sown"></label>
+          <label>Plant date <input type="date" name="planted" id="grow-planted"></label>
+        </div>
+        <label>Location or bed <input type="text" name="bed" id="grow-bed" maxlength="200" placeholder="e.g. Bed 3, greenhouse"></label>
+        <label>Quantity <input type="text" name="quantity" id="grow-quantity" maxlength="80" placeholder="e.g. 12 plants, 2 rows"></label>
+        <fieldset class="grow-status">
+          <legend>Status</legend>
+          <label><input type="radio" name="status" value="planned"> Planned</label>
+          <label><input type="radio" name="status" value="sown"> Sown</label>
+          <label><input type="radio" name="status" value="growing"> Growing</label>
+          <label><input type="radio" name="status" value="harvested"> Harvested</label>
+        </fieldset>
+        <label class="notes">Notes
+          <textarea name="notes" id="grow-notes" rows="4" maxlength="5000" placeholder="Source of seed, how it went…"></textarea>
+        </label>
+        <p class="dialog-actions">
+          <button type="button" class="danger" id="grow-remove">Remove</button>
+        </p>
+      </form>
+    </dialog>
 
     <section class="card">
       <h2>Favourites</h2>
@@ -34,31 +71,35 @@ pageScripts: [profile.js]
   </div>
 
   <aside class="col-side">
+    {% include "your-climate.njk" %}
     <section class="side-card">
-      <h3>📍 My location</h3>
+      <h3>My location</h3>
       <div id="profile-location"></div>
     </section>
     {% include "weather.njk" %}
     <section class="side-card" id="calendar">
-      <h3>📅 Reminders in my calendar</h3>
+      <h3>Reminders in my calendar</h3>
       <p class="small">Download your sowing, planting and harvest windows for the crops you grow as a calendar file (.ics).
         Open it on your phone or computer – your calendar app then reminds you even when this site is closed.</p>
-      <p><button type="button" id="ics-btn">⬇ Export to calendar (.ics)</button></p>
+      <p><button type="button" id="ics-btn">Export to calendar (.ics)</button></p>
       <p class="credit">Generated in this browser from your growing list and your climate region's guides. Re-export after you add crops.</p>
     </section>
     <section class="side-card">
       <h3>My data</h3>
       <div class="export-menu">
-        <p><strong>Export</strong></p>
-        <ul class="plain export-list">
-          <li><button type="button" data-profile-export>⬇ JSON</button> <span class="small muted">full backup – can be imported again</span></li>
-          <li><button type="button" id="csv-btn" class="secondary">⬇ CSV</button> <span class="small muted">favourites and growing list with notes, for spreadsheets</span></li>
-          <li><button type="button" id="ics-btn-2" class="secondary">⬇ Calendar (.ics)</button> <span class="small muted">sow, plant and harvest reminders</span></li>
-          <li><button type="button" id="md-btn" class="secondary">⬇ Markdown</button> <span class="small muted">a readable garden notebook</span></li>
-        </ul>
+        <div class="drop" data-export-drop>
+          <button type="button" id="export-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">Export</button>
+          <ul id="export-menu" class="menu" role="menu" hidden>
+            <li role="none"><button type="button" role="menuitem" data-export="json">JSON backup</button></li>
+            <li role="none"><button type="button" role="menuitem" data-export="csv">CSV</button></li>
+            <li role="none"><button type="button" role="menuitem" data-export="ics">Calendar (.ics)</button></li>
+            <li role="none"><button type="button" role="menuitem" data-export="md">Markdown</button></li>
+          </ul>
+        </div>
+        <p class="row">
+          <label class="button secondary file-btn">Import JSON backup<input type="file" id="import-file" accept="application/json,.json" class="visually-hidden"></label></p>
+        <p class="small muted">Stored only in this browser — nothing is sent to a server. See <a href="{{ '/help/' | url }}#profile">Help</a> for details.</p>
       </div>
-      <p class="row">
-        <label class="button secondary file-btn">⬆ Import JSON backup<input type="file" id="import-file" accept="application/json,.json" class="visually-hidden"></label></p>
       <p id="import-msg" class="small" role="status"></p>
       <p><button type="button" id="clear-data" class="danger">Clear my data</button></p>
       <p class="credit">Format: versioned JSON (version {{ 1 }}). Stored in this browser's localStorage under <code>openfarm.profile</code>.</p>

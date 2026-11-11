@@ -8,22 +8,35 @@ permalink: "/tools/{{ t.slug }}/"
 eleventyComputed:
   title: "{{ t.name }}"
 ---
-<p class="crumbs"><a href="{{ '/tools/' | url }}">Tools</a> /</p>
+{% set crumbs = [{href: "/tools/", label: "Tools"}, {label: t.name, current: true}] %}{% include "crumbs.njk" %}
 <div class="layout">
 <article class="col-main" data-pagefind-body>
   <h1>{{ t.name }}</h1>
   <p class="sci-line">{{ t.category | capitalize }}</p>
   {% if t.image %}{% set img = t.image %}{% set alt = t.name %}{% set inherited = false %}{% include "image.njk" %}{% endif %}
   <div class="body">{{ t.html | safe }}</div>
+
+  <h2>Used in</h2>
+  {% if t.general %}
+  <p>Used for most crops{% if t.tasks and t.tasks.length %} — {{ t.tasks | join("; ") }}{% endif %}.</p>
+  {% endif %}
+  {% if t.crops.length %}
+  <p>{% if t.general %}Examples:{% else %}Crops:{% endif %}
+    {% for c in t.crops %}<a href="{{ ('/crops/' + c.slug + '/') | url }}">{{ c.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  {% endif %}
+  {% if t.directGuides and t.directGuides.length %}
+  <p>Guides: {% for g in t.directGuides %}<a href="{{ g.url | url }}">{{ g.cropName }} in {{ g.regionName }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  {% endif %}
+  {% if not t.general and not t.crops.length and not (t.directGuides and t.directGuides.length) %}
+  <p class="muted">No crops or guides list this tool yet.</p>
+  {% endif %}
+
   <h2>Sources</h2>
   {% set srcs = t.sources %}{% include "sources.njk" %}
   {% set editFile = t.file %}{% set editLabel = "Edit this tool" %}{% include "edit-button.njk" %}
 </article>
 <aside class="col-side">
-  {% if t.crops.length or t.guides.length %}<section class="side-card"><h3>Used in</h3>
-    <ul class="guide-list">{% for c in t.crops %}<li><a href="{{ ('/crops/' + c.slug + '/') | url }}">{{ c.name }}</a></li>{% endfor %}
-    {% for g in t.guides %}{% if loop.index <= 12 %}<li><a href="{{ g.url | url }}">{{ g.cropName }} – {{ g.regionName }}</a></li>{% endif %}{% endfor %}</ul>
-  </section>{% endif %}
+  {% include "your-climate.njk" %}
   <p class="small"><a href="{{ '/api/tools.json' | url }}">All tools as JSON</a></p>
 </aside>
 </div>

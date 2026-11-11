@@ -1,7 +1,7 @@
 ---
 crop: pea
 region: cold-semi-arid
-title: "Pea in the Colorado Front Range"
+title: Pea in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

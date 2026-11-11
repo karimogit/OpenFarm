@@ -1,7 +1,7 @@
 ---
 crop: kale
 region: mediterranean
-title: Kale in Mediterranean climates (cool-season crop)
+title: Kale in Mediterranean climates
 koppen: [Csa, Csb]
 hemisphere: north
 reference_location: California interior valleys and coast

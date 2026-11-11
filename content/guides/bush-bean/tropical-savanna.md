@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: tropical-savanna
-title: Bush beans in tropical savanna and monsoon climates
+title: Bush bean in tropical savanna climates
 koppen: [Aw, Am]
 hemisphere: north
 reference_location: South Florida, USA

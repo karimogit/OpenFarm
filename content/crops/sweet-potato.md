@@ -28,5 +28,6 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+tools: [broadfork, spade, garden-fork, trug]
 ---
 The sweet potato is a large, starchy, tuberous root. The tuber is long and tapered and has yellow, orange, red, brown, purple, or beige skin. It's flesh can be white, red, pink, violet, yellow, orange, or purple. Sweet potato cultivars with white or pale yellow flesh are not as sweet and moist as those with red, pink or orange flesh. The heart-shaped leaves and vines are sometimes eaten as greens when the plants are young, but eating the leaves interferes with the growth of the tuber underground. The sweet potato is not related to the potato or the yam.

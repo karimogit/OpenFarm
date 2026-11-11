@@ -5,7 +5,13 @@ koppen: [Csa, Csb, Csc]
 color: "#ffff00"
 order: 8
 similar: [humid-subtropical, temperate-oceanic, cold-semi-arid]
-examples: Seville, Rome, Athens, Perth, Santiago, Sacramento
+examples:
+  - {name: Seville, country: ES}
+  - {name: Rome, country: IT}
+  - {name: Athens, country: GR}
+  - {name: Perth, country: AU}
+  - {name: Santiago, country: CL}
+  - {name: Sacramento, country: US}
 commons_file: "Olive trees almond trees near Arenas del Rey, Andalusia, Spain.jpg"
 ---
 

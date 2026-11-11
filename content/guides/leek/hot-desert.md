@@ -1,7 +1,7 @@
 ---
 crop: leek
 region: hot-desert
-title: "Leek in the low desert (Phoenix, Arizona)"
+title: Leek in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

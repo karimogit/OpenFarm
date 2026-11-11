@@ -10,13 +10,13 @@ eleventyComputed:
   description: "What to grow in a {{ r.name | lower }} climate: growing guides, suitable varieties and Köppen classes."
   jsonUrl: "/regions/{{ r.slug }}.json"
 ---
-<p class="crumbs"><a href="{{ '/regions/' | url }}">Climate regions</a> /</p>
+{% set crumbs = [{href: "/regions/", label: "Region"}, {label: r.name, current: true}] %}{% include "crumbs.njk" %}
 <div class="layout">
   <article class="col-main" data-pagefind-body>
     <h1><span class="swatch" style="background:{{ r.color }}"></span> {{ r.name }}</h1>
     {% set img = r.image %}{% set alt = "Typical farmland or gardens in a " + (r.name | lower) + " climate" %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ r.html | safe }}</div>
-    {% if r.examples %}<p class="small"><strong>Examples:</strong> {{ r.examples }}</p>{% endif %}
+    {% set places = r.examplePlaces %}{% set lead = "Examples:" %}{% include "places-line.njk" %}
     <p>Köppen-Geiger classes: {% for k in r.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion, true) | safe }} {{ koppen.classes | kgName(k) }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
 
     <h2>Growing guides for this region</h2>
@@ -46,6 +46,7 @@ eleventyComputed:
     {% set editFile = r.file %}{% set editLabel = "Edit this region" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
+    {% include "your-climate.njk" %}
     {% include "weather.njk" %}
     <section class="side-card">
       <h3>All climate regions</h3>

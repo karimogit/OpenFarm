@@ -1,7 +1,7 @@
 ---
 crop: cantaloupe
 region: humid-continental
-title: "Cantaloupe in central Iowa"
+title: Cantaloupe in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

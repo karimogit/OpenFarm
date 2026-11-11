@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: cold-semi-arid
-title: "Bush bean (dwarf French bean) in the Colorado Front Range"
+title: Bush bean in cold semi-arid steppe climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

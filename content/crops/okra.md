@@ -25,5 +25,7 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+tools: [soil-thermometer, harvest-knife]
+
 ---
 Okra is a frost-tender annual grown for it's edible seed pods and, less commonly, it's leaves and stems. Plants can be green or red.

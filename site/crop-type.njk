@@ -5,11 +5,12 @@ pagination:
   size: 1
   alias: t
 permalink: "/crops/type/{{ t.slug }}/"
+bodyClass: type-page
 eleventyComputed:
   title: "{{ t.label }}"
   description: "All {{ t.crops.length }} {{ t.label | lower }} in OpenFarm, with growing guides for your climate region."
 ---
-<p class="crumbs"><a href="{{ '/crops/' | url }}">Crops</a> /</p>
+{% set crumbs = [{href: "/crops/", label: "Crops"}, {label: t.label, current: true}] %}{% include "crumbs.njk" %}
 <div class="title-row"><h1>{{ t.label }} <small class="muted">({{ t.crops.length }})</small></h1>
   <span class="title-actions">{% set ty = t.slug %}{% include "type-chip.njk" %}</span></div>
 <ul class="chips type-chips">{% for o in db.types %}<li><a class="type-chip t-{{ o.slug }}" href="{{ ('/crops/type/' + o.slug + '/') | url }}"{% if o.slug == t.slug %} aria-current="page"{% endif %}>{{ o.label }} <small>{{ o.crops.length }}</small></a></li>{% endfor %}</ul>

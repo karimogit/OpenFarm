@@ -8,6 +8,10 @@ sources:
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Watering_can
 license: CC-BY-SA-4.0
+general: true
+tasks:
+  - watering seed beds and seedlings
+  - watering plants at the base
 ---
 ## What it's for
 

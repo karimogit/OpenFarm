@@ -1,7 +1,7 @@
 ---
 crop: cantaloupe
 region: tropical-monsoon
-title: "Cantaloupe in South Florida"
+title: Cantaloupe in tropical monsoon climates
 koppen: [Am]
 hemisphere: north
 reference_location: "Miami / South Florida, USA"

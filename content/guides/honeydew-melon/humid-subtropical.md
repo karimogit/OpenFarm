@@ -1,7 +1,7 @@
 ---
 crop: honeydew-melon
 region: humid-subtropical
-title: "Honeydew Melon in the South Carolina coast"
+title: Honeydew Melon in humid subtropical climates
 koppen: [Cfa]
 hemisphere: north
 reference_location: "Charleston / South Carolina Coastal Plain, USA"

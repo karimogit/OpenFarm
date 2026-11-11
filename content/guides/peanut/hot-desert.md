@@ -1,7 +1,7 @@
 ---
 crop: peanut
 region: hot-desert
-title: "Peanut in the low desert (Phoenix, Arizona)"
+title: Peanut in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

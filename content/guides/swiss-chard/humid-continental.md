@@ -1,7 +1,7 @@
 ---
 crop: swiss-chard
 region: humid-continental
-title: "Swiss Chard in central Iowa"
+title: Swiss Chard in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

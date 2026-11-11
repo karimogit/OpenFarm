@@ -1,7 +1,7 @@
 ---
 crop: zucchini
 region: subarctic
-title: "Zucchini in Interior Alaska"
+title: Zucchini in subarctic climates
 koppen: [Dfc]
 hemisphere: north
 reference_location: "Fairbanks / Interior Alaska, USA"

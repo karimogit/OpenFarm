@@ -1,7 +1,7 @@
 ---
 crop: spinach
 region: humid-continental
-title: "Spinach in central Iowa"
+title: Spinach in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"

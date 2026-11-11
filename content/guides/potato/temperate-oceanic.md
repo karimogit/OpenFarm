@@ -1,7 +1,7 @@
 ---
 crop: potato
 region: temperate-oceanic
-title: Potatoes in mild oceanic climates (Netherlands, UK, Belgium)
+title: Potato in temperate oceanic climates
 koppen: [Cfb, Cfc]
 hemisphere: north
 reference_location: Netherlands / UK lowlands

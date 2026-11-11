@@ -1,7 +1,7 @@
 ---
 crop: corn
 region: hot-desert
-title: "Corn in the low desert (Phoenix, Arizona)"
+title: Corn in hot desert climates
 koppen: [BWh]
 hemisphere: north
 reference_location: "Phoenix / Maricopa County, Arizona, USA"

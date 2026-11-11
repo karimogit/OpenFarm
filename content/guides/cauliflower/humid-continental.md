@@ -1,7 +1,7 @@
 ---
 crop: cauliflower
 region: humid-continental
-title: "Cauliflower in central Iowa"
+title: Cauliflower in humid continental climates
 koppen: [Dfa]
 hemisphere: north
 reference_location: "Des Moines / central Iowa, USA"
