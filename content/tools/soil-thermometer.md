@@ -2,7 +2,7 @@
 slug: soil-thermometer
 name: "Soil thermometer"
 category: measuring
-commons_file: "Soil Thermometer.jpg"
+commons_file: "2024-04-26 14 45 08 A Palmer soil thermometer at the weather station at the Rutgers Gardens in North Brunswick Township, Middlesex County, New Jersey.jpg"
 sources:
   - title: "Soil temperature (Wikipedia)"
     publisher: Wikipedia

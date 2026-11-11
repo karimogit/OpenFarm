@@ -2,7 +2,7 @@
 slug: cloche
 name: "Cloche"
 category: protection
-commons_file: "Garden cloche in Copped Hall Kitchen Garden, Epping, Essex, England.jpg"
+commons_file: "Culture sous cloche laitue.jpg"
 sources:
   - title: "Cloche (Wikipedia)"
     publisher: Wikipedia

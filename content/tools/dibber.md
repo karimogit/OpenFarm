@@ -2,7 +2,7 @@
 slug: dibber
 name: "Dibber"
 category: planting
-commons_file: "Dibble (PSF).png"
+commons_file: SmallDibber.JPG
 sources:
   - title: "Dibber (Wikipedia)"
     publisher: Wikipedia

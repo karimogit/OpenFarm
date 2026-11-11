@@ -1,6 +1,7 @@
 ---
 slug: manure-fork
 name: "Manure fork"
+commons_file: "02024 Pitchfork found in Masów.jpg"
 category: compost
 sources:
   - title: "Pitchfork (Wikipedia)"

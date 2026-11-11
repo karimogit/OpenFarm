@@ -1,6 +1,7 @@
 ---
 slug: watering-wand
 name: "Watering wand"
+commons_file: "Gießstab01.jpg"
 category: watering
 sources:
   - title: "Watering can (Wikipedia)"

@@ -1,6 +1,7 @@
 ---
 slug: soil-sieve
 name: "Soil sieve"
+commons_file: "Soil sifter.jpg"
 category: compost
 sources:
   - title: "Sieve (Wikipedia)"

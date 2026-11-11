@@ -1,6 +1,7 @@
 ---
 slug: rake
 name: "Rake"
+commons_file: SoilRake.jpg
 category: digging
 sources:
   - title: "Rake (Wikipedia)"

@@ -2,7 +2,7 @@
 slug: mattock
 name: "Mattock"
 category: digging
-commons_file: "Mattock.jpg"
+commons_file: "Cutter mattock.jpg"
 sources:
   - title: "Mattock (Wikipedia)"
     publisher: Wikipedia

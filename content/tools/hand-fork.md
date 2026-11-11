@@ -1,6 +1,7 @@
 ---
 slug: hand-fork
 name: "Hand fork"
+commons_file: "Stainless steel Cultivator.jpg"
 category: weeding
 sources:
   - title: "Garden fork (Wikipedia)"

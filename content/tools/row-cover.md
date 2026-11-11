@@ -1,6 +1,7 @@
 ---
 slug: row-cover
 name: "Row cover"
+commons_file: "Garden cloche in Copped Hall Kitchen Garden, Epping, Essex, England.jpg"
 category: protection
 sources:
   - title: "Row cover (Wikipedia)"
