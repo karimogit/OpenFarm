@@ -81,6 +81,13 @@ export default function (eleventyConfig) {
     if (!Array.isArray(r)) return `${r}${unit}`;
     return r[0] === r[1] ? `${r[0]}${unit}` : `${r[0]}–${r[1]}${unit}`;
   });
+  // A Köppen code as a link to its climate region (or a help anchor), with the full class name as tooltip.
+  eleventyConfig.addFilter("kgLink", function (code, classes, kgToRegion, toHelp = false) {
+    const name = (classes.find((c) => c && c[0] === code) || [code, code])[1];
+    const href = !toHelp && kgToRegion[code] ? `regions/${kgToRegion[code]}/` : `help/#koppen`;
+    const prefix = process.env.PATH_PREFIX || "/OpenFarm/";
+    return `<a class="kg" href="${prefix}${href}" title="Köppen ${code}: ${name}">${code}<span class="visually-hidden"> (Köppen: ${name})</span></a>`;
+  });
   eleventyConfig.addFilter("kgName", (classes, code) => (classes.find((c) => c && c[0] === code) || [code, code])[1]);
   eleventyConfig.addFilter("where", (arr, key, val) => (arr || []).filter((x) => x && x[key] === val));
   eleventyConfig.addFilter("whereIn", (arr, key, val) => (arr || []).filter((x) => x && (x[key] || []).includes(val)));
