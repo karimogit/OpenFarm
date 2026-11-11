@@ -361,3 +361,53 @@ unr-veg-garden:
   license: all-rights-reserved
   use: citation
   note: "Kratsch, H., Allen, L., Hanson Mazet, W., 2010. Average planting dates for the Reno, Nevada area. Checked 11 November 2026."
+
+ua-pima-planting-2025:
+  title: Pima County Vegetable Planting and Harvesting Guide
+  publisher: University of Arizona Cooperative Extension, Pima County Master Gardeners
+  url: https://extension.arizona.edu/sites/default/files/2025-01/Pima-County-Vegetable-Planting-and-Harvesting-Guide-Adobe-PDF-1.pdf
+  license: all-rights-reserved
+  use: citation
+  note: "Chart dated January 2025 (PDF metadata: Kara Adams). Harvest months are the green Harvest (Cosecha) cells, read at month resolution (a month is included if the 1st or the 15th is marked). Checked 11 November 2026."
+rhs-lettuce:
+  title: "How to grow lettuces"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/lettuce/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
+rhs-peas:
+  title: "How to grow peas"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/peas/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
+rhs-carrots:
+  title: "How to grow carrots"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/carrots/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
+rhs-cabbages:
+  title: "How to grow cabbages"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/cabbages/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
+rhs-cucumbers:
+  title: "How to grow cucumbers"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/cucumbers/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
+rhs-onions:
+  title: "How to grow onions"
+  publisher: Royal Horticultural Society (RHS)
+  url: https://www.rhs.org.uk/vegetables/onions/grow-your-own
+  license: all-rights-reserved
+  use: citation
+  note: "Checked 11 November 2026."
