@@ -9,7 +9,7 @@
 // Only Commons files under CC0, public domain, CC BY or CC BY-SA are accepted; everything else is skipped.
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, loadCrops, loadVarieties, loadRegions } from "./content.js";
+import { ROOT, loadCrops, loadVarieties, loadRegions, loadTools } from "./content.js";
 
 const OUT = path.join(ROOT, "data", "images.json");
 const UA = "OpenFarm/0.2 (https://github.com/karimogit/OpenFarm; image attribution lookup)";
@@ -95,6 +95,7 @@ async function main() {
   for (const c of loadCrops()) if (c.data.commons_file) wanted.find((w) => w.key === `crop:${c.data.slug}`).file = c.data.commons_file;
   for (const v of loadVarieties()) if (v.data.commons_file) wanted.push({ key: `variety:${v.data.crop}/${v.data.slug}`, file: v.data.commons_file, titles: [] });
   // Climate regions: one hand-picked farmland/garden photo each.
+  for (const x of loadTools()) if (x.data.commons_file) wanted.push({ key: `tool:${x.data.slug}`, file: x.data.commons_file, titles: [] });
   for (const r of loadRegions()) if (r.data.commons_file) wanted.push({ key: `region:${r.data.slug}`, file: r.data.commons_file, titles: [] });
   const fixed = wanted.filter((w) => w.file && (refresh || !cache[w.key] || cache[w.key].file !== w.file));
   if (fixed.length) {

@@ -60,7 +60,10 @@ async function choose(lat, lon, label, country) {
     <p class="kg-big"><span class="swatch" style="background:${region.color}"></span>
       <a href="${BASE}regions/${region.slug}/"><strong>${esc(region.name)}</strong></a></p>
     <p class="small">${place ? `${esc(place)} · ` : ""}Köppen <span class="kg">${kg.symbol}</span> ${esc(kg.name)} – ${esc(kg.desc)}</p>
+    <div id="hz-box"><p class="small muted">Hardiness zone: working it out…</p></div>
     <p class="hint">${lat}, ${lon}${kg.nearest ? " · nearest land cell used" : ""}. 0.5° grid (~50 km) – mountains and coasts can differ.</p>`;
+  hardinessZone(lat, lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = h ? hardinessLine(h) : ""; })
+    .catch(() => { const b = $("#hz-box"); if (b) b.innerHTML = `<p class="small muted">Hardiness zone unavailable right now.</p>`; });
   $("#details-summary").innerHTML = `<span>📍 ${esc(place || `${lat}, ${lon}`)} · ${swatch(region)}${esc(region.name)}</span><span class="chg">change</span>`;
   if (mobile()) $("#details-panel").open = false;
 

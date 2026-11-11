@@ -28,7 +28,24 @@ eleventyComputed:
       <p>{% for r in v.suitable_regions %}{% set reg = db.regionBy[r] %}<a class="chip" href="{{ ('/regions/' + r + '/') | url }}"><span class="swatch sm" style="background:{{ reg.color }}"></span>{{ reg.name }}</a> {% endfor %}</p>
       {% if v.regions_note %}<p class="small">{{ v.regions_note }}</p>{% endif %}
     {% else %}
-      <p class="muted">No sourced climate-region recommendation yet.</p>
+      <div class="no-guide">
+        {% if crop.guides.length %}
+        <p>No source names climate regions for this variety itself yet. These {{ crop.name | lower }} guides cover the crop in general:</p>
+        <p>{% for g in crop.guides %}<a class="chip" href="{{ g.url | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a> {% endfor %}</p>
+        {% else %}
+        <p>There is no {{ crop.name | lower }} guide for any climate region yet, so here are the general facts for the crop:</p>
+        {% endif %}
+        <dl class="kv compact">
+          {% if v.days_to_maturity %}<div><dt>Days to maturity</dt><dd>{{ v.days_to_maturity | range(" days") }}</dd></div>{% elif crop.days_to_first_harvest %}<div><dt>To first harvest</dt><dd>{{ crop.days_to_first_harvest | range(" days") }}</dd></div>{% endif %}
+          {% if crop.sowing_method %}<div class="wide"><dt>Sowing</dt><dd>{{ crop.sowing_method }}</dd></div>{% endif %}
+          {% if crop.size and crop.size.spread_cm %}<div><dt>Spacing (spread)</dt><dd>{{ crop.size.spread_cm }} cm</dd></div>{% endif %}
+          {% if crop.size and crop.size.row_spacing_cm %}<div><dt>Row spacing</dt><dd>{{ crop.size.row_spacing_cm }} cm</dd></div>{% endif %}
+          {% if crop.temperature and crop.temperature.frost_tender %}<div><dt>Frost</dt><dd>Frost-tender</dd></div>{% endif %}
+          {% if crop.sun %}<div><dt>Sun</dt><dd>{{ crop.sun | label }}</dd></div>{% endif %}
+        </dl>
+        <p class="small" data-your-region-variety data-crop="{{ crop.slug }}"></p>
+        <p class="small">Grow it somewhere? <a href="{{ '/contribute/' | url }}#guides">Write a {{ crop.name | lower }} guide for your climate region</a> – with sources, so others can trust it.</p>
+      </div>
     {% endif %}
     {% set used = crop.guides | whereIn("varieties", v.slug) %}
     {% if used.length %}<p>Suggested in: {% for g in used %}<a href="{{ g.url | url }}">{{ g.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
@@ -43,6 +60,7 @@ eleventyComputed:
     {% set editFile = v.file %}{% set editLabel = "Edit this variety" %}{% include "edit-button.njk" %}
   </article>
   <aside class="col-side">
+    {% set hz = v.hardiness or crop.hardiness %}{% set annual = crop.lifecycle == "annual" %}{% include "hardiness.njk" %}
     <section class="side-card">
       <h3>Traits</h3>
       <dl class="kv">

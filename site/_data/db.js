@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import markdownIt from "markdown-it";
 import {
-  ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadSeedSources,
+  ROOT, loadCrops, loadVarieties, loadGuides, loadRegions, loadProblems, loadTools, loadSeedSources,
   loadCompanions, loadSources, resolveSources, koppenToRegion,
 } from "../../scripts/content.js";
 
@@ -32,6 +32,7 @@ export default function () {
     return {
       ...d, file: c.file, html: md.render(c.body), seedImage: seedImages[`crop:${d.slug}`] || null, image: images[`crop:${d.slug}`] ? { ...images[`crop:${d.slug}`], note: d.image_note || null } : null,
       sources: resolveSources(d.sources, registry),
+      hardiness: d.hardiness ? { ...d.hardiness, sources: resolveSources(d.hardiness.sources, registry) } : null,
       seed_saving: d.seed_saving ? { ...d.seed_saving, sources: resolveSources(d.seed_saving.sources, registry) } : null,
       perennial: d.perennial ? { ...d.perennial, sources: resolveSources(d.perennial.sources, registry) } : null,
       varieties: [], guides: [], companions: [], problemList: [],
@@ -86,6 +87,14 @@ export default function () {
     cropBy[b]?.companions.push({ ...c, other: cropBy[a] });
   }
 
+  const tools = loadTools().map((x) => ({ ...x.data, file: x.file, html: md.render(x.body), url: `/tools/${x.data.slug}/`,
+    sources: resolveSources(x.data.sources, registry), image: images[`tool:${x.data.slug}`] || null, crops: [], guides: [] }));
+  const toolBy = Object.fromEntries(tools.map((x) => [x.slug, x]));
+  for (const c of crops) { c.toolList = (c.tools || []).map((s) => toolBy[s]).filter(Boolean); for (const x of c.toolList) x.crops.push(c); }
+  for (const g of guides) {
+    g.toolList = [...new Set([...(g.tools || []), ...(cropBy[g.crop].tools || [])])].map((s) => toolBy[s]).filter(Boolean);
+    for (const x of g.toolList) x.guides.push(g);
+  }
   const seedSources = loadSeedSources().map((s) => ({ ...s.data, html: md.render(s.body) }));
   const types = Object.entries(TYPE_LABELS).map(([slug, label]) => ({ slug, label, crops: crops.filter((c) => c.type === slug) })).filter((t) => t.crops.length);
 
@@ -115,5 +124,5 @@ export default function () {
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
     images: crops.filter((c) => c.image).length,
   };
-  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, types, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, types, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

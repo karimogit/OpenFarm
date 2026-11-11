@@ -20,6 +20,7 @@ eleventyComputed:
       {% if crop.origin == "imported" %} · {% set editFile = crop.file %}{% include "unreviewed.njk" %}{% endif %}</p>
     {% set img = crop.image %}{% set alt = crop.name %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ crop.html | safe }}</div>
+    {% if crop.toolList.length %}<p class="small"><strong>Useful tools:</strong> {% for x in crop.toolList %}<a class="chip" href="{{ x.url | url }}">{{ x.name }}</a> {% endfor %}</p>{% endif %}
 
     <section class="your-region card" data-your-region data-crop="{{ crop.slug }}" data-crop-name="{{ crop.name }}" data-pagefind-ignore hidden></section>
 
@@ -75,7 +76,8 @@ eleventyComputed:
   </article>
 
   <aside class="col-side">
-    <section class="side-card">
+    {% set hz = crop.hardiness %}{% set annual = crop.lifecycle == "annual" %}{% include "hardiness.njk" %}
+    <section class="side-card" id="facts">
       <h3>Quick facts</h3>
       <dl class="kv">
         <div><dt>Type</dt><dd>{{ db.typeLabels[crop.type] }}</dd></div>

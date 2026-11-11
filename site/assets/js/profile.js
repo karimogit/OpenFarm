@@ -1,5 +1,5 @@
 // Profile page: everything here lives in localStorage (see common.js) – nothing is sent anywhere.
-import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides } from "./common.js";
+import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine } from "./common.js";
 
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
 const CROP = Object.fromEntries(CAT.crops.map((c) => [c.slug, c]));
@@ -18,8 +18,10 @@ function render() {
   $("#profile-location").innerHTML = loc
     ? `<p><strong>${esc((loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`)}</strong><br><span class="small">${loc.lat}, ${loc.lon}</span></p>
        ${region ? `<p>${swatch(region)}<a href="${BASE}regions/${region.slug}/">${esc(region.name)}</a> <span class="kg">${esc(loc.symbol || "")}</span></p>` : ""}
+       <div id="hz-box"></div>
        <p class="small"><a href="${BASE}#where">Change location</a></p>`
     : `<p class="small">No location saved. <a href="${BASE}#where">Find your location</a> on the home page.</p>`;
+  if (loc) hardinessZone(loc.lat, loc.lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = hardinessLine(h); }).catch(() => {});
 
   // growing
   const gl = $("#growing-list");

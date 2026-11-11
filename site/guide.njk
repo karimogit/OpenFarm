@@ -32,6 +32,10 @@ eleventyComputed:
     <h2>Suggested varieties</h2>
     <ul class="variety-grid">{% for v in g.varietyList %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong><span>{{ v.category }}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>{% endfor %}</ul>
     {% endif %}
+    {% if g.toolList.length %}
+    <h2>Tools</h2>
+    <p>{% for x in g.toolList %}<a class="chip" href="{{ x.url | url }}">{{ x.name }}</a> {% endfor %}</p>
+    {% endif %}
     {% if g.problemList.length %}
     <h2>Watch out for</h2>
     <ul>{% for p in g.problemList %}<li><a href="{{ ('/problems/' + p.slug + '/') | url }}">{{ p.name }}</a>{% if p.conditions %} – <span class="small">{{ p.conditions }}</span>{% endif %}</li>{% endfor %}</ul>

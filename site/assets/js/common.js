@@ -251,16 +251,26 @@ function renderYourRegion(loc) {
   if (m && m.kind !== "similar") {
     h += `<p>✅ <a href="${BASE}guides/${m.g.crop}/${m.g.region}/"><strong>${esc(m.g.title)}</strong></a> fits your climate region${m.kind === "region" ? ` (written for a related class, not ${esc(loc.symbol)} exactly)` : ""}.</p>`;
   } else {
-    h += `<p>There is no ${esc(name.toLowerCase())} guide for the <strong>${esc(region.name.toLowerCase())}</strong> climate region yet.</p>`;
-    if (m) h += `<p>Nearest match: <a href="${BASE}guides/${m.g.crop}/${m.g.region}/"><strong>${esc(m.g.title)}</strong></a>
-      <span class="flag">from the nearest region (${esc(m.via.name.toLowerCase())}) – not written for yours</span></p>`;
-    else h += `<p class="small">The general facts on this page still apply.</p>`;
-    h += `<p class="small"><a href="${addGuideUrl(crop, region.slug)}" target="_blank" rel="noopener noreferrer">Add a guide for your region<span class="visually-hidden"> (opens in new tab)</span></a></p>`;
+    h += `<p>No guide for <strong>${esc(region.name.toLowerCase())}</strong> yet – meanwhile:</p><ul class="small">`;
+    if (m) h += `<li>Nearest region with a guide: <a href="${BASE}guides/${m.g.crop}/${m.g.region}/"><strong>${esc(m.g.title)}</strong></a>
+      <span class="flag">${esc(m.via.name.toLowerCase())} – not written for yours, check the timing</span></li>`;
+    h += `<li>The general facts – sowing, spacing, temperatures and days to harvest – are under <a href="#facts">Quick facts</a> and apply everywhere.</li>`;
+    h += `<li><a href="${addGuideUrl(crop, region.slug)}" target="_blank" rel="noopener noreferrer">No guide for ${esc(region.name)} yet – write one<span class="visually-hidden"> (opens in new tab)</span></a></li></ul>`;
   }
   if (m?.shifted) h += `<p class="flag">Southern hemisphere: the guide's months are for the north – shift by about six months (unverified).</p>`;
   if (vars.length) h += `<p class="small">Varieties recommended for your region: ${vars.map((v) => `<a href="${BASE}crops/${v.crop}/varieties/${v.slug}/">${esc(v.name)}</a>`).join(", ")}</p>`;
   box.innerHTML = h;
 }
+
+// Variety pages without a region recommendation: point to the guide for the visitor's region, if any.
+(function varietyRegionHint() {
+  const el = $("[data-your-region-variety]"); const loc = getLocation(); if (!el || !loc?.symbol) return;
+  const region = regionOf(loc.symbol); const [m] = matchGuides(loc.symbol, loc.lat, el.dataset.crop);
+  if (!region) return;
+  el.innerHTML = m && m.kind !== "similar"
+    ? `For your region (${swatch(region)}${esc(region.name)}): <a href="${BASE}guides/${m.g.crop}/${m.g.region}/">${esc(m.g.title)}</a>.`
+    : `No guide for ${swatch(region)}${esc(region.name)} yet – <a href="${addGuideUrl(el.dataset.crop, region.slug)}" target="_blank" rel="noopener noreferrer">write one<span class="visually-hidden"> (opens in new tab)</span></a>.`;
+})();
 
 // ---- seed sources: put the ones serving your country first ----
 function renderSeedSources(loc) {
@@ -524,3 +534,53 @@ export function downloadICS() {
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "openfarm-garden.ics" });
   document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
+
+// ---------------------------------------------------------------------------------------------
+// Plant hardiness zone (USDA-style): average of the yearly extreme minimum temperature, 1991–2020,
+// from the Open-Meteo historical weather API (ERA5 reanalysis, ~25 km grid, CC BY 4.0).
+// Zone 1 starts at −60 °F; every zone is 10 °F wide and split into a (colder) and b (warmer) halves.
+// Cached per 0.1° cell in localStorage, so the 30-year request is made once per place.
+// ---------------------------------------------------------------------------------------------
+const HZ_KEY = "openfarm.hardiness";
+export const zoneIndex = (z) => { const m = /^(\d+)([ab]?)$/.exec(String(z)); return m ? (+m[1]) * 2 + (m[2] === "b" ? 1 : 0) : null; };
+export function zoneFromC(minC) {
+  const f = minC * 9 / 5 + 32;
+  const half = Math.floor((f + 60) / 5);            // 0 = 1a
+  const n = Math.max(0, Math.min(25, half));        // clamp to 1a … 13b
+  return `${Math.floor(n / 2) + 1}${n % 2 ? "b" : "a"}`;
+}
+export async function hardinessZone(lat, lon) {
+  const key = `${(+lat).toFixed(1)},${(+lon).toFixed(1)}`;
+  let cache = {}; try { cache = JSON.parse(localStorage.getItem(HZ_KEY)) || {}; } catch {}
+  if (cache[key]) return cache[key];
+  const url = `https://archive-api.open-meteo.com/v1/archive?latitude=${(+lat).toFixed(2)}&longitude=${(+lon).toFixed(2)}` +
+    `&start_date=1991-01-01&end_date=2020-12-31&daily=temperature_2m_min&timezone=auto`;
+  const r = await fetch(url); if (!r.ok) throw new Error("hardiness " + r.status);
+  const d = await r.json(); const t = d.daily?.time || [], v = d.daily?.temperature_2m_min || [];
+  const mins = {};
+  t.forEach((day, i) => { const y = day.slice(0, 4); if (v[i] != null && (mins[y] == null || v[i] < mins[y])) mins[y] = v[i]; });
+  const years = Object.values(mins); if (years.length < 20) return null;
+  const avg = years.reduce((a, b) => a + b, 0) / years.length;
+  const res = { zone: zoneFromC(avg), minC: Math.round(avg * 10) / 10, years: years.length };
+  cache[key] = res; try { localStorage.setItem(HZ_KEY, JSON.stringify(cache)); } catch {}
+  return res;
+}
+export const hardinessLine = (h) => h
+  ? `<p class="hz"><strong>Hardiness zone: ${esc(h.zone)}</strong> <span class="small muted">(average yearly coldest night ${h.minC} °C, 1991–2020)</span></p>`
+  : "";
+
+// Crop / variety pages: warn when the saved location is outside the plant's hardiness range.
+(async function hardinessWarning() {
+  const el = document.querySelector("[data-hardiness]"); const loc = getLocation();
+  if (!el || !loc) return;
+  try {
+    const h = await hardinessZone(loc.lat, loc.lon); if (!h) return;
+    const z = zoneIndex(h.zone), lo = zoneIndex(el.dataset.min), hi = zoneIndex(el.dataset.max + (/[ab]$/.test(el.dataset.max) ? "" : "b"));
+    const annual = el.dataset.annual === "1";
+    let msg = "";
+    if (z < lo) msg = annual ? `Your zone (${h.zone}) is colder than ${el.dataset.min}: it will not survive winter outdoors – grow it as an annual or overwinter it indoors.`
+                             : `Your zone (${h.zone}) is colder than this plant's range (${el.dataset.min}–${el.dataset.max}): it may not survive winter outdoors without protection.`;
+    else if (z > hi) msg = `Your zone (${h.zone}) is warmer than this plant's range (${el.dataset.min}–${el.dataset.max}): winters may be too mild (e.g. too little chilling) for it to thrive.`;
+    el.innerHTML = msg ? `<p class="warn small">⚠ ${esc(msg)}</p>` : `<p class="small ok">✓ Your zone (${esc(h.zone)}) is within its range.</p>`;
+  } catch { /* offline or API limit: show nothing */ }
+})();
