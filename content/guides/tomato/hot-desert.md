@@ -2,7 +2,7 @@
 crop: tomato
 region: hot-desert
 title: Tomato in hot desert climates
-koppen: [BWh, BSh]
+koppen: [BWh]
 hemisphere: north
 reference_location: Phoenix / Maricopa County, Arizona, USA
 calendar:
@@ -17,7 +17,7 @@ confidence: medium
 uncertainty: >-
   Transplant windows follow the University of Arizona Maricopa County calendar (15 Feb–15 Mar and
   15 Jul–1 Aug). Sowing months are counted back from those dates and are approximate. Hot semi-arid
-  (BSh) areas are included by analogy and are unverified; there the rains may set the calendar.
+  (BSh) sites are not covered by this guide; see the Pima County / Tucson hot-semi-arid tomato guide.
 sources:
   - ua-tomatoes
   - ua-maricopa-calendar

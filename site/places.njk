@@ -1,0 +1,15 @@
+---
+layout: base.njk
+permalink: /places/
+title: Places
+description: City pages for capitals and major GeoNames cities, with climate region, a derived hardiness zone, and sourced growing guides.
+---
+{% set crumbs = [{label: "Places", current: true}] %}{% include "crumbs.njk" %}
+<article>
+  <h1>Places</h1>
+  <p class="lead">{{ db.stats.places }} city pages, using the same slugs as <code>?place=</code> links (for example <a href="{{ '/places/amsterdam-nl/' | url }}"><code>/places/amsterdam-nl/</code></a>).</p>
+  <p>{{ db.placePageNote }} The <code>?place=</code> home-map links keep working for every GeoNames city in the offline list, including those without a standing page.</p>
+  <p>Each city page shows a map pin, the Köppen climate region from the Beck et al. 2018 0.5° grid (CC BY 4.0), a derived USDA-style hardiness zone from Open-Meteo ERA5 1991–2020 (CC BY 4.0; not an official USDA map), a country link, a data-only “Grows well here” list, and a sowing and harvest calendar taken from sourced regional guides. Names and coordinates are from GeoNames (CC BY 4.0). Examples: <a href="{{ '/places/amsterdam-nl/' | url }}">Amsterdam</a>, <a href="{{ '/places/london-gb/' | url }}">London</a>, <a href="{{ '/places/bangkok-th/' | url }}">Bangkok</a>.</p>
+  <p>Browse by <a href="{{ '/countries/' | url }}">country</a> to find the cities listed for that territory.</p>
+  <p class="meta"><a href="{{ '/api/places.json' | url }}">JSON</a></p>
+</article>

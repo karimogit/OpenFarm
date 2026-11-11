@@ -37,7 +37,8 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
 <p><strong>Plant ranges</strong> (e.g. “zones 5–9”) come from cited sources – currently the <a href="https://plants.ces.ncsu.edu/">NC State Extension Gardener Plant Toolbox</a>. Crops without a sourced range show none; we never estimate one. When your zone is outside a plant's range, its page shows a warning.</p>
 
 <h2 id="countries">Countries</h2>
-<p>Each country and territory has a page at <a href="{{ '/countries/' | url }}">/countries/</a> (for example <a href="{{ '/countries/nl/' | url }}">/countries/nl/</a>) with its flag, approximate climate-region coverage, major cities, and seed sources listed for that country. City links use the same <code>?place=</code> slugs as location search (for example <code>?place=amsterdam-nl</code>). Climate shares are approximate area-weighted fractions of the 0.5° Beck et al. (2018) Köppen grid (CC BY 4.0) assigned with Natural Earth 50m boundaries (public domain). Tiny territories use a GeoNames city sample instead of an area share; the method is spelled out on the country page. Names and cities are from GeoNames (CC BY 4.0). Region pages list the countries they cover.</p>
+<p>Each country and territory has a page at <a href="{{ '/countries/' | url }}">/countries/</a> (for example <a href="{{ '/countries/nl/' | url }}">/countries/nl/</a>) with a climate map (Leaflet, with a static SVG fallback), approximate climate-region coverage, a data-only “Grows well here” list of crops that have a sourced guide for those regions, major cities, and seed sources listed for that country. Climate shares are approximate area-weighted fractions of the 0.5° Beck et al. (2018) Köppen grid (CC BY 4.0) assigned with Natural Earth 50m boundaries (public domain). Map outlines are simplified from those Natural Earth boundaries (public domain). Tiny territories use a GeoNames city sample instead of an area share; the method is spelled out on the country page. Names and cities are from GeoNames (CC BY 4.0). Region pages list the countries they cover.</p>
+<p>Selected cities have their own page at <a href="{{ '/places/' | url }}">/places/&lt;slug&gt;/</a>, using the same slugs as <code>?place=</code> links (for example <a href="{{ '/places/amsterdam-nl/' | url }}">/places/amsterdam-nl/</a>). A city page has a map pin, the Köppen climate region at that point, a hardiness zone derived from Open-Meteo ERA5 1991–2020 (labelled as derived, not an official USDA map), a country link, the same data-only “Grows well here” rule, and a sowing and harvest calendar from sourced regional guides. Standing pages cover each territory’s capital (when it is in GeoNames cities15000) and the up to 12 most populous cities already listed on the country page; other cities still work with <code>?place=</code> and search.</p>
 
 <h2 id="unreviewed">The “Unreviewed” badge</h2>
 <p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety, and don't treat wiki-derived spacing or companions as authoritative. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
@@ -51,8 +52,8 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
   <li><strong>Calendar (.ics)</strong> – yearly sow, plant and harvest reminders for the crops you grow, from your region's guides; works in Google Calendar, Apple Calendar and Outlook.</li>
   <li><strong>Markdown</strong> – a readable garden notebook.</li>
 </ul>
-<p>You can share a location with a readable link such as <a href="{{ '/' | url }}?place=amsterdam-nl"><code>?place=amsterdam-nl</code></a>.
-  If two cities in the same country share a name, the link includes a region code, for example <code>?place=portland-or-us</code>.
+<p>You can share a location with a readable link such as <a href="{{ '/' | url }}?place=amsterdam-nl"><code>?place=amsterdam-nl</code></a>, and the same slug is used for city pages such as <a href="{{ '/places/amsterdam-nl/' | url }}"><code>/places/amsterdam-nl/</code></a>.
+  If two cities in the same country share a name, the link includes a region code, for example <code>?place=portland-or-us</code> or <code>/places/portland-or-us/</code> when that city has a standing page.
   Older <code>?lat=…&amp;lon=…</code> links still work. A map click that is not near a city in the offline list keeps the coordinates in the URL.</p>
 <p>“Clear my data” removes the profile and reminder state from this browser.</p>
 
@@ -91,7 +92,7 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
   <li><a href="{{ '/api/guides.json' | url }}"><code>/api/guides.json</code></a> – compact guide index</li>
   <li><a href="{{ '/api/tools.json' | url }}"><code>/api/tools.json</code></a> – tools</li>
   <li><a href="{{ '/api/countries.json' | url }}"><code>/api/countries.json</code></a> – countries</li>
-  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>), <code>/regions/&lt;region&gt;.json</code>, <code>/countries/&lt;iso2&gt;.json</code>, and <code>/zones/&lt;zone&gt;.json</code></li>
+  <li><code>/crops/&lt;crop&gt;.json</code> (e.g. <a href="{{ '/crops/tomato.json' | url }}">tomato</a>), <code>/regions/&lt;region&gt;.json</code>, <code>/countries/&lt;iso2&gt;.json</code>, <code>/places/&lt;slug&gt;.json</code>, and <code>/zones/&lt;zone&gt;.json</code></li>
 </ul>
 <p>Guide URLs in the JSON are now <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code> (old <code>/guides/…</code> HTML pages redirect).
   Content is CC BY-SA 4.0 (imported records CC0); credit “OpenFarm contributors” and keep ShareAlike for adaptations.</p>

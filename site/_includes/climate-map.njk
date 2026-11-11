@@ -1,0 +1,27 @@
+{# Interactive Leaflet map with a no-JS SVG fallback. Expects mapId, mapView, mapBounds,
+   outline, svgPath, caption, optional pin {lat,lon,label}, and optional legend regions. #}
+<figure class="country-map" data-country-map data-pagefind-ignore>
+  <div class="country-map-live" hidden role="region" aria-label="{{ mapLabel or 'Climate map' }}"></div>
+  <div class="country-map-fallback">
+    {% if mapView %}
+    <svg viewBox="{{ mapView.x }} {{ mapView.y }} {{ mapView.width }} {{ mapView.height }}" role="img" aria-label="{{ mapLabel or 'Climate map' }}">
+      <image href="{{ '/assets/koppen-mercator.png' | url }}" width="{{ mapView.imgW }}" height="{{ mapView.imgH }}" preserveAspectRatio="none"/>
+      {% if svgPath %}<path d="{{ svgPath }}" fill="none" stroke="#1b1b1b" stroke-width="2" vector-effect="non-scaling-stroke"/>{% endif %}
+      {% if pin and mapView %}
+        {# Pin is drawn by the live map; the fallback is the climate inset. #}
+      {% endif %}
+    </svg>
+    {% endif %}
+  </div>
+  {% if mapBounds %}<script type="application/json" data-bounds>{{ mapBounds | json | safe }}</script>{% endif %}
+  {% if outline %}<script type="application/json" data-outline>{{ outline | json | safe }}</script>{% endif %}
+  {% if pin %}<script type="application/json" data-pin>{{ pin | json | safe }}</script>{% endif %}
+  {% if legendRegions and legendRegions.length %}
+  <ul class="country-map-legend">
+    {% for r in legendRegions %}
+    <li><a href="{{ r.url | url }}"><span class="swatch sm" style="background:{{ r.color }}"></span> {{ r.name }}</a>{% if r.share != null %} <span class="muted">{{ r.share }}%</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <figcaption>{{ caption }}</figcaption>
+</figure>

@@ -1,0 +1,31 @@
+{# Expects growsWell (region groups), headingId, placeName, and optional intro. #}
+<section class="grows-well" aria-labelledby="{{ headingId or 'grows-well-heading' }}">
+  <h2 id="{{ headingId or 'grows-well-heading' }}">Grows well here</h2>
+  <p>{{ intro or "These crops have a sourced growing guide for a climate region listed for this place. This is not a list of traditional or typical crops. Crops with a recorded hardiness range are marked when a derived zone is available and the range does not include it; crops without a recorded range are listed from the climate-region guide alone." }}</p>
+  {% if growsWell and growsWell.length %}
+    {% for group in growsWell %}
+      <h3>
+        <a href="{{ group.url | url }}"><span class="swatch sm" style="background:{{ group.color }}"></span> {{ group.name }}</a>
+        {% if group.share != null %}<span class="muted">{{ group.share }}%</span>{% endif %}
+        <span class="muted">{{ group.crops.length }} crop{% if group.crops.length != 1 %}s{% endif %}</span>
+      </h3>
+      <ul class="crop-grid guide-grid">
+        {% for item in group.crops %}
+        <li class="t-{{ item.type }}"{% if item.hardiness %} data-hz-min="{{ item.hardiness.min }}" data-hz-max="{{ item.hardiness.max }}"{% endif %}>
+          <a href="{{ item.guideUrl | url }}">
+            {% if item.image %}<span class="thumb"><img src="{{ item.image | wmThumb(250) }}" srcset="{{ item.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ item.image.orig_width or 250 }}px;max-height:{{ item.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">{% set icon = "sprout" %}{% include "icon.njk" %}</span>{% endif %}
+            <strong class="name">{{ item.name }}</strong>
+            <em class="sci1">{% if item.scientific_name %}{{ item.scientific_name }}{% else %}&nbsp;{% endif %}</em>
+            <span class="gtitle">Guide for {{ group.name }}</span>
+            <span class="badges">
+              {% if item.hardiness %}<span class="badge xlabel" title="USDA hardiness zones">zones {{ item.hardiness.min }}–{{ item.hardiness.max }}</span>{% endif %}
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% else %}
+    <p>No sourced growing guide in the catalogue yet matches this place’s listed climate region{% if growsWell and growsWell.length != 1 %}s{% endif %}.</p>
+  {% endif %}
+</section>
