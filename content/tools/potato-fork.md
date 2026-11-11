@@ -2,7 +2,6 @@
 slug: potato-fork
 name: "Potato fork"
 category: harvesting
-commons_file: "Potato fork.jpg"
 sources:
   - title: "Garden fork (Wikipedia)"
     publisher: Wikipedia

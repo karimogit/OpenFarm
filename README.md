@@ -232,10 +232,6 @@ We'd rather cooperate than compete:
   stopped tomorrow, the guides would still be usable straight from the repository.
 - **Community governance:** the guides are reviewed through pull requests, with
   maintainers for each climate region over time.
-- **Funding:** small, targeted grants for specific milestones (for example
-  [NLnet](https://nlnet.nl/) open-source funding) to pay for content sprints,
-  translations and the data upgrade. No ads and no paywall. The content stays
-  CC BY-SA, so it can't be closed off.
 
 ## Development
 

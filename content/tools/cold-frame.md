@@ -1,8 +1,8 @@
 ---
 slug: cold-frame
 name: "Cold frame"
-category: propagation
-commons_file: "Cold frame.jpg"
+category: protection
+commons_file: "JamesGardensColdFrame.jpg"
 sources:
   - title: "Cold frame (Wikipedia)"
     publisher: Wikipedia

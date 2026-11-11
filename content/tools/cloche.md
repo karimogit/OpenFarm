@@ -1,8 +1,8 @@
 ---
 slug: cloche
 name: "Cloche"
-category: propagation
-commons_file: "Garden cloche.jpg"
+category: protection
+commons_file: "Garden cloche in Copped Hall Kitchen Garden, Epping, Essex, England.jpg"
 sources:
   - title: "Cloche (Wikipedia)"
     publisher: Wikipedia

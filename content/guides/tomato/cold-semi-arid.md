@@ -1,7 +1,7 @@
 ---
 crop: tomato
 region: cold-semi-arid
-title: Tomato in cold semi-arid steppe climates
+title: Tomato in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: Colorado Front Range, USA (Denver, Fort Collins)

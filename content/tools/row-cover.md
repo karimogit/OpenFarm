@@ -1,8 +1,7 @@
 ---
 slug: row-cover
 name: "Row cover"
-category: propagation
-commons_file: "Row cover.jpg"
+category: protection
 sources:
   - title: "Row cover (Wikipedia)"
     publisher: Wikipedia

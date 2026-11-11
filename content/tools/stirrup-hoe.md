@@ -2,7 +2,6 @@
 slug: stirrup-hoe
 name: "Stirrup hoe"
 category: weeding
-commons_file: "Oscillating hoe.jpg"
 sources:
   - title: "Hoe (Wikipedia)"
     publisher: Wikipedia

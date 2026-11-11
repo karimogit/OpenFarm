@@ -1,7 +1,7 @@
 ---
 crop: capsicum
 region: cold-semi-arid
-title: Capsicum in cold semi-arid steppe climates
+title: Capsicum in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

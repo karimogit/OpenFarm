@@ -1,7 +1,7 @@
 ---
 slug: trellis
 name: "Trellis"
-category: planting
+category: supports
 commons_file: "Garden trellis.jpg"
 sources:
   - title: "Trellis (Wikipedia)"

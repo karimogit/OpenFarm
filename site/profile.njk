@@ -20,7 +20,7 @@ pageScripts: [profile.js]
     <dialog id="grow-search" class="dialog" aria-labelledby="grow-search-title">
       <div class="dialog-head">
         <h2 id="grow-search-title">Add a crop or variety</h2>
-        <button type="button" class="icon-btn" data-dialog-close aria-label="Close">{% set icon = "x" %}{% include "icon.njk" %}</button>
+        <button type="button" class="dialog-close" data-dialog-close aria-label="Close">{% set icon = "x" %}{% include "icon.njk" %}</button>
       </div>
       <label class="visually-hidden" for="grow-search-q">Search crops and varieties</label>
       <input id="grow-search-q" type="search" placeholder="Search crops and varieties" autocomplete="off">
@@ -30,7 +30,7 @@ pageScripts: [profile.js]
     <dialog id="grow-edit" class="dialog" aria-labelledby="grow-edit-title">
       <div class="dialog-head">
         <h2 id="grow-edit-title">Edit</h2>
-        <button type="button" class="icon-btn" data-dialog-close aria-label="Close">{% set icon = "x" %}{% include "icon.njk" %}</button>
+        <button type="button" class="dialog-close" data-dialog-close aria-label="Close">{% set icon = "x" %}{% include "icon.njk" %}</button>
       </div>
       <form id="grow-edit-form" class="grow-form">
         <p class="grow-edit-lead" id="grow-edit-lead"></p>

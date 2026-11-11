@@ -6,14 +6,15 @@ pagination:
   alias: r
 permalink: "/regions/{{ r.slug }}/"
 eleventyComputed:
-  title: "{{ r.name }} climate region"
-  description: "What to grow in a {{ r.name | lower }} climate: growing guides, suitable varieties and Köppen classes."
+  title: "{{ r.name }}"
+  description: "{% if r.subtitle %}{{ r.subtitle }}. {% endif %}What to grow in a {{ r.name | lower }} climate: growing guides, suitable varieties and Köppen classes."
   jsonUrl: "/regions/{{ r.slug }}.json"
 ---
 {% set crumbs = [{href: "/regions/", label: "Region"}, {label: r.name, current: true}] %}{% include "crumbs.njk" %}
 <div class="layout">
   <article class="col-main" data-pagefind-body>
     <h1><span class="swatch" style="background:{{ r.color }}"></span> {{ r.name }}</h1>
+    {% if r.subtitle %}<p class="sci-line">{{ r.subtitle }}</p>{% endif %}
     {% set img = r.image %}{% set alt = "Typical farmland or gardens in a " + (r.name | lower) + " climate" %}{% set inherited = false %}{% include "image.njk" %}
     <div class="body">{{ r.html | safe }}</div>
     {% set places = r.examplePlaces %}{% set lead = "Examples:" %}{% include "places-line.njk" %}
@@ -35,7 +36,7 @@ eleventyComputed:
 
     {% if r.varieties.length %}
     <h2>Varieties recommended here</h2>
-    <ul class="variety-grid">{% for v in r.varieties %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong><span>{{ v.cropName }}{% if v.category %} · {{ v.category }}{% endif %}</span></a></li>{% endfor %}</ul>
+    <ul class="variety-grid">{% for v in r.varieties %}<li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>{% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}<span>{{ v.cropName }}{% if v.category %} · {{ v.category }}{% endif %}</span></a></li>{% endfor %}</ul>
     {% endif %}
 
     <h2>Most similar regions</h2>

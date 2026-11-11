@@ -8,11 +8,11 @@ permalink: "/tools/{{ t.slug }}/"
 eleventyComputed:
   title: "{{ t.name }}"
 ---
-{% set crumbs = [{href: "/tools/", label: "Tools"}, {label: t.name, current: true}] %}{% include "crumbs.njk" %}
+{% set crumbs = [{href: "/tools/", label: "Tools"}, {href: "/tools/" + t.category + "/", label: t.categoryLabel}, {label: t.name, current: true}] %}{% include "crumbs.njk" %}
 <div class="layout">
 <article class="col-main" data-pagefind-body>
   <h1>{{ t.name }}</h1>
-  <p class="sci-line">{{ t.category | capitalize }}</p>
+  <p class="sci-line"><a href="{{ ('/tools/' + t.category + '/') | url }}">{{ t.categoryLabel }}</a></p>
   {% if t.image %}{% set img = t.image %}{% set alt = t.name %}{% set inherited = false %}{% include "image.njk" %}{% endif %}
   <div class="body">{{ t.html | safe }}</div>
 

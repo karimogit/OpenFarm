@@ -26,11 +26,12 @@ eleventyComputed:
 
     <section class="your-region card" data-your-region data-crop="{{ crop.slug }}" data-crop-name="{{ crop.name }}" data-pagefind-ignore hidden></section>
 
+    <div data-guides data-crop="{{ crop.slug }}">
     <h2 id="guides">Growing guides by climate region</h2>
     {% if crop.guides.length %}
       {% for g in crop.guides %}
-      <section class="card guide-card match">
-        <a class="match-thumb" href="{{ g.url | url }}" tabindex="-1" aria-hidden="true">{% if crop.image %}<span class="thumb"><img src="{{ crop.image | wmThumb(250) }}" srcset="{{ crop.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ crop.image.orig_width or 250 }}px;max-height:{{ crop.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}</a>
+      <section class="card guide-card match" data-guide-region="{{ g.region }}">
+        <a class="match-thumb" href="{{ g.url | url }}" tabindex="-1" aria-hidden="true">{% if crop.image %}<span class="thumb"><img src="{{ crop.image | wmThumb(250) }}" srcset="{{ crop.image | wmSrcset(250) }}" alt="" loading="lazy"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}</a>
         <div class="match-body">
         <h3><span class="swatch sm" style="background:{{ g.regionColor }}"></span><a href="{{ g.url | url }}">{{ g.regionName }}</a> <small>{{ g.title }}</small></h3>
         <p>{% for k in g.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %} · checked against {{ g.reference_location }}</p>
@@ -41,12 +42,14 @@ eleventyComputed:
     {% else %}
       <p>No climate guides yet. The facts on this page apply everywhere; the timing depends on your climate region.</p>
     {% endif %}
+    </div>
 
     {% if crop.varieties.length %}
     <h2 id="varieties">Varieties <small>({{ crop.varieties.length }})</small></h2>
     <ul class="variety-grid">
       {% for v in crop.varieties %}
       <li><a href="{{ v.url | url }}"><strong>{{ v.name }}</strong>
+        {% if v.sciHtml %}<span class="sci1">{{ v.sciHtml | safe }}</span>{% endif %}
         <span>{% if v.category %}{{ v.category }}{% endif %}{% if v.days_to_maturity %} · {{ v.days_to_maturity | range(" days") }}{% endif %}{% if v.seeds %} · {{ v.seeds.type | label }}{% endif %}</span></a></li>
       {% endfor %}
     </ul>

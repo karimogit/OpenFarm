@@ -2,7 +2,6 @@
 slug: hedge-shears
 name: "Hedge shears"
 category: pruning
-commons_file: "Hedge shears.jpg"
 sources:
   - title: "Hedge trimmer (Wikipedia)"
     publisher: Wikipedia

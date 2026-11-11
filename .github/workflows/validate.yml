@@ -20,5 +20,7 @@ jobs:
       - run: npm ci
       - name: Validate all content against the JSON Schemas in schema/
         run: npm run validate
+      - name: Check that every image URL resolves (HEAD 200)
+        run: npm run check:images
       - name: Build site and search index
         run: npx @11ty/eleventy && npx pagefind --site _site

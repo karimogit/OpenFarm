@@ -1,7 +1,7 @@
 ---
 crop: spinach
 region: cold-semi-arid
-title: Spinach in cold semi-arid steppe climates
+title: Spinach in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

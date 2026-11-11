@@ -24,11 +24,16 @@
         "digging",
         "weeding",
         "planting",
-        "pruning",
         "watering",
-        "propagation",
-        "harvesting"
-      ]
+        "pruning",
+        "harvesting",
+        "protection",
+        "supports",
+        "compost",
+        "measuring",
+        "carrying"
+      ],
+      "description": "Primary tool group (breadcrumb and default listing). Labels: Digging & soil, Weeding & cultivating, Planting & sowing, Watering & irrigation, Pruning & cutting, Harvesting, Protection & season extension, Supports & structures, Compost & soil health, Measuring & testing, Carrying & storage."
     },
     "commons_file": {
       "type": "string",
@@ -82,6 +87,26 @@
         "type": "string"
       },
       "description": "Key jobs this general tool is used for, shown on the tool page."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "digging",
+          "weeding",
+          "planting",
+          "watering",
+          "pruning",
+          "harvesting",
+          "protection",
+          "supports",
+          "compost",
+          "measuring",
+          "carrying"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Additional groups this tool belongs to, besides the primary `category`. Category pages are /tools/<category>/."
     }
   }
 }

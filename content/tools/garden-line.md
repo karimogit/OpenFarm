@@ -2,7 +2,6 @@
 slug: garden-line
 name: "Garden line"
 category: planting
-commons_file: "Garden line.jpg"
 sources:
   - title: "Garden design (Wikipedia)"
     publisher: Wikipedia

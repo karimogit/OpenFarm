@@ -1,6 +1,7 @@
 ---
 slug: hot-semi-arid
-name: Hot semi-arid steppe
+name: Hot semi-arid
+subtitle: Steppe
 koppen: [BSh]
 color: "#f5a500"
 order: 6

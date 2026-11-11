@@ -1,7 +1,7 @@
 ---
 crop: zucchini
 region: cold-semi-arid
-title: Zucchini in cold semi-arid steppe climates
+title: Zucchini in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

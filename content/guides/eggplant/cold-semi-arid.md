@@ -1,7 +1,7 @@
 ---
 crop: eggplant
 region: cold-semi-arid
-title: Eggplant in cold semi-arid steppe climates
+title: Eggplant in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

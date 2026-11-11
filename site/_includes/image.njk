@@ -1,7 +1,7 @@
-{# expects `img` (image record or null), `alt` and optional `inherited` #}
+{# expects `img` (image record or null), `alt` and optional `inherited`. Heroes stay eager (above the fold). #}
 {% if img %}
 <figure class="photo">
-  <div class="frame"><img src="{{ img | wmThumb(960) }}" srcset="{{ img | wmSrcset(960) }}" alt="{{ alt }}"{% if img.orig_width %} width="{{ img.orig_width }}" height="{{ img.orig_height }}"{% endif %} style="max-width:{{ img.orig_width or 960 }}px;max-height:{{ img.orig_height or 960 }}px"></div>
+  <div class="frame"><img src="{{ img | wmThumb(500) }}" srcset="{{ img | wmSrcsetWidths }}" sizes="(max-width: 600px) 100vw, 500px" alt="{{ alt }}"{% if img.orig_width %} width="{{ img.orig_width }}" height="{{ img.orig_height }}"{% endif %}></div>
   <figcaption>{% if img.note %}<strong>{{ img.note }}.</strong> {% endif %}{% if inherited %}Crop photo (no variety photo yet). {% endif %}Photo: {{ img.author | truncate(60) }} ·
     {% if img.license_url %}<a href="{{ img.license_url }}">{{ img.license }}</a>{% else %}{{ img.license }}{% endif %} ·
     <a href="{{ img.source }}">Wikimedia Commons</a></figcaption>

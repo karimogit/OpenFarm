@@ -2,7 +2,6 @@
 slug: pruning-saw
 name: "Pruning saw"
 category: pruning
-commons_file: "Pruning saw.jpg"
 sources:
   - title: "Pruning saw (Wikipedia)"
     publisher: Wikipedia

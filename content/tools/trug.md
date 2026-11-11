@@ -1,8 +1,8 @@
 ---
 slug: trug
 name: "Trug"
-category: harvesting
-commons_file: "Sussex trug.jpg"
+category: carrying
+commons_file: "Traditional Trug.jpg"
 sources:
   - title: "Trug (Wikipedia)"
     publisher: Wikipedia

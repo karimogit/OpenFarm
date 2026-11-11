@@ -2,7 +2,7 @@
 slug: trowel
 name: "Hand trowel"
 category: planting
-commons_file: "Transplantoir bleu - \u00e9chelle.jpg"
+commons_file: "Transplantoir bleu - échelle.jpg"
 sources:
   - title: "Trowel (Wikipedia)"
     publisher: Wikipedia

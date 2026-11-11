@@ -2,7 +2,6 @@
 slug: soaker-hose
 name: "Soaker hose"
 category: watering
-commons_file: "Soaker hose.jpg"
 sources:
   - title: "Soaker hose (Wikipedia)"
     publisher: Wikipedia

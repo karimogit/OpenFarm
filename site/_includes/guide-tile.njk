@@ -1,8 +1,14 @@
 {# expects `g` (guide) – a uniform card with the crop photo #}
 {% set gc = db.cropBy[g.crop] %}
-<li><a href="{{ g.url | url }}">
-  {% if gc.image %}<span class="thumb"><img src="{{ gc.image | wmThumb(250) }}" srcset="{{ gc.image | wmSrcset(250) }}" alt="" loading="lazy" style="max-width:{{ gc.image.orig_width or 250 }}px;max-height:{{ gc.image.orig_height or 250 }}px"></span>{% else %}<span class="thumb none">{% set icon = "sprout" %}{% include "icon.njk" %}</span>{% endif %}
+<li class="t-{{ gc.type }}" data-name="{{ gc.name | lower }} {{ gc.scientific_name | lower }} {{ gc.family | lower }} {{ g.title | lower }}" data-guides="{{ gc.guides.length }}" data-reviewed="{{ '0' if gc.origin == 'imported' else '1' }}" data-life="{% if gc.lifecycle %}{{ gc.lifecycle }}{% elif gc.perennial or gc.type in ['fruit-tree','nut','berry'] %}perennial{% endif %}"><a href="{{ g.url | url }}">
+  {% if gc.image %}<span class="thumb"><img src="{{ gc.image | wmThumb(250) }}" srcset="{{ gc.image | wmSrcset(250) }}" alt="" loading="lazy"></span>{% else %}<span class="thumb none">{% set icon = "sprout" %}{% include "icon.njk" %}</span>{% endif %}
   <strong class="name">{{ gc.name }}</strong><em class="sci1">{% if gc.scientific_name %}{{ gc.scientific_name }}{% else %}&nbsp;{% endif %}</em>
   <span class="gtitle">{{ g.title }}</span>
-  <span class="badges">{% if extraKg %} {% for k in g.koppen %}{% if k in extraKg %}<span class="kg" title="Köppen {{ k }}: {{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endif %}{% endfor %}{% endif %}</span>
+  <span class="badges">
+    {% if gc.guides.length %}<span class="badge guide xlabel">{{ gc.guides.length }} guide{% if gc.guides.length > 1 %}s{% endif %}</span>{% endif %}
+    {% if gc.varieties.length %}<span class="badge xlabel">{{ gc.varieties.length }} variet{% if gc.varieties.length > 1 %}ies{% else %}y{% endif %}</span>{% endif %}
+    {% if gc.lifecycle %}<span class="badge xlabel">{{ gc.lifecycle }}</span>{% endif %}
+    {% if gc.hardiness %}<span class="badge xlabel" title="USDA hardiness zones">zones {{ gc.hardiness.min }}–{{ gc.hardiness.max }}</span>{% endif %}
+    {% if extraKg %} {% for k in g.koppen %}{% if k in extraKg %}<span class="kg" title="Köppen {{ k }}: {{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endif %}{% endfor %}{% endif %}
+  </span>
 </a><button class="fav card-fav" type="button" data-fav="guide:{{ g.crop }}/{{ g.region }}" aria-pressed="false" title="Add to favourites">{% set icon = "heart" %}{% include "icon.njk" %}<span class="visually-hidden">Add to favourites</span></button></li>

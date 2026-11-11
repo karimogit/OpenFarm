@@ -2,7 +2,6 @@
 slug: hand-fork
 name: "Hand fork"
 category: weeding
-commons_file: "Hand fork.jpg"
 sources:
   - title: "Garden fork (Wikipedia)"
     publisher: Wikipedia

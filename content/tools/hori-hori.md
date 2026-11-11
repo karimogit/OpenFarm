@@ -1,7 +1,7 @@
 ---
 slug: hori-hori
 name: "Hori-hori (soil knife)"
-category: digging
+category: weeding
 commons_file: "Hori-hori.jpg"
 sources:
   - title: "Hori hori (Wikipedia)"

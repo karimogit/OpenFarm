@@ -1,7 +1,7 @@
 ---
 crop: cantaloupe
 region: cold-semi-arid
-title: Cantaloupe in cold semi-arid steppe climates
+title: Cantaloupe in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

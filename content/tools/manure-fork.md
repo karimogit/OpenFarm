@@ -1,8 +1,7 @@
 ---
 slug: manure-fork
 name: "Manure fork"
-category: digging
-commons_file: "Manure fork.jpg"
+category: compost
 sources:
   - title: "Pitchfork (Wikipedia)"
     publisher: Wikipedia

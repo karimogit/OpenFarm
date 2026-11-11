@@ -1,7 +1,7 @@
 ---
 crop: garlic
 region: cold-semi-arid
-title: Garlic in cold semi-arid steppe climates
+title: Garlic in cold semi-arid climates
 koppen: [BSk, BWk]
 hemisphere: north
 reference_location: Colorado, USA (Front Range and Western Slope)
