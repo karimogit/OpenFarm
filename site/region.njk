@@ -57,7 +57,8 @@ eleventyComputed:
     <p>When a crop has no guide for {{ r.name | lower }}, OpenFarm shows the guide from the most similar region, in this order:
       {% for s in r.similar %}{% set sr = db.regionBy[s] %}<a class="chip" href="{{ ('/regions/' + s + '/') | url }}"><span class="swatch sm" style="background:{{ sr.color }}"></span>{{ sr.name }}</a> {% endfor %}</p>
 
-    <p id="help" class="small">Know how to grow something here? <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">Add a guide for {{ r.name | lower }}</a> – every guide is a plain text file on GitHub.</p>
+    <p id="help" class="small">Know how to grow something here? <a href="{{ site.repo }}/blob/{{ site.branch }}/CONTRIBUTING.md#add-a-guide">Add a guide for {{ r.name | lower }}</a>.</p>
+    <p class="meta">{% set jsonHref = "/regions/" + r.slug + ".json" %}{% include "raw-data.njk" %}</p>
     {% set editFile = r.file %}{% include "edited-by.njk" %}
     {% set editLabel = "Edit this region" %}{% include "edit-button.njk" %}
   </article>

@@ -40,6 +40,19 @@ export default function () {
   const regionsRaw = loadRegions();
   const kg2region = koppenToRegion(regionsRaw);
   const examplePlacesOf = (ex) => Array.isArray(ex) ? ex : [];
+  const exampleCountriesOf = (places) => {
+    const seen = new Set();
+    const out = [];
+    for (const p of places || []) {
+      const cc = (p.country || "").toString().trim();
+      if (!cc) continue;
+      const key = cc.toUpperCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(cc);
+    }
+    return out;
+  };
   const examplesTextOf = (ex) => Array.isArray(ex)
     ? ex.map((p) => p.note ? `${p.name} (${p.note})` : p.name).join(", ")
     : (ex || "");
@@ -126,7 +139,7 @@ export default function () {
       ...d, variety: varietySlug, file: g.file, html: md.render(g.body), cropName: crop.name, scientific_name: crop.scientific_name, family: crop.family,
       regionName: region.name, regionColor: region.color, url, legacyUrl,
       favId: varietySlug ? `${d.crop}/${varietySlug}/${d.region}` : `${d.crop}/${d.region}`,
-      examplePlaces: region.examplePlaces, examplesText: region.examples,
+      examplePlaces: region.examplePlaces, exampleCountries: exampleCountriesOf(region.examplePlaces), examplesText: region.examples,
       sources: resolveSources(d.sources, registry),
       varietyList: (d.varieties || []).map((s) => varieties.find((v) => v.crop === d.crop && v.slug === s)),
       problemList: (d.problems || []).map((s) => problemBy[s]),

@@ -38,6 +38,6 @@ eleventyComputed:
 </article>
 <aside class="col-side">
   {% include "your-climate.njk" %}
-  <p class="small"><a href="{{ '/api/tools.json' | url }}">All tools as JSON</a></p>
+  <p class="meta">{% set jsonHref = "/api/tools.json" %}{% include "raw-data.njk" %}</p>
 </aside>
 </div>

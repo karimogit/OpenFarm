@@ -27,5 +27,5 @@ eleventyComputed:
 {% else %}
 <p>No crop in the catalogue has a sourced hardiness range that includes this zone yet.</p>
 {% endif %}
-<p class="meta"><a href="{{ ('/zones/' + z.slug + '.json') | url }}">JSON</a></p>
+<p class="meta">{% set jsonHref = "/zones/" + z.slug + ".json" %}{% include "raw-data.njk" %}</p>
 </article>

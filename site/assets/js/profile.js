@@ -58,11 +58,11 @@ function renderGrowingCalendar(p) {
     const cells = MONTHS.map((_, i) => {
       const mo = i + 1;
       const bits = [];
-      if ((cal.sow_indoors || []).includes(mo)) bits.push(`<span class="mark sow">sow in</span>`);
-      if ((cal.sow_direct || []).includes(mo)) bits.push(`<span class="mark sow">sow</span>`);
+      if ((cal.sow_indoors || []).includes(mo)) bits.push(`<span class="mark sow_indoors">sow in</span>`);
+      if ((cal.sow_direct || []).includes(mo)) bits.push(`<span class="mark sow_direct">sow</span>`);
       if ((cal.plant || []).includes(mo)) bits.push(`<span class="mark plant">plant</span>`);
       if ((cal.harvest || []).includes(mo)) bits.push(`<span class="mark harvest">harvest</span>`);
-      if ((cal.prune || []).includes(mo)) bits.push(`<span class="mark">prune</span>`);
+      if ((cal.prune || []).includes(mo)) bits.push(`<span class="mark prune">prune</span>`);
       if (sownM === mo) bits.push(`<span class="mark done">sown${g.sown ? " " + esc(g.sown.slice(8)) : ""}</span>`);
       if (plantedM === mo) bits.push(`<span class="mark done">planted${g.planted ? " " + esc(g.planted.slice(8)) : ""}</span>`);
       return `<td>${bits.join("")}</td>`;
@@ -70,6 +70,7 @@ function renderGrowingCalendar(p) {
     return `<tr><th class="crop" scope="row"><button type="button" class="cal-crop" data-edit="${esc(g.id)}">${esc(c?.name || g.crop)}${vName ? ` <em>${esc(vName)}</em>` : ""}</button></th>${cells}</tr>`;
   }).join("");
   return `<div class="growing-cal"><table><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table>
+    <p class="cal-legend"><i class="on sow_indoors"></i>sow indoors <i class="on sow_direct"></i>sow outside <i class="on plant"></i>plant out <i class="on prune"></i>prune <i class="on harvest"></i>harvest</p>
     <p class="small muted">${loc?.symbol ? "Windows come from your region's guide, when one exists. Dates you recorded are labelled sown/planted." : "Save a location to see sowing and harvest windows from your region's guides. Dates you recorded still appear."}</p></div>`;
 }
 
