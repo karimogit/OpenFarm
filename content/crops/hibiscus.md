@@ -1,9 +1,11 @@
 ---
 slug: hibiscus
 name: Hibiscus
+scientific_name: "Hibiscus"
+family: Malvaceae
+wikidata: Q157124
 type: flower
 origin: imported
-scientific_name: Hibiscus
 sun: full
 sowing_method: Cuttings or seeds
 rescue:

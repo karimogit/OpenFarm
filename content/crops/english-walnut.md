@@ -1,9 +1,11 @@
 ---
 slug: english-walnut
 name: English Walnut
+scientific_name: "Juglans regia"
+family: Juglandaceae
+wikidata: Q46871
 type: nut
 origin: imported
-scientific_name: Juglans regia
 sun: full
 sowing_method: Transplant grafted sapling or direct seed
 size:

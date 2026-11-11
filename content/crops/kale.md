@@ -1,8 +1,9 @@
 ---
 slug: kale
 name: Kale
-scientific_name: Brassica oleracea
+scientific_name: "Brassica oleracea"
 family: Brassicaceae
+wikidata: Q146212
 type: vegetable
 lifecycle: biennial
 origin: curated
@@ -21,6 +22,9 @@ seed_saving:
     cauliflower, kohlrabi…), so varieties need about 800 m (½ mile) isolation. Russian and Siberian
     kales are a different species (Brassica napus) and cross with swede instead.
   sources: [seed-matters-chart]
+  cycle: biennial
+  min_plants: 40
+  cross_note: "Crosses with all Brassica oleracea crops (cabbage, kale, broccoli, cauliflower, kohlrabi, collards\u2026)."
 problems: [club-root]
 sources:
   - seed-matters-chart

@@ -1,8 +1,9 @@
 ---
 slug: strawberry
 name: Strawberry
-scientific_name: Fragaria × ananassa
+scientific_name: "Fragaria × ananassa"
 family: Rosaceae
+wikidata: Q13158
 type: berry
 lifecycle: perennial
 origin: curated

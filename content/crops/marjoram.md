@@ -1,9 +1,11 @@
 ---
 slug: marjoram
 name: Marjoram
+scientific_name: "Origanum majorana"
+family: Lamiaceae
+wikidata: Q22694
 type: herb
 origin: imported
-scientific_name: Origanum majorana
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: honeydew-melon
 name: Honeydew Melon
+scientific_name: "Cucumis melo"
+family: Cucurbitaceae
+wikidata: Q81602
 type: fruit
 origin: imported
-scientific_name: Cucumis melo
 sun: full
 sowing_method: Direct seed
 size:
@@ -24,5 +26,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: annual
+  isolation_m: [800, 800]
+  min_plants: 10
+  viability_years: 7
+  cross_note: "Does not cross with watermelon."
+  sources:
+    - seed-matters-chart
 ---
 Honeydew melons have a round to slightly oval shape. Like other melons, they grow on vines. Their sweet, tender flesh is pale green or orange in color, and the smooth peel ranges from greenish to yellow.

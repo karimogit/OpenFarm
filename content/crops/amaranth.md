@@ -1,9 +1,11 @@
 ---
 slug: amaranth
 name: Amaranth
+scientific_name: "Amaranthus"
+family: Amaranthaceae
+wikidata: Q156344
 type: grain
 origin: imported
-scientific_name: 'Amaranthus cruentus, Amaranthus hypochondriacus, Amaranthus caudatus, Amaranthus hybridus'
 sun: full
 sowing_method: 'Direct seed, thin seedlings to 15cm'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: dill
 name: Dill
+scientific_name: "Anethum graveolens"
+family: Apiaceae
+wikidata: Q26686
 type: herb
 origin: imported
-scientific_name: Anethum graveolens
 sun: full
 sowing_method: Direct seed outdoors
 size:

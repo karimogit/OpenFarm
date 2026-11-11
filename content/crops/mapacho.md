@@ -1,9 +1,11 @@
 ---
 slug: mapacho
 name: You Can Grow Anything
+scientific_name: "Nicotiana rustica"
+family: Solanaceae
+wikidata: Q602633
 type: other
 origin: imported
-scientific_name: Nicotiana rustica
 sun: full
 rescue:
   slug: mapacho

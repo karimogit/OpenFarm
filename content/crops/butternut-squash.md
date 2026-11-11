@@ -1,9 +1,11 @@
 ---
 slug: butternut-squash
 name: Butternut Squash
+scientific_name: "Cucurbita moschata"
+family: Cucurbitaceae
+wikidata: Q160571
 type: vegetable
 origin: imported
-scientific_name: Cucurbita moschata
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:
@@ -25,5 +27,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: annual
+  isolation_m: [800, 800]
+  min_plants: 10
+  viability_years: 7
+  cross_note: "Crosses only within the same species; separate male and female flowers."
+  sources:
+    - seed-matters-chart
 ---
 Butternut squash is a winter squash cultivar that produces long squash with smooth, tan-yellow skin and a rounded compartment of seeds at the bottom. Flesh is deep orange and firm with a sweet, nutty taste. Butternut squash becomes deeper orange and sweeter and richer as it ripens. Like other squash, it grows on sprawling vines. If starting seeds indoors, use peat pots and directly transplant them into the soil to reduce root disturbance. Harvest squash before any hard frosts and cure. Winter squash can be stored for up to 3 months in a cool, dry, well-ventilated place.

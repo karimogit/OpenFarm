@@ -1,9 +1,11 @@
 ---
 slug: miners-lettuce
 name: Miner'S Lettuce
+scientific_name: "Claytonia perfoliata"
+family: Montiaceae
+wikidata: Q1376670
 type: vegetable
 origin: imported
-scientific_name: Claytonia perfoliata
 sun: full
 sowing_method: 'Direct seed outdoors, thin seedlings to 10cm apart'
 size:

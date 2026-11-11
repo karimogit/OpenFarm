@@ -1,9 +1,11 @@
 ---
 slug: oak
 name: Oak
+scientific_name: "Quercus"
+family: Fagaceae
+wikidata: Q12004
 type: other
 origin: imported
-scientific_name: Quercus
 sun: full
 sowing_method: Direct seed outdoors
 rescue:

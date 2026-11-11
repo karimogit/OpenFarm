@@ -1,9 +1,11 @@
 ---
 slug: mexican-tarragon
 name: Mexican Tarragon
+scientific_name: "Tagetes lucida"
+family: Asteraceae
+wikidata: Q2714702
 type: herb
 origin: imported
-scientific_name: Tagetes lucida
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:

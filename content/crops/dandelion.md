@@ -1,9 +1,11 @@
 ---
 slug: dandelion
 name: Dandelion
+scientific_name: "Taraxacum officinale"
+family: Asteraceae
+wikidata: Q131219
 type: vegetable
 origin: imported
-scientific_name: Taraxacum officinale
 sun: full
 sowing_method: 'Direct seed outdoors, thin to 15cm'
 size:

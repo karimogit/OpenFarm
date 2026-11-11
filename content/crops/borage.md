@@ -1,9 +1,11 @@
 ---
 slug: borage
 name: Borage
+scientific_name: "Borago officinalis"
+family: Boraginaceae
+wikidata: Q147075
 type: herb
 origin: imported
-scientific_name: Borago officinalis
 sun: partial
 sowing_method: 'Direct seed outdoors, thin to 45cm apart when seedlings are 4cm tall'
 size:

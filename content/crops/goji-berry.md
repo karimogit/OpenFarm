@@ -1,9 +1,11 @@
 ---
 slug: goji-berry
 name: Goji Berry
+scientific_name: "Lycium barbarum"
+family: Solanaceae
+wikidata: Q196332
 type: berry
 origin: imported
-scientific_name: Lycium barbarum / Lycium chinense
 sun: full
 sowing_method: Transplant bare-root plants or cuttings
 size:

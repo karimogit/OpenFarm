@@ -1,8 +1,9 @@
 ---
 slug: potato
 name: Potato
-scientific_name: Solanum tuberosum
+scientific_name: "Solanum tuberosum"
 family: Solanaceae
+wikidata: Q10998
 type: vegetable
 lifecycle: annual
 origin: curated

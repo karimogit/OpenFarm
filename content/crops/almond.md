@@ -1,9 +1,11 @@
 ---
 slug: almond
 name: Almond
+scientific_name: "Prunus dulcis"
+family: Rosaceae
+wikidata: Q39918
 type: nut
 origin: imported
-scientific_name: Prunus dulcis
 sun: full
 sowing_method: Bare root tree
 size:

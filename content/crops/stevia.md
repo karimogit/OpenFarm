@@ -1,9 +1,11 @@
 ---
 slug: stevia
 name: Stevia
+scientific_name: "Stevia rebaudiana"
+family: Asteraceae
+wikidata: Q7213452
 type: herb
 origin: imported
-scientific_name: Stevia rebaudiana
 sun: full
 sowing_method: 'Direct seed indoors, cuttings, or cloned seedlings'
 size:

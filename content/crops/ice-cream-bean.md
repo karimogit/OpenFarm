@@ -1,9 +1,11 @@
 ---
 slug: ice-cream-bean
 name: Ice Cream Bean
+scientific_name: "Inga edulis"
+family: Fabaceae
+wikidata: Q138183
 type: fruit-tree
 origin: imported
-scientific_name: Inga edulis
 sun: full
 sowing_method: Transplant young tree or start from seed
 size:

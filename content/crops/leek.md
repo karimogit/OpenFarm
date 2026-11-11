@@ -1,9 +1,11 @@
 ---
 slug: leek
 name: Leek
+scientific_name: "Allium porrum"
+family: Amaryllidaceae
+wikidata: Q21870138
 type: vegetable
 origin: imported
-scientific_name: Allium porrum
 sun: full
 sowing_method: Direct seed or transplant seedlings
 size:

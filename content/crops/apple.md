@@ -1,8 +1,9 @@
 ---
 slug: apple
 name: Apple
-scientific_name: Malus domestica
+scientific_name: "Malus domestica"
 family: Rosaceae
+wikidata: Q18674606
 type: fruit-tree
 lifecycle: perennial
 origin: curated

@@ -1,9 +1,11 @@
 ---
 slug: morning-glory
 name: Morning Glory
+scientific_name: "Convolvulaceae"
+family: Convolvulaceae
+wikidata: Q145777
 type: flower
 origin: imported
-scientific_name: Convolvulaceae
 sun: full
 sowing_method: 'Direct seed (if starting indoors, transplant seedlings outside after hardening off)'
 size:

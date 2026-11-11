@@ -76,6 +76,10 @@
     },
     "examples": {
       "type": "string"
+    },
+    "commons_file": {
+      "type": "string",
+      "description": "Wikimedia Commons file name of a representative farmland/garden photo for this region."
     }
   }
 }

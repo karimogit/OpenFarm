@@ -1,9 +1,11 @@
 ---
 slug: elephant-garlic
 name: Elephant Garlic
+scientific_name: "Allium ampeloprasum var. ampeloprasum"
+family: Amaryllidaceae
+wikidata: Q4392799
 type: vegetable
 origin: imported
-scientific_name: Allium ampeloprasum var. ampeloprasum
 sun: full
 sowing_method: Direct seed cloves outdoors in spring or autumn
 size:

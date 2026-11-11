@@ -1,9 +1,11 @@
 ---
 slug: quinoa
 name: Quinoa
+scientific_name: "Chenopodium quinoa"
+family: Amaranthaceae
+wikidata: Q139925
 type: grain
 origin: imported
-scientific_name: Chenopodium quinoa subsp. quinoa
 sun: full
 sowing_method: 'Direct seed outdoors, thin to 10cm'
 size:

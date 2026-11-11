@@ -1,9 +1,11 @@
 ---
 slug: salad-burnet
 name: Salad Burnet
+scientific_name: "Sanguisorba minor"
+family: Rosaceae
+wikidata: Q163799
 type: herb
 origin: imported
-scientific_name: Sanguisorba minor
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: licorice
 name: Licorice
+scientific_name: "Glycyrrhiza glabra"
+family: Fabaceae
+wikidata: Q257106
 type: herb
 origin: imported
-scientific_name: Glycyrrhiza glabra
 sun: full
 sowing_method: Direct seed indoors (transplant seedlings outside after hardening off) or division
 size:

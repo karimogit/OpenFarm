@@ -1,9 +1,11 @@
 ---
 slug: chives
 name: Chives
+scientific_name: "Allium schoenoprasum"
+family: Amaryllidaceae
+wikidata: Q51148
 type: herb
 origin: imported
-scientific_name: Allium schoenoprasum
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:

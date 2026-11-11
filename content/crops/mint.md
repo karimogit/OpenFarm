@@ -1,9 +1,11 @@
 ---
 slug: mint
 name: Mint
+scientific_name: "Mentha spicata"
+family: Lamiaceae
+wikidata: Q160114
 type: herb
 origin: imported
-scientific_name: Mentha spicata / Mentha viridis
 sun: partial
 sowing_method: Direct seed indoors or outside
 size:

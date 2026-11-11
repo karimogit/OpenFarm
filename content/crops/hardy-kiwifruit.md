@@ -1,9 +1,11 @@
 ---
 slug: hardy-kiwifruit
 name: Hardy Kiwifruit
+scientific_name: "Actinidia arguta"
+family: Actinidiaceae
+wikidata: Q848074
 type: fruit
 origin: imported
-scientific_name: Actinidia arguta
 sun: full
 sowing_method: 'Cuttings, grafted plant, or direct seed indoors'
 size:

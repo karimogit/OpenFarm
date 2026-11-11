@@ -1,9 +1,11 @@
 ---
 slug: blueberry
 name: Blueberry
+scientific_name: "Vaccinium sect. Cyanococcus"
+family: Ericaceae
+wikidata: Q13178
 type: berry
 origin: imported
-scientific_name: Vaccinium sect. Cyanococcus
 sun: full
 sowing_method: Plant plants into soil or pots.
 size:

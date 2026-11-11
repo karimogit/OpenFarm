@@ -1,9 +1,11 @@
 ---
 slug: rose-geranium
 name: Rose Geranium
+scientific_name: "Pelargonium graveolens"
+family: Geraniaceae
+wikidata: Q164306
 type: herb
 origin: imported
-scientific_name: Pelargonium graveolens
 sun: full
 sowing_method: Direct seed indoors or transplant cuttings in early summer
 size:

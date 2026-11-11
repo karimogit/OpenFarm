@@ -1,9 +1,11 @@
 ---
 slug: green-onion
 name: Green Onion
+scientific_name: "Allium fistulosum"
+family: Amaryllidaceae
+wikidata: Q27938
 type: vegetable
 origin: imported
-scientific_name: Allium fistulosum
 sun: partial
 sowing_method: 'Direct seed, thin to 8cm apart when seedlings are 5cm tall.'
 size:

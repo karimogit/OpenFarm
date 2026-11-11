@@ -1,9 +1,11 @@
 ---
 slug: belgium-endive
 name: Belgium Endive
+scientific_name: "Cichorium intybus"
+family: Asteraceae
+wikidata: Q2544599
 type: vegetable
 origin: imported
-scientific_name: Cichorium intybus
 sun: partial
 sowing_method: 'Direct seed, thin to 15cm apart'
 size:

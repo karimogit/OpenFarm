@@ -1,9 +1,11 @@
 ---
 slug: curly-dock
 name: You Can Grow Anything
+scientific_name: "Rumex crispus"
+family: Polygonaceae
+wikidata: Q157643
 type: vegetable
 origin: imported
-scientific_name: Rumex crispus
 rescue:
   slug: curly-dock
   wayback_url: 'https://web.archive.org/web/20150317112909/https://openfarm.cc/en/crops/curly-dock'

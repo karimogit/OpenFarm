@@ -1,9 +1,11 @@
 ---
 slug: strawberry-guava
 name: Strawberry Guava
+scientific_name: "Psidium cattleyanum"
+family: Myrtaceae
+wikidata: Q17813563
 type: fruit-tree
 origin: imported
-scientific_name: Psidium cattleianum / Psidium cattleyanum
 sun: full
 sowing_method: Direct seed indoors
 size:

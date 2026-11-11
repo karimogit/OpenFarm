@@ -1,9 +1,11 @@
 ---
 slug: anise-hyssop
 name: Anise Hyssop
+scientific_name: "Agastache foeniculum"
+family: Lamiaceae
+wikidata: Q1264088
 type: herb
 origin: imported
-scientific_name: Agastache foeniculum
 rescue:
   slug: anise-hyssop
   wayback_url: 'https://web.archive.org/web/20250114053257/https://openfarm.cc/en/crops/anise-hyssop'

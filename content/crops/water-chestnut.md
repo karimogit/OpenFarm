@@ -1,9 +1,11 @@
 ---
 slug: water-chestnut
 name: Water Chestnut
+scientific_name: "Eleocharis dulcis"
+family: Cyperaceae
+wikidata: Q932664
 type: vegetable
 origin: imported
-scientific_name: Eleocharis dulcis
 sun: full
 sowing_method: Divide tubers
 size:

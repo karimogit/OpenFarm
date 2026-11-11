@@ -1,9 +1,11 @@
 ---
 slug: common-hop
 name: Common Hop
+scientific_name: "Humulus lupulus"
+family: Cannabaceae
+wikidata: Q104212
 type: other
 origin: imported
-scientific_name: Humulus lupulus
 rescue:
   slug: common-hop
   wayback_url: 'https://web.archive.org/web/20221210064539/https://openfarm.cc/en/crops/common-hop'

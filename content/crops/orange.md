@@ -1,9 +1,11 @@
 ---
 slug: orange
 name: Orange
+scientific_name: "Citrus ×sinensis"
+family: Rutaceae
+wikidata: Q3355098
 type: fruit-tree
 origin: imported
-scientific_name: Citrus × sinensis
 sun: full
 sowing_method: Transplant grafted sapling
 size:

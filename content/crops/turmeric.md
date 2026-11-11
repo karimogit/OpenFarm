@@ -1,9 +1,11 @@
 ---
 slug: turmeric
 name: Turmeric
+scientific_name: "Curcuma longa"
+family: Zingiberaceae
+wikidata: Q42562
 type: spice
 origin: imported
-scientific_name: Curcuma longa
 rescue:
   slug: turmeric
   wayback_url: 'https://web.archive.org/web/20220809161203/https://openfarm.cc/en/crops/turmeric'

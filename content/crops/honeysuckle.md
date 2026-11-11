@@ -1,9 +1,11 @@
 ---
 slug: honeysuckle
 name: Honeysuckle
+scientific_name: "Lonicera"
+family: Caprifoliaceae
+wikidata: Q156047
 type: flower
 origin: imported
-scientific_name: Lonicera
 sun: full
 sowing_method: Direct seed or cuttings
 size:

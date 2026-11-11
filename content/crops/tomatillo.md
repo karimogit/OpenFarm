@@ -1,9 +1,11 @@
 ---
 slug: tomatillo
 name: Tomatillo
+scientific_name: "Physalis philadelphica"
+family: Solanaceae
+wikidata: Q622525
 type: vegetable
 origin: imported
-scientific_name: Physalis philadelphica
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off'
 size:

@@ -1,9 +1,11 @@
 ---
 slug: loquat
 name: Loquat
+scientific_name: "Eriobotrya japonica"
+family: Rosaceae
+wikidata: Q41505
 type: fruit-tree
 origin: imported
-scientific_name: Eriobotrya japonica
 sun: full
 sowing_method: Transplant young grafted sapling
 size:

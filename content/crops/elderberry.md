@@ -1,9 +1,11 @@
 ---
 slug: elderberry
 name: Elderberry
+scientific_name: "Sambucus"
+family: Viburnaceae
+wikidata: Q131448
 type: berry
 origin: imported
-scientific_name: Sambucus
 sun: full
 sowing_method: Cuttings or young plant
 size:

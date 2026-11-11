@@ -1,9 +1,11 @@
 ---
 slug: passion-fruit
 name: Passion Fruit
+scientific_name: "Passiflora edulis"
+family: Passifloraceae
+wikidata: Q156790
 type: fruit
 origin: imported
-scientific_name: Passiflora edulis
 sun: full
 sowing_method: 'Direct seed, cuttings, grafting'
 size:

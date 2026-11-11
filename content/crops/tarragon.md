@@ -1,9 +1,11 @@
 ---
 slug: tarragon
 name: Tarragon
+scientific_name: "Artemisia dracunculus"
+family: Asteraceae
+wikidata: Q155814
 type: herb
 origin: imported
-scientific_name: Artemisia dracunculus var. sativa
 sun: full
 sowing_method: 'Propagate with cuttings or division, seeds are generally sterile'
 size:

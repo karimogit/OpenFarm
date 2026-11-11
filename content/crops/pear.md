@@ -1,9 +1,11 @@
 ---
 slug: pear
 name: Pear
+scientific_name: "Pyrus"
+family: Rosaceae
+wikidata: Q434
 type: fruit-tree
 origin: imported
-scientific_name: Pyrus
 sun: full
 sowing_method: Transplant bare-root plant
 rescue:

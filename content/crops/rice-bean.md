@@ -1,9 +1,11 @@
 ---
 slug: rice-bean
 name: Rice Bean
+scientific_name: "Vigna umbellata"
+family: Fabaceae
+wikidata: Q1368391
 type: legume
 origin: imported
-scientific_name: Vigna umbellata (prev. Phaseolus calcaratus)
 sun: full
 sowing_method: Direct seed outdoors using seed drill or broadcast
 size:

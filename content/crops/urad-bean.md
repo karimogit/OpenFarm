@@ -1,9 +1,11 @@
 ---
 slug: urad-bean
 name: Urad Bean
+scientific_name: "Vigna mungo"
+family: Fabaceae
+wikidata: Q369447
 type: legume
 origin: imported
-scientific_name: Vigna mungo
 sun: full
 sowing_method: Direct seed outdoors
 size:

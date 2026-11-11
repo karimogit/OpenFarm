@@ -1,9 +1,11 @@
 ---
 slug: hemp
 name: Hemp
+scientific_name: "Cannabis sativa"
+family: Cannabaceae
+wikidata: Q26726
 type: other
 origin: imported
-scientific_name: Cannabis sativa
 sun: full
 sowing_method: Direct seed outdoors
 size:

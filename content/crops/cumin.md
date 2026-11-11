@@ -1,9 +1,11 @@
 ---
 slug: cumin
 name: Cumin
+scientific_name: "Cuminum cyminum"
+family: Apiaceae
+wikidata: Q132624
 type: spice
 origin: imported
-scientific_name: Cuminum cyminum
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off'
 size:

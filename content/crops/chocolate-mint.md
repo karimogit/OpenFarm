@@ -1,6 +1,7 @@
 ---
 slug: chocolate-mint
 name: Chocolate Mint
+commons_file: "Mentha × piperita 'Chocolate Mint'.JPG"
 type: herb
 origin: imported
 rescue:

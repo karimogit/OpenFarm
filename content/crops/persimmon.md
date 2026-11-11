@@ -1,9 +1,11 @@
 ---
 slug: persimmon
 name: Persimmon
+scientific_name: "Diospyros kaki"
+family: Ebenaceae
+wikidata: Q158482
 type: fruit-tree
 origin: imported
-scientific_name: Diospyros kaki
 sun: full
 sowing_method: Transplant grafted sapling or direct seed indoors
 size:

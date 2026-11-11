@@ -1,9 +1,11 @@
 ---
 slug: white-currant
 name: White Currant
+scientific_name: "Ribes rubrum"
+family: Grossulariaceae
+wikidata: Q146661
 type: berry
 origin: imported
-scientific_name: Ribes rubrum
 sun: full
 sowing_method: Cuttings
 size:

@@ -1,9 +1,11 @@
 ---
 slug: horseradish
 name: Horseradish
+scientific_name: "Armoracia rusticana"
+family: Brassicaceae
+wikidata: Q26545
 type: vegetable
 origin: imported
-scientific_name: Armoracia rusticana
 sun: full
 sowing_method: Root cuttings
 size:

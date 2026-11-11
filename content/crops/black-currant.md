@@ -1,9 +1,11 @@
 ---
 slug: black-currant
 name: Black Currant
+scientific_name: "Ribes nigrum"
+family: Grossulariaceae
+wikidata: Q146604
 type: berry
 origin: imported
-scientific_name: Ribes nigrum
 sun: full
 sowing_method: Cuttings
 size:

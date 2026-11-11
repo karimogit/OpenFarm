@@ -1,9 +1,11 @@
 ---
 slug: pineapple
 name: Pineapple
+scientific_name: "Ananas comosus"
+family: Bromeliaceae
+wikidata: Q1493
 type: fruit
 origin: imported
-scientific_name: Ananas comosus
 sun: full
 sowing_method: 'Crowns, slips, or suckers'
 size:

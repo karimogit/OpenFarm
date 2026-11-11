@@ -1,9 +1,11 @@
 ---
 slug: pomegranate
 name: Pomegranate
+scientific_name: "Punica granatum"
+family: Lythraceae
+wikidata: Q13188
 type: fruit-tree
 origin: imported
-scientific_name: Punica granatum
 sun: full
 sowing_method: Hardwood cuttings or air layering
 size:

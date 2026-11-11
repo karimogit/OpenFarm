@@ -1,9 +1,11 @@
 ---
 slug: garlic-chives
 name: Garlic Chives
+scientific_name: "Allium tuberosum"
+family: Amaryllidaceae
+wikidata: Q42285
 type: herb
 origin: imported
-scientific_name: Allium tuberosum
 sun: full
 sowing_method: Direct sow outdoors or sow indoors and transplant seedlings after hardening off
 size:

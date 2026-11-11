@@ -1,9 +1,11 @@
 ---
 slug: shallot
 name: Shallot
+scientific_name: "Allium cepa var. aggregatum"
+family: Amaryllidaceae
+wikidata: Q25120843
 type: vegetable
 origin: imported
-scientific_name: Allium cepa var. aggregatum
 sun: full
 sowing_method: 'Direct seed, thin to 5cm when seedlings are 3cm tall'
 size:

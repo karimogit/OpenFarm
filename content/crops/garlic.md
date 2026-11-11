@@ -1,8 +1,9 @@
 ---
 slug: garlic
 name: Garlic
-scientific_name: Allium sativum
+scientific_name: "Allium sativum"
 family: Amaryllidaceae
+wikidata: Q23400
 type: vegetable
 lifecycle: perennial-grown-as-annual
 origin: curated

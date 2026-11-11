@@ -1,9 +1,11 @@
 ---
 slug: yam
 name: Yam
+scientific_name: "Dioscorea"
+family: Dioscoreaceae
+wikidata: Q71549
 type: vegetable
 origin: imported
-scientific_name: Dioscorea
 sun: full
 sowing_method: Direct seed tuber pieces
 size:

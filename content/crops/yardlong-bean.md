@@ -1,9 +1,11 @@
 ---
 slug: yardlong-bean
 name: Yardlong Bean
+scientific_name: "Vigna unguiculata subsp. sesquipedalis"
+family: Fabaceae
+wikidata: Q1323455
 type: legume
 origin: imported
-scientific_name: Vigna unguiculata subsp. sesquipedalis
 sun: full
 sowing_method: 'Direct seed outdoors, 8cm apart. Thin seedlings to 30cm.'
 size:

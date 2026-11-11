@@ -1,9 +1,11 @@
 ---
 slug: sage
 name: Sage
+scientific_name: "Salvia officinalis"
+family: Lamiaceae
+wikidata: Q1111359
 type: herb
 origin: imported
-scientific_name: Salvia officinalis
 sun: full
 sowing_method: 'Direct seed indoors, harden seedlings off before transplanting outside.'
 size:

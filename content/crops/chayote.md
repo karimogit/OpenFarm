@@ -1,9 +1,11 @@
 ---
 slug: chayote
 name: Chayote
+scientific_name: "Sechium edule"
+family: Cucurbitaceae
+wikidata: Q319611
 type: vegetable
 origin: imported
-scientific_name: Sechium edule
 sun: full
 sowing_method: Direct seed whole fruit outdoors
 size:

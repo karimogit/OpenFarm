@@ -1,9 +1,11 @@
 ---
 slug: alfalfa
 name: Alfalfa
+scientific_name: "Medicago sativa"
+family: Fabaceae
+wikidata: Q156106
 type: cover-crop
 origin: imported
-scientific_name: Medicago sativa
 sun: full
 sowing_method: Direct seed
 size:

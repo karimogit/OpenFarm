@@ -9,7 +9,7 @@
 // Only Commons files under CC0, public domain, CC BY or CC BY-SA are accepted; everything else is skipped.
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, loadCrops, loadVarieties } from "./content.js";
+import { ROOT, loadCrops, loadVarieties, loadRegions } from "./content.js";
 
 const OUT = path.join(ROOT, "data", "images.json");
 const UA = "OpenFarm/0.2 (https://github.com/karimogit/OpenFarm; image attribution lookup)";
@@ -52,7 +52,7 @@ async function fileInfo(files) {
   const out = {};
   for (let i = 0; i < files.length; i += 50) {
     const batch = files.slice(i, i + 50).map((f) => `File:${f}`);
-    const j = await api("commons.wikimedia.org", { action: "query", prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: "640", titles: batch.join("|") });
+    const j = await api("commons.wikimedia.org", { action: "query", prop: "imageinfo", iiprop: "url|size|extmetadata", iiurlwidth: "640", titles: batch.join("|") });
     const map = {};
     for (const n of j.query?.normalized || []) map[n.to] = n.from;
     for (const p of j.query?.pages || []) {
@@ -62,6 +62,7 @@ async function fileInfo(files) {
       if (m.NonFree?.value === "true" || !FREE.test(license)) continue;
       out[(map[p.title] || p.title).replace(/^File:/, "")] = out[p.title.replace(/^File:/, "")] = {
         src: (ii.thumburl || ii.url).replace(/\?.*$/, ""), width: ii.thumbwidth, height: ii.thumbheight,
+        orig_url: ii.url, orig_width: ii.width, orig_height: ii.height,
         author: strip(m.Artist?.value) || "Unknown author", license, license_url: m.LicenseUrl?.value || null,
         source: ii.descriptionurl,
       };
@@ -71,13 +72,30 @@ async function fileInfo(files) {
   return out;
 }
 
+// Older cache entries lack the original size; fetch it so the site can pick thumbnails without upscaling.
+async function backfillSizes() {
+  const keys = Object.keys(cache).filter((k) => cache[k] && !cache[k].orig_width);
+  for (let i = 0; i < keys.length; i += 50) {
+    const batch = keys.slice(i, i + 50);
+    const j = await api("commons.wikimedia.org", { action: "query", prop: "imageinfo", iiprop: "url|size", titles: batch.map((k) => `File:${cache[k].file}`).join("|") });
+    const norm = {}; for (const n of j.query?.normalized || []) norm[n.to] = n.from;
+    const byFile = {};
+    for (const p of j.query?.pages || []) if (p.imageinfo) byFile[(norm[p.title] || p.title).replace(/^File:/, "")] = byFile[p.title.replace(/^File:/, "")] = p.imageinfo[0];
+    for (const k of batch) { const ii = byFile[cache[k].file]; if (ii) Object.assign(cache[k], { orig_url: ii.url, orig_width: ii.width, orig_height: ii.height }); }
+    await sleep(300);
+  }
+}
+
 async function main() {
+  await backfillSizes();
   const wanted = [];
   for (const c of loadCrops()) wanted.push({ key: `crop:${c.data.slug}`, sci: c.data.scientific_name, titles: [c.data.wikipedia, c.data.scientific_name, c.data.name].filter(Boolean) });
   for (const v of loadVarieties()) if (v.data.wikipedia) wanted.push({ key: `variety:${v.data.crop}/${v.data.slug}`, titles: [v.data.wikipedia] });
   // A human-picked Commons file (`commons_file` in frontmatter) always wins.
   for (const c of loadCrops()) if (c.data.commons_file) wanted.find((w) => w.key === `crop:${c.data.slug}`).file = c.data.commons_file;
   for (const v of loadVarieties()) if (v.data.commons_file) wanted.push({ key: `variety:${v.data.crop}/${v.data.slug}`, file: v.data.commons_file, titles: [] });
+  // Climate regions: one hand-picked farmland/garden photo each.
+  for (const r of loadRegions()) if (r.data.commons_file) wanted.push({ key: `region:${r.data.slug}`, file: r.data.commons_file, titles: [] });
   const fixed = wanted.filter((w) => w.file && (refresh || !cache[w.key] || cache[w.key].file !== w.file));
   if (fixed.length) {
     const info = await fileInfo(fixed.map((w) => w.file));
@@ -108,7 +126,7 @@ async function main() {
     const genus = q.split(" ")[0].toLowerCase();
     const j = await api("commons.wikimedia.org", {
       action: "query", generator: "search", gsrsearch: `"${q}" filetype:bitmap`, gsrnamespace: "6", gsrlimit: "8",
-      prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: "640",
+      prop: "imageinfo", iiprop: "url|size|extmetadata", iiurlwidth: "640",
     });
     const hits = (j.query?.pages || []).sort((a, b) => a.index - b.index);
     const pick = hits.find((p) => {
@@ -120,6 +138,7 @@ async function main() {
       const ii = pick.imageinfo[0]; const m = ii.extmetadata;
       cache[w.key] = {
         src: (ii.thumburl || ii.url).replace(/\?.*$/, ""), width: ii.thumbwidth, height: ii.thumbheight,
+        orig_url: ii.url, orig_width: ii.width, orig_height: ii.height,
         author: strip(m.Artist?.value) || "Unknown author", license: strip(m.LicenseShortName?.value),
         license_url: m.LicenseUrl?.value || null, source: ii.descriptionurl, file: pick.title.replace(/^File:/, ""),
         found_by: `Commons search for "${q}"`,

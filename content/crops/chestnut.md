@@ -1,9 +1,11 @@
 ---
 slug: chestnut
 name: Chestnut
+scientific_name: "Castanea"
+family: Fagaceae
+wikidata: Q129324
 type: nut
 origin: imported
-scientific_name: Castanea
 sun: full
 sowing_method: Direct seed or transplant sapling
 size:

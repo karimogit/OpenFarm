@@ -1,9 +1,11 @@
 ---
 slug: watercress
 name: Watercress
+scientific_name: "Nasturtium officinale"
+family: Brassicaceae
+wikidata: Q150452
 type: vegetable
 origin: imported
-scientific_name: Nasturtium officinale
 sun: full
 sowing_method: 'Direct seed, transplants, or cuttings'
 size:

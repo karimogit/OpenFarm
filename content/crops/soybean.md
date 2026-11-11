@@ -1,9 +1,11 @@
 ---
 slug: soybean
 name: Soybean
+scientific_name: "Glycine max"
+family: Fabaceae
+wikidata: Q11006
 type: legume
 origin: imported
-scientific_name: Glycine max
 sun: full
 sowing_method: 'Direct seed outdoors after last frost, thin to 30cm when seedlings are 4cm high'
 size:

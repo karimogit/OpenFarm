@@ -1,8 +1,9 @@
 ---
 slug: tomato
 name: Tomato
-scientific_name: Solanum lycopersicum
+scientific_name: "Solanum lycopersicum"
 family: Solanaceae
+wikidata: Q23501
 type: vegetable
 lifecycle: annual
 origin: curated
@@ -24,7 +25,12 @@ seed_saving:
     Flowers are self-pollinating, so 3 m (10 ft) between varieties is the usual garden-scale minimum;
     WVU Extension suggests 7.5–15 m (25–50 ft) for best purity, and potato-leaved cultivars need more.
     Seed is cleaned by fermenting the pulp for a few days. Saved seed from F1 hybrids does not come true.
-  sources: [seed-matters-chart, wvu-seed-saving, umd-seed-saving]
+  sources: [seed-matters-chart, wvu-seed-saving, umd-seed-saving, osu-seed-saving-chart, umn-saving-seeds]
+  cycle: annual
+  min_plants: 10
+  harvest: "Pick fruit when fully ripe."
+  processing: wet-ferment
+  processing_note: "Squeeze the seeds and gel into a jar with some water and let it ferment for 3\u20135 days, stirring; good seed sinks. Rinse and spread out to dry."
 problems: [late-blight, blossom-end-rot]
 sources:
   - clemson-tomato

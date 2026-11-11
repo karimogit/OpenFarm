@@ -1,9 +1,11 @@
 ---
 slug: gooseberry
 name: Gooseberry
+scientific_name: "Ribes uva-crispa"
+family: Grossulariaceae
+wikidata: Q41503
 type: berry
 origin: imported
-scientific_name: Ribes uva-crispa / Ribes grossularia
 sun: full
 sowing_method: Cuttings
 size:

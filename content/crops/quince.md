@@ -1,9 +1,11 @@
 ---
 slug: quince
 name: Quince
+scientific_name: "Cydonia oblonga"
+family: Rosaceae
+wikidata: Q43300
 type: fruit-tree
 origin: imported
-scientific_name: Cydonia oblonga
 sun: full
 sowing_method: Transplant grafted sapling or use cuttings
 size:

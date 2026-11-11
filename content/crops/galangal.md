@@ -1,9 +1,11 @@
 ---
 slug: galangal
 name: Galangal
+scientific_name: "Alpinia galanga"
+family: Zingiberaceae
+wikidata: Q402971
 type: spice
 origin: imported
-scientific_name: Alpinia galanga
 rescue:
   slug: galangal
   wayback_url: 'https://web.archive.org/web/20240519134841/https://openfarm.cc/en/crops/galangal'

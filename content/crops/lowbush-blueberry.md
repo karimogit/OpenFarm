@@ -1,9 +1,11 @@
 ---
 slug: lowbush-blueberry
 name: Lowbush Blueberry
+scientific_name: "Vaccinium angustifolium"
+family: Ericaceae
+wikidata: Q512441
 type: berry
 origin: imported
-scientific_name: Vaccinium angustifolium
 rescue:
   slug: lowbush-blueberry
   wayback_url: 'https://web.archive.org/web/20240911133424/https://openfarm.cc/en/crops/lowbush-blueberry'

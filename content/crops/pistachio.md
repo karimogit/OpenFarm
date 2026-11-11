@@ -1,9 +1,11 @@
 ---
 slug: pistachio
 name: Pistachio
+scientific_name: "Pistacia vera"
+family: Anacardiaceae
+wikidata: Q36071
 type: nut
 origin: imported
-scientific_name: Pistacia vera
 sun: full
 sowing_method: 'Transplant grafted sapling, cuttings, or direct seed indoors'
 size:

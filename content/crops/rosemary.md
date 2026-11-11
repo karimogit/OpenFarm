@@ -1,9 +1,11 @@
 ---
 slug: rosemary
 name: Rosemary
+scientific_name: "Rosmarinus officinalis"
+family: Lamiaceae
+wikidata: Q122679
 type: herb
 origin: imported
-scientific_name: Rosmarinus officinalis
 sun: full
 sowing_method: Purchased starter
 size:

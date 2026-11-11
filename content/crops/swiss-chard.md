@@ -1,9 +1,11 @@
 ---
 slug: swiss-chard
 name: Swiss Chard
+scientific_name: "Beta vulgaris"
+family: Amaranthaceae
+wikidata: Q165191
 type: vegetable
 origin: imported
-scientific_name: Beta vulgaris
 sun: full
 sowing_method: Direct seed indoors or outdoors. Transplant seedlings after hardening off.
 size:
@@ -24,5 +26,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: wind
+  cycle: biennial
+  isolation_m: [1610, 1610]
+  min_plants: 30
+  viability_years: 6
+  cross_note: "Beet and chard are the same species and cross with each other."
+  sources:
+    - seed-matters-chart
 ---
 Swiss Chard is a leafy green vegetable in the Beet family. The thick stems come in a variety of colors including white, pink, red, yellow, orange, and pale green. It has large, crinkly leaves with distinctive veins. The leaves and stems are edible and high in nutrients. Swiss chard can be eaten raw or sautéed, baked, or steamed.

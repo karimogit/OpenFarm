@@ -1,9 +1,11 @@
 ---
 slug: basil
 name: Basil
+scientific_name: "Ocimum basilicum"
+family: Lamiaceae
+wikidata: Q38859
 type: herb
 origin: imported
-scientific_name: Ocimum basilicum
 sun: full
 size:
   spread_cm: 45

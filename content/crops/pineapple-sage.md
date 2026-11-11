@@ -1,9 +1,11 @@
 ---
 slug: pineapple-sage
 name: Pineapple Sage
+scientific_name: "Salvia elegans"
+family: Lamiaceae
+wikidata: Q1521008
 type: herb
 origin: imported
-scientific_name: Salvia elegans
 sun: full
 sowing_method: Cuttings
 size:

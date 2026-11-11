@@ -1,9 +1,11 @@
 ---
 slug: wine-cap-mushroom
 name: Wine Cap Mushroom
+scientific_name: "Stropharia rugosoannulata"
+family: Strophariaceae
+wikidata: Q1236980
 type: fungus
 origin: imported
-scientific_name: Stropharia rugosoannulata
 sun: partial
 sowing_method: Inoculate substrate with spores or divide pre-existing mushroom patch
 size:

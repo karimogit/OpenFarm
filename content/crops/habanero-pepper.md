@@ -1,9 +1,11 @@
 ---
 slug: habanero-pepper
 name: Habanero Pepper
+scientific_name: "Capsicum chinense"
+family: Solanaceae
+wikidata: Q311071
 type: vegetable
 origin: imported
-scientific_name: Capsicum chinense
 sun: full
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off'
 size:
@@ -22,5 +24,18 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: self
+  cycle: annual
+  isolation_m: [30, 30]
+  min_plants: 10
+  viability_years: 4
+  cross_note: "Mainly self-pollinating, but insects do cross-pollinate; hot and sweet peppers can cross."
+  harvest: "Pick a fully mature fruit (if possible fully red)."
+  processing: scrape-dry
+  processing_note: "Scrape out the seeds and spread them out to dry; they are ready to store when they break rather than bend."
+  sources:
+    - seed-matters-chart
+    - osu-seed-saving-chart
 ---
 Habaneros are a very hot chili pepper variety that have a rating of 100,000-350,000 Scoville units and a floral aroma. The fruit is green when unripe. Various cultivars turn orange, red, white, brown, yellow, or purple as they ripen. Ripe fruit are typically 2-6 cm long.

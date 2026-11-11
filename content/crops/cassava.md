@@ -1,9 +1,11 @@
 ---
 slug: cassava
 name: Cassava
+scientific_name: "Manihot esculenta"
+family: Euphorbiaceae
+wikidata: Q83124
 type: vegetable
 origin: imported
-scientific_name: Manihot esculenta
 sun: full
 sowing_method: 'Cuttings, start indoors and transplant outside after temps are above 21º C'
 size:

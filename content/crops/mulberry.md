@@ -1,9 +1,11 @@
 ---
 slug: mulberry
 name: Mulberry
+scientific_name: "Morus"
+family: Moraceae
+wikidata: Q44789
 type: fruit-tree
 origin: imported
-scientific_name: Morus
 sun: full
 sowing_method: 'Cuttings, transplant grafted tree'
 size:

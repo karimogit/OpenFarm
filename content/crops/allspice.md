@@ -1,9 +1,11 @@
 ---
 slug: allspice
 name: Allspice
+scientific_name: "Pimenta dioica"
+family: Myrtaceae
+wikidata: Q158468
 type: spice
 origin: imported
-scientific_name: Pimenta dioica
 sowing_method: Direct seed fresh berries indoors
 size:
   height_cm: 1000

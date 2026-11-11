@@ -1,9 +1,11 @@
 ---
 slug: lambs-lettuce
 name: Lamb'S Lettuce
+scientific_name: "Valerianella locusta"
+family: Caprifoliaceae
+wikidata: Q158954
 type: vegetable
 origin: imported
-scientific_name: Valerianella locusta
 sun: full
 sowing_method: 'Direct seed outdoors, thin plants to 5cm'
 size:

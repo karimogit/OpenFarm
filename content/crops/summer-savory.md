@@ -1,9 +1,11 @@
 ---
 slug: summer-savory
 name: Summer Savory
+scientific_name: "Satureja hortensis"
+family: Lamiaceae
+wikidata: Q157283
 type: herb
 origin: imported
-scientific_name: Satureja hortensis
 sun: full
 sowing_method: 'Direct seed. If planting indoors, harden off before transplanting seedlings outside.'
 size:

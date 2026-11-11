@@ -1,9 +1,11 @@
 ---
 slug: portobello
 name: Portobello
+scientific_name: "Agaricus bisporus"
+family: Agaricaceae
+wikidata: Q227690
 type: fungus
 origin: imported
-scientific_name: Agaricus bisporus
 sun: shade
 sowing_method: 'Sprinkle spores on surface of compost and peat moss, gently mix in, and press down'
 rescue:

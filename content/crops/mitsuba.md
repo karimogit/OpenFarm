@@ -1,9 +1,11 @@
 ---
 slug: mitsuba
 name: Mitsuba
+scientific_name: "Cryptotaenia japonica"
+family: Apiaceae
+wikidata: Q1352532
 type: herb
 origin: imported
-scientific_name: Cryptotaenia japonica
 size:
   height_cm: 80
 rescue:

@@ -1,9 +1,11 @@
 ---
 slug: melon
 name: Melon
+scientific_name: "Cucumis melo"
+family: Cucurbitaceae
+wikidata: Q81602
 type: fruit
 origin: imported
-scientific_name: Cucumis melo
 sun: full
 sowing_method: 'Direct seed. If planting indoors, use peat pots and harden off before transplanting seedlings outside.'
 size:
@@ -22,5 +24,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: annual
+  isolation_m: [800, 800]
+  min_plants: 10
+  viability_years: 7
+  cross_note: "Does not cross with watermelon."
+  sources:
+    - seed-matters-chart
 ---
 Melons are a group of species in the Cucurbitaceae family. They produce sweet fruits that grow on sprawling vines. Types of melons include: watermelons, cantaloupe, honeydew, casaba, and crenshaw. More growing information is available in individual species entries.

@@ -1,9 +1,11 @@
 ---
 slug: pawpaw
 name: Pawpaw
+scientific_name: "Asimina triloba"
+family: Annonaceae
+wikidata: Q948827
 type: fruit-tree
 origin: imported
-scientific_name: Asimina triloba
 sun: partial
 sowing_method: 'Root suckers, grafted sapling, or direct seed outdoors'
 size:

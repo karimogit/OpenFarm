@@ -1,9 +1,11 @@
 ---
 slug: guava
 name: Guava
+scientific_name: "Psidium guajava"
+family: Myrtaceae
+wikidata: Q166843
 type: fruit-tree
 origin: imported
-scientific_name: Psidium guajava
 sun: full
 sowing_method: Cuttings or layerings
 size:

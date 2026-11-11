@@ -1,9 +1,11 @@
 ---
 slug: okra
 name: Okra
+scientific_name: "Abelmoschus esculentus"
+family: Malvaceae
+wikidata: Q80531
 type: vegetable
 origin: imported
-scientific_name: Abelmoschus esculentus
 sun: full
 sowing_method: Direct seed indoors or outside
 size:

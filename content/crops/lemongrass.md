@@ -1,9 +1,11 @@
 ---
 slug: lemongrass
 name: Lemongrass
+scientific_name: "Cymbopogon citratus"
+family: Poaceae
+wikidata: Q33913
 type: herb
 origin: imported
-scientific_name: Cymbopogon citratus
 sun: full
 sowing_method: Direct seed or transplant seedlings
 size:

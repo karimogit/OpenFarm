@@ -11,7 +11,7 @@ days_to_maturity: 78
 days_from: transplant
 disease_resistance: []
 suitable_regions: [humid-subtropical]
-regions_note: Clemson HGIC lists it for South Carolina gardens (heirloom, no disease resistance). The rescued OpenFarm record gives 80–100 days.
+regions_note: Clemson HGIC lists it for South Carolina gardens (heirloom, no disease resistance). The original OpenFarm record gives 80–100 days.
 seeds:
   type: open-pollinated
   heirloom: true

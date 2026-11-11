@@ -1,9 +1,11 @@
 ---
 slug: plum
 name: Plum
+scientific_name: "Prunus"
+family: Rosaceae
+wikidata: Q190545
 type: fruit-tree
 origin: imported
-scientific_name: Prunus
 sun: full
 sowing_method: Transplant bare-root plant
 size:

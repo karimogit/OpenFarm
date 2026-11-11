@@ -1,6 +1,8 @@
 ---
 slug: black-olive-chilli
 name: Black Olive Chilli
+commons_file: "Capsicum annuum fruits IMGP0049.jpg"
+image_note: "Species photo (Capsicum annuum) – not the 'Black Olive' cultivar"
 type: vegetable
 origin: imported
 size:

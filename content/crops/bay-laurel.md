@@ -1,9 +1,11 @@
 ---
 slug: bay-laurel
 name: Bay Laurel
+scientific_name: "Laurus nobilis"
+family: Lauraceae
+wikidata: Q26006
 type: herb
 origin: imported
-scientific_name: Laurus nobilis
 sun: full
 sowing_method: Young tree or cutting
 size:

@@ -1,9 +1,11 @@
 ---
 slug: hazelnut
 name: Hazelnut
+scientific_name: "Corylus"
+family: Betulaceae
+wikidata: Q145889
 type: nut
 origin: imported
-scientific_name: Corylus
 sun: full
 sowing_method: 'Underground runners, layering, or direct seed indoors'
 size:

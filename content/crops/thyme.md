@@ -1,9 +1,11 @@
 ---
 slug: thyme
 name: Thyme
+scientific_name: "Thymus vulgaris"
+family: Lamiaceae
+wikidata: Q148668
 type: herb
 origin: imported
-scientific_name: Thymus vulgaris
 sun: full
 sowing_method: Transplant cuttings or seedlings or direct seed indoors
 size:

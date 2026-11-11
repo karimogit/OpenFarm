@@ -1,9 +1,11 @@
 ---
 slug: cauliflower
 name: Cauliflower
+scientific_name: "Brassica oleracea"
+family: Brassicaceae
+wikidata: Q146212
 type: vegetable
 origin: imported
-scientific_name: Brassica oleracea
 sun: full
 sowing_method: 'Sow seeds indoors, harden seedlings off before transplanting'
 size:
@@ -24,5 +26,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: biennial
+  isolation_m: [800, 800]
+  min_plants: 40
+  viability_years: 5
+  cross_note: "Crosses with all Brassica oleracea crops (cabbage, kale, broccoli, cauliflower, kohlrabi, collards\u2026)."
+  sources:
+    - seed-matters-chart
 ---
 Cauliflower is a vegetable in the Brassicaceae family. The solid, firm head resembles that of broccoli and is usually white, but can also be yellow, purple, or green in color. Like broccoli, it sits atop a stalk. The head is wrapped in thick leaves that begin to open when the plant is ready for harvest. All cauliflower does best in cool weather.

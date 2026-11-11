@@ -1,9 +1,11 @@
 ---
 slug: tatsoi
 name: Tatsoi
+scientific_name: "Brassica rapa var. narinosa"
+family: Brassicaceae
+wikidata: Q50889546
 type: vegetable
 origin: imported
-scientific_name: Brassica rapa var. narinosa
 sun: full
 sowing_method: 'Direct seed outdoors after last frost, 15 seeds per 30cm'
 size:
@@ -24,5 +26,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: biennial
+  isolation_m: [800, 800]
+  min_plants: 40
+  viability_years: 5
+  cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
+  sources:
+    - seed-matters-chart
 ---
 Tatsoi is an Asian mustard green that grows rosettes of thick, rounded leaves that have a mild mustard flavor. Tatsoi does best in cooler weather, so plant in the spring or fall. Leaves can be harvested individually or the whole plant can be cut. Harvest at the baby or adult stage. Leaves become more bitter once plants flower. Tatsoi is added to salad mixes and stir fry.

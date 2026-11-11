@@ -1,9 +1,11 @@
 ---
 slug: lovage
 name: Lovage
+scientific_name: "Levisticum officinale"
+family: Apiaceae
+wikidata: Q27615
 type: herb
 origin: imported
-scientific_name: Levisticum officinale
 sun: full
 sowing_method: 'Direct seed (indoors in early spring, outdoors in late spring or fall)'
 size:

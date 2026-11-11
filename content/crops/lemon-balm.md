@@ -1,9 +1,11 @@
 ---
 slug: lemon-balm
 name: Lemon Balm
+scientific_name: "Melissa officinalis"
+family: Lamiaceae
+wikidata: Q148396
 type: herb
 origin: imported
-scientific_name: Melissa officinalis
 sun: partial
 sowing_method: 'Direct seed indoors, transplant seedlings outside after hardening off.'
 size:

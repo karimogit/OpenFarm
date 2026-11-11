@@ -1,9 +1,11 @@
 ---
 slug: tea
 name: Tea
+scientific_name: "Camellia sinensis"
+family: Theaceae
+wikidata: Q101815
 type: other
 origin: imported
-scientific_name: Camellia sinensis
 sun: partial
 sowing_method: Cuttings or direct seed indoors
 size:

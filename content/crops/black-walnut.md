@@ -1,9 +1,11 @@
 ---
 slug: black-walnut
 name: Black Walnut
+scientific_name: "Juglans nigra"
+family: Juglandaceae
+wikidata: Q852572
 type: nut
 origin: imported
-scientific_name: Juglans nigra
 sun: full
 sowing_method: Transplant grafted sapling or direct seed
 size:

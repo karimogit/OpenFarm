@@ -1,9 +1,11 @@
 ---
 slug: purple-amaranth
 name: Purple Amaranth
+scientific_name: "Amaranthus cruentus"
+family: Amaranthaceae
+wikidata: Q159191
 type: grain
 origin: imported
-scientific_name: Amaranthus cruentus
 rescue:
   slug: purple-amaranth
   wayback_url: 'https://web.archive.org/web/20240815063437/https://openfarm.cc/en/crops/purple-amaranth'

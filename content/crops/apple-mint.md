@@ -1,9 +1,11 @@
 ---
 slug: apple-mint
 name: Apple Mint
+scientific_name: "Mentha suaveolens"
+family: Lamiaceae
+wikidata: Q158892
 type: herb
 origin: imported
-scientific_name: Mentha suaveolens
 sun: full
 sowing_method: Direct seed or rhizomes
 size:

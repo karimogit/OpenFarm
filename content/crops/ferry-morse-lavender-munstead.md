@@ -1,9 +1,11 @@
 ---
 slug: ferry-morse-lavender-munstead
 name: Ferry Morse Lavender Munstead
+scientific_name: "Lavandula angustifolia"
+family: Lamiaceae
+wikidata: Q42081
 type: flower
 origin: imported
-scientific_name: Lavandula angustifolia
 sun: full
 sowing_method: Direct seed indoors
 size:

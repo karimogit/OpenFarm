@@ -1,9 +1,11 @@
 ---
 slug: olive
 name: Olive
+scientific_name: "Olea europaea"
+family: Oleaceae
+wikidata: Q37083
 type: fruit-tree
 origin: imported
-scientific_name: Olea europaea
 sun: full
 sowing_method: Transplant grafted sapling
 size:

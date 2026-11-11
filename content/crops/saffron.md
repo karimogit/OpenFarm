@@ -1,9 +1,11 @@
 ---
 slug: saffron
 name: Saffron
+scientific_name: "Crocus sativus"
+family: Iridaceae
+wikidata: Q15041677
 type: spice
 origin: imported
-scientific_name: Crocus sativus
 sun: full
 sowing_method: Direct seed corms/bulbs in spring or autumn
 size:

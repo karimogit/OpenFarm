@@ -1,9 +1,11 @@
 ---
 slug: endive
 name: Endive
+scientific_name: "Cichorium endivia var. crispum"
+family: Asteraceae
+wikidata: Q2963415
 type: vegetable
 origin: imported
-scientific_name: Cichorium endivia var. crispum
 sun: full
 sowing_method: 'Direct seed indoors, transplant outside after hardening off seedlings'
 size:

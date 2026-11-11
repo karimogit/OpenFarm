@@ -1,6 +1,8 @@
 ---
 slug: kamokamo
 name: Kamokamo
+commons_file: "Cucurbita pepo collage 1.png"
+image_note: "Species photo (Cucurbita pepo) – not kamokamo itself"
 type: vegetable
 origin: imported
 rescue:

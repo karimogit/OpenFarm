@@ -337,6 +337,14 @@
     "commons_file": {
       "type": "string",
       "description": "Exact Wikimedia Commons file name to use as the picture (overrides the automatic lookup)."
+    },
+    "cultivar": {
+      "type": "string",
+      "description": "Cultivar epithet without quotes if it differs from the display name, e.g. 'Sun Gold' → Solanum lycopersicum 'Sun Gold'."
+    },
+    "image_note": {
+      "type": "string",
+      "description": "Shown with the photo when it is not of this exact crop/cultivar, e.g. a species-level photo."
     }
   },
   "allOf": [

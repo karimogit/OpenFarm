@@ -1,9 +1,11 @@
 ---
 slug: chervil
 name: Chervil
+scientific_name: "Anthriscus cerefolium"
+family: Apiaceae
+wikidata: Q218462
 type: herb
 origin: imported
-scientific_name: Anthriscus cerefolium
 sun: partial
 sowing_method: Direct seed outdoors
 size:

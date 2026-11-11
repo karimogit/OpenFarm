@@ -1,9 +1,11 @@
 ---
 slug: grapes
 name: Grapes
+scientific_name: "Vitis"
+family: Vitaceae
+wikidata: Q191019
 type: fruit
 origin: imported
-scientific_name: Vitis
 sun: full
 sowing_method: 'Plant dormant, bare-root cuttings or vines in early spring'
 size:

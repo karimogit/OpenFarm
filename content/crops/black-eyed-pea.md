@@ -1,9 +1,11 @@
 ---
 slug: black-eyed-pea
 name: Black-Eyed Pea
+scientific_name: "Vigna unguiculata subsp. unguiculata"
+family: Fabaceae
+wikidata: Q3246973
 type: legume
 origin: imported
-scientific_name: Vigna unguiculata subsp. unguiculata
 sun: full
 sowing_method: 'Direct seed outdoors in warm soil, thin to 25cm apart when seedlings are 4cm high'
 size:

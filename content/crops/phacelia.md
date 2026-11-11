@@ -1,9 +1,11 @@
 ---
 slug: phacelia
 name: You Can Grow Anything
+scientific_name: "Phacelia tanacetifolia"
+family: Boraginaceae
+wikidata: Q158942
 type: cover-crop
 origin: imported
-scientific_name: Phacelia tanacetifolia
 sowing_method: Just throw them on the soil and rake it a little down to the surface
 rescue:
   slug: phacelia

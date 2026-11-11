@@ -1,9 +1,11 @@
 ---
 slug: hairy-vetch
 name: Hairy Vetch
+scientific_name: "Vicia hirsuta"
+family: Fabaceae
+wikidata: Q159732
 type: cover-crop
 origin: imported
-scientific_name: Vicia hirsuta
 rescue:
   slug: hairy-vetch
   wayback_url: 'https://web.archive.org/web/20200922211325/https://openfarm.cc/en/crops/hairy-vetch'

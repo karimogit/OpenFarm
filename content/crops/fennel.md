@@ -1,9 +1,11 @@
 ---
 slug: fennel
 name: Fennel
+scientific_name: "Foeniculum vulgare"
+family: Apiaceae
+wikidata: Q43511
 type: herb
 origin: imported
-scientific_name: Foeniculum vulgare
 sun: full
 sowing_method: 'Direct seed outdoors, or sow indoors and harden off before transplanting outside'
 size:

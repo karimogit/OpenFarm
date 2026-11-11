@@ -1,9 +1,11 @@
 ---
 slug: kiwifruit
 name: Kiwifruit
+scientific_name: "Actinidia deliciosa"
+family: Actinidiaceae
+wikidata: Q343300
 type: fruit
 origin: imported
-scientific_name: Actinidia deliciosa
 sun: full
 sowing_method: Grafted plant or cuttings
 size:

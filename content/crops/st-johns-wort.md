@@ -1,9 +1,11 @@
 ---
 slug: st-johns-wort
 name: St. John'S Wort
+scientific_name: "Hypericum perforatum"
+family: Hypericaceae
+wikidata: Q158289
 type: herb
 origin: imported
-scientific_name: Hypericum perforatum
 sun: full
 sowing_method: >-
   Direct seed, very lightly covering seeds. If planting indoors, harden off before transplanting seedlings

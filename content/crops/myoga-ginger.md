@@ -1,9 +1,11 @@
 ---
 slug: myoga-ginger
 name: Myoga Ginger
+scientific_name: "Zingiber mioga"
+family: Zingiberaceae
+wikidata: Q1196818
 type: spice
 origin: imported
-scientific_name: Zingiber mioga
 sun: partial
 sowing_method: Direct seed rhizomes outdoors
 size:

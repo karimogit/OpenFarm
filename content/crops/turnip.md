@@ -1,9 +1,11 @@
 ---
 slug: turnip
 name: Turnip
+scientific_name: "Brassica rapa"
+family: Brassicaceae
+wikidata: Q3384
 type: vegetable
 origin: imported
-scientific_name: Brassica rapa
 sun: full
 sowing_method: 'Direct seed outdoors, thin to 10cm when seedlings are 3cm tall'
 size:
@@ -24,5 +26,14 @@ imported: '2026-11-11'
 note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
+seed_saving:
+  pollination: insect
+  cycle: biennial
+  isolation_m: [800, 800]
+  min_plants: 40
+  viability_years: 5
+  cross_note: "Brassica rapa crops (turnip, Chinese cabbage, bok choy, rapini\u2026) cross with each other."
+  sources:
+    - seed-matters-chart
 ---
 Turnips are smooth, round root vegetables 5-20 cm in diameter. They are often white below the soil line and bright purple or green above. Turnips usually have white flesh and a slightly sweet and bitter taste, similar to cabbage. The edible foliage tastes similar to mustard greens. Turnips are a cool-weather crop and do best as spring or fall plantings.

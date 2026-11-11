@@ -146,7 +146,7 @@
       "additionalProperties": false,
       "required": [
         "pollination",
-        "difficulty"
+        "sources"
       ],
       "properties": {
         "pollination": {
@@ -229,6 +229,43 @@
               }
             ]
           }
+        },
+        "cycle": {
+          "enum": [
+            "annual",
+            "biennial",
+            "perennial"
+          ],
+          "description": "Whether the plant sets seed in its first year (annual) or needs to overwinter first (biennial)."
+        },
+        "min_plants": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum number of plants to save seed from to keep the variety's genetic diversity."
+        },
+        "cross_note": {
+          "type": "string",
+          "description": "What it crosses with (or does not)."
+        },
+        "harvest": {
+          "type": "string",
+          "description": "When and how to harvest the seed."
+        },
+        "processing": {
+          "enum": [
+            "wet-ferment",
+            "wet-wash",
+            "scrape-dry",
+            "dry-thresh"
+          ],
+          "description": "Wet (fermented or washed) or dry processing."
+        },
+        "processing_note": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string",
+          "description": "How to dry and store the seed."
         }
       }
     },
@@ -463,6 +500,15 @@
     "commons_file": {
       "type": "string",
       "description": "Exact Wikimedia Commons file name to use as the picture (overrides the automatic lookup)."
+    },
+    "wikidata": {
+      "type": "string",
+      "pattern": "^Q[0-9]+$",
+      "description": "Wikidata item of the taxon the scientific name was checked against (scripts/fetch_taxonomy.py)."
+    },
+    "image_note": {
+      "type": "string",
+      "description": "Shown with the photo when it is not of this exact crop/cultivar, e.g. a species-level photo."
     }
   },
   "allOf": [
