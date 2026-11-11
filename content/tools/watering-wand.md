@@ -2,7 +2,6 @@
 slug: watering-wand
 name: "Watering wand"
 category: watering
-commons_file: "Watering wand.jpg"
 sources:
   - title: "Watering can (Wikipedia)"
     publisher: Wikipedia

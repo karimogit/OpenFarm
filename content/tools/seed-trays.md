@@ -1,7 +1,7 @@
 ---
 slug: seed-trays
 name: "Seed trays and cell flats"
-category: propagation
+category: planting
 commons_file: "Plants in seed tray.jpg"
 sources:
   - title: "Plug (horticulture) (Wikipedia)"

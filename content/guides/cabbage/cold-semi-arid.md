@@ -1,7 +1,7 @@
 ---
 crop: cabbage
 region: cold-semi-arid
-title: Cabbage in cold semi-arid steppe climates
+title: Cabbage in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

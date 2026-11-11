@@ -18,7 +18,7 @@ eleventyComputed:
     <div class="title-row"><h1>{{ v.name }} <small class="muted">{{ crop.name }}</small></h1>
       <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="variety:{{ crop.slug }}/{{ v.slug }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button>
       <button type="button" class="grow" data-grow="{{ crop.slug }}/{{ v.slug }}">＋ I'm growing this</button></span></div>
-    <p class="sci-line">{% if v.scientific_name %}<em>{{ v.scientific_name }}</em>{% elif crop.scientific_name %}<em>{{ crop.scientific_name }}</em> '{{ v.cultivar }}'{% endif %}{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
+    <p class="sci-line">{% if v.sciHtml %}{{ v.sciHtml | safe }}{% endif %}{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
     {% if v.origin == "imported" %}<p class="sci-line">{% set editFile = v.file %}{% include "unreviewed.njk" %}</p>{% endif %}
     {% set img = v.image %}{% set alt = v.name + " " + crop.name %}{% set inherited = v.imageInherited %}{% include "image.njk" %}
     <div class="body">{{ v.html | safe }}</div>

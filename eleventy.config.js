@@ -1,4 +1,4 @@
-import { wmThumb, wmSrcset } from "./scripts/wm.js";
+import { wmThumb, wmSrcset, wmSrcsetWidths } from "./scripts/wm.js";
 // Eleventy config. Content lives in /content (CC BY-SA 4.0 / CC0 imports); site code in /site (MIT).
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const LABELS = {
@@ -32,12 +32,12 @@ const cropOut = (c) => ({
 });
 
 const regionOut = (r) => ({
-  ...pick(r, ["slug", "name", "koppen", "color", "similar", "examples"]), url: `/regions/${r.slug}/`,
+  ...pick(r, ["slug", "name", "subtitle", "koppen", "color", "similar", "examples"]), url: `/regions/${r.slug}/`,
   guides: r.guides.filter((x) => x.primary).map((x) => x.g.url),
   partly_covered_by: r.guides.filter((x) => !x.primary).map((x) => x.g.url),
   varieties: r.varieties.map((v) => v.url),
 });
-const toolOut = (x) => ({ ...pick(x, ["slug", "name", "category", "image", "license"]), url: x.url,
+const toolOut = (x) => ({ ...pick(x, ["slug", "name", "category", "image", "license"]), category_label: x.categoryLabel, url: x.url,
   sources: x.sources.map(sourceOut), crops: x.crops.map((c) => c.slug), guides: x.guides.map((g) => g.url) });
 const allOut = (db) => ({
   generated: new Date().toISOString(),
@@ -63,6 +63,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("wmThumb", wmThumb);
   eleventyConfig.addFilter("toolsOut", (tools) => ({ license: "CC-BY-SA-4.0", tools: tools.map(toolOut) }));
   eleventyConfig.addFilter("wmSrcset", wmSrcset);
+  eleventyConfig.addFilter("wmSrcsetWidths", wmSrcsetWidths);
   eleventyConfig.addFilter("regionOut", regionOut);
   eleventyConfig.addFilter("allOut", allOut);
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });

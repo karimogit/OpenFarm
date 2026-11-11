@@ -2,7 +2,6 @@
 slug: transplanter
 name: "Transplanter"
 category: planting
-commons_file: "Hand transplanter.jpg"
 sources:
   - title: "Trowel (Wikipedia)"
     publisher: Wikipedia

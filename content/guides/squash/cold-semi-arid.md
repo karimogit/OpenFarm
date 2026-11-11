@@ -1,7 +1,7 @@
 ---
 crop: squash
 region: cold-semi-arid
-title: Squash in cold semi-arid steppe climates
+title: Squash in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

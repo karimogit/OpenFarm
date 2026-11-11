@@ -1,7 +1,7 @@
 ---
 crop: pumpkin
 region: cold-semi-arid
-title: Pumpkin in cold semi-arid steppe climates
+title: Pumpkin in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

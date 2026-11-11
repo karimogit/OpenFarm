@@ -1,7 +1,7 @@
 ---
 crop: leek
 region: cold-semi-arid
-title: Leek in cold semi-arid steppe climates
+title: Leek in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

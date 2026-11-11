@@ -1,6 +1,7 @@
 ---
 slug: cold-semi-arid
-name: Cold semi-arid steppe
+name: Cold semi-arid
+subtitle: Steppe
 koppen: [BSk]
 color: "#ffdc64"
 order: 7

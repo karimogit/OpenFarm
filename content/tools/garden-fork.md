@@ -2,7 +2,7 @@
 slug: garden-fork
 name: "Garden fork"
 category: digging
-commons_file: "Garden fork.jpg"
+commons_file: "Garden fork.JPG"
 sources:
   - title: "Garden fork (Wikipedia)"
     publisher: Wikipedia

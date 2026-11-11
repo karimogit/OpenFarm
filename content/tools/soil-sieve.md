@@ -1,8 +1,7 @@
 ---
 slug: soil-sieve
 name: "Soil sieve"
-category: propagation
-commons_file: "Garden riddle.jpg"
+category: compost
 sources:
   - title: "Sieve (Wikipedia)"
     publisher: Wikipedia

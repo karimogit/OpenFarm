@@ -1,7 +1,7 @@
 ---
 crop: onion
 region: cold-semi-arid
-title: Onion in cold semi-arid steppe climates
+title: Onion in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

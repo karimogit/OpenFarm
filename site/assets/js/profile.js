@@ -1,5 +1,5 @@
 // Profile page: everything here lives in localStorage (see common.js) – nothing is sent anywhere.
-import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce } from "./common.js";
+import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce, loadPlaces, locationHref } from "./common.js";
 import { icon } from "./icons.js";
 
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
@@ -46,9 +46,19 @@ function render() {
     ? `<p><strong>${esc((loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`)}</strong><br><span class="small">${loc.lat}, ${loc.lon}</span></p>
        ${region ? `<p>${swatch(region)}<a href="${BASE}regions/${region.slug}/">${esc(region.name)}</a> <a class="kg" href="${BASE}help/#koppen" title="Köppen climate class – see Help">${esc(loc.symbol || "")}</a></p>` : ""}
        <div id="hz-box"></div>
-       <p class="small"><a href="${BASE}#where">Change location</a></p>`
+       <p class="small"><a data-share-loc href="${BASE}#where">Shareable link</a> · <a href="${BASE}#where">Change location</a></p>`
     : `<p class="small">No location saved. <a href="${BASE}#where">Find your location</a> on the home page.</p>`;
-  if (loc) hardinessZone(loc.lat, loc.lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = hardinessLine(h); }).catch(() => {});
+  if (loc) {
+    hardinessZone(loc.lat, loc.lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = hardinessLine(h); }).catch(() => {});
+    loadPlaces().then(() => {
+      const a = document.querySelector("[data-share-loc]");
+      if (!a) return;
+      const href = locationHref(loc.lat, loc.lon);
+      a.href = href;
+      const q = href.includes("?") ? href.slice(href.indexOf("?")) : href;
+      a.textContent = q;
+    });
+  }
 
   renderGrowing(p);
 

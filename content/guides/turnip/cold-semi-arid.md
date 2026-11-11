@@ -1,7 +1,7 @@
 ---
 crop: turnip
 region: cold-semi-arid
-title: Turnip in cold semi-arid steppe climates
+title: Turnip in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

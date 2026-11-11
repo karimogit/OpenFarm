@@ -1,8 +1,8 @@
 ---
 slug: soil-thermometer
 name: "Soil thermometer"
-category: planting
-commons_file: "Soil thermometer.jpg"
+category: measuring
+commons_file: "Soil Thermometer.jpg"
 sources:
   - title: "Soil temperature (Wikipedia)"
     publisher: Wikipedia

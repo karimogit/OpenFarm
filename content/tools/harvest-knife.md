@@ -2,7 +2,6 @@
 slug: harvest-knife
 name: "Harvest knife"
 category: harvesting
-commons_file: "Harvesting knife.jpg"
 sources:
   - title: "Kitchen knife (Wikipedia)"
     publisher: Wikipedia

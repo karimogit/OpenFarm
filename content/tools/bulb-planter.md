@@ -2,7 +2,6 @@
 slug: bulb-planter
 name: "Bulb planter"
 category: planting
-commons_file: "Bulb planter.jpg"
 sources:
   - title: "Dibber (Wikipedia)"
     publisher: Wikipedia

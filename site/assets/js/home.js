@@ -1,5 +1,5 @@
 // Home page: the "your details" panel (location search, map, climate region) and the guide cards.
-import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel } from "./common.js";
+import { BASE, INDEX, $, esc, lookup, matchGuides, addGuideUrl, setLocation, getLocation, swatch, thumbHTML, MONTHS, hardinessZone, hardinessLine, loadPlaces, searchPlaces, placeLabel, resolvePlace, locationSearch, locationHref, nearestPlace } from "./common.js";
 import { flagImg } from "./icons.js";
 
 const map = L.map("map", { worldCopyJump: true, zoomControl: true }).setView([30, 10], 1);
@@ -39,12 +39,16 @@ function card({ g, kind, via, calendar, shifted }, region) {
     <button class="fav card-fav" type="button" data-fav="guide:${g.crop}/${g.region}" aria-pressed="false" title="Add to favourites">♡</button></li>`;
 }
 
-async function choose(lat, lon, label, country) {
+async function choose(lat, lon, label, country, placeSlug) {
   lat = +(+lat).toFixed(4); lon = +(+lon).toFixed(4);
   $("#lat").value = lat; $("#lon").value = lon;
   if (marker) marker.setLatLng([lat, lon]); else marker = L.marker([lat, lon]).addTo(map);
   map.setView([lat, lon], Math.max(map.getZoom(), 5));
-  history.replaceState(null, "", `?lat=${lat}&lon=${lon}`);
+  await loadPlaces();
+  const nearby = placeSlug ? null : nearestPlace(lat, lon);
+  const slug = placeSlug || (nearby?.near ? nearby.place.slug : "");
+  if (!label && nearby?.near) label = placeLabel(nearby.place);
+  history.replaceState(null, "", locationSearch(lat, lon, slug || undefined));
   const kg = await lookup(lat, lon);
   if ($("#climate")) $("#climate").hidden = false;
   if (!kg) {
@@ -64,7 +68,7 @@ async function choose(lat, lon, label, country) {
       <a href="${BASE}regions/${region.slug}/"><strong>${esc(region.name)}</strong></a></p>
     <p class="small">${place ? `${esc(place)} · ` : ""}Köppen <a class="kg" href="${BASE}help/#koppen" title="Köppen ${kg.symbol}: ${esc(kg.name)}">${kg.symbol}</a> ${esc(kg.name)} – ${esc(kg.desc)}</p>
     <div id="hz-box"><p class="small muted">Hardiness zone: working it out…</p></div>
-    <p class="hint">${lat}, ${lon}${kg.nearest ? " · nearest land cell used" : ""}. 0.5° grid (~50 km) – mountains and coasts can differ.</p>`;
+    <p class="hint">${lat}, ${lon}${nearby && !nearby.near ? ` · nearest listed city ${esc(nearby.place.name)} (${Math.round(nearby.km)} km)` : ""}${kg.nearest ? " · nearest land cell used" : ""}. 0.5° grid (~50 km) – mountains and coasts can differ.</p>`;
   hardinessZone(lat, lon).then((h) => { const b = $("#hz-box"); if (b) b.innerHTML = h ? hardinessLine(h) : ""; })
     .catch(() => { const b = $("#hz-box"); if (b) b.innerHTML = `<p class="small muted">Hardiness zone unavailable right now.</p>`; });
   $("#details-summary").innerHTML = `<span>${esc(place || `${lat}, ${lon}`)} · ${swatch(region)}${esc(region.name)}</span><span class="chg">change</span>`;
@@ -114,7 +118,7 @@ $("#search").addEventListener("submit", async (e) => {
       const label = placeLabel(it);
       const li = document.createElement("li"); const b = document.createElement("button");
       b.type = "button"; b.innerHTML = `${flagImg(it.cc, BASE)} ${esc(label)}`;
-      b.onclick = () => { ul.hidden = true; choose(it.lat, it.lon, label, it.cc); };
+      b.onclick = () => { ul.hidden = true; choose(it.lat, it.lon, label, it.cc, it.slug); };
       li.append(b); ul.append(li);
     }
   } catch { ul.innerHTML = "<li>Search unavailable – enter coordinates below the map.</li>"; }
@@ -122,7 +126,17 @@ $("#search").addEventListener("submit", async (e) => {
 
 const p = new URLSearchParams(location.search);
 const saved = getLocation();
-if (p.has("lat") && p.has("lon")) {
-  const same = saved && Math.abs(saved.lat - p.get("lat")) < 1e-3 && Math.abs(saved.lon - p.get("lon")) < 1e-3;
-  choose(p.get("lat"), p.get("lon"), same ? saved.label : (p.get("label") || ""), same ? saved.country : null);
-} else if (saved) choose(saved.lat, saved.lon, saved.label, saved.country);
+(async () => {
+  if (p.has("place")) {
+    await loadPlaces();
+    const hit = resolvePlace(p.get("place"));
+    if (hit) {
+      choose(hit.lat, hit.lon, placeLabel(hit), hit.cc, hit.slug);
+      return;
+    }
+  }
+  if (p.has("lat") && p.has("lon")) {
+    const same = saved && Math.abs(saved.lat - p.get("lat")) < 1e-3 && Math.abs(saved.lon - p.get("lon")) < 1e-3;
+    choose(p.get("lat"), p.get("lon"), same ? saved.label : (p.get("label") || ""), same ? saved.country : null);
+  } else if (saved) choose(saved.lat, saved.lon, saved.label, saved.country);
+})();

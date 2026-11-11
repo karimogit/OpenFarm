@@ -1,8 +1,7 @@
 ---
 slug: stakes
 name: "Stakes"
-category: planting
-commons_file: "Tomato stakes.jpg"
+category: supports
 sources:
   - title: "Staking (horticulture) (Wikipedia)"
     publisher: Wikipedia

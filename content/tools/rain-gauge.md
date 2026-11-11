@@ -1,8 +1,8 @@
 ---
 slug: rain-gauge
 name: "Rain gauge"
-category: watering
-commons_file: "Rain gauge.jpg"
+category: measuring
+commons_file: "250mm Rain Gauge.jpg"
 sources:
   - title: "Rain gauge (Wikipedia)"
     publisher: Wikipedia

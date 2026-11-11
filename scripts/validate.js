@@ -37,6 +37,7 @@ const owner = {};
 for (const r of regions) {
   if (!check(V.region, r.data, r.file)) continue;
   if (r.data.slug !== r.slug) fail(r.file, `slug must equal file name "${r.slug}"`);
+  if (/[()]/.test(r.data.name)) fail(r.file, "region name must not contain parentheses (move extras to subtitle; the page title is the name)");
   for (const k of r.data.koppen) { if (owner[k]) fail(r.file, `Köppen ${k} already in region ${owner[k]}`); owner[k] = r.data.slug; }
   for (const s of r.data.similar) if (!regionSlugs.has(s) || s === r.data.slug) fail(r.file, `bad similar region "${s}"`);
 }
@@ -124,9 +125,13 @@ for (const s of seedSources) {
 // Tools: no shop or affiliate links in tool pages; crops and guides may only reference known tools.
 const tools = loadTools();
 const toolSlugs = new Set(tools.map((t) => t.data.slug));
+const toolCategorySlugs = new Set(V.tool.schema.properties.category.enum);
 for (const t of tools) {
   if (!check(V.tool, t.data, t.file)) continue;
   if (t.data.slug !== t.slug) fail(t.file, `slug must equal file name "${t.slug}"`);
+  if (toolCategorySlugs.has(t.data.slug)) fail(t.file, `tool slug "${t.data.slug}" collides with a category; category pages are /tools/<category>/`);
+  const extra = t.data.categories || [];
+  if (new Set(extra).size !== extra.length) fail(t.file, "categories must be unique");
   checkSources(t.file, t.data.sources);
   if (/https?:\/\/(?!([a-z]+\.)?(wikipedia|wikimedia)\.org)/i.test(t.body || "")) fail(t.file, "no external (shop) links in tool text – put references in sources");
 }
@@ -149,6 +154,30 @@ for (const g of guides) for (const s of g.data.tools || []) if (toolUsed[s]) too
 for (const t of tools) {
   const u = toolUsed[t.data.slug] || { crops: 0, guides: 0 };
   if (!t.data.general && u.crops === 0 && u.guides === 0) warn(t.file, "no crops or guides list this tool in tools: frontmatter (Used in will be empty)");
+}
+
+// Every commons_file must have a fetched entry in data/images.json (catches typoed Commons names).
+const imagesPath = path.join(ROOT, "data/images.json");
+const images = fs.existsSync(imagesPath) ? JSON.parse(fs.readFileSync(imagesPath, "utf8")) : {};
+for (const r of regions) {
+  if (r.data.commons_file && !images[`region:${r.data.slug}`]) {
+    fail(r.file, `commons_file "${r.data.commons_file}" has no data/images.json entry – confirm the file exists on Wikimedia Commons and run npm run images`);
+  }
+}
+for (const t of tools) {
+  if (t.data.commons_file && !images[`tool:${t.data.slug}`]) {
+    fail(t.file, `commons_file "${t.data.commons_file}" has no data/images.json entry – confirm the file exists on Wikimedia Commons and run npm run images`);
+  }
+}
+for (const c of crops) {
+  if (c.data.commons_file && !images[`crop:${c.data.slug}`]) {
+    fail(c.file, `commons_file "${c.data.commons_file}" has no data/images.json entry – confirm the file exists on Wikimedia Commons and run npm run images`);
+  }
+}
+for (const v of varieties) {
+  if (v.data.commons_file && !images[`variety:${v.data.crop}/${v.data.slug}`]) {
+    fail(v.file, `commons_file "${v.data.commons_file}" has no data/images.json entry – confirm the file exists on Wikimedia Commons and run npm run images`);
+  }
 }
 
 if (errors) { console.error(`\n${errors} problem(s).`); process.exit(1); }

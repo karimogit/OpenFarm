@@ -2,7 +2,7 @@
 slug: loppers
 name: "Loppers"
 category: pruning
-commons_file: "Loppers.jpg"
+commons_file: "Astschere.jpg"
 sources:
   - title: "Loppers (Wikipedia)"
     publisher: Wikipedia

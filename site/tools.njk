@@ -5,11 +5,76 @@ permalink: /tools/
 ---
 <h1>Tools</h1>
 <p>A small set of hand tools that guides refer to: what each is for, how to use it and how to look after it. No shop links or product reviews – any well-made tool will do.</p>
-<ul class="crop-grid">
-{% for t in db.tools %}
-  <li class="card"><a href="{{ t.url | url }}">
-    <span class="thumb">{% if t.image %}<img src="{{ t.image | wmThumb(250) }}" srcset="{{ t.image | wmSrcset(250) }}" alt="" loading="lazy">{% endif %}</span>
-    <span class="name">{{ t.name }}</span><span class="sci1 muted">{{ t.category | capitalize }}</span>
-  </a></li>
-{% endfor %}
+<div class="filter-row" data-tool-filters>
+  <input type="search" id="tool-filter" name="q" placeholder="Filter tools…" aria-label="Filter tools" form="tool-filter-form">
+  <p class="small muted" data-tool-count></p>
+</div>
+<ul class="chips type-chips" data-tool-cats>
+  {% for c in db.toolCategories %}
+  <li><a class="type-chip tool-{{ c.slug }}" href="{{ ('/tools/' + c.slug + '/') | url }}" data-tool-cat="{{ c.slug }}" aria-pressed="false">{{ c.label }} <small>{{ c.tools.length }}</small></a></li>
+  {% endfor %}
 </ul>
+{% for c in db.toolCategories %}
+<section class="card type-block" id="{{ c.slug }}" data-tool-group="{{ c.slug }}">
+  <h2><a href="{{ ('/tools/' + c.slug + '/') | url }}">{{ c.label }}</a> <small>({{ c.tools.length }})</small></h2>
+  <ul class="crop-grid">
+  {% for t in c.tools %}
+    <li class="card tool-{{ t.category }}" data-name="{{ t.name | lower }} {{ t.categoryLabel | lower }} {{ t.allCategories | join(' ') }}" data-cats="{{ t.allCategories | join(',') }}"><a href="{{ t.url | url }}">
+      <span class="thumb">{% if t.image %}<img src="{{ t.image | wmThumb(250) }}" srcset="{{ t.image | wmSrcset(250) }}" alt="" loading="lazy">{% endif %}</span>
+      <span class="name">{{ t.name }}</span><span class="sci1 muted">{{ t.categoryLabel }}</span>
+    </a></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+<script>
+// Progressive enhancement: without JS the full list and category links are shown.
+(() => {
+  const input = document.getElementById("tool-filter");
+  const chips = [...document.querySelectorAll("[data-tool-cat]")];
+  const items = [...document.querySelectorAll("[data-tool-group] .crop-grid li[data-cats]")];
+  const groups = [...document.querySelectorAll("[data-tool-group]")];
+  const count = document.querySelector("[data-tool-count]");
+  if (!input || !items.length) return;
+  const params = new URLSearchParams(location.search);
+  let q = (params.get("q") || "").trim();
+  let cats = new Set((params.get("cat") || "").split(",").map((s) => s.trim()).filter(Boolean));
+  input.value = q;
+  function writeUrl() {
+    const p = new URLSearchParams();
+    if (q) p.set("q", q);
+    if (cats.size) p.set("cat", [...cats].join(","));
+    const qs = p.toString();
+    history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
+  }
+  function apply() {
+    const nq = q.toLowerCase();
+    let shown = 0;
+    items.forEach((li) => {
+      const nameOk = !nq || (li.dataset.name || "").includes(nq);
+      const liCats = (li.dataset.cats || "").split(",").filter(Boolean);
+      const catOk = !cats.size || liCats.some((c) => cats.has(c));
+      const on = nameOk && catOk;
+      li.hidden = !on;
+      if (on) shown++;
+    });
+    groups.forEach((s) => { s.hidden = ![...s.querySelectorAll("li[data-cats]")].some((li) => !li.hidden); });
+    chips.forEach((a) => {
+      const on = cats.has(a.dataset.toolCat);
+      a.setAttribute("aria-pressed", on ? "true" : "false");
+      a.setAttribute("aria-current", on ? "true" : "false");
+    });
+    if (count) count.textContent = (q || cats.size) ? `${shown} of ${items.length} shown` : "";
+  }
+  chips.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = a.dataset.toolCat;
+      if (cats.has(id)) cats.delete(id); else cats.add(id);
+      writeUrl(); apply();
+    });
+  });
+  input.addEventListener("input", () => { q = input.value.trim(); writeUrl(); apply(); });
+  apply();
+})();
+</script>

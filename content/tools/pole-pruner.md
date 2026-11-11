@@ -2,7 +2,6 @@
 slug: pole-pruner
 name: "Pole pruner"
 category: pruning
-commons_file: "Pole pruner.jpg"
 sources:
   - title: "Pole saw (Wikipedia)"
     publisher: Wikipedia

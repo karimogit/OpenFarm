@@ -1,7 +1,7 @@
 ---
 crop: bush-bean
 region: cold-semi-arid
-title: Bush bean in cold semi-arid steppe climates
+title: Bush bean in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

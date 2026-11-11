@@ -1,6 +1,7 @@
 ---
 slug: tropical-savanna
-name: Tropical savanna (wet and dry)
+name: Tropical savanna
+subtitle: Wet and dry seasons
 koppen: [Aw, As]
 color: "#46aafa"
 order: 3

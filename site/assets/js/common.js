@@ -394,6 +394,42 @@ function renderYourRegion(loc) {
   if (m?.shifted) h += `<p class="note-flag">Southern hemisphere: the guide's months are for the north – shift by about six months (unverified).</p>`;
   if (vars.length) h += `<p class="small">Varieties recommended for your region: ${vars.map((v) => `<a href="${BASE}crops/${v.crop}/varieties/${v.slug}/">${esc(v.name)}</a>`).join(", ")}</p>`;
   box.innerHTML = h;
+  renderCropGuides(loc, crop);
+}
+
+// Crop pages: when a region is set, feature that guide and collapse the rest.
+function renderCropGuides(loc, crop) {
+  const wrap = document.querySelector("[data-guides]");
+  if (!wrap) return;
+  const heading = wrap.querySelector("#guides");
+  const cards = [...wrap.querySelectorAll("[data-guide-region]")];
+  const old = wrap.querySelector("[data-other-guides]");
+  if (old) {
+    for (const c of [...old.querySelectorAll("[data-guide-region]")]) wrap.append(c);
+    old.remove();
+  }
+  cards.forEach((c) => { c.hidden = false; c.classList.remove("guide-featured"); });
+  const slug = crop || wrap.dataset.crop;
+  const [m] = loc?.symbol && slug ? matchGuides(loc.symbol, loc.lat, slug) : [];
+  const mineSlug = m && m.kind !== "similar" ? m.g.region : null;
+  if (!loc?.symbol) {
+    if (heading) { heading.hidden = false; heading.textContent = "Growing guides by climate region"; }
+    return;
+  }
+  if (heading) heading.hidden = true;
+  const mine = cards.filter((c) => c.dataset.guideRegion === mineSlug);
+  const others = cards.filter((c) => c.dataset.guideRegion !== mineSlug);
+  mine.forEach((c) => { c.classList.add("guide-featured"); wrap.append(c); });
+  if (others.length) {
+    const d = document.createElement("details");
+    d.className = "other-guides";
+    d.dataset.otherGuides = "1";
+    const s = document.createElement("summary");
+    s.textContent = `Other climate regions (${others.length})`;
+    d.append(s);
+    others.forEach((c) => d.append(c));
+    wrap.append(d);
+  }
 }
 
 // Variety pages without a region recommendation: point to the guide for the visitor's region, if any.
@@ -532,7 +568,7 @@ renderAll(getLocation());
       h += localHits.map((it) => {
         const label = placeLabel(it);
         return opt(`${flagImg(it.cc, BASE, placesData?.countries?.[it.cc]?.[0] || it.cc)} ${esc(label)}`,
-          `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(label)}" data-cc="${esc(it.cc || "")}"`);
+          `data-lat="${it.lat}" data-lon="${it.lon}" data-label="${esc(label)}" data-cc="${esc(it.cc || "")}"${it.slug ? ` data-place="${esc(it.slug)}"` : ""}`);
       }).join("");
       h += `<div class="sg-note">Places: GeoNames, CC BY 4.0</div>`;
     } else if (q.length >= 2) {
@@ -576,7 +612,7 @@ renderAll(getLocation());
     if (el.dataset.lat) {
       const lat = +el.dataset.lat, lon = +el.dataset.lon, kg = await lookup(lat, lon);
       setLocation({ lat: +lat.toFixed(4), lon: +lon.toFixed(4), label: el.dataset.label, symbol: kg?.symbol || null, region: kg?.region?.slug || null, country: el.dataset.cc || null });
-      location.href = `${BASE}?lat=${lat.toFixed(4)}&lon=${lon.toFixed(4)}`;
+      location.href = locationHref(lat, lon, el.dataset.place);
     }
   }
   input.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(update, 250); });
@@ -967,8 +1003,8 @@ export async function loadPlaces() {
   if (!placesLoading) {
     placesLoading = fetch(BASE + "assets/places.json")
       .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then((d) => { placesData = d; return d; })
-      .catch(() => { placesData = { countries: {}, admin1: {}, cities: [] }; return placesData; });
+      .then((d) => { placesData = d; indexPlaces(d); return d; })
+      .catch(() => { placesData = { countries: {}, admin1: {}, cities: [] }; indexPlaces(placesData); return placesData; });
   }
   return placesLoading;
 }
@@ -996,7 +1032,12 @@ export function searchPlaces(q, limit = 8) {
       else if (nn.split(/[-'\s]/).some((w) => w.startsWith(nq))) score = Math.max(score, 65);
       else if (nn.includes(nq)) score = Math.max(score, 40);
     }
-    if (score) hits.push({ type: "city", name, ascii, cc, admin, lat, lon, pop, score: score + Math.log10((pop || 0) + 1) });
+    if (score) {
+      const hit = { type: "city", name, ascii, cc, admin, lat, lon, pop, score: score + Math.log10((pop || 0) + 1) };
+      const keyed = placeIndex?.byCoord.get(`${lat},${lon},${cc}`);
+      if (keyed) hit.slug = keyed.slug;
+      hits.push(hit);
+    }
   }
   hits.sort((a, b) => b.score - a.score || (b.pop || 0) - (a.pop || 0));
   return hits.slice(0, limit);
@@ -1007,4 +1048,75 @@ export function placeLabel(hit) {
   const country = placesData?.countries?.[hit.cc]?.[0] || hit.cc;
   const admin = hit.admin && placesData?.admin1?.[`${hit.cc}.${hit.admin}`];
   return [hit.name, admin, country].filter(Boolean).join(", ");
+}
+
+
+// ---- Readable location URLs: ?place=amsterdam-nl (disambiguate with admin1, e.g. portland-or-us) ----
+const PLACE_NEAR_KM = 25;
+let placeIndex = null; // { cities, bySlug, byCoord }
+
+function slugifyPlace(s) {
+  return normPlace(s).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+function adminSlugOf(hit) {
+  const admin = hit.admin;
+  if (!admin) return "";
+  if (/^[A-Za-z]{1,3}$/.test(admin)) return admin.toLowerCase();
+  const name = placesData?.admin1?.[`${hit.cc}.${admin}`];
+  return slugifyPlace(name || admin);
+}
+function cityBaseSlug(hit) {
+  return `${slugifyPlace(hit.ascii || hit.name)}-${String(hit.cc || "").toLowerCase()}`;
+}
+function indexPlaces(data) {
+  const cities = (data?.cities || []).map((c) => {
+    const [name, ascii, cc, admin, lat, lon, pop] = c;
+    return { type: "city", name, ascii, cc, admin, lat, lon, pop };
+  });
+  const counts = new Map();
+  for (const c of cities) {
+    const b = cityBaseSlug(c);
+    counts.set(b, (counts.get(b) || 0) + 1);
+  }
+  const bySlug = new Map(), byCoord = new Map();
+  for (const c of cities) {
+    const base = cityBaseSlug(c);
+    let slug = counts.get(base) > 1
+      ? `${slugifyPlace(c.ascii || c.name)}-${adminSlugOf(c)}-${String(c.cc || "").toLowerCase()}`
+      : base;
+    if (bySlug.has(slug)) slug = `${slug}-${String(c.lat).replace(".", "p")}`;
+    c.slug = slug;
+    bySlug.set(slug, c);
+    byCoord.set(`${c.lat},${c.lon},${c.cc}`, c);
+  }
+  placeIndex = { cities, bySlug, byCoord };
+}
+function haversineKm(aLat, aLon, bLat, bLon) {
+  const R = 6371, toR = Math.PI / 180;
+  const dLat = (bLat - aLat) * toR, dLon = (bLon - aLon) * toR;
+  const s = Math.sin(dLat / 2) ** 2 + Math.cos(aLat * toR) * Math.cos(bLat * toR) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(s)));
+}
+export function resolvePlace(slug) {
+  if (!placeIndex || !slug) return null;
+  return placeIndex.bySlug.get(String(slug).trim().toLowerCase()) || null;
+}
+export function nearestPlace(lat, lon, maxKm = PLACE_NEAR_KM) {
+  if (!placeIndex?.cities.length) return null;
+  let best = null, bestD = Infinity;
+  for (const c of placeIndex.cities) {
+    const d = haversineKm(lat, lon, c.lat, c.lon);
+    if (d < bestD) { bestD = d; best = c; }
+  }
+  if (!best) return null;
+  return { place: best, km: bestD, near: bestD <= maxKm };
+}
+export function locationSearch(lat, lon, knownSlug) {
+  if (knownSlug) return `?place=${encodeURIComponent(knownSlug)}`;
+  const n = nearestPlace(lat, lon);
+  if (n?.near) return `?place=${encodeURIComponent(n.place.slug)}`;
+  return `?lat=${(+lat).toFixed(4)}&lon=${(+lon).toFixed(4)}`;
+}
+export function locationHref(lat, lon, knownSlug) {
+  return `${BASE}${locationSearch(lat, lon, knownSlug)}`;
 }

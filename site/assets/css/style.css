@@ -1,5 +1,8 @@
 :root { --t-vegetable:#2f7d32; --t-legume:#6d8b1e; --t-herb:#2e8b6f; --t-spice:#b5521b; --t-fruit:#c0392b; --t-fruit-tree:#a0522d;
-  --t-berry:#8e2d6b; --t-nut:#7a5a2f; --t-grain:#a6841c; --t-fungus:#6b5b4f; --t-flower:#b03a7a; --t-cover-crop:#4f7a3a; --t-other:#5d6b5f; --nav-hover:#ffffff26; --nav-active:#1c4524; --focus:#ffd166; --focus-ink:#1f5fbf; --danger:#a12a14; --radius-sm:6px; --green:#2f6b3a; --green-2:#e8f2e6; --ink:#1d2a1f; --muted:#5d6b5f; --line:#d9e3d6; --bg:#fafcf8; --sow:#7fb069; --sowd:#b5d99c; --plant:#3c8dbc; --harvest:#e07a1f; --prune:#8e6bbf; }
+  --t-berry:#8e2d6b; --t-nut:#7a5a2f; --t-grain:#a6841c; --t-fungus:#6b5b4f; --t-flower:#b03a7a; --t-cover-crop:#4f7a3a; --t-other:#5d6b5f;
+  --tool-digging:#7a5a2f; --tool-weeding:#4f7a3a; --tool-planting:#2f7d32; --tool-watering:#3c8dbc;
+  --tool-pruning:#8e6bbf; --tool-harvesting:#e07a1f; --tool-protection:#2e8b6f; --tool-supports:#a0522d;
+  --tool-compost:#6b5b4f; --tool-measuring:#4a6d8c; --tool-carrying:#5d6b5f; --nav-hover:#ffffff26; --nav-active:#1c4524; --focus:#ffd166; --focus-ink:#1f5fbf; --danger:#a12a14; --radius-sm:6px; --green:#2f6b3a; --green-2:#e8f2e6; --ink:#1d2a1f; --muted:#5d6b5f; --line:#d9e3d6; --bg:#fafcf8; --sow:#7fb069; --sowd:#b5d99c; --plant:#3c8dbc; --harvest:#e07a1f; --prune:#8e6bbf; }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
@@ -103,7 +106,9 @@ button { background: var(--green); color: #fff; border-color: var(--green); curs
 .variety-grid li { min-width: 0; }
 .variety-grid a { display: flex; flex-direction: column; height: 100%; min-height: 4.2rem; padding: .6rem .75rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: #fff; }
 .variety-grid strong { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.variety-grid .sci1 { font-size: .82rem; color: var(--muted); font-style: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .variety-grid span { font-size: .82rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lat, .sci .lat, .sci1 .lat, .sci-line .lat { font-style: italic; }
 .your-region { border-left: 4px solid var(--green); }
 .your-region h2 { display: flex; align-items: center; gap: .2rem; }
 .near { outline: 2px solid var(--sow); border-radius: 8px; padding: .15rem .35rem; }
@@ -280,11 +285,20 @@ body.filtering .show-all { display: none; }
 .type-chip { --tc: var(--t-other); display: inline-flex; align-items: center; gap: .25rem; padding: .15rem .6rem; border-radius: 999px; font-size: .82rem; font-weight: 600;
   color: color-mix(in srgb, var(--tc) 70%, black) !important; background: color-mix(in srgb, var(--tc) 12%, white); border: 1px solid color-mix(in srgb, var(--tc) 35%, white); text-decoration: none; white-space: nowrap; }
 .type-chip:hover { background: color-mix(in srgb, var(--tc) 22%, white); }
-.type-chip[aria-current="page"] { background: color-mix(in srgb, var(--tc) 70%, black); color: #fff !important; }
+.type-chip[aria-current="page"], .type-chip[aria-current="true"], .type-chip[aria-pressed="true"] { background: color-mix(in srgb, var(--tc) 70%, black); color: #fff !important; }
 .type-chip small { color: inherit; font-weight: 400; }
 .t-vegetable { --tc: var(--t-vegetable); } .t-legume { --tc: var(--t-legume); } .t-herb { --tc: var(--t-herb); } .t-spice { --tc: var(--t-spice); }
 .t-fruit { --tc: var(--t-fruit); } .t-fruit-tree { --tc: var(--t-fruit-tree); } .t-berry { --tc: var(--t-berry); } .t-nut { --tc: var(--t-nut); }
 .t-grain { --tc: var(--t-grain); } .t-fungus { --tc: var(--t-fungus); } .t-flower { --tc: var(--t-flower); } .t-cover-crop { --tc: var(--t-cover-crop); } .t-other { --tc: var(--t-other); }
+.tool-digging { --tc: var(--tool-digging); } .tool-weeding { --tc: var(--tool-weeding); } .tool-planting { --tc: var(--tool-planting); }
+.tool-watering { --tc: var(--tool-watering); } .tool-pruning { --tc: var(--tool-pruning); } .tool-harvesting { --tc: var(--tool-harvesting); }
+.tool-protection { --tc: var(--tool-protection); } .tool-supports { --tc: var(--tool-supports); } .tool-compost { --tc: var(--tool-compost); }
+.tool-measuring { --tc: var(--tool-measuring); } .tool-carrying { --tc: var(--tool-carrying); }
+.crop-grid > li[class*="tool-"] > a { box-shadow: inset 3px 0 0 color-mix(in srgb, var(--tc, var(--t-other)) 75%, black); }
+.other-guides { margin: 1rem 0 1.25rem; }
+.other-guides summary { cursor: pointer; font-weight: 600; color: var(--green); }
+.other-guides summary:focus-visible { outline: 3px solid var(--focus-ink); outline-offset: 2px; }
+.guide-featured { border-left: 4px solid var(--green); }
 .title-actions { align-items: center; flex-wrap: wrap; }
 .chips .type-chip { margin: .1rem 0; }
 .card-chip { position: absolute; left: .7rem; top: .55rem; z-index: 2; }
@@ -362,10 +376,10 @@ a.kg { text-decoration: none; } a.kg:hover, a.kg:focus-visible { background: var
 .crumbs [aria-current="page"] { color: var(--ink); font-weight: 700; }
 
 /* ---- content photos: no frame border/background; centred captions ---- */
-.photo .frame { background: none; border: 0; border-radius: 0; height: auto; display: block; overflow: hidden; }
-.photo .frame img { width: auto; max-width: 100%; height: auto; max-height: 28rem; object-fit: contain; object-position: center; display: block; margin: 0 auto; }
+.photo .frame { background: none; border: 0; border-radius: 0; width: 100%; height: 360px; max-width: 100%; display: block; overflow: hidden; }
+.photo .frame img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; object-position: center; display: block; margin: 0 auto; }
 .photo figcaption { text-align: center; }
-@media (max-width: 600px) { .photo .frame { height: auto; } .photo .frame img { max-height: 18rem; } }
+@media (max-width: 600px) { .photo .frame { height: 240px; } }
 
 /* Region and crop cards: consistent aspect, cover, no stretch */
 .region-cards .thumb, .thumb.wide { aspect-ratio: 16/9; background: #e8eee6; }
@@ -390,6 +404,10 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
 .your-climate .kg-big { margin: .2rem 0 .4rem; }
 .your-climate-line { background: var(--green-2); border-radius: 8px; padding: .5rem .8rem; margin: 0 0 1rem; }
 .your-climate-line[hidden] { display: none; }
+/* Sidebar already shows Your climate on desktop; keep a compact line only when the sidebar stacks below. */
+@media (min-width: 861px) {
+  .your-climate-line { display: none !important; }
+}
 
 /* Places line */
 .places-line .flag { margin-left: .1rem; }
@@ -448,6 +466,11 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
 .dialog::backdrop { background: #1d2a1f73; }
 .dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .8rem; margin-bottom: .8rem; }
 .dialog-head h2 { margin: 0; font-size: 1.2rem; }
+.dialog-close { display: inline-flex; align-items: center; justify-content: center; width: 2.3rem; height: 2.3rem; flex: none;
+  border-radius: 999px; background: transparent; border: 1px solid var(--line); color: var(--ink); padding: 0; }
+.dialog-close:hover { background: var(--green-2); border-color: var(--green); }
+.dialog-close:focus-visible { outline: 3px solid var(--focus-ink); outline-offset: 2px; }
+.dialog-close .icon { width: 1.2rem; height: 1.2rem; }
 .dialog-actions { margin: .4rem 0 0; }
 .grow-edit-lead { margin: 0 0 .2rem; font-size: .9rem; color: var(--muted); }
 .grow-form { display: flex; flex-direction: column; gap: .7rem; }
@@ -469,6 +492,7 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
 #grow-search-results .sci1 { display: block; color: var(--muted); font-size: .82rem; }
 @media (max-width: 600px) {
   .dialog { width: 100%; height: 100%; max-height: 100%; border-radius: 0; margin: 0; }
+  .dialog-head { position: sticky; top: 0; z-index: 1; background: #fff; padding-top: .15rem; margin-top: -.15rem; }
   .grow-dates { grid-template-columns: 1fr; }
   .save-status { right: .7rem; bottom: .7rem; }
 }

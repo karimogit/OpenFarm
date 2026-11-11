@@ -1,4 +1,5 @@
 import { wmThumb, wmSrcset } from "../../scripts/wm.js";
+import { scientificMarkup, scientificText } from "../../scripts/sci.js";
 // Builds one cross-linked view of all content for the templates.
 import fs from "node:fs";
 import path from "node:path";
@@ -13,6 +14,19 @@ const TYPE_LABELS = {
   vegetable: "Vegetables", legume: "Legumes", herb: "Herbs", spice: "Spices", fruit: "Fruit", "fruit-tree": "Fruit trees",
   berry: "Berries", nut: "Nuts", grain: "Grains & seeds", fungus: "Mushrooms", flower: "Flowers", "cover-crop": "Cover crops", other: "Other",
 };
+const TOOL_CATEGORIES = [
+  { slug: "digging", label: "Digging & soil" },
+  { slug: "weeding", label: "Weeding & cultivating" },
+  { slug: "planting", label: "Planting & sowing" },
+  { slug: "watering", label: "Watering & irrigation" },
+  { slug: "pruning", label: "Pruning & cutting" },
+  { slug: "harvesting", label: "Harvesting" },
+  { slug: "protection", label: "Protection & season extension" },
+  { slug: "supports", label: "Supports & structures" },
+  { slug: "compost", label: "Compost & soil health" },
+  { slug: "measuring", label: "Measuring & testing" },
+  { slug: "carrying", label: "Carrying & storage" },
+];
 
 export default function () {
   const registry = loadSources();
@@ -61,6 +75,8 @@ export default function () {
       // Cultivar epithet for the 'Cultivar' form, e.g. Solanum lycopersicum 'Sungold' (ICNCP style).
       cultivar: cultivarOf(d, crop),
       cultivarName: crop.scientific_name ? `${crop.scientific_name} '${cultivarOf(d, crop)}'` : null,
+      sciHtml: scientificMarkup(d.scientific_name, crop.scientific_name, cultivarOf(d, crop)),
+      sciText: scientificText(d.scientific_name, crop.scientific_name, cultivarOf(d, crop)),
       image: own ? { ...own, note: d.image_note || null } : crop.image, imageInherited: !own && !!crop.image,
       sources: resolveSources(d.sources, registry),
       url: `/crops/${d.crop}/varieties/${d.slug}/`,
@@ -98,9 +114,13 @@ export default function () {
     cropBy[b]?.companions.push({ ...c, other: cropBy[a] });
   }
 
+  const catLabel = Object.fromEntries(TOOL_CATEGORIES.map((c) => [c.slug, c.label]));
   const tools = loadTools().map((x) => ({ ...x.data, file: x.file, html: md.render(x.body), url: `/tools/${x.data.slug}/`,
+    categoryLabel: catLabel[x.data.category] || x.data.category,
     sources: resolveSources(x.data.sources, registry), image: images[`tool:${x.data.slug}`] || null, crops: [], guides: [] }));
   const toolBy = Object.fromEntries(tools.map((x) => [x.slug, x]));
+  for (const t of tools) t.allCategories = [...new Set([t.category, ...(t.categories || [])])];
+  const toolCategories = TOOL_CATEGORIES.map((c) => ({ ...c, tools: tools.filter((t) => t.allCategories.includes(c.slug)) })).filter((c) => c.tools.length);
   for (const c of crops) { c.toolList = (c.tools || []).map((s) => toolBy[s]).filter(Boolean); for (const x of c.toolList) x.crops.push(c); }
   for (const t of tools) t.directGuides = [];
   for (const g of guides) {
@@ -127,7 +147,7 @@ export default function () {
   const catalog = {
     crops: crops.map((c) => ({ slug: c.slug, name: c.name, sci: c.scientific_name || null,
       img: c.image ? { src: wmThumb(c.image, 250), srcset: wmSrcset(c.image, 250), w: c.image.orig_width || null, h: c.image.orig_height || null } : null })),
-    varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName })),
+    varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName, sci: v.sciText, sciHtml: v.sciHtml })),
   };
 
   const stats = {
@@ -137,5 +157,5 @@ export default function () {
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
     images: crops.filter((c) => c.image).length,
   };
-  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, types, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
+  return { catalog, crops, cropBy, varieties, guides, regions, regionBy, problems, problemBy, companions, seedSources, tools, toolBy, toolCategories, types, kgToRegion: kg2region, clientIndex, stats, typeLabels: TYPE_LABELS };
 }

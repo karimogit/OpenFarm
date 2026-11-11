@@ -1,7 +1,7 @@
 ---
 crop: beet
 region: cold-semi-arid
-title: Beet in cold semi-arid steppe climates
+title: Beet in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

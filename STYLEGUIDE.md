@@ -28,15 +28,19 @@ Small, plain and fast: system fonts, one stylesheet (`site/assets/css/style.css`
 - **Current section:** the template sets `aria-current="page"` on the link for the current section. CSS styles that
   attribute (not a class) with `--nav-active`, bold text and a white bottom bar, so screen readers and sighted users
   get the same signal. Sections: home → *Find guides*; `/crops/`, `/guides/`, `/problems/` → *Crops*;
-  `/regions/` → *Region*; `/profile/` → *My Profile*; `/contribute/` → *About*. Seed sources live at `/crops/#seed-sources` (with `/seeds/` redirecting there).
+  `/regions/` → *Region*; `/tools/` → *Tools*; `/profile/` → *My Profile*; `/contribute/` → *About*. Seed sources live at `/crops/#seed-sources` (with `/seeds/` redirecting there).
+  Crops, Region and Tools each have a dropdown of their groups (crop types, climate regions, tool categories). Tool
+  category pages live at `/tools/<category>/`; a tool page stays at `/tools/<tool>/` (breadcrumb uses the primary category).
 
 ## Cards and images
 
 - Card grids use `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` so every card in a row has the same width.
 - Card images sit in a fixed 4:3 frame with `object-fit: contain` on a neutral background: never cropped, never
-  stretched, never upscaled beyond the original size. Page photos use a fixed-height frame the same way.
-- Wikimedia Commons thumbnails are requested at standard widths (250/500 px for cards, 960/1920 px for page photos)
-  with `srcset` for 1x/2x screens.
+  stretched, never upscaled beyond the original size. Crop and region cards may use `object-fit: cover`.
+- Page (hero/detail) photos are centred, `object-fit: contain`, and capped in a 360 px-tall frame on desktop and 240 px on
+  small screens (`object-fit: cover`), never wider than the content column.
+- Wikimedia Commons thumbnails use production standard widths only (250, 330, 500, 960, 1280, 1920; see https://w.wiki/GHai):
+  250/500 px (1×/2×) for cards, and 330/500/960 px (`srcset` + `sizes`) for page photos, so file sizes stay small. Below-the-fold images are lazy-loaded; heroes stay eager.
 - Names clamp to two lines, scientific names to one line with an ellipsis.
 
 ## Links and buttons

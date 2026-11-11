@@ -2,7 +2,6 @@
 slug: rake
 name: "Rake"
 category: digging
-commons_file: "Bow rake.jpg"
 sources:
   - title: "Rake (Wikipedia)"
     publisher: Wikipedia

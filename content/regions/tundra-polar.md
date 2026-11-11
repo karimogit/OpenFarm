@@ -1,6 +1,7 @@
 ---
 slug: tundra-polar
-name: Tundra and polar
+name: Tundra
+subtitle: Including polar ice cap
 koppen: [ET, EF]
 color: "#b2b2b2"
 order: 15

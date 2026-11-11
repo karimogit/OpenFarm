@@ -1,6 +1,7 @@
 ---
 slug: subarctic
-name: Subarctic (boreal)
+name: Subarctic
+subtitle: Boreal
 koppen: [Dfc, Dfd, Dwc, Dwd, Dsc, Dsd]
 color: "#007d7d"
 order: 14

@@ -1,7 +1,7 @@
 ---
 slug: wheelbarrow
 name: "Wheelbarrow"
-category: digging
+category: carrying
 commons_file: "Wheelbarrow.jpg"
 sources:
   - title: "Wheelbarrow (Wikipedia)"

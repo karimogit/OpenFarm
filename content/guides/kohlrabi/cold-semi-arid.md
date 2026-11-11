@@ -1,7 +1,7 @@
 ---
 crop: kohlrabi
 region: cold-semi-arid
-title: Kohlrabi in cold semi-arid steppe climates
+title: Kohlrabi in cold semi-arid climates
 koppen: [BSk]
 hemisphere: north
 reference_location: "Denver / Colorado Front Range, USA"

@@ -1,0 +1,22 @@
+---
+layout: base.njk
+pagination:
+  data: db.toolCategories
+  size: 1
+  alias: cat
+permalink: "/tools/{{ cat.slug }}/"
+eleventyComputed:
+  title: "{{ cat.label }}"
+  description: "{{ cat.label }} tools in OpenFarm: what each is for, how to use it and how to look after it."
+---
+{% set crumbs = [{href: "/tools/", label: "Tools"}, {label: cat.label, current: true}] %}{% include "crumbs.njk" %}
+<div class="title-row"><h1>{{ cat.label }} <small class="muted">({{ cat.tools.length }})</small></h1></div>
+<ul class="chips type-chips">{% for o in db.toolCategories %}<li><a class="type-chip tool-{{ o.slug }}" href="{{ ('/tools/' + o.slug + '/') | url }}"{% if o.slug == cat.slug %} aria-current="page"{% endif %}>{{ o.label }} <small>{{ o.tools.length }}</small></a></li>{% endfor %}</ul>
+<ul class="crop-grid">
+{% for t in cat.tools %}
+  <li class="card tool-{{ t.category }}"><a href="{{ t.url | url }}">
+    <span class="thumb">{% if t.image %}<img src="{{ t.image | wmThumb(250) }}" srcset="{{ t.image | wmSrcset(250) }}" alt="" loading="lazy">{% endif %}</span>
+    <span class="name">{{ t.name }}</span><span class="sci1 muted">{{ t.categoryLabel }}</span>
+  </a></li>
+{% endfor %}
+</ul>

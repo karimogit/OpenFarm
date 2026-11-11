@@ -40,7 +40,16 @@
         </ul>
       </div>
 
-      <a href="{{ '/tools/' | url }}"{% if sect == "tools" %} aria-current="page"{% endif %}>Tools</a>
+      <div class="nav-drop" data-nav-drop>
+        <a class="nav-drop-label" href="{{ '/tools/' | url }}"{% if sect == "tools" %} aria-current="page"{% endif %}>Tools</a>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true" aria-controls="nav-tools" aria-label="Open tools menu">{% set icon = "chevron-down" %}{% include "icon.njk" %}</button>
+        <ul id="nav-tools" class="nav-menu" role="menu" hidden>
+          <li role="none"><a role="menuitem" href="{{ '/tools/' | url }}"{% if u == "/tools/" %} aria-current="page"{% endif %}>All tools</a></li>
+          {% for c in db.toolCategories %}
+          <li role="none"><a role="menuitem" href="{{ ('/tools/' + c.slug + '/') | url }}"{% if u == "/tools/" + c.slug + "/" %} aria-current="page"{% endif %}>{{ c.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
       <a href="{{ '/help/' | url }}"{% if sect == "help" %} aria-current="page"{% endif %}>Help</a>
       <a href="{{ '/contribute/' | url }}"{% if sect == "about" %} aria-current="page"{% endif %}>About</a>
     </nav>

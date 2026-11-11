@@ -4017,6 +4017,34 @@
   "file": "Fourche 1.jpg",
   "picked": true
  },
+ "tool:cloche": {
+  "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Garden_cloche_in_Copped_Hall_Kitchen_Garden%2C_Epping%2C_Essex%2C_England.jpg/960px-Garden_cloche_in_Copped_Hall_Kitchen_Garden%2C_Epping%2C_Essex%2C_England.jpg",
+  "width": 640,
+  "height": 640,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Garden_cloche_in_Copped_Hall_Kitchen_Garden%2C_Epping%2C_Essex%2C_England.jpg",
+  "orig_width": 4030,
+  "orig_height": 4030,
+  "author": "Acabashi",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Garden_cloche_in_Copped_Hall_Kitchen_Garden,_Epping,_Essex,_England.jpg",
+  "file": "Garden cloche in Copped Hall Kitchen Garden, Epping, Essex, England.jpg",
+  "picked": true
+ },
+ "tool:cold-frame": {
+  "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/JamesGardensColdFrame.jpg/960px-JamesGardensColdFrame.jpg",
+  "width": 640,
+  "height": 427,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/JamesGardensColdFrame.jpg",
+  "orig_width": 2835,
+  "orig_height": 1890,
+  "author": "WayneRay",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:JamesGardensColdFrame.jpg",
+  "file": "JamesGardensColdFrame.jpg",
+  "picked": true
+ },
  "tool:dibber": {
   "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Dibble_%28PSF%29.png/960px-Dibble_%28PSF%29.png",
   "width": 640,
@@ -4029,6 +4057,20 @@
   "license_url": null,
   "source": "https://commons.wikimedia.org/wiki/File:Dibble_(PSF).png",
   "file": "Dibble (PSF).png",
+  "picked": true
+ },
+ "tool:garden-fork": {
+  "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Garden_fork.JPG/960px-Garden_fork.JPG",
+  "width": 640,
+  "height": 480,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Garden_fork.JPG",
+  "orig_width": 2592,
+  "orig_height": 1944,
+  "author": "The Banner",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Garden_fork.JPG",
+  "file": "Garden fork.JPG",
   "picked": true
  },
  "tool:hoe": {
@@ -4059,6 +4101,20 @@
   "file": "Hori-hori.jpg",
   "picked": true
  },
+ "tool:loppers": {
+  "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Astschere.jpg/960px-Astschere.jpg",
+  "width": 640,
+  "height": 219,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Astschere.jpg",
+  "orig_width": 1252,
+  "orig_height": 428,
+  "author": "User:MarkusHagenlocher",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Astschere.jpg",
+  "file": "Astschere.jpg",
+  "picked": true
+ },
  "tool:mattock": {
   "src": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Mattock.jpg",
   "width": 640,
@@ -4087,6 +4143,20 @@
   "file": "Secateur ouvert.jpg",
   "picked": true
  },
+ "tool:rain-gauge": {
+  "src": "https://upload.wikimedia.org/wikipedia/commons/c/ca/250mm_Rain_Gauge.jpg",
+  "width": 640,
+  "height": 1360,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/250mm_Rain_Gauge.jpg",
+  "orig_width": 544,
+  "orig_height": 1156,
+  "author": "Bidgee",
+  "license": "CC BY 3.0",
+  "license_url": "https://creativecommons.org/licenses/by/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:250mm_Rain_Gauge.jpg",
+  "file": "250mm Rain Gauge.jpg",
+  "picked": true
+ },
  "tool:seed-trays": {
   "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Plants_in_seed_tray.jpg/960px-Plants_in_seed_tray.jpg",
   "width": 640,
@@ -4099,6 +4169,34 @@
   "license_url": "https://creativecommons.org/licenses/by/4.0",
   "source": "https://commons.wikimedia.org/wiki/File:Plants_in_seed_tray.jpg",
   "file": "Plants in seed tray.jpg",
+  "picked": true
+ },
+ "tool:shovel": {
+  "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Shovel.jpg/960px-Shovel.jpg",
+  "width": 640,
+  "height": 656,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Shovel.jpg",
+  "orig_width": 1366,
+  "orig_height": 1401,
+  "author": "Rasbak",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:Shovel.jpg",
+  "file": "Shovel.jpg",
+  "picked": true
+ },
+ "tool:soil-thermometer": {
+  "src": "https://upload.wikimedia.org/wikipedia/commons/7/72/Soil_Thermometer.jpg",
+  "width": 640,
+  "height": 389,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Soil_Thermometer.jpg",
+  "orig_width": 882,
+  "orig_height": 536,
+  "author": "SietsL",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Soil_Thermometer.jpg",
+  "file": "Soil Thermometer.jpg",
   "picked": true
  },
  "tool:spade": {
@@ -4141,6 +4239,20 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File:Transplantoir_bleu_-_%C3%A9chelle.jpg",
   "file": "Transplantoir bleu - échelle.jpg",
+  "picked": true
+ },
+ "tool:trug": {
+  "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Traditional_Trug.jpg/960px-Traditional_Trug.jpg",
+  "width": 640,
+  "height": 427,
+  "orig_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Traditional_Trug.jpg",
+  "orig_width": 7360,
+  "orig_height": 4912,
+  "author": "SmithsTrug",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Traditional_Trug.jpg",
+  "file": "Traditional Trug.jpg",
   "picked": true
  },
  "tool:watering-can": {

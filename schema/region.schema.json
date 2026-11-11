@@ -18,7 +18,12 @@
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "The region page title. No parenthetical extras — put those in subtitle."
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Short qualifier under the name (e.g. wet and dry seasons, boreal, steppe). Not part of the page title."
     },
     "koppen": {
       "type": "array",
