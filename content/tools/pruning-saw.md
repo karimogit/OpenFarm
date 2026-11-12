@@ -8,6 +8,7 @@ sources:
     url: https://en.wikipedia.org/wiki/Pruning_saw
   - osu-sharpening-tools
   - wisc-tool-maintenance
+commons_file: "Astsäge.jpg"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

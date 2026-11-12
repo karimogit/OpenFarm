@@ -69,6 +69,13 @@ ok(GROW_STATUSES.join() === "planned,sown,growing,harvested", "status enum");
 ok(nextGrowTask({ crop: "tomato", status: "harvested" }) === "Harvested", "harvested next task is Harvested");
 ok(nextGrowTask({ crop: "tomato", status: "planned" }) === "Planned", "planned with no guide stays Planned");
 
+const legacy = validateProfile({ version: 1, favourites: { crops: ["tomato"], varieties: [], guides: [] }, growing: [] });
+ok(legacy.ok && Array.isArray(legacy.profile.favourites.tools) && legacy.profile.favourites.tools.length === 0, "old profile without tools gets an empty tools list");
+const withTool = validateProfile({ version: 1, favourites: { crops: [], varieties: [], guides: [], tools: ["trowel"] }, growing: [] });
+ok(withTool.ok && withTool.profile.favourites.tools[0] === "trowel", "tool favourite is kept");
+const badTool = validateProfile({ version: 1, favourites: { tools: ["Not a slug"] }, growing: [] });
+ok(!badTool.ok && badTool.errors.some((e) => e.includes("favourites.tools")), "bad tool id is rejected");
+
 // save / load
 store.clear();
 const saved = saveProfile({

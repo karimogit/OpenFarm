@@ -6,6 +6,7 @@ sources:
   - title: "Soaker hose (Wikipedia)"
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Soaker_hose
+commons_file: "Soaker hose irrigation beng laid in an orchard.jpg"
 license: CC-BY-SA-4.0
 general: true
 tasks:

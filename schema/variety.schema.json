@@ -38,6 +38,11 @@
     "wikipedia": {
       "type": "string"
     },
+    "wikidata": {
+      "type": "string",
+      "pattern": "^Q[0-9]+$",
+      "description": "Wikidata item for this cultivar (CC0). Required for records imported from Wikidata rather than the rescue dataset."
+    },
     "category": {
       "type": "string",
       "description": "Market/use class, e.g. cherry, beefsteak, paste, June-bearing, dessert."
@@ -484,9 +489,10 @@
         }
       },
       "then": {
-        "required": [
-          "rescue",
-          "imported"
+        "required": ["imported"],
+        "anyOf": [
+          { "required": ["rescue"] },
+          { "required": ["wikidata"] }
         ]
       }
     }

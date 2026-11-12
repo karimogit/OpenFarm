@@ -8,6 +8,7 @@ sources:
     url: https://en.wikipedia.org/wiki/Pole_saw
   - osu-sharpening-tools
   - wisc-tool-maintenance
+commons_file: "TeleskopBaumsäge.jpg"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

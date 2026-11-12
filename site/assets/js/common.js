@@ -52,14 +52,14 @@ export async function lookup(lat, lon) {
 // ---- local profile (localStorage only: no account, no server, nothing is sent anywhere) ----
 // Versioned so later releases can migrate old data. v1 shape:
 // { version: 1, location: {lat, lon, label, symbol, region, country} | null,
-//   favourites: { crops: ["tomato"], varieties: ["tomato/sungold"], guides: ["tomato/temperate-oceanic"] },
+//   favourites: { crops: ["tomato"], varieties: ["tomato/sungold"], guides: ["tomato/temperate-oceanic"], tools: ["trowel"] },
 //   growing: [{ id, crop, variety?, sown?, planted?, bed?, quantity?, status?, notes? }], updated: ISO date }
 // status is planned | sown | growing | harvested. Older records without status are treated as sown if they
 // have a sow date, otherwise planned. Changes are written to localStorage immediately (text fields debounced).
 export const PROFILE_VERSION = 1;
 const PKEY = "openfarm.profile", OLD_LOCATION_KEY = "openfarm.location";
 const SLUG = /^[a-z0-9][a-z0-9-]*$/, PAIR = /^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/, GUIDE_ID = /^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*){1,2}$/, DATE = /^\d{4}-\d{2}-\d{2}$/;
-export const emptyProfile = () => ({ version: PROFILE_VERSION, location: null, favourites: { crops: [], varieties: [], guides: [] }, growing: [], updated: null });
+export const emptyProfile = () => ({ version: PROFILE_VERSION, location: null, favourites: { crops: [], varieties: [], guides: [], tools: [] }, growing: [], updated: null });
 const newId = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 export const GROW_STATUSES = ["planned", "sown", "growing", "harvested"];
 export const GROW_STATUS_LABEL = { planned: "Planned", sown: "Sown", growing: "Growing", harvested: "Harvested" };
@@ -81,9 +81,10 @@ export function validateProfile(p) {
   }
   const f = p.favourites ?? {};
   if (typeof f !== "object" || Array.isArray(f)) errors.push("favourites must be an object.");
-  else for (const [k, re] of [["crops", SLUG], ["varieties", PAIR], ["guides", GUIDE_ID]]) {
+  else for (const [k, re] of [["crops", SLUG], ["varieties", PAIR], ["guides", GUIDE_ID], ["tools", SLUG]]) {
     const list = f[k] ?? [];
-    if (!Array.isArray(list) || list.length > 5000 || !list.every((x) => typeof x === "string" && re.test(x))) errors.push(`favourites.${k} must be a list of ids like ${k === "crops" ? '"tomato"' : '"tomato/…"'}.`);
+    const example = k === "varieties" || k === "guides" ? '"tomato/…"' : k === "tools" ? '"trowel"' : '"tomato"';
+    if (!Array.isArray(list) || list.length > 5000 || !list.every((x) => typeof x === "string" && re.test(x))) errors.push(`favourites.${k} must be a list of ids like ${example}.`);
     else out.favourites[k] = [...new Set(list)];
   }
   const g = p.growing ?? [];
@@ -171,6 +172,7 @@ export function profileCSV(p = loadProfile()) {
   for (const c of p.favourites.crops) rows.push(["favourite", "crop", c, "", "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/`]);
   for (const v of p.favourites.varieties) { const [c, s] = v.split("/"); rows.push(["favourite", "variety", c, s, "", "", "", "", "", "", "", location.origin + BASE + `crops/${c}/${s}/`]); }
   for (const g of p.favourites.guides) { const parts = g.split("/"); const c = parts[0], r = parts.at(-1), vari = parts.length === 3 ? parts[1] : ""; rows.push(["favourite", "guide", c, vari, r, "", "", "", "", "", "", location.origin + favGuideHref(parts.join("/"))]); }
+  for (const t of p.favourites.tools) rows.push(["favourite", "tool", t, "", "", "", "", "", "", "", "", location.origin + BASE + `tools/${t}/`]);
   return rows.map((r) => r.map(q).join(",")).join("\r\n") + "\r\n";
 }
 export const exportCSV = () => downloadText("\ufeff" + profileCSV(), "text/csv;charset=utf-8", `openfarm-garden-${today()}.csv`);
@@ -200,12 +202,14 @@ export function profileMarkdown(p = loadProfile()) {
   L.push(``, `## Favourites`, ``);
   for (const c of p.favourites.crops) L.push(`- Crop: ${name(c)}`);
   for (const v of p.favourites.varieties) L.push(`- Variety: ${v.split("/")[1].replace(/-/g, " ")} (${name(v.split("/")[0])})`);
-  for (const g of p.favourites.guides) { const p = g.split("/"); L.push(`- Guide: ${name(p[0])} – ${REGION_BY[p.at(-1)]?.name || p.at(-1)}${p.length === 3 ? " (" + p[1] + ")" : ""}`); }
-  if (!p.favourites.crops.length && !p.favourites.varieties.length && !p.favourites.guides.length) L.push(`_None yet._`);
+  for (const g of p.favourites.guides) { const parts = g.split("/"); L.push(`- Guide: ${name(parts[0])} – ${REGION_BY[parts.at(-1)]?.name || parts.at(-1)}${parts.length === 3 ? " (" + parts[1] + ")" : ""}`); }
+  const toolName = (slug) => cat?.tools?.find((t) => t.slug === slug)?.name || slug.replace(/-/g, " ");
+  for (const t of p.favourites.tools) L.push(`- Tool: ${toolName(t)}`);
+  if (!p.favourites.crops.length && !p.favourites.varieties.length && !p.favourites.guides.length && !p.favourites.tools.length) L.push(`_None yet._`);
   return L.join("\n") + "\n";
 }
 export const exportMarkdown = () => downloadText(profileMarkdown(), "text/markdown;charset=utf-8", `openfarm-notebook-${today()}.md`);
-const FAV_KINDS = { crop: "crops", variety: "varieties", guide: "guides" };
+const FAV_KINDS = { crop: "crops", variety: "varieties", guide: "guides", tool: "tools" };
 export const isFav = (kind, id, p = loadProfile()) => p.favourites[FAV_KINDS[kind]].includes(id);
 export function toggleFav(kind, id) {
   const p = loadProfile(), list = p.favourites[FAV_KINDS[kind]], i = list.indexOf(id);
@@ -547,7 +551,7 @@ function renderProfileBits() {
     b.classList.toggle("on", on);
     b.innerHTML = on ? `${icon("sprout")} <span>In my garden</span>` : `${icon("plus")} <span>I'm growing this</span>`;
   });
-  const n = p.favourites.crops.length + p.favourites.varieties.length + p.favourites.guides.length;
+  const n = p.favourites.crops.length + p.favourites.varieties.length + p.favourites.guides.length + p.favourites.tools.length;
   document.querySelectorAll("[data-profile-counts]").forEach((el) => {
     if (n || p.growing.length) el.innerHTML = `<a href="${BASE}profile/">${n} favourite${n === 1 ? "" : "s"} · ${p.growing.length} growing</a>`;
   });
@@ -733,7 +737,7 @@ async function renderBell() {
   btn.title = unread.length ? `${unread.length} new reminder${unread.length > 1 ? "s" : ""}` : "Reminders";
   const p = loadProfile();
   const dot = $("[data-profile-dot]");
-  if (dot) dot.hidden = !(p.location || p.growing.length || p.favourites.crops.length + p.favourites.varieties.length + p.favourites.guides.length);
+  if (dot) dot.hidden = !(p.location || p.growing.length || p.favourites.crops.length + p.favourites.varieties.length + p.favourites.guides.length + p.favourites.tools.length);
   const perm = "Notification" in window ? Notification.permission : "unsupported";
   panel.innerHTML = `<div class="bp-head"><strong>Reminders</strong>${unread.length ? `<button type="button" class="link-btn" data-bell-read>Mark all read</button>` : ""}</div>
     ${items.length ? `<ul class="bp-list">${items.map((x) => `<li class="${r.read.includes(x.id) ? "" : "unread"}"><a href="${x.url}" data-rid="${esc(x.id)}">${icon(x.icon)} ${esc(x.text)}</a></li>`).join("")}</ul>`

@@ -14,7 +14,7 @@ eleventyComputed:
 <article data-pagefind-body>
 <h1>{{ z.label }}</h1>
 <p class="lead">Average yearly extreme minimum temperature: <strong>{{ z.min_c }} to {{ z.max_c }} °C</strong> ({{ z.min_f }} to {{ z.max_f }} °F).</p>
-<p>These bounds follow the <a href="https://planthardiness.ars.usda.gov/">USDA Plant Hardiness Zone Map</a> scale. OpenFarm does not invent a zone for a plant: the list below is only crops whose <em>sourced</em> hardiness range includes this zone. A crop missing from the list may still be grown here as an annual, or may simply not have a cited range yet.</p>
+<p>These bounds follow the <a href="https://planthardiness.ars.usda.gov/">USDA Plant Hardiness Zone Map</a> scale. OpenFarm does not invent a zone for a plant. {{ db.stats.withHardiness }} of {{ db.stats.crops }} crops have a sourced range, and every one of those whose range includes {{ z.label }} is listed below ({{ z.plants.length }}). A crop missing from the list may still be grown here as an annual, or may simply not have a cited range yet.</p>
 <p>Your own zone is estimated from Open-Meteo ERA5 1991–2020 daily minima at your location (about 25 km grid, CC BY 4.0). That is a guide, not a frost-pocket guarantee. Hardiness is only winter cold — see <a href="{{ '/regions/' | url }}">climate regions</a> and <a href="{{ '/help/' | url }}#hardiness">Help</a> for the rest of the climate.</p>
 
 <h2>Plants with a sourced range that includes {{ z.label }}</h2>

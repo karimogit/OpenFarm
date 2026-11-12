@@ -8,6 +8,7 @@ sources:
     url: https://en.wikipedia.org/wiki/Hedge_trimmer
   - osu-sharpening-tools
   - wisc-tool-maintenance
+commons_file: "Fiskars Hedge Shears.jpg"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

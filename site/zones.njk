@@ -9,6 +9,7 @@ description: USDA-style plant hardiness zones 1a–13b, with temperature ranges 
 <h1>Hardiness zones</h1>
 <p class="lead">A USDA-style plant hardiness zone describes how cold winters get: the average yearly extreme minimum temperature. Zone 1 starts at −51.1 °C (−60 °F). Each full zone is 10 °F (about 5.6 °C) wide and is split into a colder <em>a</em> and a warmer <em>b</em> half.</p>
 <p>The scale below follows the <a href="https://planthardiness.ars.usda.gov/">USDA Plant Hardiness Zone Map</a>. Your own zone on this site is worked out in the browser from Open-Meteo ERA5 1991–2020 minima — see <a href="{{ '/help/' | url }}#hardiness">Help</a> for the method and its limits. Hardiness zones are not the same as <a href="{{ '/regions/' | url }}">climate regions</a>, which also describe summer heat, dry seasons and season length.</p>
+<p>{{ db.stats.withHardiness }} of {{ db.stats.crops }} crops have a sourced hardiness range. Each zone page lists every one of those crops whose range includes that half-zone. Crops without a sourced range are left off on purpose; a zone is never guessed. A range written as a whole zone, such as 8, covers both 8a and 8b.</p>
 <table class="zones-table">
   <thead><tr><th>Zone</th><th>Minimum temperature</th><th>Sourced plants hardy here</th></tr></thead>
   <tbody>

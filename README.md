@@ -61,10 +61,10 @@ Public URLs (the site is served under `/OpenFarm/` on GitHub Pages):
 - JSON API: `/api/` (docs), `/api/all.json`, `/api/guides.json`, `/api/tools.json`, `/api/countries.json`, `/api/places.json`, `/crops/<crop>.json`, `/regions/<region>.json`, `/countries/<iso2>.json`, `/places/<slug>.json`, `/zones/<zone>.json`
 
 
-**Today:** 271 crops (8 curated, 263 imported; 208 with a sourced GRIN edible use), 80 varieties and
-2 variety groups, 197 sourced guides, 38 tools, 15 climate regions covering all 31 Köppen-Geiger
+**Today:** 347 crops (84 curated, 263 imported; 208 with a sourced GRIN edible use), 194 varieties and
+16 variety groups, 220 sourced guides, 38 tools, 15 climate regions covering all 31 Köppen-Geiger
 classes, country pages for 252 GeoNames countries and territories, and hardiness-zone pages for
-USDA-style zones 1a–13b. 65 crops are fruit, fruit trees, berries or nuts. Ten of the 15 regions
+USDA-style zones 1a–13b. 96 crops are fruit, fruit trees, berries or nuts. Ten of the 15 regions
 currently have at least one primary guide (tropical rainforest now has three; cold desert, hot
 semi-arid, subpolar oceanic, subtropical highland and tundra-polar still have none).
 Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
@@ -127,7 +127,7 @@ filled by `scripts/fetch_hardiness.py`, which only accepts a page whose heading 
 Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (favourites and growing list with notes), **.ics** (sow/plant/harvest reminders) and **Markdown** (a readable garden notebook). See also the in-site [Help](https://karimogit.github.io/OpenFarm/help/) page.
 
 
-- **Local profile, no account.** Your location, favourites (the heart on crops, varieties and guides) and "What I'm
+- **Local profile, no account.** Your location, favourites (the heart on crops, varieties, guides and tools) and "What I'm
   growing" list (with sow dates and notes) are stored only in your browser's `localStorage`
   (key `openfarm.profile`, versioned JSON). Nothing is sent to a server. Changes autosave immediately (notes after a short pause), with a brief “Saved” notice, and stay in sync across open tabs. The profile page can export it (JSON, CSV, calendar, Markdown),
   import a JSON backup (the shape is validated) and clear it. “What I'm growing” has a Cards/Calendar view switch. Add opens a crop/variety search, and a card opens a dialog to edit variety, dates, bed, quantity, status and notes.
@@ -244,9 +244,7 @@ We'd rather cooperate than compete:
 - **[Growstuff](https://www.growstuff.org/)** – a long-running open-source community
   for food gardeners that shares openly licensed crop data. Great for tracking plantings
   and harvests.
-- **[OpenPlantDB](https://github.com/cwfrazier1/openplantdb)** – a CC0
-  machine-readable garden-plant dataset (germination, maturity, USDA-zone timing).
-  Its CC0 data could seed crop facts here, with climate-specific calendars on top.
+- **[OpenPlantDB](https://github.com/cwfrazier1/openplantdb)** – a machine-readable garden-plant dataset whose repository licence is CC0. The bulk file was reviewed and not imported: many rows cite seed catalogues, nurseries, or a “general horticultural reference” with no URL. See [SOURCES.md](SOURCES.md).
 
 ## Roadmap
 
@@ -266,7 +264,7 @@ We'd rather cooperate than compete:
 - [ ] Translations (Dutch, Swedish, Spanish, …) – the structured format makes this easy
 - [ ] Frost-date and day-length hints; climate-change view (2041–2070 Köppen maps)
 - [x] Public JSON export (`/api/all.json`, one JSON file per crop and region)
-- [ ] Import openly licensed facts (e.g. OpenPlantDB CC0) with attribution, following [SOURCES.md](SOURCES.md)
+- [x] Wikidata CC0 taxonomy for extra food crops and cultivar names (names only; no growing advice). OpenPlantDB's bulk file and the Wind River seed-catalogue compilation were reviewed and left out; see [SOURCES.md](SOURCES.md)
 - [ ] **Offline ZIM for Kiwix:** for major tagged releases, a release-triggered GitHub Action will build an offline OpenFarm ZIM (relative links, small bundled Commons images with attribution, Kiwix search instead of Pagefind, graceful offline behaviour for location, calendar and profile). The action will run zimwriterfs and zimcheck and attach the `.zim` to the GitHub release; a later step is to submit it to the Kiwix library.
 
 ## Sustainability

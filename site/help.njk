@@ -29,7 +29,7 @@ Every code on the site links to its region; hover it to see the full name.</p>
 </tbody></table>
 
 <h2 id="hardiness">Hardiness zones</h2>
-<p>Each zone from 1a to 13b has its own page, with the temperature range and the plants in this catalogue whose <em>sourced</em> range includes it: see <a href="{{ '/zones/' | url }}">Hardiness zones</a>.</p>
+<p>Each zone from 1a to 13b has its own page, with the temperature range and every crop in this catalogue whose <em>sourced</em> range includes that half-zone: see <a href="{{ '/zones/' | url }}">Hardiness zones</a>. Crops with no sourced range are not listed on any zone page. A range given as a whole zone covers both halves.</p>
 <p>A plant hardiness zone (USDA-style) describes how cold winters get: it is based on the <strong>average yearly extreme minimum temperature</strong>.
 Zone 1 starts at −51.1 °C (−60 °F); each zone is 10 °F (about 5.6 °C) wide and split into a colder <em>a</em> and a warmer <em>b</em> half (for example 8b = −9.4 to −6.7 °C).</p>
 <p><strong>Your zone</strong> is worked out in your browser: OpenFarm asks the <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo historical weather API</a> (ERA5 reanalysis, about 25 km grid, CC BY 4.0) for the daily minimum temperatures of 1991–2020 at your location, takes the coldest night of each year and averages them.
@@ -42,10 +42,11 @@ The result is cached in this browser. Limits: a 25 km grid smooths out frost poc
 
 <h2 id="unreviewed">The “Unreviewed” badge</h2>
 <p>Some crop and variety pages come from the original OpenFarm's community data and have not been checked against sources yet. They carry a small <span class="badge unrev">Unreviewed</span> badge. Facts on these pages may be wrong – don't rely on them for edibility or safety, and don't treat wiki-derived spacing or companions as authoritative. Each one has an <em>Improve this page</em> link; once someone checks it against sources it loses the badge.</p>
+<p>Some variety pages are name-only records from Wikidata (CC0): the cultivar name and, when Wikidata has it, the taxon string. They use the same badge, and they do not include growing instructions. They are not a source for spacing, sun, sowing or companions.</p>
 
 
 <h2 id="profile">Your profile and exports</h2>
-<p>Your location, favourites (the heart button), list filters and “what I'm growing” list are <strong>stored only in this browser</strong> (localStorage) – nothing is sent to a server, and there is no account. Changes save automatically (notes after a short pause) and a brief “Saved” notice confirms it. Open tabs stay in sync. Clearing your browser data removes it. On <a href="{{ '/profile/' | url }}">Profile</a> you can export it:</p>
+<p>Your location, favourites (the heart button on a crop, variety, guide or tool), list filters and “what I'm growing” list are <strong>stored only in this browser</strong> (localStorage) – nothing is sent to a server, and there is no account. Changes save automatically (notes after a short pause) and a brief “Saved” notice confirms it. Open tabs stay in sync. Clearing your browser data removes it. On <a href="{{ '/profile/' | url }}">Profile</a> you can export it:</p>
 <ul>
   <li><strong>JSON</strong> – a full backup that you can import again (on another browser or device). Imports are validated before anything is replaced.</li>
   <li><strong>CSV</strong> – your favourites and growing list with status, sow/plant dates, bed, quantity and notes, for spreadsheets.</li>

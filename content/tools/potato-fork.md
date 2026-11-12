@@ -7,6 +7,7 @@ sources:
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Garden_fork
   - isu-tools-winter
+commons_file: "Kartoffelgabel - Schell-Mi - Forchheim.JPG"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

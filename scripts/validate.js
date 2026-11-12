@@ -111,7 +111,7 @@ for (const v of varieties) {
   for (const p of v.data.pollination_partners || []) if (!varietyKeys.has(`${v.data.crop}/${p}`)) fail(v.file, `unknown pollination partner "${p}"`);
   checkSources(v.file, v.data.sources);
   if (v.data.field_sources) for (const list of Object.values(v.data.field_sources)) checkSources(v.file, list);
-  if (v.data.origin === "imported") checkImportedFields(v.file, v.data, ["crop", "slug", "name", "origin", "imported", "license", "sources", "field_sources", "rescue", "note", "authors", "last_reviewed", "commons_file", "image_note", "wikipedia", "kind", "group", "redirect_from"]);
+  if (v.data.origin === "imported") checkImportedFields(v.file, v.data, ["crop", "slug", "name", "origin", "imported", "license", "sources", "field_sources", "rescue", "note", "authors", "last_reviewed", "commons_file", "image_note", "wikipedia", "wikidata", "kind", "group", "redirect_from"]);
   for (const old of v.data.redirect_from || []) {
     const rk = `${v.data.crop}/${old}`;
     if (varietyKeys.has(rk) && old !== v.data.slug) fail(v.file, `redirect_from "${old}" collides with an existing slug`);

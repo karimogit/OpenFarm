@@ -7,6 +7,7 @@ sources:
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Garden_design
   - clemson-planning-a-garden
+commons_file: "PMD Richtschnur Plastik1.jpg"
 license: CC-BY-SA-4.0
 general: true
 tasks:

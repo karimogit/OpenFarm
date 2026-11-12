@@ -7,6 +7,7 @@ sources:
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Dibber
   - isu-tools-winter
+commons_file: "Plantoir à bulbe.jpg"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

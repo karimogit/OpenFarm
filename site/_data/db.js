@@ -1,4 +1,5 @@
 import { wmThumb, wmSrcset } from "../../scripts/wm.js";
+import { zoneCovers } from "../../scripts/zones.js";
 import { scientificMarkup, scientificText } from "../../scripts/sci.js";
 // Builds one cross-linked view of all content for the templates.
 import fs from "node:fs";
@@ -226,6 +227,10 @@ export default function () {
     crops: crops.map((c) => ({ slug: c.slug, name: c.name, sci: c.scientific_name || null,
       img: c.image ? { src: wmThumb(c.image, 250), srcset: wmSrcset(c.image, 250), w: c.image.orig_width || null, h: c.image.orig_height || null } : null })),
     varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName, sci: v.sciText, sciHtml: v.sciHtml, group: v.group || null, url: v.url })),
+    tools: tools.map((t) => ({
+      slug: t.slug, name: t.name, url: t.url,
+      img: t.image ? { src: wmThumb(t.image, 250), srcset: wmSrcset(t.image, 250), w: t.image.orig_width || null, h: t.image.orig_height || null } : null,
+    })),
   };
 
 
@@ -241,16 +246,10 @@ export default function () {
       url: `/zones/${n}${half}/`,
     });
   }
-  const zoneIndex = (z) => {
-    const m = String(z || "").trim().toLowerCase().match(/^(\d{1,2})([ab])$/);
-    return m ? (Number(m[1]) - 1) * 2 + (m[2] === "b" ? 1 : 0) : null;
-  };
   for (const z of zoneHalf) {
-    z.plants = crops.filter((c) => {
-      if (!c.hardiness?.min || !c.hardiness?.max) return false;
-      const a = zoneIndex(c.hardiness.min), b = zoneIndex(c.hardiness.max), i = z.index;
-      return a != null && b != null && i >= a && i <= b;
-    }).map((c) => ({ slug: c.slug, name: c.name, url: `/crops/${c.slug}/`, min: c.hardiness.min, max: c.hardiness.max }));
+    z.plants = crops.filter((c) => c.hardiness?.min && c.hardiness?.max && zoneCovers(c.hardiness.min, c.hardiness.max, z.index))
+      .map((c) => ({ slug: c.slug, name: c.name, url: `/crops/${c.slug}/`, min: c.hardiness.min, max: c.hardiness.max }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
 
@@ -434,6 +433,7 @@ export default function () {
 
   const stats = {
     crops: crops.length, imported: crops.filter((c) => c.origin === "imported").length, curated: crops.filter((c) => c.origin === "curated").length,
+    withHardiness: crops.filter((c) => c.hardiness?.min && c.hardiness?.max).length,
     varieties: varieties.length, groups: groups.length, guides: guides.length, regions: regions.length,
     regionsWithGuides: regions.filter((r) => r.guides.some((x) => x.primary)).length,
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
