@@ -1,0 +1,9 @@
+---
+pagination:
+  data: db.guides
+  size: 1
+  alias: g
+permalink: "/crops/{{ g.crop }}/{% if g.variety %}{{ g.variety }}/{% endif %}{{ g.region }}.json"
+eleventyExcludeFromCollections: true
+---
+{{ g | guideOut | prettyJson | safe }}

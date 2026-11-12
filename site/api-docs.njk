@@ -31,6 +31,9 @@ description: Read-only JSON endpoints for OpenFarm crops, guides, regions and to
 <p>All tools, with category, image licence, sources, and the crops or guides that list them.</p>
 <pre><code>curl -sL https://karimogit.github.io/OpenFarm/api/tools.json</code></pre>
 
+<h3><code>GET /crops/&lt;crop&gt;/&lt;region&gt;.json</code></h3>
+<p>One growing guide (calendar, spacing, confidence, sources). Example: <a href="{{ '/crops/tomato/temperate-oceanic.json' | url }}"><code>/crops/tomato/temperate-oceanic.json</code></a>. Variety-specific guides use <code>/crops/&lt;crop&gt;/&lt;variety&gt;/&lt;region&gt;.json</code>.</p>
+
 <h3><code>GET /crops/&lt;crop&gt;.json</code></h3>
 <p>One crop, including varieties and guides. Example: <a href="{{ '/crops/tomato.json' | url }}"><code>/crops/tomato.json</code></a>.</p>
 <pre><code>{

@@ -46,6 +46,7 @@ data/koppen/                                  Köppen-Geiger 0.5° grid, Beck et
 data/country-climates.json                    Derived country climate-region shares (committed so CI need not run GIS)
 data/grin-edibility.json                      GRIN Taxonomy matches applied to crops (public domain; dump not shipped)
 scripts/validate.js                           Schemas + cross-references + region coverage (npm run validate)
+scripts/audit_pages.mjs                       Built HTML + guide coverage report (npm test, after Eleventy)
 scripts/import_rescue.js                      Imports the CC0 openfarm-crops-rescue dataset (npm run import:rescue)
 scripts/fetch_images.js                       Finds freely licensed Commons photos (npm run images)
 site/                                         Eleventy templates, CSS and small vanilla-JS modules (MIT)
