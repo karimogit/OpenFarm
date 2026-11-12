@@ -14,7 +14,7 @@
     <div class="top-inner">
     <a class="brand" href="{{ '/' | url }}">{% set icon = "sprout" %}{% include "icon.njk" %} <strong>OpenFarm</strong></a>
     {%- set u = page.url or "" -%}
-    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if (u.indexOf("/regions/") == 0 or u.indexOf("/countries/") == 0 or u.indexOf("/zones/") == 0) else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
+    {%- set sect = "home" if u == "/" else ("crops" if (u.indexOf("/crops/") == 0 or u.indexOf("/guides/") == 0 or u.indexOf("/problems/") == 0) else ("regions" if (u.indexOf("/regions/") == 0 or u.indexOf("/countries/") == 0 or u.indexOf("/zones/") == 0 or u.indexOf("/places/") == 0) else ("tools" if u.indexOf("/tools/") == 0 else ("profile" if u.indexOf("/profile/") == 0 else ("help" if u.indexOf("/help/") == 0 else ("about" if u.indexOf("/contribute/") == 0 else "")))))) %}
     <nav class="main-nav" id="main-nav" aria-label="Main">
       <a href="{{ '/' | url }}#where"{% if sect == "home" %} aria-current="page"{% endif %}>Find guides</a>
 

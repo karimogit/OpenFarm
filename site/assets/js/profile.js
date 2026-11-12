@@ -1,11 +1,11 @@
 // Profile page: everything here lives in localStorage (see common.js) – nothing is sent anywhere.
-import { BASE, INDEX, REGION_BY, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce, loadPlaces, locationHref, guideHref, favGuideHref, MONTHS } from "./common.js";
+import { BASE, INDEX, REGION_BY, regionOf, $, esc, loadProfile, saveProfile, clearProfile, validateProfile, matchGuides, thumbHTML, swatch, addGrowing, downloadICS, myCropGuides, hardinessZone, hardinessLine, exportCSV, exportMarkdown, exportProfile, nextGrowTask, growStatus, GROW_STATUS_LABEL, debounce, loadPlaces, locationHref, guideHref, favGuideHref, MONTHS } from "./common.js";
 import { icon } from "./icons.js";
 
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
 const CROP = Object.fromEntries(CAT.crops.map((c) => [c.slug, c]));
 const VAR = Object.fromEntries(CAT.varieties.map((v) => [`${v.crop}/${v.slug}`, v]));
-const GUIDE = Object.fromEntries(INDEX.guides.map((g) => [`${g.crop}/${g.region}`, g]));
+const GUIDE = Object.fromEntries(INDEX.guides.map((g) => [g.favId || `${g.crop}/${g.region}`, g]));
 
 function tile(href, img, name, sub, fav) {
   return `<li><a href="${href}">${thumbHTML(img)}<strong class="name">${esc(name)}</strong><em class="sci1">${sub ? esc(sub) : "&nbsp;"}</em></a>
@@ -93,7 +93,7 @@ function renderGrowing(p) {
 
 function render() {
   const p = loadProfile();
-  const loc = p.location, region = loc && REGION_BY[loc.region];
+  const loc = p.location, region = loc && (regionOf(loc.symbol) || REGION_BY[loc.region]);
   $("#profile-location").innerHTML = loc
     ? `<p><strong>${esc((loc.label || "").split(",")[0] || `${loc.lat}, ${loc.lon}`)}</strong><br><span class="small">${loc.lat}, ${loc.lon}</span></p>
        ${region ? `<p>${swatch(region)}<a href="${BASE}regions/${region.slug}/">${esc(region.name)}</a> <a class="kg" href="${BASE}help/#koppen" title="Köppen climate class – see Help">${esc(loc.symbol || "")}</a></p>` : ""}
@@ -125,12 +125,12 @@ function render() {
 
   const mine = new Set([...f.crops, ...p.growing.map((g) => g.crop), ...f.varieties.map((x) => x.split("/")[0]), ...f.guides.map((x) => x.split("/")[0])]);
   const pg = $("#profile-guides");
-  if (!loc?.symbol) { pg.innerHTML = `<p class="small muted">Save a location to see the guides for your climate region.</p>`; return; }
+  if (!loc?.symbol || !region) { pg.innerHTML = `<p class="small muted">Save a location to see the guides for your climate region.</p>`; return; }
   const list = matchGuides(loc.symbol, loc.lat).filter((m) => !mine.size || mine.has(m.g.crop));
   pg.innerHTML = list.length ? `<p class="small muted">${mine.size ? "For your favourites and the crops you grow" : "All guides"} in ${swatch(region)}${esc(region.name)}.</p>
     <ul class="crop-grid guide-grid">${list.map(({ g, kind, via }) => `<li><a href="${guideHref(g)}">${thumbHTML(g.img)}
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em><span class="gtitle">${esc(g.title)}</span>
-      <span class="badges">${kind === "similar" ? `<span class="note-flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : ""}</span></a></li>`).join("")}</ul>`
+      <span class="badges">${kind === "similar" && via ? `<span class="note-flag">nearest region: ${esc(via.name.toLowerCase())}</span>` : ""}</span></a></li>`).join("")}</ul>`
     : `<p class="small muted">No guides for these crops in your climate region (or a similar one) yet.</p>`;
 }
 

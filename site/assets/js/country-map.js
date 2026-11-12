@@ -52,11 +52,10 @@ async function ensureLeaflet() {
   ]);
   const L = window.L;
   if (L?.Icon?.Default) {
-    const dir = BASE + "assets/vendor/leaflet/images/";
+    // Icon.Default prefixes iconUrl with imagePath. Passing a full iconUrl
+    // here produced /images/ + /images/marker-icon.png, so the pin 404ed.
     L.Icon.Default.mergeOptions({
-      iconUrl: dir + "marker-icon.png",
-      iconRetinaUrl: dir + "marker-icon-2x.png",
-      shadowUrl: dir + "marker-shadow.png",
+      imagePath: BASE + "assets/vendor/leaflet/images/",
     });
   }
 }

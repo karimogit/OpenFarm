@@ -11,4 +11,4 @@
     {% if gc.hardiness %}<span class="badge xlabel" title="USDA hardiness zones">zones {{ gc.hardiness.min }}–{{ gc.hardiness.max }}</span>{% endif %}
     {% if extraKg %} {% for k in g.koppen %}{% if k in extraKg %}<span class="kg" title="Köppen {{ k }}: {{ koppen.classes | kgName(k) }}">{{ k }}</span>{% endif %}{% endfor %}{% endif %}
   </span>
-</a><button class="fav card-fav" type="button" data-fav="guide:{{ g.crop }}/{{ g.region }}" aria-pressed="false" title="Add to favourites">{% set icon = "heart" %}{% include "icon.njk" %}<span class="visually-hidden">Add to favourites</span></button></li>
+</a><button class="fav card-fav" type="button" data-fav="guide:{{ g.favId }}" aria-pressed="false" title="Add to favourites">{% set icon = "heart" %}{% include "icon.njk" %}<span class="visually-hidden">Add to favourites</span></button></li>
