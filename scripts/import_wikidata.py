@@ -10,10 +10,10 @@ New crops: a short list of widely grown food plants that this catalogue does
 not already have. The scientific name must match a Wikidata taxon name exactly;
 family comes from that item. The page text is ours.
 
-Not imported: OpenPlantDB's bulk file (many rows cite seed catalogues or
-"general horticultural reference" with no URL) and the Wind River variety
-database (CC BY on the compilation, but built from seed-catalogue feeds, which
-SOURCES.md excludes).
+Not imported: OpenPlantDB's bulk file (39,124 records; the source URLs are
+seed shops and nurseries, and the other rows have no URL) and the Wind River
+variety database (CC BY on the compilation, but built from seed-catalogue
+feeds, which SOURCES.md excludes).
 
   python3 scripts/import_wikidata.py           # print what would be added
   python3 scripts/import_wikidata.py --write   # write markdown

@@ -74,7 +74,7 @@ Cultivar pages are names only. A cultivar is kept when Wikidata ranks it as a cu
 
 Reviewed and not imported:
 
-- **OpenPlantDB** (`plants.json`). The repository licence file is CC0, but the bulk file mixes in seed catalogues, nurseries, and rows credited only to “general horticultural reference” with no URL. Those are excluded above.
+- **OpenPlantDB** (`data/plants.json`, 39,124 records, checked 12 November 2026). The repository licence file is CC0. The bulk file is not imported. The 1,439 source URLs in it all point at seed shops or nurseries (Botanical Interests, Survival Garden Seeds, Epic Gardening, and others). The remaining rows name an institution, or only “general horticultural reference”, and give no URL, so a number or sentence cannot be checked. Some rows name Plants For A Future, which is excluded above. Its USDA zone figures describe where an annual is commonly grown, not a winter-survival range, so they are not hardiness. [Pull request #2](https://github.com/cwfrazier1/openplantdb/pull/2) is an unmerged draft of generated records and was not imported.
 - **Wind River plant-variety database.** The compilation is labelled CC BY 4.0, but it is built from seed-catalogue feeds. Seed catalogues are excluded above.
 
 ## Photos and other assets
