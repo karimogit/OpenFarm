@@ -248,7 +248,7 @@ We'd rather cooperate than compete:
 - **[Growstuff](https://www.growstuff.org/)** – a long-running open-source community
   for food gardeners that shares openly licensed crop data. Great for tracking plantings
   and harvests.
-- **[OpenPlantDB](https://github.com/cwfrazier1/openplantdb)** – a machine-readable garden-plant dataset whose repository licence is CC0. The bulk file was reviewed and not imported: many rows cite seed catalogues, nurseries, or a “general horticultural reference” with no URL. See [SOURCES.md](SOURCES.md).
+- **[OpenPlantDB](https://github.com/cwfrazier1/openplantdb)** – a machine-readable garden-plant dataset whose repository licence is CC0. The bulk file (39,124 records, checked 12 November 2026) was not imported: every source URL points at a seed shop or nursery, and the other rows do not link the number or sentence. See [SOURCES.md](SOURCES.md).
 
 ## Roadmap
 
