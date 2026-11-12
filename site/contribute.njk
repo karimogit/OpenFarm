@@ -31,7 +31,7 @@ permalink: /contribute/
 <h2>The data model</h2>
 <ul>
   <li><strong>Crop</strong> (<code>content/crops/&lt;crop&gt;.md</code>, URL <code>/crops/&lt;crop&gt;/</code>) – the centre of the model: facts that are true everywhere (type, family, sun, size, seed-saving, perennial facts such as chill hours and rootstocks).</li>
-  <li><strong>Variety groups and cultivars</strong> (<code>content/varieties/&lt;crop&gt;/&lt;slug&gt;.md</code>) – horticultural groups and named cultivars of a crop, with sourced names and traits.</li>
+  <li><strong>Variety groups and cultivars</strong> (<code>content/varieties/&lt;crop&gt;/&lt;slug&gt;.md</code>) – horticultural groups and named cultivars. Some cultivar pages are names from Wikidata (CC0) only, with no growing instructions. Groups and curated varieties keep sourced traits.</li>
   <li><strong>Guide</strong> (file <code>content/guides/&lt;crop&gt;/&lt;region&gt;.md</code>, URL <code>/crops/&lt;crop&gt;/&lt;region&gt;/</code>) – how to grow one crop in one climate region: month calendar, spacing, suggested varieties, local problems. Old <code>/guides/…</code> URLs redirect here.</li>
   <li><strong>Climate regions</strong> – 15 regions grouping Köppen–Geiger classes (Beck et al. 2018). A place looks up its class in the browser and maps to one region.</li>
   <li><strong>Countries</strong> (<code>/countries/&lt;iso2&gt;/</code>) and <strong>cities / places</strong> (<code>/places/&lt;slug&gt;/</code>, or <code>?place=</code> on the home map) – climate share, maps, and “grows well here” lists derived only from sourced guides.</li>
@@ -65,7 +65,7 @@ permalink: /contribute/
   <li>Imported crop records: the <a href="https://github.com/thefullnacho/openfarm-crops-rescue">OpenFarm crops rescue</a> dataset (CC0) of original <a href="https://github.com/openfarmcc">OpenFarm.cc</a> community data</li>
   <li>Climate regions: Köppen-Geiger map by <a href="https://www.gloh2o.org/koppen/">Beck et al. (2018)</a>, CC BY 4.0</li>
   <li>Photos: <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> – author and license shown on each picture</li>
-  <li>Scientific names and families: <a href="https://www.wikidata.org/">Wikidata</a>, CC0</li>
+  <li>Scientific names, families, and some cultivar names: <a href="https://www.wikidata.org/">Wikidata</a>, CC0. Cultivar pages from Wikidata are names only.</li>
   <li>Maps and Nominatim fallback: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="https://nominatim.org/">Nominatim</a></li>
   <li>Offline place search: <a href="https://www.geonames.org/">GeoNames</a>, CC BY 4.0</li>
   <li>Weather: <a href="https://open-meteo.com/">Open-Meteo.com</a>, CC BY 4.0</li>
@@ -78,6 +78,7 @@ permalink: /contribute/
 <h2>Licenses and credits</h2>
 <p>Code is MIT. Guide content is <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> – © {{ site.attribution }}.
   Crops marked "Unreviewed" have not been checked against sources yet – reviewing one is a great first contribution.
+  Name-only Wikidata cultivars use the same badge and say that growing instructions have not been added.
   Photos come from Wikimedia Commons with their author and license shown. Full details are in
   <a href="{{ site.repo }}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
 </article>

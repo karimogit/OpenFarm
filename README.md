@@ -11,7 +11,7 @@ and share what you know.**
 Pick a place on the map (or search, or type lat/lon) → OpenFarm looks up its
 **Köppen-Geiger climate class** in your browser and maps it to one of **15 climate regions**
 that together cover every place on Earth → you get the guides written for your climate region,
-a month-by-month calendar, a 7-day forecast with frost risk and soil temperature, varieties that
+a month-by-month calendar (hover a coloured month for spacing, sun, days or a listed tool, when the guide has them), a 7-day forecast with frost risk and soil temperature, varieties that
 suit your region and seed sources near you. No accounts, no backend, no tracking.
 
 | | | | |
@@ -121,6 +121,7 @@ The visitor's zone is computed in the browser from the [Open-Meteo historical we
 Limits: the coarse grid smooths frost pockets, valleys and urban heat, and reanalysis is often slightly milder than station data in cold spots.
 Crop ranges (`hardiness: {min, max, sources}`) come only from cited sources (currently NC State Extension's Plant Toolbox,
 filled by `scripts/fetch_hardiness.py`, which only accepts a page whose heading names the same species). No zones are estimated.
+Each half-zone page lists every catalogue crop whose sourced range includes that half-zone. Crops with no sourced range are left off. A whole-zone number such as 8 covers both 8a and 8b.
 
 ## Your profile, reminders and privacy
 
@@ -171,7 +172,10 @@ Exports on the Profile page: **JSON** (full backup, re-importable), **CSV** (fav
   Wiki-derived rescue fields (spacing, prose, sun, sowing) are not treated as an authority.
 - **Variety groups.** Cultivar groups (for example garlic Hardneck Group and Softneck Group) are
   `kind: group` records under `content/varieties/<crop>/`, at `/crops/<crop>/<group>/`. Scientific
-  names use sourced ICNCP forms only; ranks are not invented.
+  names use sourced ICNCP forms only; ranks are not invented. Extra cultivar pages imported from
+  Wikidata (CC0) record the name and taxon string only. They do not add spacing, sun, sowing,
+  hardiness, or companions. OpenPlantDB's bulk file and the Wind River seed-catalogue compilation
+  were reviewed and not imported; see [SOURCES.md](SOURCES.md).
 - **Edibility.** `edible` / `edible_parts` and recorded poisonous uses come from USDA-ARS GRIN
   Taxonomy economic uses (public domain), cited per record, and are omitted when unsourced. They
   are for cultivated crops, not for identifying wild plants or foraging.

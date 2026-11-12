@@ -1,9 +1,9 @@
-{# expects `cal` (calendar object) #}
+{# expects `cal`. A guide `g` may carry `calNotes`: a short suffix per job, already limited to facts on that guide. #}
 <div class="cal" role="table" aria-label="Planting calendar">
   <div class="cal-row cal-head" role="row"><span class="cal-label" role="columnheader"></span>{% for m in range(1, 13) %}<span role="columnheader" data-m="{{ (m | monthName)[0] }}">{{ m | monthName }}</span>{% endfor %}</div>
   {% for key, label in [["sow_indoors","Sow indoors"],["sow_direct","Sow outside"],["plant","Plant out"],["prune","Prune"],["harvest","Harvest"]] %}
     {% if cal[key] %}
-    <div class="cal-row" role="row"><span class="cal-label" role="rowheader">{{ label }}</span>{% for m in range(1, 13) %}<span class="{% if m in cal[key] %}on {{ key }}{% endif %}" role="cell" title="{{ label }} – {{ m | monthName }}"></span>{% endfor %}</div>
+    <div class="cal-row" role="row"><span class="cal-label" role="rowheader">{{ label }}</span>{% for m in range(1, 13) %}{% if m in cal[key] %}{% set tip = label ~ " in " ~ (m | monthName) ~ (g.calNotes[key] if g and g.calNotes and g.calNotes[key] else "") %}<span class="on {{ key }}" role="cell"{% if not calQuiet %} tabindex="0"{% endif %} data-tip="{{ tip }}" title="{{ tip }}"></span>{% else %}<span role="cell"></span>{% endif %}{% endfor %}</div>
     {% endif %}
   {% endfor %}
 </div>

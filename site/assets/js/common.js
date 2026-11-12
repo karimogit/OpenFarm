@@ -572,6 +572,57 @@ document.addEventListener("click", (e) => {
 document.addEventListener("openfarm:profile", renderProfileBits);
 renderProfileBits();
 
+// A coloured calendar month can carry a short note (the job, plus spacing, sun, days or a tool already on the guide).
+const calPop = document.createElement("div");
+calPop.className = "cal-pop";
+calPop.hidden = true;
+calPop.setAttribute("role", "tooltip");
+document.body.append(calPop);
+let calPinned = null;
+function showCalTip(cell) {
+  const text = cell.getAttribute("data-tip");
+  if (!text) return;
+  cell.removeAttribute("title");
+  calPop.textContent = text;
+  calPop.hidden = false;
+  const r = cell.getBoundingClientRect();
+  const w = calPop.offsetWidth, h = calPop.offsetHeight;
+  const left = Math.max(8, Math.min(r.left + r.width / 2 - w / 2, window.innerWidth - w - 8));
+  let top = r.top - h - 6;
+  if (top < 8) top = Math.min(r.bottom + 6, window.innerHeight - h - 8);
+  calPop.style.left = `${left}px`;
+  calPop.style.top = `${top}px`;
+}
+function hideCalTip() {
+  calPop.hidden = true;
+  calPinned = null;
+}
+document.addEventListener("pointerover", (e) => {
+  if (calPinned) return;
+  const cell = e.target.closest?.("[data-tip]");
+  if (cell) showCalTip(cell);
+});
+document.addEventListener("pointerout", (e) => {
+  if (calPinned) return;
+  const cell = e.target.closest?.("[data-tip]");
+  if (cell && !cell.contains(e.relatedTarget)) hideCalTip();
+});
+document.addEventListener("focusin", (e) => {
+  const cell = e.target.closest?.("[data-tip]");
+  if (cell) showCalTip(cell);
+});
+document.addEventListener("focusout", (e) => {
+  if (e.target.closest?.("[data-tip]")) hideCalTip();
+});
+document.addEventListener("click", (e) => {
+  const cell = e.target.closest?.("[data-tip]");
+  if (!cell) { if (calPinned) hideCalTip(); return; }
+  if (calPinned === cell) hideCalTip();
+  else { calPinned = cell; showCalTip(cell); }
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") hideCalTip(); });
+window.addEventListener("scroll", () => { if (!calPop.hidden) hideCalTip(); }, true);
+
 function renderAll(loc) { renderWeather(loc); renderYourRegion(loc); renderSeedSources(loc); renderYourClimate(loc); ensureClimate(loc); }
 document.addEventListener("openfarm:location", (e) => renderAll(e.detail));
 renderAll(getLocation());

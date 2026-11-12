@@ -36,7 +36,7 @@ eleventyComputed:
         <div class="match-body">
         <h3><span class="swatch sm" style="background:{{ g.regionColor }}"></span><a href="{{ g.url | url }}">{{ g.regionName }}</a> <small>{{ g.title }}</small></h3>
         <p>{% for k in g.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %} · checked against {{ g.reference_location }}</p>
-        {% set cal = g.calendar %}{% include "calendar.njk" %}
+        {% set cal = g.calendar %}{% set calQuiet = true %}{% include "calendar.njk" %}
         </div>
       </section>
       {% endfor %}

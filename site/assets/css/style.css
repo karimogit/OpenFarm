@@ -46,6 +46,10 @@ button { background: var(--green); color: #fff; border-color: var(--green); curs
 .match { border-top: 1px solid var(--line); padding-top: .6rem; margin-top: .6rem; }
 .match h3 { margin: 0 0 .3rem; font-size: 1.05rem; } .match h3 small { color: var(--muted); font-weight: 400; display: block; }
 .cal { display: grid; gap: 2px; margin: .5rem 0; overflow-x: auto; font-size: .75rem; }
+.cal [data-tip], .place-cal [data-tip] { cursor: help; }
+.cal [data-tip]:focus-visible, .place-cal [data-tip]:focus-visible { outline: 2px solid var(--focus-ink); outline-offset: 1px; }
+.cal-pop { position: fixed; z-index: 40; max-width: 16rem; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px #0002; padding: .45rem .65rem; font-size: .8rem; line-height: 1.35; pointer-events: none; }
+.cal-pop[hidden] { display: none; }
 .cal-row { display: grid; grid-template-columns: 6.2rem repeat(12, minmax(1.4rem, 1fr)); gap: 2px; }
 .cal-row span { height: 1.3rem; background: #eef2ec; border-radius: 3px; }
 .cal-head span { background: none; text-align: center; color: var(--muted); }
