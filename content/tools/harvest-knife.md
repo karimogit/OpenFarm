@@ -7,6 +7,7 @@ sources:
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Kitchen_knife
   - osu-sharpening-tools
+commons_file: "Erntemesser.jpg"
 license: CC-BY-SA-4.0
 general: true
 tasks:

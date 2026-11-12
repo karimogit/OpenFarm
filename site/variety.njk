@@ -13,15 +13,15 @@ eleventyComputed:
 {% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + crop.slug + "/", label: crop.name}] %}
 {% if v.groupRecord %}{% set crumbs = crumbs.concat([{href: v.groupRecord.url, label: v.groupRecord.name}]) %}{% endif %}
 {% set crumbs = crumbs.concat([{label: v.name, current: true}]) %}{% include "crumbs.njk" %}
-<p class="your-climate-line" data-your-climate-line hidden></p>
 <div class="layout">
 
   <article class="col-main" data-pagefind-body>
     <div class="title-row"><h1>{{ v.name }} <small class="muted">{{ crop.name }}</small></h1>
       <span class="title-actions" data-pagefind-ignore>{% set ty = crop.type %}{% include "type-chip.njk" %}<button type="button" class="fav" data-fav="variety:{{ crop.slug }}/{{ v.slug }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button>
       <button type="button" class="grow" data-grow="{{ crop.slug }}/{{ v.slug }}">＋ I'm growing this</button></span></div>
+    <p class="your-climate-line" data-your-climate-line hidden></p>
     <p class="sci-line">{% if v.sciHtml %}{{ v.sciHtml | safe }}{% endif %}{% if v.category %} · {{ v.category }}{% endif %}{% if v.synonyms %} · also sold as {{ v.synonyms | join(", ") }}{% endif %}</p>
-    {% if v.origin == "imported" %}<p class="sci-line">{% set editFile = v.file %}{% include "unreviewed.njk" %}</p>{% endif %}
+    {% if v.origin == "imported" %}<p class="sci-line">{% if v.wikidata and not v.rescue %}{% set unreviewedKind = "wikidata" %}{% endif %}{% set editFile = v.file %}{% include "unreviewed.njk" %}</p>{% endif %}
     {% set img = v.image %}{% set alt = v.name + " " + crop.name %}{% set inherited = v.imageInherited %}{% include "image.njk" %}
     <div class="body">{{ v.html | safe }}</div>
     {% include "forage-disclaimer.njk" %}

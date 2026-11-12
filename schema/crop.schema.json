@@ -706,9 +706,10 @@
         }
       },
       "then": {
-        "required": [
-          "rescue",
-          "imported"
+        "required": ["imported"],
+        "anyOf": [
+          { "required": ["rescue"] },
+          { "required": ["wikidata"] }
         ]
       }
     }

@@ -68,7 +68,7 @@ eleventyComputed:
       <div class="cal-row" role="row">
         <span class="cal-label" role="rowheader"><a href="{{ row.guideUrl | url }}">{{ row.name }}</a>{% if row.shifted %} <span class="muted">(+6 mo.)</span>{% endif %}</span>
         {% for m in range(1, 13) %}
-        <span class="{% if row.calendar.sow_indoors and m in row.calendar.sow_indoors %}on sow_indoors {% endif %}{% if row.calendar.sow_direct and m in row.calendar.sow_direct %}on sow_direct {% endif %}{% if row.calendar.plant and m in row.calendar.plant %}on plant {% endif %}{% if row.calendar.harvest and m in row.calendar.harvest %}on harvest {% endif %}{% if row.calendar.prune and m in row.calendar.prune %}on prune {% endif %}" role="cell" title="{{ row.name }} – {{ m | monthName }}"></span>
+        <span class="{% if row.calendar.sow_indoors and m in row.calendar.sow_indoors %}on sow_indoors {% endif %}{% if row.calendar.sow_direct and m in row.calendar.sow_direct %}on sow_direct {% endif %}{% if row.calendar.plant and m in row.calendar.plant %}on plant {% endif %}{% if row.calendar.harvest and m in row.calendar.harvest %}on harvest {% endif %}{% if row.calendar.prune and m in row.calendar.prune %}on prune {% endif %}" role="cell"{% if row.tips[m - 1] %} data-tip="{{ row.tips[m - 1] }}" title="{{ row.tips[m - 1] }}"{% endif %}></span>
         {% endfor %}
       </div>
       {% endfor %}

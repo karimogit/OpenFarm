@@ -11,7 +11,9 @@ eleventyComputed:
 {% set crumbs = [{href: "/tools/", label: "Tools"}, {href: "/tools/" + t.category + "/", label: t.categoryLabel}, {label: t.name, current: true}] %}{% include "crumbs.njk" %}
 <div class="layout">
 <article class="col-main" data-pagefind-body>
-  <h1>{{ t.name }}</h1>
+  <div class="title-row"><h1>{{ t.name }}</h1>
+    <span class="title-actions" data-pagefind-ignore><button type="button" class="fav" data-fav="tool:{{ t.slug }}" data-label aria-pressed="false">{% set icon = "heart" %}{% include "icon.njk" %} <span>Favourite</span></button></span></div>
+  <p class="your-climate-line" data-your-climate-line hidden></p>
   <p class="sci-line"><a href="{{ ('/tools/' + t.category + '/') | url }}">{{ t.categoryLabel }}</a></p>
   {% if t.image %}{% set img = t.image %}{% set alt = t.name %}{% set inherited = false %}{% include "image.njk" %}{% endif %}
   <div class="body">{{ t.html | safe }}</div>

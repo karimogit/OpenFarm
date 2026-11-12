@@ -7,6 +7,7 @@ sources:
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Hoe_(tool)
   - wisc-tool-maintenance
+commons_file: "Objectes de la Sala Horta i Marjal (26585177623).jpg"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

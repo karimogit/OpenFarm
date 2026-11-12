@@ -66,6 +66,17 @@ PLANTS images may be copyrighted and are not imported. Practical Plants is mixed
 CC BY-SA / CC BY-NC-SA and is not mass-imported. FAO ECOCROP was not given a clear
 dataset licence on its page, so it is not imported.
 
+## Taxonomy imported from Wikidata
+
+Wikidata structured data is CC0. `scripts/import_wikidata.py` adds food crops whose binomial matches a Wikidata taxon name (P225) exactly, and takes the family from that item's family-rank ancestor. The short description on those pages is original text under CC BY-SA 4.0. Wikipedia prose is not copied.
+
+Cultivar pages are names only. A cultivar is kept when Wikidata ranks it as a cultivar (P105 = Q4886), its taxon name starts with one crop's scientific name (the longest match wins; a tie is skipped), and the epithet is quoted. Each crop stops at eight extra names. Spacing, sun, sowing, hardiness, companions and growing prose are not filled from Wikidata. Wikidata's hardiness property is a single zone, not a min–max range, so it is not imported.
+
+Reviewed and not imported:
+
+- **OpenPlantDB** (`plants.json`). The repository licence file is CC0, but the bulk file mixes in seed catalogues, nurseries, and rows credited only to “general horticultural reference” with no URL. Those are excluded above.
+- **Wind River plant-variety database.** The compilation is labelled CC BY 4.0, but it is built from seed-catalogue feeds. Seed catalogues are excluded above.
+
 ## Photos and other assets
 
 Wikimedia Commons photos are used only when the file itself is CC0, public domain, CC BY

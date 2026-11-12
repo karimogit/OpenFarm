@@ -8,6 +8,7 @@ sources:
     url: https://en.wikipedia.org/wiki/Trowel
   - umn-seeds-indoors
   - isu-seed-starting
+commons_file: "Trowels for transplanting seedlings.jpg"
 license: CC-BY-SA-4.0
 general: true
 tasks:

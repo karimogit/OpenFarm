@@ -6,6 +6,7 @@ sources:
   - title: "Staking (horticulture) (Wikipedia)"
     publisher: Wikipedia
     url: https://en.wikipedia.org/wiki/Staking_(horticulture)
+commons_file: "Tomato Support (5843173257).jpg"
 license: CC-BY-SA-4.0
 ---
 ## What it's for

@@ -5,6 +5,7 @@ import { icon } from "./icons.js";
 const CAT = JSON.parse(document.getElementById("of-catalog").textContent);
 const CROP = Object.fromEntries(CAT.crops.map((c) => [c.slug, c]));
 const VAR = Object.fromEntries(CAT.varieties.map((v) => [`${v.crop}/${v.slug}`, v]));
+const TOOL = Object.fromEntries((CAT.tools || []).map((t) => [t.slug, t]));
 const GUIDE = Object.fromEntries(INDEX.guides.map((g) => [g.favId || `${g.crop}/${g.region}`, g]));
 
 function tile(href, img, name, sub, fav) {
@@ -121,7 +122,8 @@ function render() {
     return tile(`${BASE}crops/${c}/${s}/`, CROP[c]?.img, v?.name || s, v?.cultivarName || CROP[c]?.name, `variety:${id}`); }).join("")}</ul>`;
   if (f.guides.length) h += `<h3 class="group">Guides</h3><ul class="crop-grid">${f.guides.map((id) => { const g = GUIDE[id], parts = id.split("/"), c = parts[0], r = parts.at(-1);
     return tile(favGuideHref(parts.join("/")), CROP[c]?.img, g?.title || id, REGION_BY[r]?.name, `guide:${id}`); }).join("")}</ul>`;
-  $("#fav-list").innerHTML = h || `<p class="small muted">No favourites yet — use the heart on any crop, variety or guide.</p>`;
+  if (f.tools.length) h += `<h3 class="group">Tools</h3><ul class="crop-grid">${f.tools.map((s) => tile(`${BASE}tools/${s}/`, TOOL[s]?.img, TOOL[s]?.name || s.replace(/-/g, " "), "Tool", `tool:${s}`)).join("")}</ul>`;
+  $("#fav-list").innerHTML = h || `<p class="small muted">No favourites yet — use the heart on any crop, variety, guide or tool.</p>`;
 
   const mine = new Set([...f.crops, ...p.growing.map((g) => g.crop), ...f.varieties.map((x) => x.split("/")[0]), ...f.guides.map((x) => x.split("/")[0])]);
   const pg = $("#profile-guides");
@@ -314,7 +316,8 @@ $("#import-file").addEventListener("change", async (e) => {
   if (!confirm("Replace your current profile in this browser with the imported one?")) return;
   saveProfile(v.profile);
   if (v.profile.location) document.dispatchEvent(new CustomEvent("openfarm:location", { detail: v.profile.location }));
-  msg.textContent = `Imported: ${v.profile.favourites.crops.length + v.profile.favourites.varieties.length + v.profile.favourites.guides.length} favourites, ${v.profile.growing.length} crops growing.`;
+  const fav = v.profile.favourites;
+  msg.textContent = `Imported: ${fav.crops.length + fav.varieties.length + fav.guides.length + fav.tools.length} favourites, ${v.profile.growing.length} crops growing.`;
 });
 $("#clear-data").addEventListener("click", () => {
   if (!confirm("Delete your saved location, favourites and growing list from this browser? Export first if you want a copy.")) return;

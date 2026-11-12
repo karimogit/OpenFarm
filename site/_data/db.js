@@ -1,4 +1,5 @@
 import { wmThumb, wmSrcset } from "../../scripts/wm.js";
+import { zoneCovers } from "../../scripts/zones.js";
 import { scientificMarkup, scientificText } from "../../scripts/sci.js";
 // Builds one cross-linked view of all content for the templates.
 import fs from "node:fs";
@@ -201,10 +202,48 @@ export default function () {
   const toolCategories = TOOL_CATEGORIES.map((c) => ({ ...c, tools: tools.filter((t) => t.allCategories.includes(c.slug)) })).filter((c) => c.tools.length);
   for (const c of crops) { c.toolList = (c.tools || []).map((s) => toolBy[s]).filter(Boolean); for (const x of c.toolList) x.crops.push(c); }
   for (const t of tools) t.directGuides = [];
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const SUN = { full: "Full sun", "full-partial": "Full sun to part shade", partial: "Part shade", shade: "Shade" };
+  const WATER = { low: "low", moderate: "moderate", high: "high" };
+  const rangeText = (r, unit) => (Array.isArray(r) && r.length >= 2 ? (r[0] === r[1] ? `${r[0]}${unit}` : `${r[0]}–${r[1]}${unit}`) : "");
+  const TOOL_HINT = {
+    sow_indoors: { slugs: ["seed-trays", "dibber", "soil-thermometer"] },
+    sow_direct: { slugs: ["garden-line", "dibber", "hoe"] },
+    plant: { slugs: ["transplanter", "trowel", "dibber"] },
+    harvest: { slugs: ["harvest-knife", "trug", "potato-fork"] },
+    prune: { slugs: ["pruning-shears", "loppers", "pruning-saw"] },
+  };
+  const toolNames = (list, spec) => {
+    const names = [];
+    for (const slug of spec.slugs) {
+      const t = list.find((x) => x.slug === slug);
+      if (t && names.length < 2) names.push(t.name);
+    }
+    return names;
+  };
+  const calendarNotes = (g) => {
+    const list = g.toolList || [];
+    const notes = {};
+    for (const [key, spec] of Object.entries(TOOL_HINT)) {
+      const extra = [];
+      if (key === "sow_direct" && g.sun) extra.push(`${SUN[g.sun] || g.sun}${g.water ? `, ${WATER[g.water] || g.water} water` : ""}`);
+      else if (key === "plant" && g.spacing) {
+        const bits = [];
+        if (g.spacing.in_row_cm) bits.push(`${rangeText(g.spacing.in_row_cm, " cm")} in the row`);
+        if (g.spacing.between_rows_cm) bits.push(`rows ${rangeText(g.spacing.between_rows_cm, " cm")}`);
+        if (bits.length) extra.push(`Space ${bits.join(", ")}`);
+      } else if (key === "harvest" && Array.isArray(g.days_to_maturity)) extra.push(`${rangeText(g.days_to_maturity, " days")} to maturity`);
+      const names = toolNames(list, spec).slice(0, extra.length ? 1 : 2);
+      if (names.length) extra.push(`Tools: ${names.join(", ")}`);
+      notes[key] = extra.length ? `. ${extra.join(". ")}` : "";
+    }
+    return notes;
+  };
   for (const g of guides) {
     g.toolList = [...new Set([...(g.tools || []), ...(cropBy[g.crop].tools || [])])].map((s) => toolBy[s]).filter(Boolean);
     for (const x of g.toolList) x.guides.push(g);
     for (const s of g.tools || []) toolBy[s]?.directGuides.push(g);
+    g.calNotes = calendarNotes(g);
   }
   const seedSources = loadSeedSources().map((s) => ({ ...s.data, html: md.render(s.body) }));
   const types = Object.entries(TYPE_LABELS).map(([slug, label]) => ({ slug, label, crops: crops.filter((c) => c.type === slug) })).filter((t) => t.crops.length);
@@ -226,6 +265,10 @@ export default function () {
     crops: crops.map((c) => ({ slug: c.slug, name: c.name, sci: c.scientific_name || null,
       img: c.image ? { src: wmThumb(c.image, 250), srcset: wmSrcset(c.image, 250), w: c.image.orig_width || null, h: c.image.orig_height || null } : null })),
     varieties: varieties.map((v) => ({ crop: v.crop, slug: v.slug, name: v.name, cultivarName: v.cultivarName, sci: v.sciText, sciHtml: v.sciHtml, group: v.group || null, url: v.url })),
+    tools: tools.map((t) => ({
+      slug: t.slug, name: t.name, url: t.url,
+      img: t.image ? { src: wmThumb(t.image, 250), srcset: wmSrcset(t.image, 250), w: t.image.orig_width || null, h: t.image.orig_height || null } : null,
+    })),
   };
 
 
@@ -241,16 +284,10 @@ export default function () {
       url: `/zones/${n}${half}/`,
     });
   }
-  const zoneIndex = (z) => {
-    const m = String(z || "").trim().toLowerCase().match(/^(\d{1,2})([ab])$/);
-    return m ? (Number(m[1]) - 1) * 2 + (m[2] === "b" ? 1 : 0) : null;
-  };
   for (const z of zoneHalf) {
-    z.plants = crops.filter((c) => {
-      if (!c.hardiness?.min || !c.hardiness?.max) return false;
-      const a = zoneIndex(c.hardiness.min), b = zoneIndex(c.hardiness.max), i = z.index;
-      return a != null && b != null && i >= a && i <= b;
-    }).map((c) => ({ slug: c.slug, name: c.name, url: `/crops/${c.slug}/`, min: c.hardiness.min, max: c.hardiness.max }));
+    z.plants = crops.filter((c) => c.hardiness?.min && c.hardiness?.max && zoneCovers(c.hardiness.min, c.hardiness.max, z.index))
+      .map((c) => ({ slug: c.slug, name: c.name, url: `/crops/${c.slug}/`, min: c.hardiness.min, max: c.hardiness.max }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
 
@@ -389,7 +426,12 @@ export default function () {
           calendarShifted = true;
         }
         if (cal && (cal.sow_indoors || cal.sow_direct || cal.plant || cal.harvest || cal.prune)) {
-          calendarRows.push({ slug: item.slug, name: item.name, type: item.type, guideUrl: item.guideUrl, calendar: cal, shifted });
+          const jobs = [["sow_indoors", "sow indoors"], ["sow_direct", "sow outside"], ["plant", "plant out"], ["prune", "prune"], ["harvest", "harvest"]];
+          const tips = MONTHS.map((month, i) => {
+            const bits = jobs.filter(([k]) => (cal[k] || []).includes(i + 1)).map(([, label]) => label);
+            return bits.length ? `${item.name} in ${month}: ${bits.join(", ")}` : "";
+          });
+          calendarRows.push({ slug: item.slug, name: item.name, type: item.type, guideUrl: item.guideUrl, calendar: cal, shifted, tips });
         }
       }
     }
@@ -434,6 +476,7 @@ export default function () {
 
   const stats = {
     crops: crops.length, imported: crops.filter((c) => c.origin === "imported").length, curated: crops.filter((c) => c.origin === "curated").length,
+    withHardiness: crops.filter((c) => c.hardiness?.min && c.hardiness?.max).length,
     varieties: varieties.length, groups: groups.length, guides: guides.length, regions: regions.length,
     regionsWithGuides: regions.filter((r) => r.guides.some((x) => x.primary)).length,
     fruit: crops.filter((c) => ["fruit", "fruit-tree", "berry", "nut"].includes(c.type)).length,
