@@ -62,11 +62,11 @@ Public URLs (the site is served under `/OpenFarm/` on GitHub Pages):
 
 
 **Today:** 347 crops (84 curated, 263 imported; 208 with a sourced GRIN edible use), 194 varieties and
-16 variety groups, 220 sourced guides, 38 tools, 15 climate regions covering all 31 Köppen-Geiger
+16 variety groups, 306 sourced guides, 38 tools, 15 climate regions covering all 31 Köppen-Geiger
 classes, country pages for 252 GeoNames countries and territories, and hardiness-zone pages for
-USDA-style zones 1a–13b. 96 crops are fruit, fruit trees, berries or nuts. Ten of the 15 regions
-currently have at least one primary guide (tropical rainforest now has three; cold desert, hot
-semi-arid, subpolar oceanic, subtropical highland and tundra-polar still have none).
+USDA-style zones 1a–13b. 96 crops are fruit, fruit trees, berries or nuts. Twelve of the 15 regions
+currently have at least one guide (tropical rainforest has three). Subpolar oceanic, subtropical highland
+and tundra still have none.
 Curated guides cite public sources (RHS, University of Minnesota Extension, Colorado State
 University Extension, University of Arizona, Clemson HGIC, UC ANR, UF/IFAS, University of Hawaiʻi
 CTAHR, Jordbruksverket and others) and carry an honest `confidence` rating and `uncertainty` note.
@@ -258,9 +258,9 @@ We'd rather cooperate than compete:
 - [x] All 31 Köppen classes in 15 climate regions, with nearest-region fallback
 - [x] Crop → variety → guide data model; seeds, problems, companions and seed sources as shared files
 - [x] 263 crops imported from the CC0 rescue dataset; Commons photos; Pagefind search; Open-Meteo weather
-- [x] 166 regional guides from extension planting calendars (Arizona, Clemson, UF/IFAS, Iowa State, Colorado State, Alaska Fairbanks)
+- [x] 179 regional guides from extension planting calendars (Arizona, Clemson, UF/IFAS, Iowa State, Colorado State, Alaska Fairbanks)
 - [x] Hardiness zones (Open-Meteo ERA5), tools, help page, profile export (JSON, CSV, .ics, Markdown)
-- [ ] Guides for the regions that still have few or none (tropical rainforest has a first three; cold desert, hot semi-arid, subpolar oceanic, subtropical highland and tundra-polar still have none)
+- [ ] Guides for the regions that still have none (subpolar oceanic, subtropical highland and tundra)
 - [ ] Review imported crops one by one and promote them to `origin: curated`
 - [ ] Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0)
 - [ ] Native southern-hemisphere variants (instead of the shifted calendar)

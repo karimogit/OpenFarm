@@ -56,7 +56,9 @@ def hot_desert():
          "Lettuce, Leaf": "lettuce", "Leek": "leek", "Melons, CantaloupeHoneydews, etc.": "cantaloupe", "Okra": "okra", "Onions, Bulb": "onion",
          "Parsnips": "parsnip", "Peanuts": "peanut", "Peas": "pea", "Peppers": "capsicum", "Potatoes": "potato", "Potatoes, Sweet": "sweet-potato",
          "Pumpkin": "pumpkin", "Radishes": "radish", "Spinach": "spinach", "Squash, Summer": "zucchini", "Squash, Winter": "squash",
-         "Sunflower": "sunflower", "Turnips": "turnip", "Artichokes, Globe": "artichoke", "Asparagus": "asparagus"}
+         "Sunflower": "sunflower", "Turnips": "turnip", "Artichokes, Globe": "artichoke", "Artichokes, Jerusalem": "jerusalem-artichoke",
+         "Asparagus": "asparagus", "Beans, Lima": "lima-bean", "Melons, Watermelon": "watermelon", "Onions, Green": "green-onion",
+         "Onions, Shallots": "shallot", "Rutabagas": "swede"}
     out = {}
     for row, slug in M.items():
         r = d["rows"].get(row)
@@ -68,7 +70,7 @@ def hot_desert():
         if "month" in days: n = [x * 30 for x in n]
         if "year" in days or not n: dmin = dmax = None
         else:
-            s = re.search(r"S\s*=\s*([\d\-–]+)", days); t = re.search(r"T\s*=?\s*([\d\-–]+)", days)
+            s = re.search(r"S\s*=?\s*(\d+(?:\s*[-–]\s*\d+)?)", days); t = re.search(r"T\s*=?\s*(\d+(?:\s*[-–]\s*\d+)?)", days)
             sn = nums(s.group(1)) if s else n; dmin, dmax = min(sn), max(sn)
         cal = {}
         if sow: cal["sow_direct"] = sow
@@ -100,7 +102,8 @@ def humid_subtropical():
          "Potatoes, Sweet": ("sweet-potato", "Potatoes, Sweet"), "Pumpkins": ("pumpkin", None), "Radish 2": ("radish", "Radish"),
          "Spinach 2": ("spinach", "Spinach"), "Sweet Corn 2": ("corn", "Sweet Corn"), "Squash, Summer": ("zucchini", "Squash, Summer"),
          "Squash, Winter": ("squash", "Squash, Winter"), "Turnips 2": ("turnip", "Turnips"), "Honeydew": ("honeydew-melon", "Cantaloupe"),
-         "Asparagus": ("asparagus", None)}
+         "Asparagus": ("asparagus", None), "Beans, Lima": ("lima-bean", "Beans, Lima"), "Beans, Pole": ("green-bean", "Beans, Pole"),
+         "Beans, Edible Soy": ("soybean", "Beans, Edible Soy"), "Rutabaga": ("swede", "Rutabaga"), "Watermelon 1": ("watermelon", "Watermelon")}
     out = {}
     for row, (slug, drow) in M.items():
         r = d["rows"][row]; trans = row.endswith(" 1")
@@ -127,7 +130,7 @@ def tropical_monsoon():
          "Okra": "okra", "Onions, bulbing": "onion", "Onions, bunching": "spring-onion", "Peas, snow or English": "pea", "Peas, southern": "black-eyed-pea",
          "Peppers": "capsicum", "Potatoes, Irish": "potato", "Potatoes, sweet": "sweet-potato", "Pumpkin": "pumpkin", "Radish": "radish",
          "Spinach": "spinach", "Squash, summer": "zucchini", "Squash, winter": "squash", "Strawberry": "strawberry", "Swiss chard": "swiss-chard",
-         "Tomatoes (supported)": "tomato", "Turnips": "turnip", "Watermelon": None}
+         "Tomatoes (supported)": "tomato", "Turnips": "turnip", "Watermelon": "watermelon"}
     out = {}
     for row, slug in M.items():
         if not slug: continue
@@ -169,6 +172,7 @@ def humid_continental():
      "cantaloupe": ({"sow_direct": [5, 6]}, "Seed in mid-May; last practical date for early varieties 20 June."),
      "squash": ({"sow_direct": [5]}, "Seed in mid-May; needs the full season to mature fruit that stores."),
      "pumpkin": ({"sow_direct": [5]}, "Seed in mid-May; needs the full season."),
+     "watermelon": ({"sow_direct": [5, 6]}, "Seed in mid-May; last practical date 20 June."),
     }
     # Harvest: days to harvest from Iowa State PM 819 are not in the transcribed text; use the frost window and
     # Clemson's days to harvest (Table 2) as an explicit second source.
@@ -176,7 +180,7 @@ def humid_continental():
     D = {"radish": "Radish", "lettuce": "Lettuce, Leaf", "onion": "Onions, Bulb", "pea": "Peas, Garden", "spinach": "Spinach", "cabbage": "Cabbage",
          "broccoli": "Broccoli", "cauliflower": "Cauliflower", "kale": "Kale", "collard-greens": "Collards", "carrot": "Carrots", "beet": "Beets",
          "turnip": "Turnips", "bush-bean": "Beans, Snap", "corn": "Sweet Corn", "capsicum": "Pepper", "eggplant": "Eggplant", "zucchini": "Squash, Summer",
-         "cucumber": "Cucumbers", "cantaloupe": "Cantaloupe", "squash": "Squash, Winter", "pumpkin": "Squash, Winter", "swiss-chard": "Beets"}
+         "cucumber": "Cucumbers", "cantaloupe": "Cantaloupe", "squash": "Squash, Winter", "pumpkin": "Squash, Winter", "swiss-chard": "Beets", "watermelon": "Watermelon"}
     out = {}
     for slug, (cal, txt) in C.items():
         dd = nums(cl[D[slug]]); pm = sorted(set(sum(cal.values(), [])))
@@ -279,7 +283,9 @@ def main():
             if water not in ("low", "moderate", "high"): water = "moderate"
             cal = {k: v for k, v in g["cal"].items() if v}
             srcs = R["sources"] + g.get("srcs", [])
-            L = ["---", f"crop: {slug}", f"region: {R['region']}", f"title: {json.dumps(f'{name} in {R['place']}')}",
+            region_name = {"hot-desert": "hot desert", "humid-subtropical": "humid subtropical", "tropical-monsoon": "tropical monsoon",
+                            "humid-continental": "humid continental", "cold-semi-arid": "cold semi-arid", "subarctic": "subarctic"}[R["region"]]
+            L = ["---", f"crop: {slug}", f"region: {R['region']}", f"title: {json.dumps(f'{name} in {region_name} climates')}",
                  f"koppen: [{', '.join(R['koppen'])}]", "hemisphere: north", f"reference_location: {json.dumps(R['ref'])}", "calendar:"]
             for k in ("sow_indoors", "sow_direct", "plant", "harvest"):
                 if k in cal: L.append(f"  {k}: [{', '.join(map(str, cal[k]))}]")
