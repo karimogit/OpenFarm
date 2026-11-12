@@ -33,7 +33,7 @@ for (const f of templates) {
 }
 ok(plain.length === 0, "no template still has a plain JSON text link" + (plain.length ? " (" + plain.join(", ") + ")" : ""));
 
-const users = ["crop.njk", "place.njk", "country.njk", "countries.njk", "places.njk", "zone.njk", "region.njk", "tool.njk"];
+const users = ["crop.njk", "guide.njk", "place.njk", "country.njk", "countries.njk", "places.njk", "zone.njk", "region.njk", "tool.njk"];
 for (const name of users) {
   const text = fs.readFileSync(path.join(ROOT, "site", name), "utf8");
   ok(text.includes('include "raw-data.njk"'), `${name} uses the shared raw-data include`);
@@ -53,6 +53,17 @@ if (fs.existsSync(sample)) {
   ok(!/<a href="[^"]+">JSON<\/a>/.test(html), "built basil page has no plain JSON text link");
 } else {
   console.log("skip: _site basil page not built yet");
+}
+
+const guideSample = path.join(site, "crops/basil/temperate-oceanic/index.html");
+if (fs.existsSync(guideSample)) {
+  const html = fs.readFileSync(guideSample, "utf8");
+  ok(/class="raw-data-btn"/.test(html) && /crops\/basil\/temperate-oceanic\.json/.test(html),
+    "built basil guide page shows per-guide JSON button");
+  const guideJson = path.join(site, "crops/basil/temperate-oceanic.json");
+  ok(fs.existsSync(guideJson), "built per-guide JSON exists for basil temperate-oceanic");
+} else {
+  console.log("skip: _site basil guide page not built yet");
 }
 
 if (failed) { console.error(`\n${failed} raw-data test(s) failed.`); process.exit(1); }

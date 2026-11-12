@@ -8,6 +8,7 @@ permalink: "{{ g.url }}"
 eleventyComputed:
   title: "{{ g.title }}"
   description: "How to grow {{ g.cropName | lower }} in a {{ g.regionName | lower }} climate region: calendar, spacing, varieties and sources."
+  jsonUrl: "/crops/{{ g.crop }}/{% if g.variety %}{{ g.variety }}/{% endif %}{{ g.region }}.json"
 ---
 {% set crop = db.cropBy[g.crop] %}
 {% set crumbs = [{href: "/crops/", label: "Crops"}, {href: "/crops/" + g.crop + "/", label: g.cropName}] %}
@@ -53,7 +54,7 @@ eleventyComputed:
 
     <h2>Sources</h2>
     {% set srcs = g.sources %}{% include "sources.njk" %}
-    <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
+    <p class="meta">By {{ g.authors | join(", ") }} · last reviewed {{ g.last_reviewed }} · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> · {% set jsonHref = "/crops/" + g.crop + "/" + (g.variety + "/" if g.variety else "") + g.region + ".json" %}{% include "raw-data.njk" %}</p>
     {% set editFile = g.file %}{% include "edited-by.njk" %}
     {% set editLabel = "Edit this guide" %}{% include "edit-button.njk" %}
   </article>

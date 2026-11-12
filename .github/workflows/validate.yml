@@ -32,3 +32,5 @@ jobs:
         run: npm run check:images -- --changed
       - name: Build site and search index
         run: npx @11ty/eleventy && npx pagefind --site _site
+      - name: Audit built pages and guide coverage
+        run: node scripts/audit_pages.mjs
