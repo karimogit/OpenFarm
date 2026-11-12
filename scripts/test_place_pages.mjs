@@ -26,6 +26,7 @@ ok(
   "place.njk <title> stays plain City, Country with no flag",
 );
 ok(/zoom:\s*p\.mapZoom or 10/.test(place), "place map pin carries an explicit city zoom");
+ok(place.includes('class="on prune"') && /cal-legend[\s\S]*on prune/.test(place), "place calendar legend names prune, which the cells can show");
 
 // Country-scale padding must not be applied to city insets.
 const wide = paddedBbox([4.89 - 1, 52.374 - 0.7, 4.89 + 1, 52.374 + 0.7]);

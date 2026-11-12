@@ -14,6 +14,21 @@ export function mercatorPx(lat, lon, size = IMG) {
   return [x, y];
 }
 
+/** Copies of the world image so a view that crosses ±180°, or is wider than
+ * one world at low zoom, still samples climate colours. */
+export const OVERLAY_COPY_OFFSETS = [-2, -1, 0, 1, 2];
+
+/** viewBox for the climate SVG. A bounds pair with east < west crosses the
+ * antimeridian; extend east by 360° so the width is the visible span. */
+export function overlayViewBox(west, south, east, north) {
+  const w = +west, s = +south, e0 = +east, n = +north;
+  if (![w, s, e0, n].every(Number.isFinite)) return null;
+  const e = e0 < w ? e0 + 360 : e0;
+  const [x0, y0] = mercatorPx(n, w);
+  const [x1, y1] = mercatorPx(s, e);
+  return { x: x0, y: y0, width: Math.max(x1 - x0, 1e-6), height: Math.max(y1 - y0, 1e-6) };
+}
+
 export function attachClimateOverlay(map, url, { opacity = 0.65, attribution = "Köppen–Geiger: Beck et al. 2018 (CC BY 4.0)" } = {}) {
   const L = window.L;
   if (!map || !L || !url) return { addTo() {}, remove() {} };
@@ -28,13 +43,16 @@ export function attachClimateOverlay(map, url, { opacity = 0.65, attribution = "
   svg.classList.add("climate-overlay");
   svg.setAttribute("preserveAspectRatio", "none");
   svg.style.cssText = `position:absolute;top:0;left:0;pointer-events:none;opacity:${opacity};`;
-  const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
-  image.setAttribute("href", url);
-  image.setAttributeNS("http://www.w3.org/1999/xlink", "href", url);
-  image.setAttribute("width", String(IMG));
-  image.setAttribute("height", String(IMG));
-  image.setAttribute("preserveAspectRatio", "none");
-  svg.appendChild(image);
+  for (const copy of OVERLAY_COPY_OFFSETS) {
+    const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    image.setAttribute("href", url);
+    image.setAttributeNS("http://www.w3.org/1999/xlink", "href", url);
+    image.setAttribute("x", String(copy * IMG));
+    image.setAttribute("width", String(IMG));
+    image.setAttribute("height", String(IMG));
+    image.setAttribute("preserveAspectRatio", "none");
+    svg.appendChild(image);
+  }
 
   const update = () => {
     if (!svg.isConnected) return;
@@ -46,11 +64,9 @@ export function attachClimateOverlay(map, url, { opacity = 0.65, attribution = "
     const topLeft = map.containerPointToLayerPoint([0, 0]);
     L.DomUtil.setPosition(svg, topLeft);
     const b = map.getBounds();
-    const [x0, y0] = mercatorPx(b.getNorth(), b.getWest());
-    const [x1, y1] = mercatorPx(b.getSouth(), b.getEast());
-    const w = Math.max(x1 - x0, 1e-6);
-    const h = Math.max(y1 - y0, 1e-6);
-    svg.setAttribute("viewBox", `${x0} ${y0} ${w} ${h}`);
+    const frame = overlayViewBox(b.getWest(), b.getSouth(), b.getEast(), b.getNorth());
+    if (!frame) return;
+    svg.setAttribute("viewBox", `${frame.x} ${frame.y} ${frame.width} ${frame.height}`);
   };
 
   const layer = {

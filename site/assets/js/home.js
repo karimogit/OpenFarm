@@ -47,7 +47,7 @@ function card({ g, kind, via, calendar, shifted }, region) {
       <strong class="name">${esc(g.name)}</strong><em class="sci1">${g.sci ? esc(g.sci) : "&nbsp;"}</em>
       <span class="gtitle">${esc(when)}</span>
       <span class="badges">${flag}</span></a>
-    <button class="fav card-fav" type="button" data-fav="guide:${g.crop}/${g.region}" aria-pressed="false" title="Add to favourites">♡</button></li>`;
+    <button class="fav card-fav" type="button" data-fav="guide:${g.favId || (g.variety ? `${g.crop}/${g.variety}/${g.region}` : `${g.crop}/${g.region}`)}" aria-pressed="false" title="Add to favourites">♡</button></li>`;
 }
 
 async function choose(lat, lon, label, country, placeSlug) {
@@ -67,11 +67,18 @@ async function choose(lat, lon, label, country, placeSlug) {
   history.replaceState(null, "", locationSearch(lat, lon, slug || undefined));
   const kg = await lookup(lat, lon);
   if ($("#climate")) $("#climate").hidden = false;
-  if (!kg) {
+  if (!kg?.region) {
     marker.unbindTooltip();
-    if ($("#climate-box")) $("#climate-box").hidden = false;
-  $("#climate-box").innerHTML = `<p>No land climate found near ${lat}, ${lon}. Try a point on land.</p>`;
-    $("#match-list").innerHTML = ""; return;
+    const box = $("#climate-box");
+    if (box) {
+      box.hidden = false;
+      box.innerHTML = !kg
+        ? `<p>No land climate found near ${lat}, ${lon}. Try a point on land.</p>`
+        : `<p>Köppen ${esc(kg.symbol)} near ${lat}, ${lon} is not mapped to a climate region yet.</p>`;
+    }
+    const list = $("#match-list");
+    if (list) list.innerHTML = "";
+    return;
   }
   const region = kg.region;
   marker.bindTooltip(`${swatch(region)} <strong>${esc(region.name)}</strong> <span class="kg">${kg.symbol}</span>`,

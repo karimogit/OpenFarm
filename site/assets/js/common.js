@@ -222,9 +222,36 @@ export function addGrowing(crop, variety = null) {
 export const isGrowing = (crop, variety = null, p = loadProfile()) => p.growing.some((g) => g.crop === crop && (!variety || g.variety === variety));
 
 export const getLocation = () => loadProfile().location;
-export function setLocation(loc) {
-  const p = loadProfile(); p.location = loc; saveProfile(p, { silent: true });
+/** Location saved from a map pick. Keeps a known Köppen class when the lookup misses. */
+export function completeLocation(loc, kg) {
+  if (!loc) return null;
+  return {
+    lat: +(+loc.lat).toFixed(4),
+    lon: +(+loc.lon).toFixed(4),
+    label: loc.label || "",
+    symbol: kg?.symbol || loc.symbol || null,
+    region: kg?.region?.slug || loc.region || null,
+    country: loc.country || null,
+  };
+}
+export function setLocation(loc, { announce = true } = {}) {
+  const p = loadProfile(); p.location = loc; saveProfile(p, { silent: true, announce });
   document.dispatchEvent(new CustomEvent("openfarm:location", { detail: loc }));
+}
+// A city page link used to store coordinates only, which dropped the climate region.
+// Fill it back in once, without a "Saved" toast, when a profile still has that shape.
+let climateFillKey = "";
+function ensureClimate(loc) {
+  if (!loc || loc.symbol || !Number.isFinite(+loc.lat) || !Number.isFinite(+loc.lon)) return;
+  const key = `${loc.lat},${loc.lon}`;
+  if (climateFillKey === key) return;
+  climateFillKey = key;
+  lookup(+loc.lat, +loc.lon).then((kg) => {
+    const current = getLocation();
+    if (!current || current.symbol || !kg?.symbol) return;
+    if (Math.abs(+current.lat - +loc.lat) > 1e-3 || Math.abs(+current.lon - +loc.lon) > 1e-3) return;
+    setLocation(completeLocation(current, kg), { announce: false });
+  }).catch(() => { if (climateFillKey === key) climateFillKey = ""; });
 }
 
 // Other open tabs pick up profile (and reminder) changes via the storage event. This tab does not
@@ -386,6 +413,11 @@ function renderYourRegion(loc) {
   }
   const region = regionOf(loc.symbol);
   const [m] = matchGuides(loc.symbol, loc.lat, crop);
+  if (!region) {
+    box.innerHTML = `<p class="small">Köppen <strong>${esc(loc.symbol)}</strong> is not mapped to a climate region yet. The general facts are under <a href="#facts">Quick facts</a>.</p>`;
+    renderCropGuides(loc, crop);
+    return;
+  }
   const vars = INDEX.varieties.filter((v) => v.crop === crop && v.regions.includes(region.slug));
   let h = `<h2>${swatch(region)} For ${place(loc)}: ${esc(region.name)}</h2>`;
   if (m && m.kind !== "similar") {
@@ -536,7 +568,7 @@ document.addEventListener("click", (e) => {
 document.addEventListener("openfarm:profile", renderProfileBits);
 renderProfileBits();
 
-function renderAll(loc) { renderWeather(loc); renderYourRegion(loc); renderSeedSources(loc); renderYourClimate(loc); }
+function renderAll(loc) { renderWeather(loc); renderYourRegion(loc); renderSeedSources(loc); renderYourClimate(loc); ensureClimate(loc); }
 document.addEventListener("openfarm:location", (e) => renderAll(e.detail));
 renderAll(getLocation());
 
@@ -616,20 +648,20 @@ renderAll(getLocation());
   async function pick(el) {
     if (!el) return;
     if (el.dataset.places) return findPlaces();
-    if (el.dataset.href) {
-      if (el.dataset.lat) {
-        setLocation({
-          lat: +(+el.dataset.lat).toFixed(4), lon: +(+el.dataset.lon).toFixed(4),
-          label: el.dataset.label, country: el.dataset.cc || null,
-        });
-      }
-      location.href = el.dataset.href; return;
-    }
     if (el.dataset.lat) {
-      const lat = +el.dataset.lat, lon = +el.dataset.lon, kg = await lookup(lat, lon);
-      setLocation({ lat: +lat.toFixed(4), lon: +lon.toFixed(4), label: el.dataset.label, symbol: kg?.symbol || null, region: kg?.region?.slug || null, country: el.dataset.cc || null });
+      const lat = +el.dataset.lat, lon = +el.dataset.lon;
+      const kg = await lookup(lat, lon);
+      setLocation(completeLocation({
+        lat, lon, label: el.dataset.label, country: el.dataset.cc || null,
+      }, kg));
+      // Cities with a standing page navigate there; others open the home map.
+      // Both must keep the Köppen class — dropping it made the rest of the site
+      // treat a saved city as "no location".
+      if (el.dataset.href) { location.href = el.dataset.href; return; }
       location.href = locationHref(lat, lon, el.dataset.place);
+      return;
     }
+    if (el.dataset.href) location.href = el.dataset.href;
   }
   input.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(update, 250); });
   input.addEventListener("keydown", (e) => {
@@ -704,7 +736,7 @@ async function renderBell() {
   if (dot) dot.hidden = !(p.location || p.growing.length || p.favourites.crops.length + p.favourites.varieties.length + p.favourites.guides.length);
   const perm = "Notification" in window ? Notification.permission : "unsupported";
   panel.innerHTML = `<div class="bp-head"><strong>Reminders</strong>${unread.length ? `<button type="button" class="link-btn" data-bell-read>Mark all read</button>` : ""}</div>
-    ${items.length ? `<ul class="bp-list">${items.map((x) => `<li class="${r.read.includes(x.id) ? "" : "unread"}"><a href="${x.url}" data-rid="${esc(x.id)}"><span aria-hidden="true">${x.icon}</span> ${esc(x.text)}</a></li>`).join("")}</ul>`
+    ${items.length ? `<ul class="bp-list">${items.map((x) => `<li class="${r.read.includes(x.id) ? "" : "unread"}"><a href="${x.url}" data-rid="${esc(x.id)}">${icon(x.icon)} ${esc(x.text)}</a></li>`).join("")}</ul>`
       : `<p class="small">${p.location ? "No reminders right now. Add crops to “What I'm growing” on your profile to get sowing and harvest reminders." : `Set your location on the <a href="${BASE}#where">home page</a> and add crops you grow to get reminders.`}</p>`}
     <div class="bp-foot small">
       ${perm === "unsupported" ? "" : perm === "granted" && r.notify ? "Browser notifications are on while the site is open." :
@@ -818,7 +850,11 @@ export const hardinessLine = (h) => h
   if (!el || !loc) return;
   try {
     const h = await hardinessZone(loc.lat, loc.lon); if (!h) return;
-    const z = zoneIndex(h.zone), lo = zoneIndex(el.dataset.min), hi = zoneIndex(el.dataset.max + (/[ab]$/.test(el.dataset.max) ? "" : "b"));
+    const z = zoneIndex(h.zone), lo = zoneIndex(el.dataset.min), hi = zoneIndex((el.dataset.max || "") + (/[ab]$/.test(el.dataset.max || "") ? "" : "b"));
+    if (z == null || lo == null || hi == null) {
+      el.innerHTML = `<p class="small">Your zone is ${esc(h.zone)}. This plant's recorded range could not be compared.</p>`;
+      return;
+    }
     const annual = el.dataset.annual === "1";
     let msg = "";
     if (z < lo) msg = annual ? `Your zone (${h.zone}) is colder than ${el.dataset.min}: it will not survive winter outdoors – grow it as an annual or overwinter it indoors.`
