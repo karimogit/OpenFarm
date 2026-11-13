@@ -528,10 +528,15 @@ body.type-page .crop-grid > li > a { box-shadow: none; }
 .growing-cal .mark { display: block; font-size: .72rem; line-height: 1.25; border-radius: 3px; padding: .1rem .2rem; margin: .08rem 0; color: var(--ink); }
 .growing-cal .mark.sow_indoors, .growing-cal .mark.sow { background: var(--sow); color: #1d2a1f; }
 .growing-cal .mark.sow_direct { background: var(--sowd); color: #1d2a1f; }
-.growing-cal .mark.plant { background: color-mix(in srgb, var(--plant) 30%, #fff); color: #1a3f55; }
-.growing-cal .mark.harvest { background: color-mix(in srgb, var(--harvest) 30%, #fff); color: #6a3308; }
-.growing-cal .mark.prune { background: color-mix(in srgb, var(--prune) 30%, #fff); color: #3d2a5c; }
-.growing-cal .mark.done { background: var(--green-2); color: var(--ink); font-weight: 600; }
+.growing-cal .mark.plant { background: var(--plant); color: #fff; }
+.growing-cal .mark.harvest { background: var(--harvest); color: #fff; }
+.growing-cal .mark.prune { background: var(--prune); color: #fff; }
+.growing-cal .mark.done { background: var(--green-2); color: var(--ink); font-weight: 600; border: 1px dashed var(--green); }
+.growing-cal .cal-legend i.on.sow_indoors { background: var(--sow); }
+.growing-cal .cal-legend i.on.sow_direct { background: var(--sowd); }
+.growing-cal .cal-legend i.on.plant { background: var(--plant); }
+.growing-cal .cal-legend i.on.harvest { background: var(--harvest); }
+.growing-cal .cal-legend i.on.prune { background: var(--prune); }
 
 /* Raw data JSON button */
 .raw-data { display: inline-flex; align-items: center; gap: .4rem; vertical-align: middle; }

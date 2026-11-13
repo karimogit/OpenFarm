@@ -23,9 +23,11 @@ const need = {
   "prune": "--prune",
 };
 for (const [cls, token] of Object.entries(need)) {
-  const re = new RegExp(`\\.growing-cal \\.mark\\.${cls}[^}]*background:[^;]*${token}`);
-  ok(re.test(css), `.growing-cal .mark.${cls} background uses ${token}`);
+  ok(css.includes(`.growing-cal .mark.${cls}`) && css.includes(`background: var(${token})`),
+    `.growing-cal .mark.${cls} background uses ${token}`);
 }
+ok(css.includes(".growing-cal .cal-legend i.on.sow_indoors") && css.includes("background: var(--sow)"),
+  "profile legend swatches use the same calendar colours");
 ok(/\.on\.sow_indoors \{ background: var\(--sow\); \}/.test(css),
   "crop-page calendar still colours .on.sow_indoors with --sow");
 ok(/\.cal-legend i/.test(css), "shared .cal-legend swatch styles exist");
