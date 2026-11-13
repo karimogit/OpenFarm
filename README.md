@@ -1,6 +1,6 @@
 # 🌱 OpenFarm
 
-*Growing guides in your climate.*
+*Growing guides for you.*
 
 **Open, community-built growing guides matched to your climate region. Find your place, get a
 calendar that fits, and share what you know.**
