@@ -2,34 +2,73 @@
 crop: cabbage
 region: temperate-oceanic
 title: Cabbage in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  sow_indoors: [2, 3, 4, 5, 6]
-  sow_direct: [2, 3, 4, 5, 6, 7]
-  plant: [3, 4, 5, 6, 7, 8]
-  harvest: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-days_to_maturity: [120, 180]
+  sow_indoors:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+  sow_direct:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  plant:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  harvest:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+days_to_maturity:
+  - 120
+  - 180
 spacing:
-  in_row_cm: [30, 45]
-  between_rows_cm: [30, 45]
+  in_row_cm:
+    - 30
+    - 45
+  between_rows_cm:
+    - 30
+    - 45
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Based on one publisher's advice (RHS) for the UK; a second independent regional
-  source would raise this to high. Other temperate oceanic sites can differ by
-  weeks. Harvest is listed for every month only because RHS says a selection
-  of spring, summer, autumn and winter types can be harvested all year; a single
-  sowing will not do that. Days to maturity (about four to six months) and
-  spacings (30 cm compact, up to 45 cm larger) are RHS’s general figures.
-sources: [rhs-cabbages]
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high. Other temperate oceanic sites can differ by weeks. Harvest is listed for every month only because RHS
+  says a selection of spring, summer, autumn and winter types can be harvested all year; a single sowing will
+  not do that. Days to maturity (about four to six months) and spacings (30 cm compact, up to 45 cm larger)
+  are RHS’s general figures.
+sources:
+  - rhs-cabbages
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+soil:
+  drainage: free-draining
 ---
-
 ## Summary
 
 Cabbages are hardy brassicas for a sunny site with firm, fertile, free-draining

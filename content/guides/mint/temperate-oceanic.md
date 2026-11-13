@@ -1,24 +1,51 @@
 ---
 crop: mint
 region: temperate-oceanic
-title: "Mint in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Mint in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  plant: [3, 4, 5, 9, 10, 11]
-  harvest: [5, 6, 7, 8, 9, 10]
+  plant:
+    - 3
+    - 4
+    - 5
+    - 9
+    - 10
+    - 11
+  harvest:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
 sun: full-partial
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
+  Cfc coasts, are often a few weeks later. One publisher only. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
-  - title: "Mint: grow your own"
+  - title: 'Mint: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/herbs/mint/grow-your-own"
+    url: 'https://www.rhs.org.uk/herbs/mint/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+spacing:
+  between_rows_cm:
+    - 35
+    - 35
+  in_row_cm:
+    - 25
+    - 25
+soil:
+  drainage: moisture-retentive
 ---
 ## Summary
 

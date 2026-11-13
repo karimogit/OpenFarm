@@ -1,29 +1,50 @@
 ---
 crop: corn
 region: temperate-oceanic
-title: "Corn in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Corn in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_indoors: [4, 5]
-  sow_direct: [5, 6]
-  plant: [5, 6]
-  harvest: [8, 9, 10]
+  sow_indoors:
+    - 4
+    - 5
+  sow_direct:
+    - 5
+    - 6
+  plant:
+    - 5
+    - 6
+  harvest:
+    - 8
+    - 9
+    - 10
 spacing:
-  in_row_cm: [34, 45]
-  between_rows_cm: [34, 45]
+  in_row_cm:
+    - 34
+    - 45
+  between_rows_cm:
+    - 34
+    - 45
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
+  Cfc coasts, are often a few weeks later. One publisher only.
 sources:
-  - title: "Corn: grow your own"
+  - title: 'Corn: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/vegetables/sweetcorn/grow-your-own"
+    url: 'https://www.rhs.org.uk/vegetables/sweetcorn/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+sowing_depth_cm:
+  - 2.5
+  - 2.5
 ---
 ## Summary
 

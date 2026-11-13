@@ -20,7 +20,7 @@ const varietyOut = (v) => ({
 });
 const guideOut = (g) => ({
   ...pick(g, ["crop", "region", "variety", "title", "koppen", "hemisphere", "reference_location", "calendar", "days_to_maturity", "spacing",
-    "sun", "water", "varieties", "problems", "confidence", "uncertainty", "license", "authors", "last_reviewed", "tools"]),
+    "sowing_depth_cm", "soil", "watering_note", "sun", "water", "varieties", "problems", "confidence", "uncertainty", "license", "authors", "last_reviewed", "tools"]),
   url: g.url, sources: g.sources.map(sourceOut),
 });
 const cropOut = (c) => ({

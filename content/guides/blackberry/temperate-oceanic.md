@@ -1,24 +1,46 @@
 ---
 crop: blackberry
 region: temperate-oceanic
-title: "Blackberry in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Blackberry in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  plant: [1, 2, 3, 10, 11, 12]
-  harvest: [7, 8, 9]
+  plant:
+    - 1
+    - 2
+    - 3
+    - 10
+    - 11
+    - 12
+  harvest:
+    - 7
+    - 8
+    - 9
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
+  Cfc coasts, are often a few weeks later. One publisher only. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
-  - title: "Blackberry: grow your own"
+  - title: 'Blackberry: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/fruit/blackberries/grow-your-own"
+    url: 'https://www.rhs.org.uk/fruit/blackberries/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+spacing:
+  between_rows_cm:
+    - 100
+    - 100
+  in_row_cm:
+    - 75
+    - 75
 ---
 ## Summary
 

@@ -72,8 +72,13 @@ eleventyComputed:
         {% if g.days_to_maturity %}<div><dt>Days to maturity</dt><dd>{{ g.days_to_maturity | range("") }}</dd></div>{% endif %}
         {% if g.spacing and g.spacing.in_row_cm %}<div><dt>In-row spacing</dt><dd>{{ g.spacing.in_row_cm | range(" cm") }}</dd></div>{% endif %}
         {% if g.spacing and g.spacing.between_rows_cm %}<div><dt>Between rows</dt><dd>{{ g.spacing.between_rows_cm | range(" cm") }}</dd></div>{% endif %}
+        {% if g.sowing_depth_cm %}<div><dt>Sow depth</dt><dd>{{ g.sowing_depth_cm | range(" cm") }}</dd></div>{% endif %}
+        {% if g.soil and g.soil.drainage %}<div><dt>Soil drainage</dt><dd>{{ g.soil.drainage | replace("-", " ") }}</dd></div>{% endif %}
+        {% if g.soil and g.soil.ph %}<div><dt>Soil pH</dt><dd>{{ g.soil.ph | range("") }}</dd></div>{% endif %}
+        {% if g.soil and g.soil.ericaceous %}<div><dt>Acid soil</dt><dd>Ericaceous / acid-loving</dd></div>{% endif %}
+        {% if g.soil and g.soil.notes %}<div class="wide"><dt>Soil</dt><dd>{{ g.soil.notes }}</dd></div>{% endif %}
         <div><dt>Sun</dt><dd>{{ g.sun | label }}</dd></div>
-        <div><dt>Water</dt><dd>{{ g.water | label }}</dd></div>
+        <div><dt>Water</dt><dd>{{ g.water | label }}{% if g.watering_note %} <span class="small">– {{ g.watering_note }}</span>{% endif %}</dd></div>
         {% if g.varietyList.length %}<div class="wide"><dt>Varieties</dt><dd>{% for v in g.varietyList %}<a href="{{ v.url | url }}">{{ v.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>{% endif %}
       </dl>
     </section>

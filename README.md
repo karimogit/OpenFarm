@@ -47,6 +47,7 @@ data/country-climates.json                    Derived country climate-region sha
 data/grin-edibility.json                      GRIN Taxonomy matches applied to crops (public domain; dump not shipped)
 scripts/validate.js                           Schemas + cross-references + region coverage (npm run validate)
 scripts/audit_pages.mjs                       Built HTML + guide coverage report (npm test, after Eleventy)
+scripts/backfill_guide_fields.mjs             Backfill spacing/depth/soil from prose or crop records (--write)
 scripts/import_rescue.js                      Imports the CC0 openfarm-crops-rescue dataset (npm run import:rescue)
 scripts/fetch_images.js                       Finds freely licensed Commons photos (npm run images)
 site/                                         Eleventy templates, CSS and small vanilla-JS modules (MIT)
@@ -208,8 +209,11 @@ hemisphere: north
 reference_location: Netherlands / UK lowlands
 calendar: { plant: [3, 4, 5], harvest: [6, 7, 8, 9, 10] }
 spacing: { in_row_cm: [30, 37], between_rows_cm: [60, 75] }
+sowing_depth_cm: [2, 5]
+soil: { drainage: free-draining, notes: "Light, stone-free soil." }
 sun: full
 water: moderate
+watering_note: "Keep moist until germination."
 problems: [late-blight]
 confidence: high
 sources: [{ title: "Potatoes: grow your own", publisher: RHS, url: https://www.rhs.org.uk/vegetables/potatoes/grow-your-own }]

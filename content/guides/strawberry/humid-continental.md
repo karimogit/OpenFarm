@@ -2,31 +2,51 @@
 crop: strawberry
 region: humid-continental
 title: Strawberry in humid continental climates
-koppen: [Dfa, Dfb, Dwa, Dwb]
+koppen:
+  - Dfa
+  - Dfb
+  - Dwa
+  - Dwb
 hemisphere: north
-reference_location: Minnesota, USA
+reference_location: 'Minnesota, USA'
 calendar:
-  plant: [4, 5, 6]
-  harvest: [6, 7, 8, 9]
+  plant:
+    - 4
+    - 5
+    - 6
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
 spacing:
-  in_row_cm: [45, 60]
-  between_rows_cm: [90, 120]
+  in_row_cm:
+    - 45
+    - 60
+  between_rows_cm:
+    - 90
+    - 120
 sun: full
 water: moderate
-varieties: [honeoye, seascape]
-problems: [grey-mould]
+varieties:
+  - honeoye
+  - seascape
+problems:
+  - grey-mould
 confidence: medium
 uncertainty: >-
-  Calendar from University of Minnesota guidance (USDA zones 3–4). Scandinavian locations in the same
-  climate region have a later spring; adjust by local frost dates. Dwa/Dwb (dry winters with little
-  snow cover) are included by analogy – winter protection matters even more there.
+  Calendar from University of Minnesota guidance (USDA zones 3–4). Scandinavian locations in the same climate
+  region have a later spring; adjust by local frost dates. Dwa/Dwb (dry winters with little snow cover) are
+  included by analogy – winter protection matters even more there.
 sources:
   - umn-strawberries
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+soil:
+  drainage: free-draining
 ---
-
 ## Summary
 
 Winter cold is the main risk: crowns can be killed at about −9 °C (15 °F) without protection, so

@@ -2,24 +2,60 @@
 crop: sweet-potato
 region: tropical-monsoon
 title: Sweet Potato in tropical monsoon climates
-koppen: [Am]
+koppen:
+  - Am
 hemisphere: north
-reference_location: "Miami / South Florida, USA"
+reference_location: 'Miami / South Florida, USA'
 calendar:
-  plant: [12, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  harvest: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-days_to_maturity: [85, 130]
+  plant:
+    - 12
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  harvest:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+days_to_maturity:
+  - 85
+  - 130
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - uf-vh021
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 35
+    - 35
+  in_row_cm:
+    - 100
+    - 100
 ---
-
 ## Timing
 
 UF/IFAS lists outdoor planting of **potatoes, sweet** in **South Florida** from **Dec–Sept**; days to harvest 85–130 (in brackets: from transplants).

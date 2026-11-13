@@ -2,33 +2,58 @@
 crop: carrot
 region: temperate-oceanic
 title: Carrot in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  sow_direct: [2, 3, 4, 5, 6, 7]
-  harvest: [6, 7, 8, 9, 10, 11, 12]
-days_to_maturity: [84, 112]
+  sow_direct:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+days_to_maturity:
+  - 84
+  - 112
 spacing:
-  in_row_cm: [5, 8]
-  between_rows_cm: [15, 30]
+  in_row_cm:
+    - 5
+    - 8
+  between_rows_cm:
+    - 15
+    - 30
 sun: full
 water: low
 confidence: medium
 uncertainty: >-
-  Based on one publisher's advice (RHS) for the UK; a second independent regional
-  source would raise this to high. Other temperate oceanic sites can differ by
-  weeks. The main sowing season is April to early July; February and March
-  are only for early varieties under cloches or fleece. Full-size roots take
-  about 12–16 weeks. RHS also says main-season carrots can be left in the ground
-  into winter; January and February lifting is mentioned in the prose but is not
-  listed in the harvest months, which stop at December.
-sources: [rhs-carrots]
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high. Other temperate oceanic sites can differ by weeks. The main sowing season is April to early July;
+  February and March are only for early varieties under cloches or fleece. Full-size roots take about 12–16
+  weeks. RHS also says main-season carrots can be left in the ground into winter; January and February lifting
+  is mentioned in the prose but is not listed in the harvest months, which stop at December.
+sources:
+  - rhs-carrots
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 1
+  - 1
+soil:
+  drainage: free-draining
 ---
-
 ## Summary
 
 Carrots are a direct-sown crop for sun and light, well-drained soil. The Royal

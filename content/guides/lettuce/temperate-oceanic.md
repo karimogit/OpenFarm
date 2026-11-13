@@ -2,33 +2,63 @@
 crop: lettuce
 region: temperate-oceanic
 title: Lettuce in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  sow_indoors: [2, 9, 10]
-  sow_direct: [3, 4, 5, 6, 7, 8]
-  plant: [3]
-  harvest: [4, 5, 6, 7, 8, 9, 10, 11, 12]
-days_to_maturity: [28, 98]
+  sow_indoors:
+    - 2
+    - 9
+    - 10
+  sow_direct:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  plant:
+    - 3
+  harvest:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+days_to_maturity:
+  - 28
+  - 98
 spacing:
-  in_row_cm: [15, 30]
-  between_rows_cm: [30, 30]
+  in_row_cm:
+    - 15
+    - 30
+  between_rows_cm:
+    - 30
+    - 30
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Based on one publisher's advice (RHS) for the UK; a second independent regional
-  source would raise this to high. Other temperate oceanic sites can differ by
-  weeks. Harvest is listed from late spring through winter, and includes
-  spring pickings from winter varieties sown in September or October. Midsummer
-  sowings may need light shade; hot spells can stop germination.
-sources: [rhs-lettuce]
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high. Other temperate oceanic sites can differ by weeks. Harvest is listed from late spring through winter,
+  and includes spring pickings from winter varieties sown in September or October. Midsummer sowings may need
+  light shade; hot spells can stop germination.
+sources:
+  - rhs-lettuce
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 1
+  - 1
 ---
-
 ## Summary
 
 Lettuce is a cool-season crop that suits a mild oceanic climate if it is sown

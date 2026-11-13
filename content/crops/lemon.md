@@ -1,6 +1,6 @@
 ---
 slug: lemon
-name: You Can Grow Anything
+name: Lemon
 scientific_name: "Citrus × limon"
 family: Rutaceae
 wikidata: Q500

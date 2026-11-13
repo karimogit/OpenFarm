@@ -2,24 +2,45 @@
 crop: sweet-potato
 region: humid-subtropical
 title: Sweet Potato in humid subtropical climates
-koppen: [Cfa]
+koppen:
+  - Cfa
 hemisphere: north
-reference_location: "Charleston / South Carolina Coastal Plain, USA"
+reference_location: 'Charleston / South Carolina Coastal Plain, USA'
 calendar:
-  plant: [4, 5, 6]
-  harvest: [7, 8, 9, 10]
-days_to_maturity: [120, 120]
+  plant:
+    - 4
+    - 5
+    - 6
+  harvest:
+    - 7
+    - 8
+    - 9
+    - 10
+days_to_maturity:
+  - 120
+  - 120
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - clemson-planning-a-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 35
+    - 35
+  in_row_cm:
+    - 100
+    - 100
 ---
-
 ## Timing
 
 Clemson's chart for the **Coastal Plain** gives **Potatoes, Sweet**: spring Apr 15 to Jun 15, autumn Not recommended. Approximate days to harvest: 120.

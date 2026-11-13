@@ -1,24 +1,46 @@
 ---
 crop: plum
 region: temperate-oceanic
-title: "Plum in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Plum in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  plant: [1, 2, 3, 11, 12]
-  harvest: [7, 8, 9, 10]
+  plant:
+    - 1
+    - 2
+    - 3
+    - 11
+    - 12
+  harvest:
+    - 7
+    - 8
+    - 9
+    - 10
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
+  Cfc coasts, are often a few weeks later. One publisher only. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
-  - title: "Plum: grow your own"
+  - title: 'Plum: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/fruit/plums/grow-your-own"
+    url: 'https://www.rhs.org.uk/fruit/plums/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+spacing:
+  between_rows_cm:
+    - 500
+    - 500
+  in_row_cm:
+    - 500
+    - 500
 ---
 ## Summary
 

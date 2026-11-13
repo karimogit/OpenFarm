@@ -1,25 +1,52 @@
 ---
 crop: green-bean
 region: humid-subtropical
-title: "Green Bean in humid subtropical climates"
-koppen: [Cfa]
+title: Green Bean in humid subtropical climates
+koppen:
+  - Cfa
 hemisphere: north
-reference_location: "Charleston / South Carolina Coastal Plain, USA"
+reference_location: 'Charleston / South Carolina Coastal Plain, USA'
 calendar:
-  sow_direct: [4, 5, 6, 8, 9]
-  harvest: [5, 6, 7, 8, 9, 10, 11, 12]
-days_to_maturity: [60, 70]
+  sow_direct:
+    - 4
+    - 5
+    - 6
+    - 8
+    - 9
+  harvest:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+days_to_maturity:
+  - 60
+  - 70
 sun: partial
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - clemson-planning-a-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+spacing:
+  between_rows_cm:
+    - 80
+    - 80
+  in_row_cm:
+    - 40
+    - 40
 ---
-
 ## Timing
 
 Clemson's chart for the **Coastal Plain** gives **Beans, Pole**: spring Apr 1 to Jun 1, autumn Aug 1 to Sept 1. Approximate days to harvest: 60-70.

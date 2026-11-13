@@ -1,6 +1,6 @@
 ---
 slug: phacelia
-name: You Can Grow Anything
+name: Phacelia
 scientific_name: "Phacelia tanacetifolia"
 family: Boraginaceae
 wikidata: Q158942

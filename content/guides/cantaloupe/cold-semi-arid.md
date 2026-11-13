@@ -2,25 +2,44 @@
 crop: cantaloupe
 region: cold-semi-arid
 title: Cantaloupe in cold semi-arid climates
-koppen: [BSk]
+koppen:
+  - BSk
 hemisphere: north
-reference_location: "Denver / Colorado Front Range, USA"
+reference_location: 'Denver / Colorado Front Range, USA'
 calendar:
-  sow_direct: [5, 6]
-  harvest: [7, 8, 9]
-days_to_maturity: [85, 85]
+  sow_direct:
+    - 5
+    - 6
+  harvest:
+    - 7
+    - 8
+    - 9
+days_to_maturity:
+  - 85
+  - 85
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - csu-veg-planting-guide
   - csu-planting-dates
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 45
+    - 45
+  in_row_cm:
+    - 150
+    - 150
 ---
-
 ## Timing
 
 Colorado State University groups this crop as **very tender**: plant 2 or more weeks after the average last frost (15 May), once days stay above about 13 °C (55 °F). Typical days to harvest: 85.

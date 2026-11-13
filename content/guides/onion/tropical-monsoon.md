@@ -2,24 +2,42 @@
 crop: onion
 region: tropical-monsoon
 title: Onion in tropical monsoon climates
-koppen: [Am]
+koppen:
+  - Am
 hemisphere: north
-reference_location: "Miami / South Florida, USA"
+reference_location: 'Miami / South Florida, USA'
 calendar:
-  plant: [10]
-  harvest: [1, 2, 3]
-days_to_maturity: [100, 130]
+  plant:
+    - 10
+  harvest:
+    - 1
+    - 2
+    - 3
+days_to_maturity:
+  - 100
+  - 130
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - uf-vh021
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 15
+    - 15
+  in_row_cm:
+    - 15
+    - 15
 ---
-
 ## Timing
 
 UF/IFAS lists outdoor planting of **onions, bulbing** in **South Florida** from **Oct**; days to harvest 100–130 (in brackets: from transplants).

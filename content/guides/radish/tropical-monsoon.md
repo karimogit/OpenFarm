@@ -2,24 +2,50 @@
 crop: radish
 region: tropical-monsoon
 title: Radish in tropical monsoon climates
-koppen: [Am]
+koppen:
+  - Am
 hemisphere: north
-reference_location: "Miami / South Florida, USA"
+reference_location: 'Miami / South Florida, USA'
 calendar:
-  sow_direct: [10, 11, 12, 1, 2, 3]
-  harvest: [1, 2, 3, 4, 11, 12]
-days_to_maturity: [20, 30]
+  sow_direct:
+    - 10
+    - 11
+    - 12
+    - 1
+    - 2
+    - 3
+  harvest:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 11
+    - 12
+days_to_maturity:
+  - 20
+  - 30
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - uf-vh021
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 10
+    - 10
+  in_row_cm:
+    - 8
+    - 8
 ---
-
 ## Timing
 
 UF/IFAS lists outdoor planting of **radish** in **South Florida** from **Oct–Mar**; days to harvest 20–30 (in brackets: from transplants).

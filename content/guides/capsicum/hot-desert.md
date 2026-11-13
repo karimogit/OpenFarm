@@ -2,24 +2,48 @@
 crop: capsicum
 region: hot-desert
 title: Capsicum in hot desert climates
-koppen: [BWh]
+koppen:
+  - BWh
 hemisphere: north
-reference_location: "Phoenix / Maricopa County, Arizona, USA"
+reference_location: 'Phoenix / Maricopa County, Arizona, USA'
 calendar:
-  plant: [2, 3, 7]
-  harvest: [4, 5, 6, 7, 9, 10, 11]
-days_to_maturity: [90, 120]
+  plant:
+    - 2
+    - 3
+    - 7
+  harvest:
+    - 4
+    - 5
+    - 6
+    - 7
+    - 9
+    - 10
+    - 11
+days_to_maturity:
+  - 90
+  - 120
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - ua-maricopa-calendar
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 50
+    - 50
+  in_row_cm:
+    - 50
+    - 50
 ---
-
 ## Timing
 
 University of Arizona's Maricopa County calendar lists **Peppers** for: transplants 15 Feb–15 Mar; transplants 1 Jul–15 Jul. Time to harvest: 90-120 days.

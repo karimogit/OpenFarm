@@ -2,36 +2,53 @@
 crop: potato
 region: mediterranean
 title: Potato in Mediterranean climates
-koppen: [Csa, Csb]
+koppen:
+  - Csa
+  - Csb
 hemisphere: north
 reference_location: California interior valleys (Sacramento)
 calendar:
-  plant: [2, 3, 8]
-  harvest: [5, 6, 7, 11, 12]
-days_to_maturity: [90, 140]
+  plant:
+    - 2
+    - 3
+    - 8
+  harvest:
+    - 5
+    - 6
+    - 7
+    - 11
+    - 12
+days_to_maturity:
+  - 90
+  - 140
 spacing:
-  in_row_cm: [25, 30]
-  between_rows_cm: [75, 90]
+  in_row_cm:
+    - 25
+    - 30
+  between_rows_cm:
+    - 75
+    - 90
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Dates are from University of California guidance for the interior valleys
-  (Feb–Mar and Aug planting). Mediterranean Europe commonly grows similar spring
-  and autumn crops, but local timing varies; summer heat stops tuber growth, so
-  the spring crop should be lifted before the hottest weeks.
+  Dates are from University of California guidance for the interior valleys (Feb–Mar and Aug planting).
+  Mediterranean Europe commonly grows similar spring and autumn crops, but local timing varies; summer heat
+  stops tuber growth, so the spring crop should be lifted before the hottest weeks.
 sources:
   - title: Time of planting – recommended planting dates for major regions of California
-    publisher: UC Master Gardener Program, University of California ANR
-    url: https://ucanr.edu/program/uc-master-gardener-program/time-planting
+    publisher: 'UC Master Gardener Program, University of California ANR'
+    url: 'https://ucanr.edu/program/uc-master-gardener-program/time-planting'
   - title: Monthly vegetable gardening tips
     publisher: UC Master Gardeners of Sacramento County
-    url: https://ucanr.edu/site/uc-master-gardeners-sacramento-county/monthly-vegetable-gardening-tips
+    url: 'https://ucanr.edu/site/uc-master-gardeners-sacramento-county/monthly-vegetable-gardening-tips'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+soil:
+  drainage: free-draining
 ---
-
 ## Summary
 
 Potatoes are a cool-season crop in hot-summer climates. Plant in late winter for

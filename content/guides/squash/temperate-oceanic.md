@@ -1,28 +1,47 @@
 ---
 crop: squash
 region: temperate-oceanic
-title: "Squash in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Squash in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_indoors: [4, 5]
-  plant: [5, 6]
-  harvest: [7, 8, 9, 10]
+  sow_indoors:
+    - 4
+    - 5
+  plant:
+    - 5
+    - 6
+  harvest:
+    - 7
+    - 8
+    - 9
+    - 10
 spacing:
-  in_row_cm: [90, 150]
-  between_rows_cm: [90, 150]
+  in_row_cm:
+    - 90
+    - 150
+  between_rows_cm:
+    - 90
+    - 150
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
+  Cfc coasts, are often a few weeks later. One publisher only.
 sources:
-  - title: "Squash: grow your own"
+  - title: 'Squash: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/vegetables/squash/grow-your-own"
+    url: 'https://www.rhs.org.uk/vegetables/squash/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+soil:
+  notes: Both are frost-tender and want rich soil.
 ---
 ## Summary
 

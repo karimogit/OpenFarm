@@ -1,29 +1,47 @@
 ---
 crop: asparagus
 region: temperate-oceanic
-title: "Asparagus in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Asparagus in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_indoors: [2]
-  sow_direct: [3, 4]
-  plant: [3]
-  harvest: [4, 5, 6]
+  sow_indoors:
+    - 2
+  sow_direct:
+    - 3
+    - 4
+  plant:
+    - 3
+  harvest:
+    - 4
+    - 5
+    - 6
 spacing:
-  in_row_cm: [30, 45]
-  between_rows_cm: [45, 45]
+  in_row_cm:
+    - 30
+    - 45
+  between_rows_cm:
+    - 45
+    - 45
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
+  Cfc coasts, are often a few weeks later. One publisher only.
 sources:
-  - title: "Asparagus: grow your own"
+  - title: 'Asparagus: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/vegetables/asparagus/grow-your-own"
+    url: 'https://www.rhs.org.uk/vegetables/asparagus/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+soil:
+  drainage: free-draining
 ---
 ## Summary
 

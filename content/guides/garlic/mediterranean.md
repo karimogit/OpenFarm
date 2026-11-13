@@ -2,34 +2,52 @@
 crop: garlic
 region: mediterranean
 title: Garlic in Mediterranean climates
-koppen: [Csa, Csb]
+koppen:
+  - Csa
+  - Csb
 hemisphere: north
 reference_location: California interior valleys and coast
 calendar:
-  plant: [9, 10, 11, 12]
-  harvest: [5, 6, 7]
-days_to_maturity: [180, 270]
+  plant:
+    - 9
+    - 10
+    - 11
+    - 12
+  harvest:
+    - 5
+    - 6
+    - 7
+days_to_maturity:
+  - 180
+  - 270
 spacing:
-  in_row_cm: [8, 13]
-  between_rows_cm: [30, 45]
+  in_row_cm:
+    - 8
+    - 13
+  between_rows_cm:
+    - 30
+    - 45
 sun: full
 water: moderate
 confidence: high
 sources:
   - title: Time of planting – recommended planting dates for major regions of California
-    publisher: UC Master Gardener Program, University of California ANR
-    url: https://ucanr.edu/program/uc-master-gardener-program/time-planting
+    publisher: 'UC Master Gardener Program, University of California ANR'
+    url: 'https://ucanr.edu/program/uc-master-gardener-program/time-planting'
   - title: Monthly vegetable gardening tips
     publisher: UC Master Gardeners of Sacramento County
-    url: https://ucanr.edu/site/uc-master-gardeners-sacramento-county/monthly-vegetable-gardening-tips
+    url: 'https://ucanr.edu/site/uc-master-gardeners-sacramento-county/monthly-vegetable-gardening-tips'
   - title: Vegetable Planting Summary (Sonoma County)
-    publisher: UC Master Gardeners, University of California ANR
-    url: https://www.ucanr.edu/sites/default/files/2026-04/Vegetable-Planting-Summary.pdf
+    publisher: 'UC Master Gardeners, University of California ANR'
+    url: 'https://www.ucanr.edu/sites/default/files/2026-04/Vegetable-Planting-Summary.pdf'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 2.5
+  - 5
 ---
-
 ## Summary
 
 Mediterranean climates suit garlic very well: it grows through the mild, wet winter

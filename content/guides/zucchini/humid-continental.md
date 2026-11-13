@@ -2,25 +2,46 @@
 crop: zucchini
 region: humid-continental
 title: Zucchini in humid continental climates
-koppen: [Dfa]
+koppen:
+  - Dfa
 hemisphere: north
-reference_location: "Des Moines / central Iowa, USA"
+reference_location: 'Des Moines / central Iowa, USA'
 calendar:
-  sow_direct: [5, 6, 7]
-  harvest: [6, 7, 8, 9]
-days_to_maturity: [50, 60]
+  sow_direct:
+    - 5
+    - 6
+    - 7
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
+days_to_maturity:
+  - 50
+  - 60
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - isu-planting-harvesting-times
   - clemson-planning-a-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 90
+    - 90
+  in_row_cm:
+    - 150
+    - 150
 ---
-
 ## Timing
 
 Iowa State University (central Iowa): Seed in mid-May; last practical date 20 July. Keeps producing until frost if picked often.
