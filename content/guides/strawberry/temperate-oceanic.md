@@ -2,28 +2,51 @@
 crop: strawberry
 region: temperate-oceanic
 title: Strawberry in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  plant: [3, 4, 8, 9]
-  harvest: [6, 7, 8, 9]
+  plant:
+    - 3
+    - 4
+    - 8
+    - 9
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
 spacing:
-  in_row_cm: [35, 40]
-  between_rows_cm: [75, 75]
+  in_row_cm:
+    - 35
+    - 40
+  between_rows_cm:
+    - 75
+    - 75
 sun: full
 water: moderate
-varieties: [honeoye]
-problems: [grey-mould, vine-weevil]
+varieties:
+  - honeoye
+problems:
+  - grey-mould
+  - vine-weevil
 confidence: medium
-uncertainty: "Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to high."
+uncertainty: >-
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high.
 sources:
   - rhs-strawberries
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+soil:
+  ericaceous: true
+  drainage: free-draining
+  notes: '- Fertile, well-drained, slightly acidic soil in a sheltered, sunny spot away from frost pockets.'
 ---
-
 ## Summary
 
 Easy and rewarding. Combine summer-fruiting and perpetual types for berries from early summer into

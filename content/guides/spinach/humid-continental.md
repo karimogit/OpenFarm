@@ -2,25 +2,45 @@
 crop: spinach
 region: humid-continental
 title: Spinach in humid continental climates
-koppen: [Dfa]
+koppen:
+  - Dfa
 hemisphere: north
-reference_location: "Des Moines / central Iowa, USA"
+reference_location: 'Des Moines / central Iowa, USA'
 calendar:
-  sow_direct: [4, 8]
-  harvest: [5, 6, 9, 10]
-days_to_maturity: [50, 60]
+  sow_direct:
+    - 4
+    - 8
+  harvest:
+    - 5
+    - 6
+    - 9
+    - 10
+days_to_maturity:
+  - 50
+  - 60
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - isu-planting-harvesting-times
   - clemson-planning-a-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 30
+    - 30
+  in_row_cm:
+    - 20
+    - 20
 ---
-
 ## Timing
 
 Iowa State University (central Iowa): Sow in April; an autumn crop about 10 August.

@@ -1,28 +1,47 @@
 ---
 crop: swede
 region: temperate-oceanic
-title: "Swede in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Swede in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_direct: [4, 5, 6]
-  plant: [6]
-  harvest: [9, 10, 11, 12]
+  sow_direct:
+    - 4
+    - 5
+    - 6
+  plant:
+    - 6
+  harvest:
+    - 9
+    - 10
+    - 11
+    - 12
 spacing:
-  in_row_cm: [20, 25]
-  between_rows_cm: [38, 38]
+  in_row_cm:
+    - 20
+    - 25
+  between_rows_cm:
+    - 38
+    - 38
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only.
 sources:
-  - title: "Swede: grow your own"
+  - title: 'Swede: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/vegetables/swede/grow-your-own"
+    url: 'https://www.rhs.org.uk/vegetables/swede/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+sowing_depth_cm:
+  - 2
+  - 2
 ---
 ## Summary
 

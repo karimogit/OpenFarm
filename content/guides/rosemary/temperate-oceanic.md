@@ -1,27 +1,53 @@
 ---
 crop: rosemary
 region: temperate-oceanic
-title: "Rosemary in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Rosemary in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_direct: [3, 4, 5]
-  plant: [3, 4, 5]
-  harvest: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  sow_direct:
+    - 3
+    - 4
+    - 5
+  plant:
+    - 3
+    - 4
+    - 5
+  harvest:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
 spacing:
-  in_row_cm: [45, 45]
+  in_row_cm:
+    - 45
+    - 45
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only.
 sources:
-  - title: "Rosemary: grow your own"
+  - title: 'Rosemary: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/herbs/rosemary/grow-your-own"
+    url: 'https://www.rhs.org.uk/herbs/rosemary/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+soil:
+  drainage: free-draining
 ---
 ## Summary
 

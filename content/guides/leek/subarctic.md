@@ -2,25 +2,42 @@
 crop: leek
 region: subarctic
 title: Leek in subarctic climates
-koppen: [Dfc]
+koppen:
+  - Dfc
 hemisphere: north
-reference_location: "Fairbanks / Interior Alaska, USA"
+reference_location: 'Fairbanks / Interior Alaska, USA'
 calendar:
-  sow_indoors: [3]
-  plant: [5, 6]
-  harvest: [8, 9]
+  sow_indoors:
+    - 3
+  plant:
+    - 5
+    - 6
+  harvest:
+    - 8
+    - 9
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - uaf-gbg-note40
   - uaf-ready-set-grow
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 15
+    - 15
+  in_row_cm:
+    - 30
+    - 30
 ---
-
 ## Timing
 
 University of Alaska Fairbanks (Georgeson Botanical Garden, Fairbanks): Sow indoors about 12 March; plant out late May.

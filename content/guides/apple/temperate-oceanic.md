@@ -2,28 +2,48 @@
 crop: apple
 region: temperate-oceanic
 title: Apple in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  plant: [11, 12, 1, 2, 3]
-  prune: [12, 1, 2, 8]
-  harvest: [8, 9, 10]
+  plant:
+    - 11
+    - 12
+    - 1
+    - 2
+    - 3
+  prune:
+    - 12
+    - 1
+    - 2
+    - 8
+  harvest:
+    - 8
+    - 9
+    - 10
 sun: full
 water: moderate
-problems: [apple-scab]
+problems:
+  - apple-scab
 confidence: medium
 uncertainty: >-
-  Planting and pruning follow RHS advice (plant while dormant, autumn to spring; prune free-standing
-  trees in winter and trained trees in late summer). The August–October harvest window is a general
-  estimate: early varieties ripen in late summer, late varieties in autumn.
+  Planting and pruning follow RHS advice (plant while dormant, autumn to spring; prune free-standing trees in
+  winter and trained trees in late summer). The August–October harvest window is a general estimate: early
+  varieties ripen in late summer, late varieties in autumn.
 sources:
   - rhs-apples
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+soil:
+  drainage: free-draining
+  notes: |-
+    Choose a sunny, sheltered spot that is not prone to
+    late frosts, which damage the blossom, in fertile soil that drains freely.
 ---
-
 ## Summary
 
 Apples are well suited to mild oceanic climates. Choose a sunny, sheltered spot that is not prone to

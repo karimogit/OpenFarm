@@ -2,33 +2,59 @@
 crop: pea
 region: temperate-oceanic
 title: Pea in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  sow_indoors: [2, 3]
-  sow_direct: [3, 4, 5, 6]
-  plant: [3, 4]
-  harvest: [6, 7, 8, 9, 10]
-days_to_maturity: [84, 112]
+  sow_indoors:
+    - 2
+    - 3
+  sow_direct:
+    - 3
+    - 4
+    - 5
+    - 6
+  plant:
+    - 3
+    - 4
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+days_to_maturity:
+  - 84
+  - 112
 spacing:
-  in_row_cm: [8, 8]
-  between_rows_cm: [30, 30]
+  in_row_cm:
+    - 8
+    - 8
+  between_rows_cm:
+    - 30
+    - 30
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Based on one publisher's advice (RHS) for the UK; a second independent regional
-  source would raise this to high. Other temperate oceanic sites can differ by
-  weeks. Spacing of 8 cm is the RHS figure of 7.5 cm rounded to a whole
-  centimetre. Harvest from June to October assumes a mix of early and maincrop
-  sowings, as described by RHS.
-sources: [rhs-peas]
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high. Other temperate oceanic sites can differ by weeks. Spacing of 8 cm is the RHS figure of 7.5 cm rounded
+  to a whole centimetre. Harvest from June to October assumes a mix of early and maincrop sowings, as
+  described by RHS.
+sources:
+  - rhs-peas
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 5
+  - 5
+soil:
+  drainage: free-draining
 ---
-
 ## Summary
 
 Peas are a cool-season crop for a sunny, sheltered, well-drained site. The

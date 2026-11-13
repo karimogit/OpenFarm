@@ -2,28 +2,43 @@
 crop: lettuce
 region: cold-desert
 title: Lettuce in cold desert climates
-koppen: [BWk]
+koppen:
+  - BWk
 hemisphere: north
-reference_location: Reno, Nevada, USA
+reference_location: 'Reno, Nevada, USA'
 calendar:
-  sow_direct: [4, 5, 8]
-  harvest: [6, 7, 9, 10]
+  sow_direct:
+    - 4
+    - 5
+    - 8
+  harvest:
+    - 6
+    - 7
+    - 9
+    - 10
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  UNR Extension Fact Sheet 10-15 says lettuce can be direct-seeded in the Reno
-  area from about a month after mid-March until the end of May, with a second
-  cool-season sowing starting in August. It does not publish harvest months.
-  June–July and September–October are listed from those sowing windows, not from
-  a harvest table. Southern Nevada cold-desert sites on this grid are not covered
-  by these months.
-sources: [unr-veg-garden]
+  UNR Extension Fact Sheet 10-15 says lettuce can be direct-seeded in the Reno area from about a month after
+  mid-March until the end of May, with a second cool-season sowing starting in August. It does not publish
+  harvest months. June–July and September–October are listed from those sowing windows, not from a harvest
+  table. Southern Nevada cold-desert sites on this grid are not covered by these months. In-row and row
+  spacing above are copied from the general crop record (unverified rescue import), not region-specific.
+sources:
+  - unr-veg-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 30
+    - 30
+  in_row_cm:
+    - 30
+    - 30
 ---
-
 ## Summary
 
 UNR Extension treats lettuce as a cool-season crop for the Reno area. After an

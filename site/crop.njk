@@ -35,7 +35,7 @@ eleventyComputed:
         <a class="match-thumb" href="{{ g.url | url }}" tabindex="-1" aria-hidden="true">{% if crop.image %}<span class="thumb"><img src="{{ crop.image | wmThumb(250) }}" srcset="{{ crop.image | wmSrcset(250) }}" alt="" loading="lazy"></span>{% else %}<span class="thumb none">🌱</span>{% endif %}</a>
         <div class="match-body">
         <h3><span class="swatch sm" style="background:{{ g.regionColor }}"></span><a href="{{ g.url | url }}">{{ g.regionName }}</a> <small>{{ g.title }}</small></h3>
-        <p>{% for k in g.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %} · checked against {{ g.reference_location }}</p>
+        <p class="small muted">Checked against {{ g.reference_location }}. Climate classes are on the <a href="{{ ('/regions/' + g.region + '/') | url }}">{{ g.regionName | lower }}</a> page.</p>
         {% set cal = g.calendar %}{% set calQuiet = true %}{% include "calendar.njk" %}
         </div>
       </section>

@@ -81,7 +81,9 @@ const VARIETY_WIKI = {
 };
 
 const SUN = { "full sun": "full", "partial sun": "partial", "full shade": "shade" };
+const PLACEHOLDER_NAME = /^you can grow anything$/i;
 const titleCase = (s) => s.replace(/\b([a-z])/g, (m) => m.toUpperCase());
+const cropName = (slug, raw) => (PLACEHOLDER_NAME.test((raw || "").trim()) ? titleCase(slug.replace(/-/g, " ")) : titleCase(raw));
 const clean = (s) => (s && !/^add this information$/i.test(s.trim()) ? s.trim() : null);
 // Keep only plausible binomials; the wiki had some wrong ones (e.g. an Acacia filed as a bush bean).
 const binomial = (s) => {
@@ -148,7 +150,7 @@ async function main() {
     const slug = RENAME[r.slug] || r.slug;
     const type = TYPE_OF[slug] || "vegetable";
     const data = {
-      slug, name: titleCase(r.name), type, origin: "imported", ...facts(r), rescue: rescueBlock(r),
+      slug, name: cropName(slug, r.name), type, origin: "imported", ...facts(r), rescue: rescueBlock(r),
       sources: ["openfarm-rescue"], license: "CC0-1.0", imported: today, note: HEADER,
     };
     const res = write(path.join(ROOT, "content/crops", `${slug}.md`), data, desc);

@@ -2,30 +2,52 @@
 crop: potato
 region: temperate-oceanic
 title: Potato in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: Netherlands / UK lowlands
 calendar:
-  plant: [3, 4, 5]
-  harvest: [6, 7, 8, 9, 10]
-days_to_maturity: [70, 140]
+  plant:
+    - 3
+    - 4
+    - 5
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+days_to_maturity:
+  - 70
+  - 140
 spacing:
-  in_row_cm: [30, 37]
-  between_rows_cm: [60, 75]
+  in_row_cm:
+    - 30
+    - 37
+  between_rows_cm:
+    - 60
+    - 75
 sun: full
 water: moderate
-problems: [late-blight]
+problems:
+  - late-blight
 confidence: medium
-uncertainty: "Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to high."
+uncertainty: >-
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high.
 sources:
-  - title: "Potatoes: grow your own"
+  - title: 'Potatoes: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: https://www.rhs.org.uk/vegetables/potatoes/grow-your-own
+    url: 'https://www.rhs.org.uk/vegetables/potatoes/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 15
+  - 15
 ---
-
 ## Summary
 
 The cool, moist oceanic climate is close to ideal for potatoes. The main risks

@@ -2,31 +2,49 @@
 crop: garlic
 region: cold-semi-arid
 title: Garlic in cold semi-arid climates
-koppen: [BSk, BWk]
+koppen:
+  - BSk
+  - BWk
 hemisphere: north
-reference_location: Colorado, USA (Front Range and Western Slope)
+reference_location: 'Colorado, USA (Front Range and Western Slope)'
 calendar:
-  plant: [9, 10]
-  harvest: [7, 8]
+  plant:
+    - 9
+    - 10
+  harvest:
+    - 7
+    - 8
 spacing:
-  in_row_cm: [10, 15]
-  between_rows_cm: [30, 30]
+  in_row_cm:
+    - 10
+    - 15
+  between_rows_cm:
+    - 30
+    - 30
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Planting dates come from CSU Extension (before 15 October). CSU only says garlic is harvested "in
-  summer" when leaves brown; the July–August window is an estimate. Cold deserts (BWk) are included by
-  analogy and are unverified.
+  Planting dates come from CSU Extension (before 15 October). CSU only says garlic is harvested "in summer"
+  when leaves brown; the July–August window is an estimate. Cold deserts (BWk) are included by analogy and are
+  unverified.
 sources:
   - csu-garlic-western-co
   - csu-garlic-plant
   - csu-garlic-harvest
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 5
+  - 10
+soil:
+  drainage: free-draining
+  notes: |-
+    Plant pointed end up,
+      **5–10 cm deep**, **10–15 cm** apart in rows **30 cm** apart, in sunny, well-drained soil with compost.
 ---
-
 ## Summary
 
 Garlic is one of the easiest crops here: plant in autumn, mulch, and lift the next summer.

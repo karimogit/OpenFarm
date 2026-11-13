@@ -2,33 +2,53 @@
 crop: potato
 region: cold-semi-arid
 title: Potato in cold semi-arid climates
-koppen: [BSk, BWk]
+koppen:
+  - BSk
+  - BWk
 hemisphere: north
-reference_location: Colorado Front Range, USA
+reference_location: 'Colorado Front Range, USA'
 calendar:
-  plant: [4, 5]
-  harvest: [8, 9, 10]
-days_to_maturity: [90, 125]
+  plant:
+    - 4
+    - 5
+  harvest:
+    - 8
+    - 9
+    - 10
+days_to_maturity:
+  - 90
+  - 125
 spacing:
-  in_row_cm: [30, 38]
-  between_rows_cm: [60, 90]
+  in_row_cm:
+    - 30
+    - 38
+  between_rows_cm:
+    - 60
+    - 90
 sun: full
 water: moderate
-problems: [late-blight]
+problems:
+  - late-blight
 confidence: medium
 uncertainty: >-
-  Based on Colorado guidance with an average last frost around 15 May on the Front Range. Cold deserts
-  (BWk) are included by analogy and are unverified. The days-to-maturity range combines CSU's typical
-  125 days with earlier cultivars.
+  Based on Colorado guidance with an average last frost around 15 May on the Front Range. Cold deserts (BWk)
+  are included by analogy and are unverified. The days-to-maturity range combines CSU's typical 125 days with
+  earlier cultivars.
 sources:
   - csu-veg-hints
   - csu-veg-planting-guide
   - csu-potatoes-home-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 8
+  - 10
+soil:
+  drainage: free-draining
+watering_note: Keep moisture steady.
 ---
-
 ## Summary
 
 Potatoes tolerate cool soil and are planted early in spring. Rich, well-drained soil and steady

@@ -1,29 +1,52 @@
 ---
 crop: runner-bean
 region: temperate-oceanic
-title: "Runner Bean in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Runner Bean in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_indoors: [4, 5]
-  sow_direct: [5, 6, 7]
-  plant: [5, 6, 7]
-  harvest: [7, 8, 9, 10]
+  sow_indoors:
+    - 4
+    - 5
+  sow_direct:
+    - 5
+    - 6
+    - 7
+  plant:
+    - 5
+    - 6
+    - 7
+  harvest:
+    - 7
+    - 8
+    - 9
+    - 10
 spacing:
-  in_row_cm: [15, 30]
-  between_rows_cm: [45, 60]
+  in_row_cm:
+    - 15
+    - 30
+  between_rows_cm:
+    - 45
+    - 60
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only.
 sources:
-  - title: "Runner Bean: grow your own"
+  - title: 'Runner Bean: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/vegetables/runner-beans/grow-your-own"
+    url: 'https://www.rhs.org.uk/vegetables/runner-beans/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+sowing_depth_cm:
+  - 5
+  - 5
 ---
 ## Summary
 

@@ -1,28 +1,55 @@
 ---
 crop: chervil
 region: temperate-oceanic
-title: "Chervil in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Chervil in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  sow_direct: [3, 4, 5, 6, 7, 8]
-  plant: [4, 5, 6]
-  harvest: [5, 6, 7, 8, 9, 10, 11]
+  sow_direct:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  plant:
+    - 4
+    - 5
+    - 6
+  harvest:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
 spacing:
-  in_row_cm: [15, 15]
-  between_rows_cm: [30, 30]
+  in_row_cm:
+    - 15
+    - 15
+  between_rows_cm:
+    - 30
+    - 30
 sun: partial
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only.
 sources:
-  - title: "Chervil: grow your own"
+  - title: 'Chervil: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/herbs/chervil/grow-your-own"
+    url: 'https://www.rhs.org.uk/herbs/chervil/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+sowing_depth_cm:
+  - 1
+  - 1
 ---
 ## Summary
 

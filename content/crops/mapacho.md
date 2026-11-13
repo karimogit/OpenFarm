@@ -1,6 +1,6 @@
 ---
 slug: mapacho
-name: You Can Grow Anything
+name: Mapacho
 scientific_name: "Nicotiana rustica"
 family: Solanaceae
 wikidata: Q602633
@@ -19,4 +19,4 @@ note: >-
   Imported from the CC0 OpenFarm rescue dataset. These are community wiki facts, unverified – never use them
   for edibility, foraging or plant-safety decisions. Improve them with a sourced pull request.
 ---
-Ceremonial Tabacco
+Mapacho is a common name for *Nicotiana rustica*, a tobacco species used in ceremonial contexts in parts of South America. The old OpenFarm wiki never filled in growing notes here. Treat this page as unreviewed rescue metadata only.

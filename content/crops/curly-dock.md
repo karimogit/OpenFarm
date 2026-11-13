@@ -1,6 +1,6 @@
 ---
 slug: curly-dock
-name: You Can Grow Anything
+name: Curly dock
 scientific_name: "Rumex crispus"
 family: Polygonaceae
 wikidata: Q157643

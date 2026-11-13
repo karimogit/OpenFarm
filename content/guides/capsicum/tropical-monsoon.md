@@ -2,24 +2,53 @@
 crop: capsicum
 region: tropical-monsoon
 title: Capsicum in tropical monsoon climates
-koppen: [Am]
+koppen:
+  - Am
 hemisphere: north
-reference_location: "Miami / South Florida, USA"
+reference_location: 'Miami / South Florida, USA'
 calendar:
-  plant: [8, 9, 10, 11, 12, 1, 2]
-  harvest: [1, 2, 3, 4, 5, 10, 11, 12]
-days_to_maturity: [90, 100]
+  plant:
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 1
+    - 2
+  harvest:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 10
+    - 11
+    - 12
+days_to_maturity:
+  - 90
+  - 100
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - uf-vh021
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 50
+    - 50
+  in_row_cm:
+    - 50
+    - 50
 ---
-
 ## Timing
 
 UF/IFAS lists outdoor planting of **peppers** in **South Florida** from **Aug–Feb**; days to harvest 90–100 (65–75) (in brackets: from transplants).

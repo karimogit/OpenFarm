@@ -2,26 +2,49 @@
 crop: cabbage
 region: humid-continental
 title: Cabbage in humid continental climates
-koppen: [Dfa]
+koppen:
+  - Dfa
 hemisphere: north
-reference_location: "Des Moines / central Iowa, USA"
+reference_location: 'Des Moines / central Iowa, USA'
 calendar:
-  sow_direct: [6, 7]
-  plant: [4]
-  harvest: [5, 6, 7, 8, 9, 10]
-days_to_maturity: [60, 80]
+  sow_direct:
+    - 6
+    - 7
+  plant:
+    - 4
+  harvest:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+days_to_maturity:
+  - 60
+  - 80
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Planting months are taken from one regional extension calendar for the reference location; harvest months are estimated from that planting window plus the days to harvest and are approximate. Other places in this climate region can differ by weeks \u2013 check local frost dates."
+uncertainty: >-
+  Planting months are taken from one regional extension calendar for the reference location; harvest months
+  are estimated from that planting window plus the days to harvest and are approximate. Other places in this
+  climate region can differ by weeks – check local frost dates. In-row and row spacing above are copied from
+  the general crop record (unverified rescue import), not region-specific.
 sources:
   - isu-planting-harvesting-times
   - clemson-planning-a-garden
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+spacing:
+  between_rows_cm:
+    - 60
+    - 60
+  in_row_cm:
+    - 40
+    - 40
 ---
-
 ## Timing
 
 Iowa State University (central Iowa): Set out transplants early April to 1 May; direct seed in summer for an autumn crop.

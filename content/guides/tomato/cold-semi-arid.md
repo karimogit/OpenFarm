@@ -2,31 +2,48 @@
 crop: tomato
 region: cold-semi-arid
 title: Tomato in cold semi-arid climates
-koppen: [BSk]
+koppen:
+  - BSk
 hemisphere: north
-reference_location: Colorado Front Range, USA (Denver, Fort Collins)
+reference_location: 'Colorado Front Range, USA (Denver, Fort Collins)'
 calendar:
-  sow_indoors: [3, 4]
-  plant: [5, 6]
-  harvest: [7, 8, 9, 10]
+  sow_indoors:
+    - 3
+    - 4
+  plant:
+    - 5
+    - 6
+  harvest:
+    - 7
+    - 8
+    - 9
+    - 10
 sun: full
 water: moderate
-varieties: [early-girl, big-beef, celebrity]
-problems: [blossom-end-rot]
+varieties:
+  - early-girl
+  - big-beef
+  - celebrity
+problems:
+  - blossom-end-rot
 confidence: medium
 uncertainty: >-
-  Based on Colorado guidance (average frosts 15 May and 15 October along the Front Range). Other cold
-  steppe areas (e.g. central Spain's edges, Anatolia, Mongolia) have different frost dates and
-  elevation. Above roughly mountain-town elevations, tomatoes may only succeed under cover.
+  Based on Colorado guidance (average frosts 15 May and 15 October along the Front Range). Other cold steppe
+  areas (e.g. central Spain's edges, Anatolia, Mongolia) have different frost dates and elevation. Above
+  roughly mountain-town elevations, tomatoes may only succeed under cover.
 sources:
   - csu-tomatoes
   - csu-tomatoes-1817
   - csu-planting-dates
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
----
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+watering_note: |-
+  ## Care
 
+  - Mulch to save water, keep moisture even (reducing blossom-end rot) and limit early-blight splash.
+---
 ## Summary
 
 Dry air, strong sun and late spring frosts define the season. Tomatoes need warm nights and warm

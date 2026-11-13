@@ -25,12 +25,11 @@ eleventyComputed:
       <button type="button" class="grow" data-grow="{{ g.crop }}">＋ I'm growing this</button></span></div>
     <p class="sci-line"><a href="{{ ('/crops/' + g.crop + '/') | url }}">{{ g.cropName }}</a> · <em>{{ g.scientific_name }}</em> · {{ g.family }}</p>
     <p class="your-climate-line" data-your-climate-line hidden></p>
-    <p><a class="chip" href="{{ ('/regions/' + g.region + '/') | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a>
-      {% for k in g.koppen %}{{ k | kgLink(koppen.classes, db.kgToRegion) | safe }}{% endfor %}</p>
+    <p><a class="chip" href="{{ ('/regions/' + g.region + '/') | url }}"><span class="swatch sm" style="background:{{ g.regionColor }}"></span>{{ g.regionName }}</a></p>
     {% if g.exampleCountries and g.exampleCountries.length %}
     <p class="places-line small muted">Common in: {% for cc in g.exampleCountries %}{% include "country-link.njk" %}{% if not loop.last %}<span class="place-sep">,</span> {% endif %}{% endfor %}</p>
     {% endif %}
-    {% if g.alsoRegions.length %}<p class="small">Also used for: {% for r in g.alsoRegions %}<a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %} (the listed Köppen classes reach into these regions).</p>{% endif %}
+    {% if g.alsoRegions.length %}<p class="small">Also used for: {% for r in g.alsoRegions %}<a href="{{ ('/regions/' + r.slug + '/') | url }}">{{ r.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.</p>{% endif %}
     
     <h2>Calendar <small>({{ g.hemisphere }}ern hemisphere{% if g.hemisphere == "any" %} – not tied to hemisphere{% endif %}; checked against {{ g.reference_location }})</small></h2>
     {% set cal = g.calendar %}{% include "calendar.njk" %}
@@ -72,8 +71,13 @@ eleventyComputed:
         {% if g.days_to_maturity %}<div><dt>Days to maturity</dt><dd>{{ g.days_to_maturity | range("") }}</dd></div>{% endif %}
         {% if g.spacing and g.spacing.in_row_cm %}<div><dt>In-row spacing</dt><dd>{{ g.spacing.in_row_cm | range(" cm") }}</dd></div>{% endif %}
         {% if g.spacing and g.spacing.between_rows_cm %}<div><dt>Between rows</dt><dd>{{ g.spacing.between_rows_cm | range(" cm") }}</dd></div>{% endif %}
+        {% if g.sowing_depth_cm %}<div><dt>Sow depth</dt><dd>{{ g.sowing_depth_cm | range(" cm") }}</dd></div>{% endif %}
+        {% if g.soil and g.soil.drainage %}<div><dt>Soil drainage</dt><dd>{{ g.soil.drainage | replace("-", " ") }}</dd></div>{% endif %}
+        {% if g.soil and g.soil.ph %}<div><dt>Soil pH</dt><dd>{{ g.soil.ph | range("") }}</dd></div>{% endif %}
+        {% if g.soil and g.soil.ericaceous %}<div><dt>Acid soil</dt><dd>Ericaceous / acid-loving</dd></div>{% endif %}
+        {% if g.soil and g.soil.notes %}<div class="wide"><dt>Soil</dt><dd>{{ g.soil.notes }}</dd></div>{% endif %}
         <div><dt>Sun</dt><dd>{{ g.sun | label }}</dd></div>
-        <div><dt>Water</dt><dd>{{ g.water | label }}</dd></div>
+        <div><dt>Water</dt><dd>{{ g.water | label }}{% if g.watering_note %} <span class="small">– {{ g.watering_note }}</span>{% endif %}</dd></div>
         {% if g.varietyList.length %}<div class="wide"><dt>Varieties</dt><dd>{% for v in g.varietyList %}<a href="{{ v.url | url }}">{{ v.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>{% endif %}
       </dl>
     </section>

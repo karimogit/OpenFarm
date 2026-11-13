@@ -1,26 +1,39 @@
 ---
 crop: kiwifruit
 region: temperate-oceanic
-title: "Kiwifruit in temperate oceanic climates"
-koppen: [Cfb, Cfc]
+title: Kiwifruit in temperate oceanic climates
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
-reference_location: "United Kingdom"
+reference_location: United Kingdom
 calendar:
-  plant: [3, 4, 5]
-  harvest: [8, 9]
+  plant:
+    - 3
+    - 4
+    - 5
+  harvest:
+    - 8
+    - 9
 spacing:
-  in_row_cm: [300, 450]
+  in_row_cm:
+    - 300
+    - 450
 sun: full
 water: moderate
 confidence: medium
-uncertainty: "Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen Cfc coasts, are often a few weeks later. One publisher only."
+uncertainty: >-
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only.
 sources:
-  - title: "Kiwifruit: grow your own"
+  - title: 'Kiwifruit: grow your own'
     publisher: Royal Horticultural Society (RHS)
-    url: "https://www.rhs.org.uk/fruit/kiwi/grow-your-own"
+    url: 'https://www.rhs.org.uk/fruit/kiwi/grow-your-own'
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-12
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+soil:
+  ericaceous: true
 ---
 ## Summary
 

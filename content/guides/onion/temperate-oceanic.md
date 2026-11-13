@@ -2,35 +2,61 @@
 crop: onion
 region: temperate-oceanic
 title: Onion in temperate oceanic climates
-koppen: [Cfb, Cfc]
+koppen:
+  - Cfb
+  - Cfc
 hemisphere: north
 reference_location: United Kingdom
 calendar:
-  sow_indoors: [1, 2, 3, 8, 9]
-  sow_direct: [3, 4]
-  plant: [3, 4, 9, 10]
-  harvest: [6, 7, 8, 9, 10]
+  sow_indoors:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 9
+  sow_direct:
+    - 3
+    - 4
+  plant:
+    - 3
+    - 4
+    - 9
+    - 10
+  harvest:
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
 spacing:
-  in_row_cm: [10, 15]
-  between_rows_cm: [20, 30]
+  in_row_cm:
+    - 10
+    - 15
+  between_rows_cm:
+    - 20
+    - 30
 sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Based on one publisher's advice (RHS) for the UK; a second independent regional
-  source would raise this to high. Other temperate oceanic sites can differ by
-  weeks. Plant months cover spring sets and autumn (overwintering or
-  Japanese) sets; RHS does not give a single calendar month for autumn planting
-  beyond “autumn”. Late-summer and early-autumn sow_indoors is only for
-  overwintering seed such as the ‘Toughball’ example named by RHS. Harvest is
-  June–July for autumn-planted sets and July–October for spring-planted sets and
-  seed-raised crops.
-sources: [rhs-onions]
+  Based on one publisher's advice (RHS) for the UK; a second independent regional source would raise this to
+  high. Other temperate oceanic sites can differ by weeks. Plant months cover spring sets and autumn
+  (overwintering or Japanese) sets; RHS does not give a single calendar month for autumn planting beyond
+  “autumn”. Late-summer and early-autumn sow_indoors is only for overwintering seed such as the ‘Toughball’
+  example named by RHS. Harvest is June–July for autumn-planted sets and July–October for spring-planted sets
+  and seed-raised crops.
+sources:
+  - rhs-onions
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: 2026-11-11
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-11'
+sowing_depth_cm:
+  - 1.3
+  - 1.3
+soil:
+  drainage: free-draining
 ---
-
 ## Summary
 
 Bulb onions grow well in a warm, sunny, well-drained oceanic garden, from sets

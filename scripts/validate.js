@@ -76,9 +76,11 @@ const crops = loadCrops();
 const cropSlugs = new Set(crops.map((c) => c.data.slug));
 const problems = loadProblems();
 const problemSlugs = new Set(problems.map((p) => p.data.slug));
+const RESCUE_PLACEHOLDER_NAME = /^you can grow anything$/i;
 for (const c of crops) {
   if (!check(V.crop, c.data, c.file)) continue;
   if (c.data.slug !== c.slug) fail(c.file, `slug must equal file name "${c.slug}"`);
+  if (RESCUE_PLACEHOLDER_NAME.test((c.data.name || "").trim())) fail(c.file, 'name must not be the rescued wiki placeholder "You Can Grow Anything"');
   checkSources(c.file, c.data.sources);
   checkSources(c.file, c.data.seed_saving?.sources);
   checkSources(c.file, c.data.perennial?.sources);

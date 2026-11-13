@@ -173,6 +173,54 @@
         }
       }
     },
+    "sowing_depth_cm": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Sowing or planting depth in cm (min–max when a range is given in the source)."
+    },
+    "soil": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "drainage": {
+          "enum": [
+            "free-draining",
+            "moisture-retentive",
+            "either"
+          ]
+        },
+        "ph": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 14
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Preferred soil pH range when the source gives one."
+        },
+        "ericaceous": {
+          "type": "boolean",
+          "description": "True when the source calls for acid/ericaceous soil or compost."
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 320,
+          "description": "Short soil or compost note, already stated in the guide body and sources."
+        }
+      }
+    },
+    "watering_note": {
+      "type": "string",
+      "maxLength": 320,
+      "description": "Region-specific watering detail beyond the coarse water level (e.g. keep moist while germinating)."
+    },
     "sun": {
       "enum": [
         "full",
