@@ -54,7 +54,8 @@ function renderGrowingCalendar(p) {
   const rows = p.growing.map((g) => {
     const c = CROP[g.crop];
     const vName = varietyName(g.crop, g.variety);
-    const cal = byCrop[g.crop]?.calendar || {};
+    const match = byCrop[g.crop];
+    const cal = match?.calendar || match?.g?.calendar || {};
     const sownM = monthOf(g.sown), plantedM = monthOf(g.planted);
     const cells = MONTHS.map((_, i) => {
       const mo = i + 1;
