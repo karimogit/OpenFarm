@@ -1,10 +1,9 @@
 # 🌱 OpenFarm
 
-*Grow food that fits your climate.*
+*Growing guides for you.*
 
-**OpenFarm helps anyone, anywhere grow food. It's an open, community-built library of growing
-guides matched to your climate region. Find your location, get advice that fits your conditions,
-and share what you know.**
+**Open, community-built growing guides matched to your climate region. Find your place, get a
+calendar that fits, and share what you know.**
 
 👉 Live demo: **https://karimogit.github.io/OpenFarm/**
 
