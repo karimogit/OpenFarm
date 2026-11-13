@@ -32,8 +32,7 @@ sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
-  Cfc coasts, are often a few weeks later. One publisher only.
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only.
 sources:
   - title: 'Celeriac: grow your own'
     publisher: Royal Horticultural Society (RHS)

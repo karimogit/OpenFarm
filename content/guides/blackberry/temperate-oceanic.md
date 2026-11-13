@@ -23,8 +23,7 @@ sun: full
 water: moderate
 confidence: medium
 uncertainty: >-
-  Months follow the Royal Horticultural Society calendar for the UK. Cooler oceanic places, including Köppen
-  Cfc coasts, are often a few weeks later. One publisher only. In-row and row spacing above are copied from
+  Months follow the Royal Horticultural Society calendar for the UK. Cooler coastal parts of this region are often a few weeks later. One publisher only. In-row and row spacing above are copied from
   the general crop record (unverified rescue import), not region-specific.
 sources:
   - title: 'Blackberry: grow your own'
