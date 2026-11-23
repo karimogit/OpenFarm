@@ -31,6 +31,8 @@ jobs:
         env:
           # Project site at https://<user>.github.io/OpenFarm/. Set to "/" when using a custom domain like openfarm.cc.
           PATH_PREFIX: /OpenFarm/
+      - name: Regression tests and page audit
+        run: npm run test:regression && node scripts/audit_pages.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

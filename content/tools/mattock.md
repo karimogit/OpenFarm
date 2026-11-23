@@ -3,6 +3,10 @@ slug: mattock
 name: "Mattock"
 category: digging
 commons_file: "Cutter mattock.jpg"
+general: true
+tasks:
+  - breaking compacted or rooty soil
+  - clearing stumps and heavy debris
 sources:
   - title: "Mattock (Wikipedia)"
     publisher: Wikipedia
