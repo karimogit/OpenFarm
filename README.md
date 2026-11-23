@@ -264,7 +264,8 @@ We'd rather cooperate than compete:
 - [x] 263 crops imported from the CC0 rescue dataset; Commons photos; Pagefind search; Open-Meteo weather
 - [x] 179 regional guides from extension planting calendars (Arizona, Clemson, UF/IFAS, Iowa State, Colorado State, Alaska Fairbanks)
 - [x] Hardiness zones (Open-Meteo ERA5), tools, help page, profile export (JSON, CSV, .ics, Markdown)
-- [ ] Guides for the regions that still have none (subpolar oceanic, subtropical highland and tundra)
+- [x] Starter guides for subtropical highland, tundra and other thin regions (see `scripts/seed_sparse_region_guides.mjs`)
+- [ ] More sourced guides for `taxonomy_stub` species pages and subpolar oceanic (Cfc overlaps temperate-oceanic guides today)
 - [ ] Review imported crops one by one and promote them to `origin: curated`
 - [ ] Upgrade climate data to Beck et al. (2023) 1991–2020 at 0.1° (also CC BY 4.0)
 - [ ] Native southern-hemisphere variants (instead of the shifted calendar)

@@ -1,21 +1,27 @@
 ---
 slug: aronia
-name: "Aronia"
-scientific_name: "Aronia melanocarpa"
+name: Aronia
+scientific_name: Aronia melanocarpa
 family: Rosaceae
 wikidata: Q162774
-wikipedia: "Aronia melanocarpa"
-aliases: ["black chokeberry"]
+wikipedia: Aronia melanocarpa
+aliases:
+  - black chokeberry
 type: berry
 lifecycle: perennial
 origin: curated
-sources: [wikidata]
+sources:
+  - wikidata
 field_sources:
-  scientific_name: [wikidata]
-  family: [wikidata]
+  scientific_name:
+    - wikidata
+  family:
+    - wikidata
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: "2026-11-12"
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+taxonomy_stub: true
 ---
 
 Aronia is a hardy deciduous shrub grown for its astringent dark berries, usually cooked or juiced. This page names the species only.

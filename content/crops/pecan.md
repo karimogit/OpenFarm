@@ -1,20 +1,25 @@
 ---
 slug: pecan
-name: "Pecan"
-scientific_name: "Carya illinoinensis"
+name: Pecan
+scientific_name: Carya illinoinensis
 family: Juglandaceae
 wikidata: Q333877
-wikipedia: "Pecan"
+wikipedia: Pecan
 type: nut
 lifecycle: perennial
 origin: curated
-sources: [wikidata]
+sources:
+  - wikidata
 field_sources:
-  scientific_name: [wikidata]
-  family: [wikidata]
+  scientific_name:
+    - wikidata
+  family:
+    - wikidata
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: "2026-11-12"
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+taxonomy_stub: true
 ---
 
 Pecan is a large deciduous tree grown for its nuts. It needs a long warm season to fill the kernels. This page names the species only.

@@ -1,20 +1,25 @@
 ---
 slug: wasabi
-name: "Wasabi"
-scientific_name: "Eutrema japonicum"
+name: Wasabi
+scientific_name: Eutrema japonicum
 family: Brassicaceae
 wikidata: Q49855
-wikipedia: "Wasabi"
+wikipedia: Wasabi
 type: spice
 lifecycle: perennial
 origin: curated
-sources: [wikidata]
+sources:
+  - wikidata
 field_sources:
-  scientific_name: [wikidata]
-  family: [wikidata]
+  scientific_name:
+    - wikidata
+  family:
+    - wikidata
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: "2026-11-12"
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+taxonomy_stub: true
 ---
 
 Wasabi is a perennial brassica grown for its pungent rhizome. It wants cool, shady, wet conditions. This page names the species only.

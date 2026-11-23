@@ -4,6 +4,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { ROOT, loadCrops, loadGuides, loadRegions } from "./content.js";
 
+function cropExpectsGuide(c) {
+  if (c.data.origin !== "curated") return false;
+  if (c.data.taxonomy_stub === true) return false;
+  return true;
+}
+
 let failed = 0;
 const warn = (msg) => console.warn(`⚠ ${msg}`);
 const fail = (msg) => { failed++; console.error(`FAIL: ${msg}`); };
@@ -39,21 +45,31 @@ for (const g of guides) {
   (guidesByCrop[g.data.crop] ??= new Set()).add(g.data.region);
 }
 
-const curatedNoGuide = crops.filter((c) => c.data.origin === "curated" && !guidesByCrop[c.data.slug]?.size);
+const curatedNoGuide = crops.filter((c) => cropExpectsGuide(c) && !guidesByCrop[c.data.slug]?.size);
 if (curatedNoGuide.length) {
   warn(`${curatedNoGuide.length} curated crop(s) have no regional guide yet (pages show “No climate guides yet”): ${curatedNoGuide.map((c) => c.slug).join(", ")}`);
+}
+const taxonomyStubs = crops.filter((c) => c.data.taxonomy_stub);
+if (taxonomyStubs.length) {
+  console.log(`Taxonomy stubs (no guide expected yet): ${taxonomyStubs.length} crop(s).`);
 }
 
 const importedNoGuide = crops.filter((c) => c.data.origin === "imported" && !guidesByCrop[c.data.slug]?.size);
 console.log(`Coverage: ${guides.length} guides; ${crops.length - curatedNoGuide.length - importedNoGuide.length}/${crops.length} crops have ≥1 guide (${importedNoGuide.length} imported still without).`);
 
 // Region pages: at least one sourced primary guide each is aspirational, not required yet.
-const regionCounts = Object.fromEntries(regions.map((r) => [r.data.slug, 0]));
+const regionKoppen = Object.fromEntries(regions.map((r) => [r.data.slug, new Set(r.data.koppen)]));
+const regionCounts = Object.fromEntries(regions.map((r) => [r.data.slug, new Set()]));
 for (const g of guides) {
   if (g.variety || !(g.data.sources?.length)) continue;
-  regionCounts[g.data.region] = (regionCounts[g.data.region] || 0) + 1;
+  const id = `${g.data.crop}/${g.data.region}`;
+  for (const r of regions) {
+    const slug = r.data.slug;
+    const kg = regionKoppen[slug];
+    if (g.data.region === slug || (g.data.koppen || []).some((k) => kg.has(k))) regionCounts[slug].add(id);
+  }
 }
-const thinRegions = Object.entries(regionCounts).filter(([, n]) => n < 5).map(([slug, n]) => `${slug} (${n})`);
+const thinRegions = Object.entries(regionCounts).filter(([, s]) => s.size < 5).map(([slug, s]) => `${slug} (${s.size})`);
 if (thinRegions.length) warn(`Regions with fewer than 5 crop-level guides: ${thinRegions.join(", ")}`);
 
 const siteDir = path.join(ROOT, "_site");

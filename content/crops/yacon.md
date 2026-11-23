@@ -1,20 +1,25 @@
 ---
 slug: yacon
-name: "Yacon"
-scientific_name: "Smallanthus sonchifolius"
+name: Yacon
+scientific_name: Smallanthus sonchifolius
 family: Asteraceae
 wikidata: Q1075177
-wikipedia: "Yacón"
+wikipedia: Yacón
 type: vegetable
 lifecycle: perennial
 origin: curated
-sources: [wikidata]
+sources:
+  - wikidata
 field_sources:
-  scientific_name: [wikidata]
-  family: [wikidata]
+  scientific_name:
+    - wikidata
+  family:
+    - wikidata
 license: CC-BY-SA-4.0
-authors: [OpenFarm contributors]
-last_reviewed: "2026-11-12"
+authors:
+  - OpenFarm contributors
+last_reviewed: '2026-11-12'
+taxonomy_stub: true
 ---
 
 Yacon is a perennial daisy grown for its sweet, crisp tubers. This page names the species; climate limits belong in a regional guide.

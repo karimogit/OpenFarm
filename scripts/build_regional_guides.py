@@ -258,14 +258,32 @@ REGIONS = [hot_desert, humid_subtropical, tropical_monsoon, humid_continental, c
 def front(path):
     t = open(path).read(); return t.split("---", 2)[1]
 
+def koppen_list(h):
+    inline = re.search(r"^koppen:\s*\[([^\]]+)\]", h, re.M)
+    if inline:
+        return [x.strip() for x in inline.group(1).split(",") if x.strip()]
+    out, in_blk = [], False
+    for line in h.splitlines():
+        if re.match(r"^koppen:\s*$", line):
+            in_blk = True
+            continue
+        if in_blk:
+            m = re.match(r"^\s+-\s+(\w+)\s*$", line)
+            if m:
+                out.append(m.group(1))
+            elif line.strip() and not line.startswith("  "):
+                break
+    return out
+
 def main():
     write = "--write" in sys.argv
     crops = {os.path.basename(p)[:-3]: front(p) for p in glob.glob(os.path.join(ROOT, "content/crops/*.md"))}
     existing = {}
     for p in glob.glob(os.path.join(ROOT, "content/guides/*/*.md")):
         h = front(p); c = p.split("/")[-2]
-        kg = re.search(r"^koppen: \[(.*?)\]", h, re.M).group(1).replace(" ", "").split(",")
-        hemi = re.search(r"^hemisphere: (\w+)", h, re.M).group(1)
+        kg = koppen_list(h)
+        hemi_m = re.search(r"^hemisphere: (\w+)", h, re.M)
+        hemi = hemi_m.group(1) if hemi_m else "north"
         existing.setdefault(c, []).append((os.path.basename(p)[:-3], kg, hemi))
     made, skipped = {}, []
     for fn in REGIONS:

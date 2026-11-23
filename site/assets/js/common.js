@@ -346,7 +346,7 @@ export function calendarHTML(cal) {
 }
 
 export const thumbHTML = (img, cls = "thumb") => img
-  ? `<span class="${cls}"><img src="${img.src}"${img.srcset ? ` srcset="${img.srcset}"` : ""} alt="" loading="lazy" style="max-width:${img.w || 250}px;max-height:${img.h || 250}px"></span>`
+  ? `<span class="${cls}"><img src="${esc(img.src)}"${img.srcset ? ` srcset="${esc(img.srcset)}"` : ""} alt="" loading="lazy" style="max-width:${img.w || 250}px;max-height:${img.h || 250}px"></span>`
   : `<span class="${cls} none">${icon("sprout")}</span>`;
 
 export const swatch = (r) => `<span class="swatch sm" style="background:${r.color}"></span>`;

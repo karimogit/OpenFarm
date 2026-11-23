@@ -401,6 +401,10 @@
         "imported"
       ]
     },
+    "taxonomy_stub": {
+      "type": "boolean",
+      "description": "Curated species page with Wikidata taxonomy only; regional guides are still missing by design."
+    },
     "imported": {
       "type": "string",
       "format": "date"
